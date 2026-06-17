@@ -118,7 +118,7 @@ public sealed class ListingManagementClient : IDisposable
     {
         var services = new ServiceCollection();
         services.AddListingManagementSdk(config);
-        services.AddSingleton(tokenContext);
+        services.AddSingleton<ITokenContext>(tokenContext);
         return services.BuildServiceProvider().GetRequiredService<IListingManagementGraphQLClient>();
     }
 
