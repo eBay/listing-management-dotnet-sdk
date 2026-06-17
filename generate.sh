@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# Copyright 2026 eBay Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+set -euo pipefail
+
+echo "Restoring tools..."
+dotnet tool restore
+
+echo "Regenerating REST clients via Kiota..."
+dotnet kiota generate \
+  -l csharp \
+  -d specs/sell_inventory_v1_oas3.yaml \
+  -c InventoryApiClient \
+  -n EBay.ListingManagement.Generated.Inventory \
+  -o EBay.ListingManagement/Generated/Inventory \
+  --ebc --co
+
+dotnet kiota generate \
+  -l csharp \
+  -d specs/sell_feed_v1_oas3.yaml \
+  -c FeedApiClient \
+  -n EBay.ListingManagement.Generated.Feed \
+  -o EBay.ListingManagement/Generated/Feed \
+  --ebc --co
+
+dotnet kiota generate \
+  -l csharp \
+  -d specs/commerce_media_v1_beta_oas3.yaml \
+  -c MediaApiClient \
+  -n EBay.ListingManagement.Generated.Media \
+  -o EBay.ListingManagement/Generated/Media \
+  --ebc --co
+
+dotnet kiota generate \
+  -l csharp \
+  -d specs/sell_stores_v1_oas3.yaml \
+  -c StoreApiClient \
+  -n EBay.ListingManagement.Generated.Store \
+  -o EBay.ListingManagement/Generated/Store \
+  --ebc --co
+
+echo "Building (triggers StrawberryShake GraphQL codegen)..."
+dotnet build EBay.ListingManagement/EBay.ListingManagement.csproj
+
+echo "Done."
