@@ -7,6 +7,8 @@
     <LangVersion>latest</LangVersion>
     <RootNamespace>EBay.ListingManagement</RootNamespace>
     <AssemblyName>EBay.ListingManagement</AssemblyName>
+    <PackageProjectUrl>https://github.com/eBay/listing-management-dotnet-sdk</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/eBay/listing-management-dotnet-sdk</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
