@@ -5,7 +5,7 @@
     "strawberryShake": {
       "name": "ListingManagementGraphQLClient",
       "namespace": "EBay.ListingManagement.Generated.GraphQL",
-      "url": "http://placeholder",
+      "url": "https://api.ebay.com/graphql",
       "dependencyInjection": true,
       "noStore": true,
       "requestStrategy": "Default",
