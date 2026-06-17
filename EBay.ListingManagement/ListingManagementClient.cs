@@ -16,11 +16,13 @@
 using EBay.ListingManagement.Clients.GraphQL;
 using EBay.ListingManagement.Clients.Rest;
 using EBay.ListingManagement.Configuration;
+using EBay.ListingManagement.Extensions;
 using EBay.ListingManagement.Generated.GraphQL;
 using EBay.ListingManagement.Generated.Inventory;
 using EBay.ListingManagement.Generated.Feed;
 using EBay.ListingManagement.Generated.Media;
 using EBay.ListingManagement.Generated.Store;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 
@@ -106,9 +108,18 @@ public sealed class ListingManagementClient : IDisposable
             new HttpClientRequestAdapter(auth, httpClient: storeClient)), config, tokenContext);
 
         GraphQL = new ListingGraphQLClient(
-            null!,
+            BuildStandaloneGqlClient(config, tokenContext),
             new DynamicGraphQLClient(inventoryClient, config, tokenContext),
             tokenContext);
+    }
+
+    private static IListingManagementGraphQLClient BuildStandaloneGqlClient(
+        ListingManagementConfiguration config, ITokenContext tokenContext)
+    {
+        var services = new ServiceCollection();
+        services.AddListingManagementSdk(config);
+        services.AddSingleton(tokenContext);
+        return services.BuildServiceProvider().GetRequiredService<IListingManagementGraphQLClient>();
     }
 
     private static HttpClient BuildStandaloneHttpClient(ListingManagementConfiguration config, string baseUrl)
