@@ -39,7 +39,8 @@ public static class ServiceCollectionExtensions
             .AddHttpClient("ListingManagementGraphQLClient", client =>
                 client.BaseAddress = new Uri(config.GraphQLBaseUrl))
             .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
-            .AddHttpMessageHandler<BearerTokenHandler>();
+            .AddHttpMessageHandler<BearerTokenHandler>()
+            .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config));
 
         // Dynamic escape hatch
         services.AddScoped<DynamicGraphQLClient>(sp =>
