@@ -53,6 +53,8 @@ dotnet kiota generate \
   --ebc --co
 
 echo "Building (triggers StrawberryShake GraphQL codegen)..."
-dotnet build EBay.ListingManagement/EBay.ListingManagement.csproj
+# DOTNET_ROLL_FORWARD=LatestMajor is required because StrawberryShake's bundled
+# codegen tool targets net8/net9; without it the tool refuses to run on net10+.
+DOTNET_ROLL_FORWARD=LatestMajor dotnet build EBay.ListingManagement/EBay.ListingManagement.csproj
 
 echo "Done."
