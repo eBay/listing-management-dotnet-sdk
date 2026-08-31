@@ -14,21 +14,15 @@
 
 
 using EBay.ListingManagement.Clients.GraphQL;
-using EBay.ListingManagement.Clients.Rest;
 using EBay.ListingManagement.Configuration;
 using EBay.ListingManagement.Extensions;
 using EBay.ListingManagement.Generated.GraphQL;
-using EBay.ListingManagement.Generated.Inventory;
-using EBay.ListingManagement.Generated.Feed;
-using EBay.ListingManagement.Generated.Media;
-using EBay.ListingManagement.Generated.Store;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Kiota.Abstractions.Authentication;
-using Microsoft.Kiota.Http.HttpClientLibrary;
 
 namespace EBay.ListingManagement;
 
-public sealed class ListingManagementClient : IDisposable
+public partial class ListingManagementClient : IDisposable
 {
     // Named client keys used by ServiceCollectionExtensions
     internal const string InventoryClientName = "ListingManagementClient.Inventory";
@@ -38,10 +32,6 @@ public sealed class ListingManagementClient : IDisposable
 
     private readonly HttpClient[] _ownedClients;
 
-    public InventoryClient Inventory { get; }
-    public FeedClient Feed { get; }
-    public MediaClient Media { get; }
-    public StoreClient Store { get; }
     public ListingGraphQLClient GraphQL { get; }
 
     /// <summary>
@@ -61,17 +51,7 @@ public sealed class ListingManagementClient : IDisposable
 
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
 
-        Inventory = new InventoryClient(new InventoryApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: inventoryClient)), config, tokenContext);
-
-        var feedAdapter = new HttpClientRequestAdapter(auth, httpClient: feedClient);
-        Feed = new FeedClient(new FeedApiClient(feedAdapter), feedAdapter, config, tokenContext);
-
-        var mediaAdapter = new HttpClientRequestAdapter(auth, httpClient: mediaClient);
-        Media = new MediaClient(new MediaApiClient(mediaAdapter), mediaAdapter, config, tokenContext);
-
-        Store = new StoreClient(new StoreApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: storeClient)), config, tokenContext);
+        InitializeRestClients(auth, inventoryClient, feedClient, mediaClient, storeClient, config, tokenContext);
 
         GraphQL = new ListingGraphQLClient(
             ssGqlClient,
@@ -95,17 +75,7 @@ public sealed class ListingManagementClient : IDisposable
         var storeClient     = BuildStandaloneHttpClient(config, config.StoreBaseUrl);
         _ownedClients = [inventoryClient, feedClient, mediaClient, storeClient];
 
-        Inventory = new InventoryClient(new InventoryApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: inventoryClient)), config, tokenContext);
-
-        var feedAdapter = new HttpClientRequestAdapter(auth, httpClient: feedClient);
-        Feed = new FeedClient(new FeedApiClient(feedAdapter), feedAdapter, config, tokenContext);
-
-        var mediaAdapter = new HttpClientRequestAdapter(auth, httpClient: mediaClient);
-        Media = new MediaClient(new MediaApiClient(mediaAdapter), mediaAdapter, config, tokenContext);
-
-        Store = new StoreClient(new StoreApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: storeClient)), config, tokenContext);
+        InitializeRestClients(auth, inventoryClient, feedClient, mediaClient, storeClient, config, tokenContext);
 
         GraphQL = new ListingGraphQLClient(
             BuildStandaloneGqlClient(config, tokenContext),
