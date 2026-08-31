@@ -52,6 +52,9 @@ dotnet kiota generate \
   -o EBay.ListingManagement/Generated/Store \
   --ebc --co
 
+echo "Adding license headers to generated files..."
+./add-license-headers.sh ./EBay.ListingManagement/Generated
+
 echo "Building (triggers StrawberryShake GraphQL codegen)..."
 # DOTNET_ROLL_FORWARD=LatestMajor is required because StrawberryShake's bundled
 # codegen tool targets net8/net9; without it the tool refuses to run on net10+.
