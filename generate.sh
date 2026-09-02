@@ -47,9 +47,9 @@ dotnet kiota generate \
 dotnet kiota generate \
   -l csharp \
   -d specs/openapi/stores.yaml \
-  -c StoreApiClient \
-  -n EBay.ListingManagement.Generated.Store \
-  -o EBay.ListingManagement/Generated/Store \
+  -c StoresApiClient \
+  -n EBay.ListingManagement.Generated.Stores \
+  -o EBay.ListingManagement/Generated/Stores \
   --ebc --co
 
 echo "Adding license headers to generated files..."
