@@ -13,7 +13,7 @@ A .NET SDK for eBay seller listing management. Wraps four REST APIs (Kiota-gener
 | `Inventory` | Sell Inventory v1 | REST (Kiota) |
 | `Feed` | Sell Feed v1 | REST (Kiota) |
 | `Media` | Commerce Media v1 beta | REST (Kiota) |
-| `Store` | Sell Stores v1 | REST (Kiota) |
+| `Stores` | Sell Stores v1 | REST (Kiota) |
 | `GraphQL` | eBay GraphQL | StrawberryShake + dynamic escape hatch |
 
 All five are exposed on `ListingManagementClient` and can also be injected directly via DI.
@@ -46,7 +46,7 @@ using var client = new ListingManagementClient(config);
 // REST
 var items = await client.Inventory.GetInventoryItemsAsync(limit: 20);
 var tasks = await client.Feed.GetTasksAsync();
-var store = await client.Store.GetStoreAsync();
+var store = await client.Stores.GetStoreAsync();
 
 // GraphQL (typed)
 var listings = await client.GraphQL.GetSellerListingSearchAsync();
@@ -68,7 +68,7 @@ Then inject any client directly:
 app.MapGet("/items", async (InventoryClient client) =>
     Results.Ok(await client.GetInventoryItemsAsync()));
 
-app.MapGet("/store", async (StoreClient client) =>
+app.MapGet("/store", async (StoresClient client) =>
     Results.Ok(await client.GetStoreAsync()));
 
 app.MapGet("/listings", async (ListingGraphQLClient client) =>
@@ -86,7 +86,7 @@ var config = new ListingManagementConfiguration
     InventoryBaseUrl = "https://api.sandbox.ebay.com/sell/inventory/v1",
     FeedBaseUrl      = "https://api.sandbox.ebay.com/sell/feed/v1",
     MediaBaseUrl     = "https://apim.sandbox.ebay.com/commerce/media/v1_beta",
-    StoreBaseUrl     = "https://api.sandbox.ebay.com/sell/stores/v1",
+    StoresBaseUrl    = "https://api.sandbox.ebay.com/sell/stores/v1",
     GraphQLBaseUrl   = "https://api.sandbox.ebay.com/graphql",
 };
 ```
@@ -132,7 +132,7 @@ dotnet user-secrets set "EBay:AccessToken" "v^1.1-..."
 dotnet run
 ```
 
-Then open `http://localhost:5000/swagger` to explore and invoke endpoints for Inventory, Feed, Store, Media, and GraphQL.
+Then open `http://localhost:5000/swagger` to explore and invoke endpoints for Inventory, Feed, Stores, Media, and GraphQL.
 
 ## License
 

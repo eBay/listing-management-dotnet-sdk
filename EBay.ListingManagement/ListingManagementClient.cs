@@ -28,7 +28,7 @@ public partial class ListingManagementClient : IDisposable
     internal const string InventoryClientName = "ListingManagementClient.Inventory";
     internal const string FeedClientName      = "ListingManagementClient.Feed";
     internal const string MediaClientName     = "ListingManagementClient.Media";
-    internal const string StoreClientName     = "ListingManagementClient.Store";
+    internal const string StoresClientName    = "ListingManagementClient.Stores";
 
     private readonly HttpClient[] _ownedClients;
 
@@ -43,7 +43,7 @@ public partial class ListingManagementClient : IDisposable
         HttpClient inventoryClient,
         HttpClient feedClient,
         HttpClient mediaClient,
-        HttpClient storeClient,
+        HttpClient storesClient,
         IListingManagementGraphQLClient ssGqlClient,
         ITokenContext tokenContext)
     {
@@ -51,7 +51,7 @@ public partial class ListingManagementClient : IDisposable
 
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
 
-        InitializeRestClients(auth, inventoryClient, feedClient, mediaClient, storeClient, config, tokenContext);
+        InitializeRestClients(auth, inventoryClient, feedClient, mediaClient, storesClient, config, tokenContext);
 
         GraphQL = new ListingGraphQLClient(
             ssGqlClient,
@@ -72,10 +72,10 @@ public partial class ListingManagementClient : IDisposable
         var inventoryClient = BuildStandaloneHttpClient(config, config.InventoryBaseUrl);
         var feedClient      = BuildStandaloneHttpClient(config, config.FeedBaseUrl);
         var mediaClient     = BuildStandaloneHttpClient(config, config.MediaBaseUrl);
-        var storeClient     = BuildStandaloneHttpClient(config, config.StoreBaseUrl);
-        _ownedClients = [inventoryClient, feedClient, mediaClient, storeClient];
+        var storesClient    = BuildStandaloneHttpClient(config, config.StoresBaseUrl);
+        _ownedClients = [inventoryClient, feedClient, mediaClient, storesClient];
 
-        InitializeRestClients(auth, inventoryClient, feedClient, mediaClient, storeClient, config, tokenContext);
+        InitializeRestClients(auth, inventoryClient, feedClient, mediaClient, storesClient, config, tokenContext);
 
         GraphQL = new ListingGraphQLClient(
             BuildStandaloneGqlClient(config, tokenContext),

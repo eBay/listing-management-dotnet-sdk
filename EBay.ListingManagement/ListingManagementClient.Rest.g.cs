@@ -18,7 +18,7 @@ using EBay.ListingManagement.Configuration;
 using EBay.ListingManagement.Generated.Feed;
 using EBay.ListingManagement.Generated.Inventory;
 using EBay.ListingManagement.Generated.Media;
-using EBay.ListingManagement.Generated.Store;
+using EBay.ListingManagement.Generated.Stores;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 
@@ -29,14 +29,14 @@ public partial class ListingManagementClient
     public InventoryClient Inventory { get; private set; } = null!;
     public FeedClient Feed { get; private set; } = null!;
     public MediaClient Media { get; private set; } = null!;
-    public StoreClient Store { get; private set; } = null!;
+    public StoresClient Stores { get; private set; } = null!;
 
     private void InitializeRestClients(
         IAuthenticationProvider auth,
         HttpClient inventoryClient,
         HttpClient feedClient,
         HttpClient mediaClient,
-        HttpClient storeClient,
+        HttpClient storesClient,
         ListingManagementConfiguration config,
         ITokenContext tokenContext)
     {
@@ -49,7 +49,7 @@ public partial class ListingManagementClient
         var mediaAdapter = new HttpClientRequestAdapter(auth, httpClient: mediaClient);
         Media = new MediaClient(new MediaApiClient(mediaAdapter), mediaAdapter, config, tokenContext);
 
-        Store = new StoreClient(new StoreApiClient(
-            new HttpClientRequestAdapter(auth, httpClient: storeClient)), config, tokenContext);
+        Stores = new StoresClient(new StoresApiClient(
+            new HttpClientRequestAdapter(auth, httpClient: storesClient)), config, tokenContext);
     }
 }
