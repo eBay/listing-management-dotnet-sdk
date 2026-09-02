@@ -22,7 +22,7 @@ dotnet tool restore
 echo "Regenerating REST clients via Kiota..."
 dotnet kiota generate \
   -l csharp \
-  -d specs/sell_inventory_v1_oas3.yaml \
+  -d specs/openapi/inventory.yaml \
   -c InventoryApiClient \
   -n EBay.ListingManagement.Generated.Inventory \
   -o EBay.ListingManagement/Generated/Inventory \
@@ -30,7 +30,7 @@ dotnet kiota generate \
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/sell_feed_v1_oas3.yaml \
+  -d specs/openapi/feed.yaml \
   -c FeedApiClient \
   -n EBay.ListingManagement.Generated.Feed \
   -o EBay.ListingManagement/Generated/Feed \
@@ -38,7 +38,7 @@ dotnet kiota generate \
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/commerce_media_v1_beta_oas3.yaml \
+  -d specs/openapi/media.yaml \
   -c MediaApiClient \
   -n EBay.ListingManagement.Generated.Media \
   -o EBay.ListingManagement/Generated/Media \
@@ -46,7 +46,7 @@ dotnet kiota generate \
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/sell_stores_v1_oas3.yaml \
+  -d specs/openapi/stores.yaml \
   -c StoreApiClient \
   -n EBay.ListingManagement.Generated.Store \
   -o EBay.ListingManagement/Generated/Store \
