@@ -20,7 +20,7 @@ public sealed class ListingManagementConfiguration
     private string _inventoryBaseUrl = "https://api.ebay.com/sell/inventory/v1";
     private string _feedBaseUrl = "https://api.ebay.com/sell/feed/v1";
     private string _mediaBaseUrl = "https://apim.ebay.com/commerce/media/v1_beta";
-    private string _storeBaseUrl = "https://api.ebay.com/sell/stores/v1";
+    private string _storesBaseUrl = "https://api.ebay.com/sell/stores/v1";
     private string _graphQLBaseUrl = "https://api.ebay.com/graphql";
 
     public string InventoryBaseUrl
@@ -41,10 +41,10 @@ public sealed class ListingManagementConfiguration
         set => _mediaBaseUrl = RequireHttps(value);
     }
 
-    public string StoreBaseUrl
+    public string StoresBaseUrl
     {
-        get => _storeBaseUrl;
-        set => _storeBaseUrl = RequireHttps(value);
+        get => _storesBaseUrl;
+        set => _storesBaseUrl = RequireHttps(value);
     }
 
     public string GraphQLBaseUrl
@@ -77,7 +77,7 @@ public sealed class ListingManagementConfiguration
         new Uri(_inventoryBaseUrl).Host,
         new Uri(_feedBaseUrl).Host,
         new Uri(_mediaBaseUrl).Host,
-        new Uri(_storeBaseUrl).Host,
+        new Uri(_storesBaseUrl).Host,
         new Uri(_graphQLBaseUrl).Host,
         "apiz.ebay.com",
     ];

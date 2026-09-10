@@ -15,20 +15,20 @@
 
 using EBay.ListingManagement.Configuration;
 using EBay.ListingManagement.Exceptions;
-using EBay.ListingManagement.Generated.Store;
-using EBay.ListingManagement.Generated.Store.Models;
+using EBay.ListingManagement.Generated.Stores;
+using EBay.ListingManagement.Generated.Stores.Models;
 using Microsoft.Kiota.Abstractions;
 using System.Net;
 
 namespace EBay.ListingManagement.Clients.Rest;
 
-public sealed class StoreClient
+public sealed class StoresClient
 {
-    private readonly StoreApiClient _kiota;
+    private readonly StoresApiClient _kiota;
     private readonly ListingManagementConfiguration _config;
     private readonly ITokenContext _tokenContext;
 
-    internal StoreClient(StoreApiClient kiota, ListingManagementConfiguration config, ITokenContext tokenContext)
+    internal StoresClient(StoresApiClient kiota, ListingManagementConfiguration config, ITokenContext tokenContext)
         => (_kiota, _config, _tokenContext) = (kiota, config, tokenContext);
 
     private void ApplyHeaders(RequestHeaders headers, RequestOptions? callOptions)

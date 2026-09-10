@@ -62,8 +62,8 @@ public static class ServiceCollectionExtensions
                 (sp, c) => c.BaseAddress = new Uri(sp.GetRequiredService<ListingManagementConfiguration>().MediaBaseUrl))
             .ConfigureHttpClient((sp, c) => c.Timeout = sp.GetRequiredService<ListingManagementConfiguration>().HttpTimeout)
             .AddHttpMessageHandler(sp => new DiagnosticLoggingHandler(sp.GetRequiredService<ListingManagementConfiguration>()));
-        services.AddHttpClient(ListingManagementClient.StoreClientName,
-                (sp, c) => c.BaseAddress = new Uri(sp.GetRequiredService<ListingManagementConfiguration>().StoreBaseUrl))
+        services.AddHttpClient(ListingManagementClient.StoresClientName,
+                (sp, c) => c.BaseAddress = new Uri(sp.GetRequiredService<ListingManagementConfiguration>().StoresBaseUrl))
             .ConfigureHttpClient((sp, c) => c.Timeout = sp.GetRequiredService<ListingManagementConfiguration>().HttpTimeout)
             .AddHttpMessageHandler(sp => new DiagnosticLoggingHandler(sp.GetRequiredService<ListingManagementConfiguration>()));
 
@@ -76,7 +76,7 @@ public static class ServiceCollectionExtensions
                 factory.CreateClient(ListingManagementClient.InventoryClientName),
                 factory.CreateClient(ListingManagementClient.FeedClientName),
                 factory.CreateClient(ListingManagementClient.MediaClientName),
-                factory.CreateClient(ListingManagementClient.StoreClientName),
+                factory.CreateClient(ListingManagementClient.StoresClientName),
                 sp.GetRequiredService<IListingManagementGraphQLClient>(),
                 sp.GetRequiredService<ITokenContext>());
         });
@@ -85,7 +85,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped(sp => sp.GetRequiredService<ListingManagementClient>().Inventory);
         services.AddScoped(sp => sp.GetRequiredService<ListingManagementClient>().Feed);
         services.AddScoped(sp => sp.GetRequiredService<ListingManagementClient>().Media);
-        services.AddScoped(sp => sp.GetRequiredService<ListingManagementClient>().Store);
+        services.AddScoped(sp => sp.GetRequiredService<ListingManagementClient>().Stores);
         services.AddScoped(sp => sp.GetRequiredService<ListingManagementClient>().GraphQL);
 
         return services;
