@@ -1,35 +1,18 @@
 query SellerListings($input: SellerListingsInput!) {
   sellerListings(input: $input) {
-    __typename
-    ... on ListingIdsMaxLimitError {
-      errorCode
-      errorMessage
-      maxAllowed
-    }
-    ... on ListingsSuccess {
-      listings {
-        __typename
-        ... on ListingSuccess {
-          listing {
-            ...ListingFields
-          }
-          listingId
-        }
-        ... on ListingPartialSuccess {
-          listingId
-          listing {
-            ...ListingFields
-          }
-          errors {
-            errorCode
-          }
+    listings {
+      __typename
+      ... on ListingSuccess {
+        listingId
+        listing {
+          ...ListingFields
         }
       }
     }
   }
 }
 
-fragment ListingFields on Listing {
+fragment ListingFields on ListingV2 {
   sellerProduct {
     title
     ebayGeneratedTitle
@@ -53,87 +36,69 @@ fragment ListingFields on Listing {
       scheduledEndAt
       startAt
     }
-    fulfillmentTerms {
-      __typename
-      ... on BusinessPolicy {
+    listingFulfillmentTerms {
+      inStorePickupSupported
+      globalShippingSupported
+      freeShippingAvailable
+      digitalDeliverySupported
+      packageSpecifications {
+        irregularPackage
+        listingPackageType
+        listingUnitOfMeasure
+        packageDimensions {
+          height
+          length
+          unit
+          width
+        }
+        packageWeight {
+          majorUnit
+          minorUnit
+          unit
+        }
+      }
+      shippingTerms {
+        buyerResponsibleForShipping
+        handlingTimeDuration
+        includedShipToLocations {
+          country
+          continent
+          sellerShippingRegion
+        }
+        excludedShipToLocations {
+          continent
+          country
+          sellerShippingRegion
+        }
+      }
+    }
+    listingReturnTerms {
+      businessPolicy {
         businessPolicyId
         description
         marketplace
         name
       }
-      ... on FulfillmentTerms {
-        inStorePickupSupported
-        globalShippingSupported
-        freeShippingAvailable
-        digitalDeliverySupported
-        packageSpecifications {
-          irregularPackage
-          listingPackageType
-          listingUnitOfMeasure
-          packageDimensions {
-            height
-            length
-            unit
-            width
-          }
-          packageWeight {
-            majorUnit
-            minorUnit
-            unit
-          }
-        }
-        shippingTerms {
-          buyerResponsibleForShipping
-          handlingTimeDuration
-          includedShipToLocations {
-            country
-            continent
-            sellerShippingRegion
-          }
-          excludedShipToLocations {
-            continent
-            country
-            sellerShippingRegion
-          }
-        }
+      domesticReturnTerms {
+        listingRefundMethod
+        returnAccepted
+        returnDuration
+        returnShipmentInvoicee
+      }
+      returnInstructions
+      internationalReturnTerms {
+        listingRefundMethod
+        returnAccepted
+        returnDuration
+        returnShipmentInvoicee
       }
     }
-    returnTerms {
-      __typename
-      ... on BusinessPolicy {
-        businessPolicyId
-        description
-        marketplace
-        name
-      }
-      ... on ReturnTerms {
-        domesticReturnTerms {
-          listingRefundMethod
-          returnAccepted
-          returnDuration
-          returnShipmentInvoicee
-        }
-        returnInstructions
-        internationalReturnTerms {
-          listingRefundMethod
-          returnAccepted
-          returnDuration
-          returnShipmentInvoicee
-        }
-        businessPolicy {
-          businessPolicyId
-        }
-      }
-    }
-    paymentTerms {
-      __typename
-      ... on PaymentTerms {
-        immediatePay
-        paymentInstructions
-      }
-      ... on BusinessPolicy {
+    listingPaymentTerms {
+      businessPolicy {
         businessPolicyId
       }
+      immediatePay
+      paymentInstructions
     }
     internationalSiteVisibility
     hideParticipation
