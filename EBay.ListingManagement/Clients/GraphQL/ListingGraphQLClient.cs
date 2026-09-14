@@ -178,7 +178,7 @@ public sealed class ListingGraphQLClient
         catch (Exception ex) when (ex is not SdkException) { throw WrapException(ex); }
     }
 
-    private static Exception WrapException(Exception ex) => ex switch
+    private static SdkException WrapException(Exception ex) => ex switch
     {
         HttpRequestException { StatusCode: HttpStatusCode.Unauthorized } => new UnauthorizedException(ex),
         HttpRequestException { StatusCode: { } code } http =>
