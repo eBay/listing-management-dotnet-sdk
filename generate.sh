@@ -20,13 +20,7 @@ echo "Restoring tools..."
 dotnet tool restore
 
 echo "Regenerating REST clients via Kiota..."
-dotnet kiota generate \
-  -l csharp \
-  -d specs/openapi/inventory.yaml \
-  -c InventoryApiClient \
-  -n EBay.ListingManagement.Generated.Inventory \
-  -o EBay.ListingManagement/Generated/Inventory \
-  --ebc --co
+rm -rf ./EBay.ListingManagement/Generated
 
 dotnet kiota generate \
   -l csharp \
@@ -34,6 +28,14 @@ dotnet kiota generate \
   -c FeedApiClient \
   -n EBay.ListingManagement.Generated.Feed \
   -o EBay.ListingManagement/Generated/Feed \
+  --ebc --co
+
+dotnet kiota generate \
+  -l csharp \
+  -d specs/openapi/inventory.yaml \
+  -c InventoryApiClient \
+  -n EBay.ListingManagement.Generated.Inventory \
+  -o EBay.ListingManagement/Generated/Inventory \
   --ebc --co
 
 dotnet kiota generate \
@@ -56,8 +58,6 @@ echo "Adding license headers to generated files..."
 ./add-license-headers.sh ./EBay.ListingManagement/Generated
 
 echo "Building (triggers StrawberryShake GraphQL codegen)..."
-# DOTNET_ROLL_FORWARD=LatestMajor is required because StrawberryShake's bundled
-# codegen tool targets net8/net9; without it the tool refuses to run on net10+.
 DOTNET_ROLL_FORWARD=LatestMajor dotnet build EBay.ListingManagement/EBay.ListingManagement.csproj
 
 echo "Done."
