@@ -48,11 +48,15 @@ namespace EBay.ListingManagement.Generated.Media.Image.Item
         {
         }
         /// <summary>
-        /// This method retrieves an EPS image URL and its expiration details for the unique identifier specified in the path parameter &lt;b&gt;image_id&lt;/b&gt;. Use the retrieved EPS image URL to add the image to a listing through the &lt;b&gt;Inventory API&lt;/b&gt; or the &lt;b&gt;Trading API&lt;/b&gt;. See &lt;a href=&quot;/api-docs/sell/static/inventory/managing-image-media.html&quot;  target=&quot;_blank&quot;&gt;Managing images&lt;/a&gt; for additional details.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; If a user inputs a valid &lt;b&gt;image_id&lt;/b&gt; as a path parameter but the EPS image associated with that ID has expired, the call will fail and a &lt;b&gt;404 Not Found&lt;/b&gt; status code will be returned.&lt;/span&gt;
+        /// This method retrieves an EPS image URL and its expiration details for the unique identifier specified in the path parameter &lt;strong&gt;image_id&lt;/strong&gt;. Use the retrieved EPS image URL to add the image to a listing through the &lt;strong&gt;Inventory API&lt;/strong&gt; or the &lt;strong&gt;Trading API&lt;/strong&gt;. See &lt;a href=&quot;/api-docs/sell/static/inventory/managing-image-media.html&quot;  target=&quot;_blank&quot;&gt;Managing images&lt;/a&gt; for additional details.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If a user inputs a valid &lt;strong&gt;image_id&lt;/strong&gt; as a path parameter but the EPS image associated with that ID has expired, the call will fail and a &lt;strong&gt;404 Not Found&lt;/strong&gt; status code will be returned.&lt;/span&gt;
         /// </summary>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Media.Models.ImageResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Media.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Media.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Media.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Media.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Media.Models.ImageResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -63,10 +67,17 @@ namespace EBay.ListingManagement.Generated.Media.Image.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Media.Models.ImageResponse>(requestInfo, global::EBay.ListingManagement.Generated.Media.Models.ImageResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Media.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.ListingManagement.Generated.Media.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.ListingManagement.Generated.Media.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Media.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Media.Models.ImageResponse>(requestInfo, global::EBay.ListingManagement.Generated.Media.Models.ImageResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This method retrieves an EPS image URL and its expiration details for the unique identifier specified in the path parameter &lt;b&gt;image_id&lt;/b&gt;. Use the retrieved EPS image URL to add the image to a listing through the &lt;b&gt;Inventory API&lt;/b&gt; or the &lt;b&gt;Trading API&lt;/b&gt;. See &lt;a href=&quot;/api-docs/sell/static/inventory/managing-image-media.html&quot;  target=&quot;_blank&quot;&gt;Managing images&lt;/a&gt; for additional details.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; If a user inputs a valid &lt;b&gt;image_id&lt;/b&gt; as a path parameter but the EPS image associated with that ID has expired, the call will fail and a &lt;b&gt;404 Not Found&lt;/b&gt; status code will be returned.&lt;/span&gt;
+        /// This method retrieves an EPS image URL and its expiration details for the unique identifier specified in the path parameter &lt;strong&gt;image_id&lt;/strong&gt;. Use the retrieved EPS image URL to add the image to a listing through the &lt;strong&gt;Inventory API&lt;/strong&gt; or the &lt;strong&gt;Trading API&lt;/strong&gt;. See &lt;a href=&quot;/api-docs/sell/static/inventory/managing-image-media.html&quot;  target=&quot;_blank&quot;&gt;Managing images&lt;/a&gt; for additional details.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If a user inputs a valid &lt;strong&gt;image_id&lt;/strong&gt; as a path parameter but the EPS image associated with that ID has expired, the call will fail and a &lt;strong&gt;404 Not Found&lt;/strong&gt; status code will be returned.&lt;/span&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

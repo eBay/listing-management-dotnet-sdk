@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string FeedType { get; set; }
 #endif
-        /// <summary>This container is used to set the filter criteria for the ActiveInventoryReport. A seller can create an ActiveInventoryReport for a single listing format.</summary>
+        /// <summary>This container allows a seller to create an ActiveInventoryReport for a single listing format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Feed.Models.InventoryFilterCriteria? FilterCriteria { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public global::EBay.ListingManagement.Generated.Feed.Models.InventoryFilterCriteria FilterCriteria { get; set; }
 #endif
-        /// <summary>The version number of the inventory task to use for the &lt;b&gt;feedType&lt;/b&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field &lt;b&gt;must&lt;/b&gt; have a value of &lt;code&gt;1.0&lt;/code&gt;.&lt;/span&gt;</summary>
+        /// <summary>The version number of the inventory task to use for the &lt;strong&gt;feedType&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This field &lt;strong&gt;must&lt;/strong&gt; have a value of &lt;code&gt;1.0&lt;/code&gt;.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SchemaVersion { get; set; }

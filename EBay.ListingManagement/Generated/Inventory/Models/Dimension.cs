@@ -29,19 +29,13 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The actual height (in the measurement unit specified in the &lt;strong&gt;unit&lt;/strong&gt; field) of the shipping package. All fields of the &lt;strong&gt;dimensions&lt;/strong&gt; container are required if package dimensions are specified. &lt;br&gt;&lt;br&gt;If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height, the &lt;strong&gt;dimensions&lt;/strong&gt; container would look as follows: &lt;br&gt; &lt;pre&gt;&lt;code&gt;&quot;dimensions&quot;: {&lt;br&gt; &quot;length&quot;: 21.5,&lt;br&gt; &quot;width&quot;: 15.0,&lt;br&gt; &quot;height&quot;: 12.0,&lt;br&gt; &quot;unit&quot;: &quot;INCH&quot;&lt;br&gt; } &lt;/pre&gt;&lt;/code&gt;</summary>
+        /// <summary>The actual height (in the measurement unit specified in the &lt;strong&gt;unit&lt;/strong&gt; field) of the shipping package. All fields of the &lt;strong&gt;dimensions&lt;/strong&gt; container are required if package dimensions are specified. &lt;br&gt;&lt;br&gt;If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height, the &lt;strong&gt;dimensions&lt;/strong&gt; container would look as follows: &lt;br&gt; &lt;pre&gt;&quot;dimensions&quot;: {&lt;br&gt; &quot;length&quot;: 21.5,&lt;br&gt; &quot;width&quot;: 15.0,&lt;br&gt; &quot;height&quot;: 12.0,&lt;br&gt; &quot;unit&quot;: &quot;INCH&quot;&lt;br&gt; } &lt;/pre&gt;</summary>
         public double? Height { get; set; }
-        /// <summary>The actual length (in the measurement unit specified in the &lt;strong&gt;unit&lt;/strong&gt; field) of the shipping package. All fields of the &lt;strong&gt;dimensions&lt;/strong&gt; container are required if package dimensions are specified. &lt;br&gt;&lt;br&gt;If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height,  the &lt;strong&gt;dimensions&lt;/strong&gt; container would look as follows: &lt;br&gt; &lt;pre&gt;&lt;code&gt;&quot;dimensions&quot;: {&lt;br&gt; &quot;length&quot;: 21.5,&lt;br&gt; &quot;width&quot;: 15.0,&lt;br&gt; &quot;height&quot;: 12.0,&lt;br&gt; &quot;unit&quot;: &quot;INCH&quot;&lt;br&gt; } &lt;/pre&gt;&lt;/code&gt;</summary>
+        /// <summary>The actual length (in the measurement unit specified in the &lt;strong&gt;unit&lt;/strong&gt; field) of the shipping package. All fields of the &lt;strong&gt;dimensions&lt;/strong&gt; container are required if package dimensions are specified. &lt;br&gt;&lt;br&gt;If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height,  the &lt;strong&gt;dimensions&lt;/strong&gt; container would look as follows: &lt;br&gt; &lt;pre&gt;&quot;dimensions&quot;: {&lt;br&gt; &quot;length&quot;: 21.5,&lt;br&gt; &quot;width&quot;: 15.0,&lt;br&gt; &quot;height&quot;: 12.0,&lt;br&gt; &quot;unit&quot;: &quot;INCH&quot;&lt;br&gt; } &lt;/pre&gt;</summary>
         public double? Length { get; set; }
-        /// <summary>The unit of measurement used to specify the dimensions of a shipping package. All fields of the &lt;strong&gt;dimensions&lt;/strong&gt; container are required if package dimensions are specified. If the English system of measurement is being used, the applicable values for dimension units are &lt;code&gt;FEET&lt;/code&gt; and &lt;code&gt;INCH&lt;/code&gt;. If the metric system of measurement is being used, the applicable values for weight units are &lt;code&gt;METER&lt;/code&gt; and &lt;code&gt;CENTIMETER&lt;/code&gt;. The metric system is used by most countries outside of the US. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:LengthUnitOfMeasureEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Unit { get; set; }
-#nullable restore
-#else
-        public string Unit { get; set; }
-#endif
-        /// <summary>The actual width (in the measurement unit specified in the &lt;strong&gt;unit&lt;/strong&gt; field) of the shipping package. All fields of the &lt;strong&gt;dimensions&lt;/strong&gt; container are required if package dimensions are specified.&lt;br&gt;&lt;br&gt;If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height,  the &lt;strong&gt;dimensions&lt;/strong&gt; container would look as follows: &lt;br&gt; &lt;pre&gt;&lt;code&gt;&quot;dimensions&quot;: {&lt;br&gt; &quot;length&quot;: 21.5,&lt;br&gt; &quot;width&quot;: 15.0,&lt;br&gt; &quot;height&quot;: 12.0,&lt;br&gt; &quot;unit&quot;: &quot;INCH&quot;&lt;br&gt; } &lt;/pre&gt;&lt;/code&gt;</summary>
+        /// <summary>The unit of measurement used to specify the dimensions of a shipping package. All fields of the &lt;strong&gt;dimensions&lt;/strong&gt; container are required if package dimensions are specified. If the English system of measurement is being used, the applicable values for dimension units are &lt;code&gt;FEET&lt;/code&gt; and &lt;code&gt;INCH&lt;/code&gt;. If the metric system of measurement is being used, the applicable values for weight units are &lt;code&gt;METER&lt;/code&gt; and &lt;code&gt;CENTIMETER&lt;/code&gt;. The metric system is used by most countries outside of the US.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.LengthUnitOfMeasureEnum? Unit { get; set; }
+        /// <summary>The actual width (in the measurement unit specified in the &lt;strong&gt;unit&lt;/strong&gt; field) of the shipping package. All fields of the &lt;strong&gt;dimensions&lt;/strong&gt; container are required if package dimensions are specified.&lt;br&gt;&lt;br&gt;If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height,  the &lt;strong&gt;dimensions&lt;/strong&gt; container would look as follows: &lt;br&gt; &lt;pre&gt;&quot;dimensions&quot;: {&lt;br&gt; &quot;length&quot;: 21.5,&lt;br&gt; &quot;width&quot;: 15.0,&lt;br&gt; &quot;height&quot;: 12.0,&lt;br&gt; &quot;unit&quot;: &quot;INCH&quot;&lt;br&gt; } &lt;/pre&gt;</summary>
         public double? Width { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.Dimension"/> and sets the default values.
@@ -70,7 +64,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             {
                 { "height", n => { Height = n.GetDoubleValue(); } },
                 { "length", n => { Length = n.GetDoubleValue(); } },
-                { "unit", n => { Unit = n.GetStringValue(); } },
+                { "unit", n => { Unit = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.LengthUnitOfMeasureEnum>(); } },
                 { "width", n => { Width = n.GetDoubleValue(); } },
             };
         }
@@ -83,7 +77,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("height", Height);
             writer.WriteDoubleValue("length", Length);
-            writer.WriteStringValue("unit", Unit);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.LengthUnitOfMeasureEnum>("unit", Unit);
             writer.WriteDoubleValue("width", Width);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string DefaultValue { get; set; }
 #endif
-        /// <summary>Properties supported by the template. Properties can include the following: &lt;ul&gt;&lt;li&gt;&lt;b&gt;scheduleStartDate:&lt;/b&gt; The timestamp that the report generation (subscription) begins. After this timestamp, the schedule status becomes active until either the scheduleEndDate occurs or the scheduleTemplate becomes inactive. Format: UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;scheduleEndDate:&lt;/b&gt; The timestamp that the report generation (subscription) ends. After this date, the schedule status becomes INACTIVE. Format: UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;schemaVersion:&lt;/b&gt; The schema version of the schedule templates feedType. This field is required if the feedType has a schema version.&lt;/li&gt;&lt;li&gt;&lt;b&gt;preferredTriggerDayOfMonth:&lt;/b&gt; The preferred day of the month to trigger the schedule. &lt;/li&gt;&lt;li&gt;&lt;b&gt;preferredTriggerDayOfWeek:&lt;/b&gt; The preferred day of the week to trigger the schedule. &lt;/li&gt;&lt;li&gt;&lt;b&gt;preferredTriggerHour:&lt;/b&gt; The preferred two-digit hour of the day to trigger the schedule. Format: UTC &lt;code&gt;hhZ&lt;/code&gt;&lt;/li&gt;&lt;ul&gt;</summary>
+        /// <summary>Properties supported by the template. Properties can include the following: &lt;ul&gt;&lt;li&gt;&lt;strong&gt;scheduleStartDate:&lt;/strong&gt; The timestamp that the report generation (subscription) begins. After this timestamp, the schedule status becomes active until either the scheduleEndDate occurs or the scheduleTemplate becomes inactive.&lt;br /&gt;&lt;strong&gt;Format&lt;/strong&gt;: UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;scheduleEndDate:&lt;/strong&gt; The timestamp that the report generation (subscription) ends. After this date, the schedule status becomes INACTIVE.&lt;br /&gt;&lt;strong&gt;Format&lt;/strong&gt;: UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;schemaVersion:&lt;/strong&gt; The schema version of the schedule templates feedType. This field is required if the feedType has a schema version.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;preferredTriggerDayOfMonth:&lt;/strong&gt; The preferred day of the month to trigger the schedule. &lt;/li&gt;&lt;li&gt;&lt;strong&gt;preferredTriggerDayOfWeek:&lt;/strong&gt; The preferred day of the week to trigger the schedule. &lt;/li&gt;&lt;li&gt;&lt;strong&gt;preferredTriggerHour:&lt;/strong&gt; The preferred two-digit hour of the day to trigger the schedule.&lt;br /&gt;&lt;strong&gt;Format&lt;/strong&gt;: UTC &lt;code&gt;hhZ&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Property { get; set; }
@@ -45,14 +45,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string Property { get; set; }
 #endif
-        /// <summary>Whether the specified property is REQUIRED or OPTIONAL. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:ConfigurationsUsageEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Usage { get; set; }
-#nullable restore
-#else
-        public string Usage { get; set; }
-#endif
+        /// <summary>Whether the specified property is REQUIRED or OPTIONAL.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.ConfigurationsUsageEnum? Usage { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Feed.Models.SupportedConfiguration"/> and sets the default values.
         /// </summary>
@@ -80,7 +74,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             {
                 { "defaultValue", n => { DefaultValue = n.GetStringValue(); } },
                 { "property", n => { Property = n.GetStringValue(); } },
-                { "usage", n => { Usage = n.GetStringValue(); } },
+                { "usage", n => { Usage = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.ConfigurationsUsageEnum>(); } },
             };
         }
         /// <summary>
@@ -92,7 +86,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("defaultValue", DefaultValue);
             writer.WriteStringValue("property", Property);
-            writer.WriteStringValue("usage", Usage);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.ConfigurationsUsageEnum>("usage", Usage);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

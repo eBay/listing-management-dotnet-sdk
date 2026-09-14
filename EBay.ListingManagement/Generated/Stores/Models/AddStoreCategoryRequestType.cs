@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Stores.Models
 {
     /// <summary>
-    /// The base request type of the &lt;b&gt;addStoreCategory&lt;/b&gt; method. It is used to provide the name and location for the new category.
+    /// This call allows you to add the category of an eBay Store.Sellers must have an eBay Store subscription in order to use this call.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AddStoreCategoryRequestType : IAdditionalDataHolder, IParsable
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
 #else
         public string CategoryName { get; set; }
 #endif
-        /// <summary>This field is used to specify the parent category to which the new category belongs. To specify the new category as a top-level category, set the value of this field to -999, or just omit this field, as the default value is -999.&lt;br&gt;The &lt;a href=&quot;/api-docs/sell/stores/resources/store/methods/getStoreCategories&quot;&gt;&lt;b&gt;getStoreCategories&lt;/b&gt;&lt;/a&gt; method can be used to retrieve store category IDs.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default: ROOT&lt;/b&gt; category ID&lt;b&gt;(-999)&lt;/b&gt; if it&apos;s null.</summary>
+        /// <summary>This field is used to specify the parent category to which the new category belongs. To specify the new category as a top-level category, set the value of this field to -999, or just omit this field, as the default value is -999.&lt;br&gt;&lt;br&gt;The &lt;a href=&quot;/develop/api/sell/stores_api#sell-stores_api-store-getstorecategories&quot;&gt;getStoreCategories&lt;/a&gt; method can be used to retrieve store category IDs.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default: ROOT&lt;/b&gt; category ID&lt;b&gt;(-999)&lt;/b&gt; if it&apos;s null.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DestinationParentCategoryId { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
 #else
         public string DestinationParentCategoryId { get; set; }
 #endif
-        /// <summary>If the store category specified as the &lt;b&gt;destinationParentCategoryId&lt;/b&gt; is a leaf category with active listings, those listings are moved to the store category identified through this &lt;b&gt;listingDestinationCategoryId&lt;/b&gt;. If this field is omitted, the new store category being added under the parent category inherits those listings.&lt;br&gt;The &lt;a href=&quot;/api-docs/sell/stores/resources/store/methods/getStoreCategories&quot;&gt;&lt;b&gt;getStoreCategories&lt;/b&gt;&lt;/a&gt; method can be used to retrieve store category IDs.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default:&lt;/b&gt; Newly added category ID if it&apos;s null.</summary>
+        /// <summary>When adding store category, if the destination category destinationParentCategoryId is a leaf category and it has active items, you must specify listingDestinationCategoryId. The system will move the items from destinationParentCategoryId to listingDestinationCategoryId. The listingDestinationCategoryId should be a leaf category which has no child categories. Default value: Newly added category ID if it&apos;s null.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ListingDestinationCategoryId { get; set; }

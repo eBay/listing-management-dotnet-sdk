@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Media.Models
 {
     /// <summary>
-    /// This type provides information about the &lt;b&gt;documentId&lt;/b&gt;.
+    /// This type provides information about the &lt;strong&gt;documentId&lt;/strong&gt;.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DocumentMetadata : IAdditionalDataHolder, IParsable

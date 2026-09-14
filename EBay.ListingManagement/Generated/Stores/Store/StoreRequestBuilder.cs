@@ -65,6 +65,8 @@ namespace EBay.ListingManagement.Generated.Stores.Store
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Stores.Models.GetStoreResponseType"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Stores.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Stores.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Stores.Models.GetStoreResponseType?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -75,7 +77,12 @@ namespace EBay.ListingManagement.Generated.Stores.Store
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Stores.Models.GetStoreResponseType>(requestInfo, global::EBay.ListingManagement.Generated.Stores.Models.GetStoreResponseType.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Stores.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Stores.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Stores.Models.GetStoreResponseType>(requestInfo, global::EBay.ListingManagement.Generated.Stores.Models.GetStoreResponseType.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method is used to retrieve information for an eBay user&apos;s store such as store name, store URL, and description.

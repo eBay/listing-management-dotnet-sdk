@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to specify the quantity of the inventory items that are available for purchase if the items will be shipped to the buyer, and the quantity of the inventory items that are available for In-Store Pickup at one or more of the merchant&apos;s physical stores.&lt;br&gt;&lt;br&gt;In-Store Pickup is only available to large merchants selling on the US, UK, Germany, and Australia sites.</summary>
+        /// <summary>This container shows the quantity of the inventory item that is available for purchase if the item will be shipped to the buyer, and/or the quantity of the inventory item that is available for In-Store Pickup at one or more of the merchant&apos;s physical stores.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.AvailabilityWithAll? Availability { get; set; }
@@ -37,15 +37,9 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.AvailabilityWithAll Availability { get; set; }
 #endif
-        /// <summary>This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. &lt;br&gt;&lt;br&gt;Since the condition of an inventory item must be specified before being published in an offer, this field is always returned in the &apos;Get&apos; calls for SKUs that are part of a published offer. If a SKU is not part of a published offer, this field will only be returned if set for the inventory item. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:ConditionEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Condition { get; set; }
-#nullable restore
-#else
-        public string Condition { get; set; }
-#endif
-        /// <summary>This string field is used by the seller to more clearly describe the condition of used items, or items that are not &apos;Brand New&apos;, &apos;New with tags&apos;, or &apos;New in box&apos;. The ConditionDescription field is available for all categories. If the ConditionDescription field is used with an item in a new condition (Condition IDs 1000-1499), eBay will simply ignore this field if included, and eBay will return a warning message to the user. This field should only be used to further clarify the condition of the used item. It should not be used for branding, promotions, shipping, returns, payment or other information unrelated to the condition of the item. Make sure that the condition value, condition description, listing description, and the item&apos;s pictures do not contradict one another.Max length: 1000.</summary>
+        /// <summary>This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. &lt;br&gt;&lt;br&gt;Since the condition of an inventory item must be specified before being published in an offer, this field is always returned in the &apos;Get&apos; calls for SKUs that are part of a published offer. If a SKU is not part of a published offer, this field will only be returned if set for the inventory item.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.ConditionEnum? Condition { get; set; }
+        /// <summary>This string field is used by the seller to more clearly describe the condition of used items, or items that are not &apos;Brand New&apos;, &apos;New with tags&apos;, or &apos;New in box&apos;. The ConditionDescription field is available for all categories. If the ConditionDescription field is used with an item in a new condition (Condition IDs 1000-1499), eBay will simply ignore this field if included, and eBay will return a warning message to the user. This field should only be used to further clarify the condition of the used item. It should not be used for branding, promotions, shipping, returns, payment or other information unrelated to the condition of the item. Make sure that the condition value, condition description, listing description, and the item&apos;s pictures do not contradict one another.&lt;br /&gt;&lt;br /&gt;Maximum length: 1000</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ConditionDescription { get; set; }
@@ -53,7 +47,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string ConditionDescription { get; set; }
 #endif
-        /// <summary>This container is used by the seller to provide additional information about the condition of an item in a structured format. Descriptors are name-value attributes that can be either closed set or open text.&lt;br&gt;&lt;br&gt;For trading card listings in &lt;b&gt;Non-Sport Trading Card Singles&lt;/b&gt; (183050), &lt;b&gt;CCG Individual Cards&lt;/b&gt; (183454), and &lt;b&gt;Sports Trading Card Singles&lt;/b&gt; (261328) categories, sellers must use either &lt;code&gt;LIKE_NEW&lt;/code&gt; (2750) or &lt;code&gt;USED_VERY_GOOD&lt;/code&gt; (4000) item condition to specify the card as &lt;b&gt;Graded&lt;/b&gt; or &lt;b&gt;Ungraded&lt;/b&gt;, respectively. Use of either of these conditions requires the seller to use this array to provide one or more applicable Condition Descriptor name-value pairs.&lt;br&gt;&lt;br&gt;For more information on the numeric IDs and their text equivalents, use the &lt;a href=&quot;/api-docs/sell/metadata/resources/marketplace/methods/getItemConditionPolicies&quot; target=&quot;_blank&quot;&gt;getItemConditionPolicies&lt;/a&gt; method of the Metadata API.</summary>
+        /// <summary>This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text.&lt;br&gt;&lt;br&gt;For trading card coin listings in applicable categories, sellers must use either &lt;code&gt;LIKE_NEW&lt;/code&gt; (2750) or &lt;code&gt;USED_VERY_GOOD&lt;/code&gt; (4000) item condition to specify the item as &lt;b&gt;Graded&lt;/b&gt; or &lt;b&gt;Ungraded&lt;/b&gt;, respectively. Use of either of these conditions requires the seller to use this array to provide one or more applicable Condition Descriptor name-value pairs.&lt;br&gt;&lt;br&gt;&gt;To retrieve all condition descriptor numeric IDs for a category, use the &lt;a href=&quot;/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies&quot; target=&quot;_blank&quot;&gt;getItemConditionPolicies&lt;/a&gt; method of the Metadata API.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.ConditionDescriptor>? ConditionDescriptors { get; set; }
@@ -69,15 +63,9 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public List<string> InventoryItemGroupKeys { get; set; }
 #endif
-        /// <summary>This field returns the natural language that was provided in the field values of the request payload (i.e., en_AU, en_GB or de_DE). For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:LocaleEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Locale { get; set; }
-#nullable restore
-#else
-        public string Locale { get; set; }
-#endif
-        /// <summary>This type is used to indicate the package type, weight, and dimensions of the shipping package. Package weight and dimensions are required when calculated shipping rates are used, and weight alone is required when flat-rate shipping is used, but with a weight surcharge. See the &lt;a href=&quot;https://pages.ebay.com/help/pay/calculated-shipping.html &quot; target=&quot;_blank&quot;&gt;Calculated shipping&lt;/a&gt; help page for more information on calculated shipping.</summary>
+        /// <summary>This field returns the natural language that was provided in the field values of the request payload (i.e., en_AU, en_GB or de_DE).</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.LocaleEnum? Locale { get; set; }
+        /// <summary>This container is used to specify the dimensions and weight of a shipping package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.PackageWeightAndSize? PackageWeightAndSize { get; set; }
@@ -85,7 +73,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.PackageWeightAndSize PackageWeightAndSize { get; set; }
 #endif
-        /// <summary>This type is used to define the product details, such as a title, a product description, product aspects/item specifics, and links to images for the product. Optionally, in a &lt;strong&gt;createOrReplaceInventoryItem&lt;/strong&gt; call, a seller can pass in an eBay Product Identifier (ePID) or a Global Trade Item Number (GTIN) value, such as an EAN, an ISBN, a UPC, to identify a product to be matched with a product in the eBay Catalog. The information in this type is also returned in the &lt;strong&gt;getInventoryItem&lt;/strong&gt;, &lt;strong&gt;getInventoryItems&lt;/strong&gt;, and &lt;strong&gt;bulkGetInventoryItem&lt;/strong&gt; calls if defined.</summary>
+        /// <summary>This container is used in a &lt;strong&gt;createOrReplaceInventoryItem&lt;/strong&gt; call to pass in a Global Trade Item Number (GTIN) or a Brand and Manufacturer Part Number (MPN) pair to identify a product to be matched with a product in the eBay catalog. If a match is found in the eBay product catalog, the inventory item is automatically populated with available product details such as a title, a subtitle, a product description, item specifics, and links to stock images for the product.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Product? Product { get; set; }
@@ -127,11 +115,11 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "availability", n => { Availability = n.GetObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.AvailabilityWithAll>(global::EBay.ListingManagement.Generated.Inventory.Models.AvailabilityWithAll.CreateFromDiscriminatorValue); } },
-                { "condition", n => { Condition = n.GetStringValue(); } },
+                { "condition", n => { Condition = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.ConditionEnum>(); } },
                 { "conditionDescription", n => { ConditionDescription = n.GetStringValue(); } },
                 { "conditionDescriptors", n => { ConditionDescriptors = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ConditionDescriptor>(global::EBay.ListingManagement.Generated.Inventory.Models.ConditionDescriptor.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "inventoryItemGroupKeys", n => { InventoryItemGroupKeys = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "locale", n => { Locale = n.GetStringValue(); } },
+                { "locale", n => { Locale = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.LocaleEnum>(); } },
                 { "packageWeightAndSize", n => { PackageWeightAndSize = n.GetObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.PackageWeightAndSize>(global::EBay.ListingManagement.Generated.Inventory.Models.PackageWeightAndSize.CreateFromDiscriminatorValue); } },
                 { "product", n => { Product = n.GetObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.Product>(global::EBay.ListingManagement.Generated.Inventory.Models.Product.CreateFromDiscriminatorValue); } },
                 { "sku", n => { Sku = n.GetStringValue(); } },
@@ -145,11 +133,11 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.AvailabilityWithAll>("availability", Availability);
-            writer.WriteStringValue("condition", Condition);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.ConditionEnum>("condition", Condition);
             writer.WriteStringValue("conditionDescription", ConditionDescription);
             writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ConditionDescriptor>("conditionDescriptors", ConditionDescriptors);
             writer.WriteCollectionOfPrimitiveValues<string>("inventoryItemGroupKeys", InventoryItemGroupKeys);
-            writer.WriteStringValue("locale", Locale);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.LocaleEnum>("locale", Locale);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.PackageWeightAndSize>("packageWeightAndSize", PackageWeightAndSize);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.Product>("product", Product);
             writer.WriteStringValue("sku", Sku);

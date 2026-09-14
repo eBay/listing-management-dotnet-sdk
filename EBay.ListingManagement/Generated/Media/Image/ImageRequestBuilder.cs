@@ -42,7 +42,7 @@ namespace EBay.ListingManagement.Generated.Media.Image
             get => new global::EBay.ListingManagement.Generated.Media.Image.Create_image_from_url.Create_image_from_urlRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the EBay.ListingManagement.Generated.Media.image.item collection</summary>
-        /// <param name="position">This path parameter is the unique identifier of a created image. Use the value returned in the location header of the method used to create the image (&lt;b&gt;createImageFromFile&lt;/b&gt; or &lt;b&gt;createImageFromUrl&lt;/b&gt;, as applicable).</param>
+        /// <param name="position">This path parameter is the unique identifier of a created image. Use the value returned in the location header of the method used to create the image (&lt;strong&gt;createImageFromFile&lt;/strong&gt; or &lt;strong&gt;createImageFromUrl&lt;/strong&gt;, as applicable).</param>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Media.Image.Item.WithImage_ItemRequestBuilder"/></returns>
         public global::EBay.ListingManagement.Generated.Media.Image.Item.WithImage_ItemRequestBuilder this[string position]
         {

@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Media.Models
 {
     /// <summary>
-    /// The request to create a video, which must contain the video&apos;s &lt;b&gt;title&lt;/b&gt;, &lt;b&gt;size&lt;/b&gt;, and &lt;b&gt;classification&lt;/b&gt;. &lt;b&gt;Description&lt;/b&gt; is an optional field when creating videos.
+    /// The request to create a video, which must contain the video&apos;s &lt;strong&gt;title&lt;/strong&gt;, &lt;strong&gt;size&lt;/strong&gt;, and &lt;strong&gt;classification&lt;/strong&gt;. &lt;strong&gt;Description&lt;/strong&gt; is an optional field when creating videos.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreateVideoRequest : IAdditionalDataHolder, IParsable
@@ -32,10 +32,10 @@ namespace EBay.ListingManagement.Generated.Media.Models
         /// <summary>The intended use for this video content. Currently, videos can only be added and associated with eBay listings, so the only supported value is &lt;code&gt;ITEM&lt;/code&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Classification { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.Classification?>? Classification { get; set; }
 #nullable restore
 #else
-        public List<string> Classification { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.Classification?> Classification { get; set; }
 #endif
         /// <summary>The description of the video.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The size, in bytes, of the video content. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max:&lt;/b&gt; 157,286,400 bytes</summary>
+        /// <summary>The size, in bytes, of the video content. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Max:&lt;/strong&gt; 157,286,400 bytes</summary>
         public int? Size { get; set; }
         /// <summary>The title of the video.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -80,7 +80,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "classification", n => { Classification = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "classification", n => { Classification = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.Classification>()?.AsList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "size", n => { Size = n.GetIntValue(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
@@ -93,7 +93,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("classification", Classification);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.Classification>("classification", Classification);
             writer.WriteStringValue("description", Description);
             writer.WriteIntValue("size", Size);
             writer.WriteStringValue("title", Title);

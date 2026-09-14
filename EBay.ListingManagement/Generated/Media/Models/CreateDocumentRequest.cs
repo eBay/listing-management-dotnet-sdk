@@ -29,21 +29,15 @@ namespace EBay.ListingManagement.Generated.Media.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The type of the document being uploaded. For example, a &lt;code&gt;USER_GUIDE_OR_MANUAL&lt;/code&gt; or a &lt;code&gt;SAFETY_DATA_SHEET&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/commerce/media/types/api:DocumentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DocumentType { get; set; }
-#nullable restore
-#else
-        public string DocumentType { get; set; }
-#endif
+        /// <summary>The type of the document being uploaded. For example, a &lt;code&gt;USER_GUIDE_OR_MANUAL&lt;/code&gt; or a &lt;code&gt;SAFETY_DATA_SHEET&lt;/code&gt;.</summary>
+        public global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum? DocumentType { get; set; }
         /// <summary>This array shows the language(s) used in the document.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Languages { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum?>? Languages { get; set; }
 #nullable restore
 #else
-        public List<string> Languages { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum?> Languages { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Media.Models.CreateDocumentRequest"/> and sets the default values.
@@ -70,8 +64,8 @@ namespace EBay.ListingManagement.Generated.Media.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "documentType", n => { DocumentType = n.GetStringValue(); } },
-                { "languages", n => { Languages = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "documentType", n => { DocumentType = n.GetEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum>(); } },
+                { "languages", n => { Languages = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -81,8 +75,8 @@ namespace EBay.ListingManagement.Generated.Media.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("documentType", DocumentType);
-            writer.WriteCollectionOfPrimitiveValues<string>("languages", Languages);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum>("documentType", DocumentType);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum>("languages", Languages);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

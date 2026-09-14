@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The feed type of the schedule template. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; When calling &lt;strong&gt;createSchedule&lt;/strong&gt; and &lt;strong&gt;updateSchedule&lt;/strong&gt; methods you must match the feed type specified by the schedule template (this feedType).&lt;/span&gt;&lt;/p&gt;</summary>
+        /// <summary>The feed type of the schedule template. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; When calling &lt;strong&gt;createSchedule&lt;/strong&gt; and &lt;strong&gt;updateSchedule&lt;/strong&gt; methods, you must match the feed type specified by the schedule template (this &lt;strong&gt;feedType&lt;/strong&gt;).&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FeedType { get; set; }
@@ -37,14 +37,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string FeedType { get; set; }
 #endif
-        /// <summary>This field specifies how often the schedule is generated. If set to &lt;code&gt;HALF_HOUR&lt;/code&gt; or &lt;code&gt;ONE_HOUR&lt;/code&gt;, you cannot set a &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; using &lt;strong&gt;createSchedule&lt;/strong&gt; or &lt;strong&gt;updateSchedule&lt;/strong&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:FrequencyEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Frequency { get; set; }
-#nullable restore
-#else
-        public string Frequency { get; set; }
-#endif
+        /// <summary>This field specifies how often the schedule is generated. If set to &lt;code&gt;HALF_HOUR&lt;/code&gt; or &lt;code&gt;ONE_HOUR&lt;/code&gt;, you cannot set a &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; using &lt;strong&gt;createSchedule&lt;/strong&gt; or &lt;strong&gt;updateSchedule&lt;/strong&gt;.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.FrequencyEnum? Frequency { get; set; }
         /// <summary>The template name provided by the template.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -61,14 +55,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string ScheduleTemplateId { get; set; }
 #endif
-        /// <summary>The present status of the template. You cannot create or modify a schedule using a template with an &lt;code&gt;INACTIVE&lt;/code&gt; status.  For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:StatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
+        /// <summary>The present status of the template. You cannot create or modify a schedule using a template with an &lt;code&gt;INACTIVE&lt;/code&gt; status. </summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.StatusEnum? Status { get; set; }
         /// <summary>An array of the configuration supported by this template.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -103,10 +91,10 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "feedType", n => { FeedType = n.GetStringValue(); } },
-                { "frequency", n => { Frequency = n.GetStringValue(); } },
+                { "frequency", n => { Frequency = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.FrequencyEnum>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "scheduleTemplateId", n => { ScheduleTemplateId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.StatusEnum>(); } },
                 { "supportedConfigurations", n => { SupportedConfigurations = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Feed.Models.SupportedConfiguration>(global::EBay.ListingManagement.Generated.Feed.Models.SupportedConfiguration.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -118,10 +106,10 @@ namespace EBay.ListingManagement.Generated.Feed.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("feedType", FeedType);
-            writer.WriteStringValue("frequency", Frequency);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.FrequencyEnum>("frequency", Frequency);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("scheduleTemplateId", ScheduleTemplateId);
-            writer.WriteStringValue("status", Status);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.StatusEnum>("status", Status);
             writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Feed.Models.SupportedConfiguration>("supportedConfigurations", SupportedConfigurations);
             writer.WriteAdditionalData(AdditionalData);
         }

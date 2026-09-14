@@ -69,8 +69,7 @@ public sealed class StoresClient
         }, ct));
 
     /// <summary>
-    /// This method is used to rename the single category of a user's eBay store through an asynchronous request. A successful call returns the <b>getStoreTask</b> URI in the Location response header. The user calls <b>getStoreTask</b> to retrieve the status of the rename category operation.
-    /// Important! </b>"&gt;<b>Important!</b> If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.
+    /// This method is used to rename the single category of a user's eBay store through a synchronous request.
     /// </summary>
     public Task RenameStoreCategoryAsync(
         string categoryId,

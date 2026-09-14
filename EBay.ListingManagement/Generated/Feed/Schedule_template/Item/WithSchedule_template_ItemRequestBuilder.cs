@@ -53,6 +53,10 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule_template.Item
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -63,7 +67,14 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule_template.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateResponse>(requestInfo, global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "401", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateResponse>(requestInfo, global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves the details of the specified template. Specify the template to retrieve using the &lt;strong&gt;schedule_template_id&lt;/strong&gt; path parameter. Use the &lt;strong&gt;getScheduleTemplates&lt;/strong&gt; method to find a schedule template if you do not know the &lt;strong&gt;schedule_template_id&lt;/strong&gt;.

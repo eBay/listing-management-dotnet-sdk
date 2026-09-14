@@ -22,14 +22,14 @@ using System;
 namespace EBay.ListingManagement.Generated.Stores.Models
 {
     /// <summary>
-    /// This type is used to provide details about a customized eBay Store category.
+    /// This type is used to express details about a customized eBay Store category.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class StoreCategoryType : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Unique identifier of an eBay Store&apos;s custom category. eBay auto-generates this identifier when a seller establishes a custom store category. This category ID should not be confused with an eBay category ID.</summary>
+        /// <summary>Unique identifier of an eBay Store&apos;s custom category. eBay auto-generates this identifier when a sellerestablishes a custom store category. This category ID should not be confused with an eBay category ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CategoryId { get; set; }

@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Feed.Models
 {
     /// <summary>
-    /// The type that defines the fields for the &lt;b&gt; createTask&lt;/b&gt; method.
+    /// The type that defines the fields for the &lt;strong&gt;createTask&lt;/strong&gt; method.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreateTaskRequest : IAdditionalDataHolder, IParsable

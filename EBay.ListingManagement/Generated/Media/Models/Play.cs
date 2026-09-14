@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Media.Models
 {
     /// <summary>
-    /// The two streaming video URLs available for a successfully uploaded video with a status of &lt;code&gt;LIVE&lt;/code&gt;. The supported streaming video protocols are DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming).
+    /// The two streaming video URLs available for a successfully uploaded video with a status of &lt;code&gt;LIVE&lt;/code&gt;. The supported streaming video protocols are DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming).
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Play : IAdditionalDataHolder, IParsable
@@ -37,14 +37,8 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public string PlayUrl { get; set; }
 #endif
-        /// <summary>The protocol for the video playlist. Supported protocols are DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming). For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/commerce/media/types/api:ProtocolEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Protocol { get; set; }
-#nullable restore
-#else
-        public string Protocol { get; set; }
-#endif
+        /// <summary>The protocol for the video playlist. Supported protocols are DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming).</summary>
+        public global::EBay.ListingManagement.Generated.Media.Models.ProtocolEnum? Protocol { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Media.Models.Play"/> and sets the default values.
         /// </summary>
@@ -71,7 +65,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "playUrl", n => { PlayUrl = n.GetStringValue(); } },
-                { "protocol", n => { Protocol = n.GetStringValue(); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<global::EBay.ListingManagement.Generated.Media.Models.ProtocolEnum>(); } },
             };
         }
         /// <summary>
@@ -82,7 +76,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("playUrl", PlayUrl);
-            writer.WriteStringValue("protocol", Protocol);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Media.Models.ProtocolEnum>("protocol", Protocol);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

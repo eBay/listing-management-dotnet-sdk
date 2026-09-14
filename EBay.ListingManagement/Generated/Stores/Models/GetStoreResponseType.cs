@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Stores.Models
 {
     /// <summary>
-    /// The base response type of the &lt;b&gt;getStore&lt;/b&gt; method. It is used to describe a seller&apos;s eBay store, and includes the eBay Store name, the description of the store, the URL to the eBay Store.
+    /// The base response type of the getStore call. This response consists of the data describinga seller&apos;s eBay store, and includes the eBay Store name, the description of the store, the URL to the eBay Store.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GetStoreResponseType : IAdditionalDataHolder, IParsable
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
 #else
         public string LastOpenedTime { get; set; }
 #endif
-        /// <summary>This type is used to provide url of the seller&apos;s store logo.</summary>
+        /// <summary>This container provides information about a Store logo.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Stores.Models.StoreLogoType? Logo { get; set; }
@@ -61,7 +61,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The complete URL of the user&apos;s store.</summary>
+        /// <summary>The complete URL of the user&apos;s Store. This field is only ever returned, and does not need to be explicitly set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Url { get; set; }
@@ -69,7 +69,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
 #else
         public string Url { get; set; }
 #endif
-        /// <summary>The relative URL path of the Store.&lt;br&gt;&lt;br&gt; &lt;b&gt;Max length: &lt;/b&gt;58</summary>
+        /// <summary>The URL path of the Store (58 characters maximum). Only if you are using Chinese characters in theName property do you need to use this field, such as if you are opening a Store on the Taiwan site.The reason for this is that the URL path is normally derived from the Store name, but it cannot be derivedfrom the name of the Store if it contains Chinese characters because URLs cannot contain Chinese characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UrlPath { get; set; }

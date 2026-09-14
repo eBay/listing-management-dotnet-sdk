@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Stores.Models
 {
     /// <summary>
-    /// The base response type of the &lt;b&gt;getStoreTasks&lt;/b&gt; method.
+    /// The base response of a getStoreTasks call.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GetStoreTasksResponseType : IAdditionalDataHolder, IParsable

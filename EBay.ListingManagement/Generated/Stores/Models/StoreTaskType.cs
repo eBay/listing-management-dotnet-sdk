@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unique identifier of an eBay Store task.</summary>
+        /// <summary>The unique identifier of an eBay Store async task.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>This field provides a textual description on the status of the task, and could help user troubleshoot any issues if there is an issue with eBay creating the task.</summary>
+        /// <summary>The value indicates the status description of the async task, especially in case of failures (reason of failure).It follows the Asynchronous Request Pattern in eBay REST Documentation. More detail please see : https://pages.github.corp.ebay.com/vat/ebay-rest-standards/docs/UniformInterface/ResourceManipulation/AsyncRequestPattern</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Message { get; set; }
@@ -45,22 +45,10 @@ namespace EBay.ListingManagement.Generated.Stores.Models
 #else
         public string Message { get; set; }
 #endif
-        /// <summary>The enumeration value here indicates the processing status of the task. See the &lt;b&gt;StoreTaskStatusEnum&lt;/b&gt; type for more information on supported status values. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/stores/types/api:StoreTaskStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
-        /// <summary>The enumeration value indicates the task type. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/stores/types/api:StoreTaskTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Type { get; set; }
-#nullable restore
-#else
-        public string Type { get; set; }
-#endif
+        /// <summary>The enumeration value indicates the status of processing for the eBay Store Async Task.It follows the Asynchronous Request Pattern in eBay REST Documentation. More detail please see : </summary>
+        public global::EBay.ListingManagement.Generated.Stores.Models.StoreTaskStatusEnum? Status { get; set; }
+        /// <summary>The enumeration value indicates the task type.</summary>
+        public global::EBay.ListingManagement.Generated.Stores.Models.StoreTaskTypeEnum? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Stores.Models.StoreTaskType"/> and sets the default values.
         /// </summary>
@@ -88,8 +76,8 @@ namespace EBay.ListingManagement.Generated.Stores.Models
             {
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::EBay.ListingManagement.Generated.Stores.Models.StoreTaskStatusEnum>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::EBay.ListingManagement.Generated.Stores.Models.StoreTaskTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -101,8 +89,8 @@ namespace EBay.ListingManagement.Generated.Stores.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("message", Message);
-            writer.WriteStringValue("status", Status);
-            writer.WriteStringValue("type", Type);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Stores.Models.StoreTaskStatusEnum>("status", Status);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Stores.Models.StoreTaskTypeEnum>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

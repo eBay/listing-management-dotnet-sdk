@@ -29,17 +29,11 @@ namespace EBay.ListingManagement.Generated.Feed.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The preferred day of the month to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for monthly schedules. The last day of the month is used for numbers larger than the actual number of days in the month. &lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required, and optionally provides a default value. &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Minimum: &lt;/b&gt;1&lt;b&gt;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Maximum: &lt;/b&gt;31</summary>
+        /// <summary>The preferred day of the month to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for monthly schedules. The last day of the month is used for numbers larger than the actual number of days in the month. &lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required and optionally provides a default value. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Minimum: &lt;/strong&gt;1&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Maximum: &lt;/strong&gt;31</summary>
         public int? PreferredTriggerDayOfMonth { get; set; }
-        /// <summary>The preferred day of the week to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for weekly schedules. &lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required, and optionally provides a default value. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:DayOfWeekEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PreferredTriggerDayOfWeek { get; set; }
-#nullable restore
-#else
-        public string PreferredTriggerDayOfWeek { get; set; }
-#endif
-        /// <summary>The preferred two-digit hour of the day to trigger the schedule. &lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required, and optionally provides a default value. &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Format:&lt;/b&gt; UTC &lt;code&gt;hhZ&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents 11:00 am UTC:&lt;code&gt; 11Z&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Minimum: &lt;/b&gt;&lt;code&gt;00Z&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Maximum:&lt;/b&gt; &lt;code&gt;23Z&lt;/code&gt;</summary>
+        /// <summary>The preferred day of the week to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for weekly schedules. &lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required and optionally provides a default value.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.DayOfWeekEnum? PreferredTriggerDayOfWeek { get; set; }
+        /// <summary>The preferred two-digit hour of the day to trigger the schedule.&lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required and optionally provides a default value. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Format:&lt;/strong&gt; UTC &lt;code&gt;hhZ&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents 11:00 am UTC: &lt;code&gt;11Z&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Minimum: &lt;/strong&gt;&lt;code&gt;00Z&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Maximum:&lt;/strong&gt; &lt;code&gt;23Z&lt;/code&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PreferredTriggerHour { get; set; }
@@ -47,7 +41,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string PreferredTriggerHour { get; set; }
 #endif
-        /// <summary>The timestamp on which the schedule (report generation) ends. After this date, the schedule status becomes &lt;code&gt;INACTIVE&lt;/code&gt;. &lt;br /&gt;&lt;br /&gt;Use this field, if available, to end the schedule in the future. This value must be later than &lt;strong&gt;scheduleStartDate&lt;/strong&gt; (if supplied). This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required, and optionally provides a default value.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Format:&lt;/b&gt; UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents UTC October 10, 2021 at 10:00 AM:&lt;br /&gt;&lt;code&gt; 2021-10-10T10Z&lt;/code&gt;</summary>
+        /// <summary>The timestamp on which the schedule (report generation) ends. After this date, the schedule status becomes &lt;code&gt;INACTIVE&lt;/code&gt;. &lt;br /&gt;&lt;br /&gt;Use this field, if available, to end the schedule in the future. This value must be later than &lt;strong&gt;scheduleStartDate&lt;/strong&gt; (if supplied). This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required and optionally provides a default value.&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Format:&lt;/strong&gt; UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents UTC October 10, 2021 at 10:00 AM:&lt;br /&gt;&lt;code&gt; 2021-10-10T10Z&lt;/code&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ScheduleEndDate { get; set; }
@@ -63,7 +57,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string ScheduleName { get; set; }
 #endif
-        /// <summary>The timestamp to start generating the report. After this timestamp, the schedule status becomes active until either the &lt;strong&gt;scheduleEndDate&lt;/strong&gt; occurs or the &lt;strong&gt;scheduleTemplateId&lt;/strong&gt; becomes inactive. &lt;br /&gt;&lt;br /&gt;Use this field, if available, to start the schedule in the future but before the &lt;strong&gt;scheduleEndDate&lt;/strong&gt; (if supplied). This field is available as specified by the template &lt;strong&gt;(scheduleTemplateId)&lt;/strong&gt;.  The template can specify this field as optional or required, and optionally provides a default value.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Format:&lt;/b&gt; UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents a schedule start date of UTC October 01, 2020 at 12:00 PM:&lt;br /&gt;&lt;code&gt; 2020-01-01T12Z&lt;/code&gt;</summary>
+        /// <summary>The timestamp to start generating the report. After this timestamp, the schedule status becomes active until either the &lt;strong&gt;scheduleEndDate&lt;/strong&gt; occurs or the &lt;strong&gt;scheduleTemplateId&lt;/strong&gt; becomes inactive. &lt;br /&gt;&lt;br /&gt;Use this field, if available, to start the schedule in the future but before the &lt;strong&gt;scheduleEndDate&lt;/strong&gt; (if supplied). This field is available as specified by the template &lt;strong&gt;(scheduleTemplateId)&lt;/strong&gt;.  The template can specify this field as optional or required and optionally provides a default value.&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Format:&lt;/strong&gt; UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents a schedule start date of UTC October 01, 2020 at 12:00 PM:&lt;br /&gt;&lt;code&gt; 2020-01-01T12Z&lt;/code&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ScheduleStartDate { get; set; }
@@ -105,7 +99,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "preferredTriggerDayOfMonth", n => { PreferredTriggerDayOfMonth = n.GetIntValue(); } },
-                { "preferredTriggerDayOfWeek", n => { PreferredTriggerDayOfWeek = n.GetStringValue(); } },
+                { "preferredTriggerDayOfWeek", n => { PreferredTriggerDayOfWeek = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.DayOfWeekEnum>(); } },
                 { "preferredTriggerHour", n => { PreferredTriggerHour = n.GetStringValue(); } },
                 { "scheduleEndDate", n => { ScheduleEndDate = n.GetStringValue(); } },
                 { "scheduleName", n => { ScheduleName = n.GetStringValue(); } },
@@ -121,7 +115,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("preferredTriggerDayOfMonth", PreferredTriggerDayOfMonth);
-            writer.WriteStringValue("preferredTriggerDayOfWeek", PreferredTriggerDayOfWeek);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.DayOfWeekEnum>("preferredTriggerDayOfWeek", PreferredTriggerDayOfWeek);
             writer.WriteStringValue("preferredTriggerHour", PreferredTriggerHour);
             writer.WriteStringValue("scheduleEndDate", ScheduleEndDate);
             writer.WriteStringValue("scheduleName", ScheduleName);

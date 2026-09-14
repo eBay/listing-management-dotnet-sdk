@@ -32,19 +32,13 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>This container will be returned if there were one or more errors associated with the creation or update to the inventory item record.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error>? Errors { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error> Errors { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3> Errors { get; set; }
 #endif
-        /// <summary>This field returns the natural language that was provided in the field values of the request payload (i.e., en_AU, en_GB or de_DE). For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:LocaleEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Locale { get; set; }
-#nullable restore
-#else
-        public string Locale { get; set; }
-#endif
+        /// <summary>This field returns the natural language that was provided in the field values of the request payload (i.e., en_AU, en_GB or de_DE).</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.LocaleEnum? Locale { get; set; }
         /// <summary>The seller-defined Stock-Keeping Unit (SKU) of the inventory item. The seller should have a unique SKU value for every product that they sell.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -58,10 +52,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>This container will be returned if there were one or more warnings associated with the creation or update to the inventory item record.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error>? Warnings { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error> Warnings { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.InventoryItemResponse"/> and sets the default values.
@@ -88,11 +82,11 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>(global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "locale", n => { Locale = n.GetStringValue(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>(global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "locale", n => { Locale = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.LocaleEnum>(); } },
                 { "sku", n => { Sku = n.GetStringValue(); } },
                 { "statusCode", n => { StatusCode = n.GetIntValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>(global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>(global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -102,11 +96,11 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>("errors", Errors);
-            writer.WriteStringValue("locale", Locale);
+            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>("errors", Errors);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.LocaleEnum>("locale", Locale);
             writer.WriteStringValue("sku", Sku);
             writer.WriteIntValue("statusCode", StatusCode);
-            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>("warnings", Warnings);
+            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

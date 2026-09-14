@@ -22,14 +22,14 @@ using System;
 namespace EBay.ListingManagement.Generated.Stores.Models
 {
     /// <summary>
-    /// The base response type of the &lt;b&gt;getStoreTask&lt;/b&gt; method.
+    /// The base response of a getStoreTask call.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GetStoreTaskResponseType : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to provide details about the status of the Store Task.</summary>
+        /// <summary>An object describe the task information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Stores.Models.StoreTaskType? Task { get; set; }

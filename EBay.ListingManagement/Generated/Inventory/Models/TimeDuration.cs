@@ -29,14 +29,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This enumeration value indicates the time unit used to specify the fulfillment time, such as &lt;code&gt;BUSINESS_DAY&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:TimeDurationUnitEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Unit { get; set; }
-#nullable restore
-#else
-        public string Unit { get; set; }
-#endif
+        /// <summary>This enumeration value indicates the time unit used to specify the fulfillment time, such as &lt;code&gt;BUSINESS_DAY&lt;/code&gt;.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.TimeDurationUnitEnum? Unit { get; set; }
         /// <summary>The integer value in this field, along with the time unit in the &lt;strong&gt;unit&lt;/strong&gt; field, will indicate the fulfillment time.&lt;br&gt;&lt;br&gt;For standard orders that will be shipped, this value will indicate the expected fulfillment time if the inventory item is shipped from the inventory location. If the value of this field is &lt;code&gt;4&lt;/code&gt;, and the value of the &lt;strong&gt;unit&lt;/strong&gt; field is &lt;code&gt;BUSINESS_DAY&lt;/code&gt;, then the estimated delivery date after purchase is 4 business days.</summary>
         public int? Value { get; set; }
         /// <summary>
@@ -64,7 +58,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "unit", n => { Unit = n.GetStringValue(); } },
+                { "unit", n => { Unit = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.TimeDurationUnitEnum>(); } },
                 { "value", n => { Value = n.GetIntValue(); } },
             };
         }
@@ -75,7 +69,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("unit", Unit);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.TimeDurationUnitEnum>("unit", Unit);
             writer.WriteIntValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

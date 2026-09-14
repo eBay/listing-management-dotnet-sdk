@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unique identifier of a regulatory document associated with the listing.&lt;br&gt;&lt;br&gt;This value can be found in the response of the &lt;a href=&quot;/api-docs/commerce/media/resources/document/methods/createDocument&quot; target=&quot;_blank&quot;&gt;createDocument&lt;/a&gt; method of the Media API.</summary>
+        /// <summary>The unique identifier of a regulatory document associated with the listing.&lt;br&gt;&lt;br&gt;This value can be found in the response of the &lt;a href=&quot;/develop/api/sell/media_api#sell-media_api-document-createdocument&quot; target=&quot;_blank&quot;&gt;createDocument&lt;/a&gt; method of the Media API.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DocumentId { get; set; }

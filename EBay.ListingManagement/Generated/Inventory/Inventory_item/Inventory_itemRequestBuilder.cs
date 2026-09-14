@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Inventory_item
     public partial class Inventory_itemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the EBay.ListingManagement.Generated.Inventory.inventory_item.item collection</summary>
-        /// <param name="position">This path parameter specifies the seller-defined SKU value of the product whose inventory item record you wish to retrieve.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/inventory/resources/inventory_item/methods/getInventoryItems&quot; target=&quot;_blank &quot;&gt;getInventoryItems&lt;/a&gt; method to retrieve SKU values.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Max length&lt;/strong&gt;: 50</param>
+        /// <param name="position">This path parameter specifies the seller-defined SKU value of the product whose inventory item record you wish to retrieve.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems&quot; target=&quot;_blank &quot;&gt;getInventoryItems&lt;/a&gt; method to retrieve SKU values.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Maximum length&lt;/strong&gt;: 50</param>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Inventory.Inventory_item.Item.WithSkuItemRequestBuilder"/></returns>
         public global::EBay.ListingManagement.Generated.Inventory.Inventory_item.Item.WithSkuItemRequestBuilder this[string position]
         {
@@ -66,6 +66,9 @@ namespace EBay.ListingManagement.Generated.Inventory.Inventory_item
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.InventoryItems"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Inventory.Models.InventoryItems?> GetAsync(Action<RequestConfiguration<global::EBay.ListingManagement.Generated.Inventory.Inventory_item.Inventory_itemRequestBuilder.Inventory_itemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -76,7 +79,13 @@ namespace EBay.ListingManagement.Generated.Inventory.Inventory_item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Inventory.Models.InventoryItems>(requestInfo, global::EBay.ListingManagement.Generated.Inventory.Models.InventoryItems.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Inventory.Models.InventoryItems>(requestInfo, global::EBay.ListingManagement.Generated.Inventory.Models.InventoryItems.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This call retrieves all inventory item records defined for the seller&apos;s account. The &lt;strong&gt;limit&lt;/strong&gt; query parameter allows the seller to control how many records are returned per page, and the &lt;strong&gt;offset&lt;/strong&gt; query parameter is used to retrieve a specific page of records. The seller can make multiple calls to scan through multiple pages of records. There is no request payload for this call.&lt;br&gt;&lt;br&gt;The &lt;code&gt;authorization&lt;/code&gt; header is the only required HTTP header for this call, and it is required for all Inventory API calls. See the &lt;strong&gt;HTTP request headers&lt;/strong&gt; section for more information.&lt;br&gt;&lt;br&gt;For those who prefer to retrieve numerous inventory item records by SKU value with one call (up to 25 at a time), the &lt;strong&gt;bulkGetInventoryItem&lt;/strong&gt; method can be used.

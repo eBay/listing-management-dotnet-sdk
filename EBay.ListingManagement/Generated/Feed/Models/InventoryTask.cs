@@ -21,10 +21,11 @@ using System.IO;
 using System;
 namespace EBay.ListingManagement.Generated.Feed.Models
 {
+    /// <summary>
+    /// This container is used to return information about a specific inventory task.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class InventoryTask : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -60,7 +61,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string FeedType { get; set; }
 #endif
-        /// <summary>This container is used to set the filter criteria for the ActiveInventoryReport. A seller can create an ActiveInventoryReport for a single listing format.</summary>
+        /// <summary>This container is used to set the filter criteria for the ActiveInventoryReport. A seller can retrieve listings for a specified format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Feed.Models.InventoryFilterCriteria? FilterCriteria { get; set; }
@@ -76,14 +77,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string SchemaVersion { get; set; }
 #endif
-        /// <summary>The status of the task. Users must wait until status is complete before moving on to the next step (such as uploading/downloading a file). For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:FeedStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
+        /// <summary>The status of the task. Users must wait until status is complete before moving on to the next step (such as uploading/downloading a file).</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.FeedStatusEnum? Status { get; set; }
         /// <summary>The ID of the task. This ID is generated when the task was created by the &lt;strong&gt;createInventoryTask&lt;/strong&gt; method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -131,7 +126,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
                 { "feedType", n => { FeedType = n.GetStringValue(); } },
                 { "filterCriteria", n => { FilterCriteria = n.GetObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.InventoryFilterCriteria>(global::EBay.ListingManagement.Generated.Feed.Models.InventoryFilterCriteria.CreateFromDiscriminatorValue); } },
                 { "schemaVersion", n => { SchemaVersion = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.FeedStatusEnum>(); } },
                 { "taskId", n => { TaskId = n.GetStringValue(); } },
                 { "uploadSummary", n => { UploadSummary = n.GetObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.UploadSummary>(global::EBay.ListingManagement.Generated.Feed.Models.UploadSummary.CreateFromDiscriminatorValue); } },
             };
@@ -149,7 +144,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             writer.WriteStringValue("feedType", FeedType);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.InventoryFilterCriteria>("filterCriteria", FilterCriteria);
             writer.WriteStringValue("schemaVersion", SchemaVersion);
-            writer.WriteStringValue("status", Status);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.FeedStatusEnum>("status", Status);
             writer.WriteStringValue("taskId", TaskId);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.UploadSummary>("uploadSummary", UploadSummary);
             writer.WriteAdditionalData(AdditionalData);

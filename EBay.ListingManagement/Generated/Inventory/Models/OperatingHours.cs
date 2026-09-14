@@ -29,14 +29,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A &lt;strong&gt;dayOfWeekEnum&lt;/strong&gt; value is required for each day of the week that the store location has regular operating hours. &lt;br&gt;&lt;br&gt;This field is returned if operating hours are defined for the store location. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/api:DayOfWeekEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DayOfWeekEnum { get; set; }
-#nullable restore
-#else
-        public string DayOfWeekEnum { get; set; }
-#endif
+        /// <summary>A &lt;strong&gt;dayOfWeekEnum&lt;/strong&gt; value is required for each day of the week that the store location has regular operating hours. &lt;br&gt;&lt;br&gt;This field is returned if operating hours are defined for the store location.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.DayOfWeekEnum? DayOfWeekEnum { get; set; }
         /// <summary>This container is used to define the opening and closing times of a store location&apos;s working day (defined in the &lt;strong&gt;dayOfWeekEnum&lt;/strong&gt; field). An &lt;strong&gt;intervals&lt;/strong&gt; container is needed for each day of the week that the store location is open. If a store location closes for lunch (or any other period during the day) and then reopens, multiple &lt;strong&gt;open&lt;/strong&gt; and &lt;strong&gt;close&lt;/strong&gt; pairs are needed &lt;br&gt;&lt;br&gt;This container is returned if operating hours are defined for the store location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -70,7 +64,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "dayOfWeekEnum", n => { DayOfWeekEnum = n.GetStringValue(); } },
+                { "dayOfWeekEnum", n => { DayOfWeekEnum = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.DayOfWeekEnum>(); } },
                 { "intervals", n => { Intervals = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Interval>(global::EBay.ListingManagement.Generated.Inventory.Models.Interval.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -81,7 +75,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("dayOfWeekEnum", DayOfWeekEnum);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.DayOfWeekEnum>("dayOfWeekEnum", DayOfWeekEnum);
             writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Interval>("intervals", Intervals);
             writer.WriteAdditionalData(AdditionalData);
         }

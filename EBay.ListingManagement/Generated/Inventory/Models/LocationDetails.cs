@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to define the physical address of an inventory location.</summary>
+        /// <summary>This required container sets the physical address of an inventory location. Except in the case store or fulfillment center location, a full address is not a requirement when setting up a location. For warehouse locations, the fields required in this container are either of the following sets:&lt;ul&gt;&lt;li&gt;&lt;b&gt;city&lt;/b&gt;, &lt;b&gt;stateOrProvince&lt;/b&gt;, and &lt;b&gt;country&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;postalCode&lt;/b&gt; and &lt;b&gt;country&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Address? Address { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.Address Address { get; set; }
 #endif
-        /// <summary>This type is used to express the Global Positioning System (GPS) latitude and longitude coordinates of an inventory location.</summary>
+        /// <summary>This container is used to set the Global Positioning System (GPS) latitude and longitude coordinates for the inventory location.&lt;br&gt;&lt;br&gt;Geographical coordinates are required for the location of In-Store Pickup inventory. </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.GeoCoordinates? GeoCoordinates { get; set; }

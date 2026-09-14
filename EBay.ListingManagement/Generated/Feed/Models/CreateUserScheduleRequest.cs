@@ -22,14 +22,12 @@ using System;
 namespace EBay.ListingManagement.Generated.Feed.Models
 {
     /// <summary>
-    /// The type that defines the fields for the &lt;strong&gt;createSchedule&lt;/strong&gt; method.
+    /// The type that defines the fields for the &lt;a href=&quot;/develop/api/sell/feed_api#sell-feed_api-schedule-createschedule&quot; target=&quot;_blank&quot;&gt;createSchedule&lt;/a&gt; method.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class CreateUserScheduleRequest : IAdditionalDataHolder, IParsable
+    public partial class CreateUserScheduleRequest : global::EBay.ListingManagement.Generated.Feed.Models.UpdateUserScheduleRequest, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name of the feed type for the created schedule.&lt;br&gt;&lt;br&gt; Use the &lt;a href=&quot;/api-docs/sell/feed/resources/schedule/methods/getScheduleTemplates&quot;&gt;getScheduleTemplates&lt;/a&gt; method to retrieve the feed type of a schedule template.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;</summary>
+        /// <summary>The name of the feed type for the created schedule.&lt;br&gt;&lt;br&gt; Use the &lt;a href=&quot;/develop/api/sell/feed_api#sell-feed_api-schedule-getscheduletemplates&quot; target=&quot;_blank&quot;&gt;getScheduleTemplates&lt;/a&gt; method to retrieve the feed type of a schedule template.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FeedType { get; set; }
@@ -37,49 +35,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string FeedType { get; set; }
 #endif
-        /// <summary>The preferred day of the month to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for monthly schedules. The last day of the month is used for numbers larger than the actual number of days in the month. &lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required, and optionally provides a default value.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Minimum: &lt;/b&gt;1&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Maximum: &lt;/b&gt;31</summary>
-        public int? PreferredTriggerDayOfMonth { get; set; }
-        /// <summary>The preferred day of the week to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for weekly schedules. &lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required, and optionally provides a default value. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:DayOfWeekEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PreferredTriggerDayOfWeek { get; set; }
-#nullable restore
-#else
-        public string PreferredTriggerDayOfWeek { get; set; }
-#endif
-        /// <summary>The preferred two-digit hour of the day to trigger the schedule. &lt;br /&gt;&lt;br /&gt;This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required, and optionally provides a default value.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Format:&lt;/b&gt; UTC &lt;code&gt;hhZ&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents 11:00 am UTC:&lt;code&gt; 11Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PreferredTriggerHour { get; set; }
-#nullable restore
-#else
-        public string PreferredTriggerHour { get; set; }
-#endif
-        /// <summary>The timestamp on which the report generation (subscription) ends. After this date, the schedule status becomes &lt;code&gt;INACTIVE&lt;/code&gt;. &lt;br /&gt;&lt;br /&gt;Use this field, if available, to end the schedule in the future. This value must be later than &lt;strong&gt;scheduleStartDate&lt;/strong&gt; (if supplied). This field is available as specified by the template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). The template can specify this field as optional or required, and optionally provides a default value.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Format:&lt;/b&gt; UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents UTC October 10, 2021 at 10:00 AM:&lt;br /&gt;&lt;code&gt;2021-10-10T10Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ScheduleEndDate { get; set; }
-#nullable restore
-#else
-        public string ScheduleEndDate { get; set; }
-#endif
-        /// <summary>The schedule name assigned by the user for the created schedule.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ScheduleName { get; set; }
-#nullable restore
-#else
-        public string ScheduleName { get; set; }
-#endif
-        /// <summary>The timestamp to start generating the report. After this timestamp, the schedule status becomes active until either the &lt;strong&gt;scheduleEndDate&lt;/strong&gt; occurs or the &lt;strong&gt;scheduleTemplateId&lt;/strong&gt; becomes inactive. &lt;br /&gt;&lt;br /&gt;Use this field, if available, to start the schedule in the future but before the &lt;strong&gt;scheduleEndDate&lt;/strong&gt; (if supplied). This field is available as specified by the template &lt;strong&gt;(scheduleTemplateId)&lt;/strong&gt;. The template can specify this field as optional or required, and optionally provides a default value.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Format:&lt;/b&gt; UTC &lt;code&gt;yyyy-MM-dd&lt;strong&gt;T&lt;/strong&gt;HH&lt;strong&gt;Z&lt;/strong&gt;&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents a schedule start date of UTC October 01, 2020 at 12:00 PM:&lt;br /&gt;&lt;code&gt; 2020-01-01T12Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ScheduleStartDate { get; set; }
-#nullable restore
-#else
-        public string ScheduleStartDate { get; set; }
-#endif
-        /// <summary>The unique identifier of the template to be used for this schedule. &lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/feed/resources/schedule/methods/getScheduleTemplates&quot;&gt;getScheduleTemplates&lt;/a&gt; method to retrieve the schedule template ID. This method requires a schedule template ID that is &lt;code&gt;ACTIVE&lt;/code&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;</summary>
+        /// <summary>The unique identifier of the template to be used for this schedule. &lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/develop/api/sell/feed_api#sell-feed_api-schedule-getscheduletemplates&quot; target=&quot;_blank&quot;&gt;getScheduleTemplates&lt;/a&gt; method to retrieve the schedule template ID. This method requires a schedule template ID that is &lt;code&gt;ACTIVE&lt;/code&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ScheduleTemplateId { get; set; }
@@ -87,27 +43,12 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string ScheduleTemplateId { get; set; }
 #endif
-        /// <summary>The schema version of a schedule.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SchemaVersion { get; set; }
-#nullable restore
-#else
-        public string SchemaVersion { get; set; }
-#endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Feed.Models.CreateUserScheduleRequest"/> and sets the default values.
-        /// </summary>
-        public CreateUserScheduleRequest()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Feed.Models.CreateUserScheduleRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::EBay.ListingManagement.Generated.Feed.Models.CreateUserScheduleRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new global::EBay.ListingManagement.Generated.Feed.Models.CreateUserScheduleRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::EBay.ListingManagement.Generated.Feed.Models.CreateUserScheduleRequest();
@@ -116,38 +57,24 @@ namespace EBay.ListingManagement.Generated.Feed.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "feedType", n => { FeedType = n.GetStringValue(); } },
-                { "preferredTriggerDayOfMonth", n => { PreferredTriggerDayOfMonth = n.GetIntValue(); } },
-                { "preferredTriggerDayOfWeek", n => { PreferredTriggerDayOfWeek = n.GetStringValue(); } },
-                { "preferredTriggerHour", n => { PreferredTriggerHour = n.GetStringValue(); } },
-                { "scheduleEndDate", n => { ScheduleEndDate = n.GetStringValue(); } },
-                { "scheduleName", n => { ScheduleName = n.GetStringValue(); } },
-                { "scheduleStartDate", n => { ScheduleStartDate = n.GetStringValue(); } },
                 { "scheduleTemplateId", n => { ScheduleTemplateId = n.GetStringValue(); } },
-                { "schemaVersion", n => { SchemaVersion = n.GetStringValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer)
+        public override void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            base.Serialize(writer);
             writer.WriteStringValue("feedType", FeedType);
-            writer.WriteIntValue("preferredTriggerDayOfMonth", PreferredTriggerDayOfMonth);
-            writer.WriteStringValue("preferredTriggerDayOfWeek", PreferredTriggerDayOfWeek);
-            writer.WriteStringValue("preferredTriggerHour", PreferredTriggerHour);
-            writer.WriteStringValue("scheduleEndDate", ScheduleEndDate);
-            writer.WriteStringValue("scheduleName", ScheduleName);
-            writer.WriteStringValue("scheduleStartDate", ScheduleStartDate);
             writer.WriteStringValue("scheduleTemplateId", ScheduleTemplateId);
-            writer.WriteStringValue("schemaVersion", SchemaVersion);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

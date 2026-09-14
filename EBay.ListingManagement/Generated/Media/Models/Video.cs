@@ -22,22 +22,22 @@ using System;
 namespace EBay.ListingManagement.Generated.Media.Models
 {
     /// <summary>
-    /// A response field that retrieves all the metadata for the video, including its &lt;b&gt;title&lt;/b&gt;, &lt;b&gt;classification&lt;/b&gt;, &lt;b&gt;size&lt;/b&gt;, &lt;b&gt;description&lt;/b&gt;, &lt;b&gt;status&lt;/b&gt;, &lt;b&gt;status message&lt;/b&gt; (if any), and &lt;b&gt;expiration date&lt;/b&gt;.
+    /// A response field that retrieves all the metadata for the video, including its &lt;strong&gt;title&lt;/strong&gt;, &lt;strong&gt;classification&lt;/strong&gt;, &lt;strong&gt;size&lt;/strong&gt;, &lt;strong&gt;description&lt;/strong&gt;, &lt;strong&gt;status&lt;/strong&gt;, &lt;strong&gt;status message&lt;/strong&gt; (if any), and &lt;strong&gt;expiration date&lt;/strong&gt;.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Video : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The intended use for this video content. Currently, videos can only be added and associated with eBay listings, so the only supported value is &lt;code&gt;ITEM&lt;/code&gt;.</summary>
+        /// <summary>The intended use for this video content. Currently, videos can only be added and associated with eBay listings, so the only supported value is &lt;code&gt;ITEM&lt;/code&gt;. This array is always returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Classification { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.Classification?>? Classification { get; set; }
 #nullable restore
 #else
-        public List<string> Classification { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.Classification?> Classification { get; set; }
 #endif
-        /// <summary>The description of the video. The video description is an optional field that can be set using the &lt;a href=&quot; /api-docs/commerce/media/resources/video/methods/createVideo&quot; target=&quot;_blank&quot;&gt;createVideo&lt;/a&gt; method.</summary>
+        /// <summary>The description of the video. The video description is an optional field that can be set using the &lt;a href=&quot; /develop/api/sell/media_api#sell-media_api-video-createvideo&quot;&gt;createVideo&lt;/a&gt; method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -53,7 +53,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public string ExpirationDate { get; set; }
 #endif
-        /// <summary>A container that provides video moderation information when calling the &lt;strong&gt;getVideo&lt;/strong&gt; method.&lt;br /&gt;&lt;br /&gt;This container is returned if the specified video has been blocked by moderators.&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#478415&quot;&gt;&lt;strong&gt;Tip:&lt;/strong&gt;&lt;/span&gt; See &lt;a href=&quot;https://www.ebay.com/help/selling/listings/creating-managing-listings/add-video-to-listing?id=5272#section2&quot; target=&quot;_blank&quot;&gt;Video moderation and restrictions&lt;/a&gt; in the eBay Seller Center for details about video moderation.&lt;/span&gt;</summary>
+        /// <summary>The video moderation information that is returned if a video is blocked by moderators.&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#478415&quot;&gt;&lt;strong&gt;Tip:&lt;/strong&gt;&lt;/span&gt; See &lt;a href=&quot;https://www.ebay.com/help/selling/listings/creating-managing-listings/add-video-to-listing?id=5272#section2&quot; target=&quot;_blank&quot;&gt;Video moderation and restrictions&lt;/a&gt; in the eBay Seller Center for details about video moderation.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;If the video status is &lt;code&gt;BLOCKED&lt;/code&gt;, ensure that the video complies with eBay&apos;s video formatting and content guidelines. Afterwards, begin the video creation and upload procedure anew using the &lt;strong&gt;createVideo&lt;/strong&gt; and &lt;strong&gt;uploadVideo&lt;/strong&gt; methods.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Media.Models.Moderation? Moderation { get; set; }
@@ -61,7 +61,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public global::EBay.ListingManagement.Generated.Media.Models.Moderation Moderation { get; set; }
 #endif
-        /// <summary>The playlist created for the uploaded video, which provides the streaming video URLs to play the video. The supported streaming video protocols are DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming). The playlist will only be generated if a video is successfully uploaded with a status of &lt;code&gt;LIVE&lt;/code&gt;.</summary>
+        /// <summary>The playlist created for the uploaded video, which provides the streaming video URLs to play the video. The supported streaming video protocols are DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming). The playlist will only be generated if a video is successfully uploaded with a status of &lt;code&gt;LIVE&lt;/code&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Media.Models.Play>? PlayLists { get; set; }
@@ -69,17 +69,11 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public List<global::EBay.ListingManagement.Generated.Media.Models.Play> PlayLists { get; set; }
 #endif
-        /// <summary>The size, in bytes, of the video content.</summary>
+        /// <summary>The size, in bytes, of the video content. This field is always returned.</summary>
         public int? Size { get; set; }
-        /// <summary>The status of the current video resource. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/commerce/media/types/api:VideoStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
-        /// <summary>The &lt;b&gt;statusMessage&lt;/b&gt; field contains additional information on the status. For example, information on why processing might have failed or if the video was blocked.</summary>
+        /// <summary>The status of the current video resource.</summary>
+        public global::EBay.ListingManagement.Generated.Media.Models.VideoStatusEnum? Status { get; set; }
+        /// <summary>The &lt;strong&gt;statusMessage&lt;/strong&gt; field contains additional information on the status. For example, information on why processing might have failed or if the video was blocked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? StatusMessage { get; set; }
@@ -87,7 +81,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public string StatusMessage { get; set; }
 #endif
-        /// <summary>A type that provides the location of the image.</summary>
+        /// <summary>The URL of the thumbnail image of the video. The thumbnail image&apos;s URL must be an eBayPictureURL (EPS URL).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Media.Models.Image? Thumbnail { get; set; }
@@ -95,7 +89,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public global::EBay.ListingManagement.Generated.Media.Models.Image Thumbnail { get; set; }
 #endif
-        /// <summary>The title of the video.</summary>
+        /// <summary>The title of the video. This field is always returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Title { get; set; }
@@ -136,13 +130,13 @@ namespace EBay.ListingManagement.Generated.Media.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "classification", n => { Classification = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "classification", n => { Classification = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.Classification>()?.AsList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "expirationDate", n => { ExpirationDate = n.GetStringValue(); } },
                 { "moderation", n => { Moderation = n.GetObjectValue<global::EBay.ListingManagement.Generated.Media.Models.Moderation>(global::EBay.ListingManagement.Generated.Media.Models.Moderation.CreateFromDiscriminatorValue); } },
                 { "playLists", n => { PlayLists = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Media.Models.Play>(global::EBay.ListingManagement.Generated.Media.Models.Play.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "size", n => { Size = n.GetIntValue(); } },
-                { "status", n => { Status = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::EBay.ListingManagement.Generated.Media.Models.VideoStatusEnum>(); } },
                 { "statusMessage", n => { StatusMessage = n.GetStringValue(); } },
                 { "thumbnail", n => { Thumbnail = n.GetObjectValue<global::EBay.ListingManagement.Generated.Media.Models.Image>(global::EBay.ListingManagement.Generated.Media.Models.Image.CreateFromDiscriminatorValue); } },
                 { "title", n => { Title = n.GetStringValue(); } },
@@ -156,13 +150,13 @@ namespace EBay.ListingManagement.Generated.Media.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("classification", Classification);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.Classification>("classification", Classification);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("expirationDate", ExpirationDate);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Media.Models.Moderation>("moderation", Moderation);
             writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Media.Models.Play>("playLists", PlayLists);
             writer.WriteIntValue("size", Size);
-            writer.WriteStringValue("status", Status);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Media.Models.VideoStatusEnum>("status", Status);
             writer.WriteStringValue("statusMessage", StatusMessage);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Media.Models.Image>("thumbnail", Thumbnail);
             writer.WriteStringValue("title", Title);

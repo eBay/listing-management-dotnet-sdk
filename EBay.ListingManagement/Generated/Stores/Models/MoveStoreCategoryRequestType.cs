@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unique identifier of an eBay Store&apos;s custom category. eBay auto-generates this identifier when a seller establishes a custom store category. This category ID should not be confused with an eBay category ID. This is the category that is moved.</summary>
+        /// <summary>Unique identifier of an eBay Store&apos;s custom category. eBay auto-generates this identifier when a sellerestablishes a custom store category. This category ID should not be confused with an eBay category ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CategoryId { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
 #else
         public string CategoryId { get; set; }
 #endif
-        /// <summary>The new parent category of the category to be moved is specified in this field. If the category is being moved to level 1 category, set this value to &lt;b&gt;-999&lt;/b&gt;.</summary>
+        /// <summary>When moving store category, specifies the destination category destinationParentCategoryId under which the moved category categoryId will be located. To move to the top level, set the value to -999.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DestinationParentCategoryId { get; set; }

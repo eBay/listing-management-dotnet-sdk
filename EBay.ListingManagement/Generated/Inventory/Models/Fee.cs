@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express a dollar value and the applicable currency.</summary>
+        /// <summary>This dollar value in this container is the actual dollar value of the listing fee type specified in the &lt;strong&gt;feeType&lt;/strong&gt; field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Amount? Amount { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string FeeType { get; set; }
 #endif
-        /// <summary>This type is used to express a dollar value and the applicable currency.</summary>
+        /// <summary>The dollar value in this container indicates any eBay promotional discount applied toward the listing fee type specified in the &lt;strong&gt;feeType&lt;/strong&gt; field. If there was no discount applied toward the fee, this container is still returned but its value is &lt;code&gt;0.0&lt;/code&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Amount? PromotionalDiscount { get; set; }

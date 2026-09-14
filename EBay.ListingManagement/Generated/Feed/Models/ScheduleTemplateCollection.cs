@@ -47,7 +47,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string Next { get; set; }
 #endif
-        /// <summary>The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the &lt;b&gt;offset&lt;/b&gt; query parameter. &lt;p class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The items in a paginated result set use a zero-based list where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;</summary>
+        /// <summary>The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the &lt;strong&gt;offset&lt;/strong&gt; query parameter. &lt;p class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The items in a paginated result set use a zero-based list where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;</summary>
         public int? Offset { get; set; }
         /// <summary>The path to the call URI for the previous page of results. This is returned if there is a previous page of results from the result set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

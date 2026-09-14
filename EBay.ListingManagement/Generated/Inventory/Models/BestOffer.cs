@@ -22,14 +22,14 @@ using System;
 namespace EBay.ListingManagement.Generated.Inventory.Models
 {
     /// <summary>
-    /// This type is used by the &lt;strong&gt;bestOfferTerms&lt;/strong&gt; container, which is used if the seller would like to support the Best Offer feature on their listing.
+    /// This type is used by the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-createoffer.listingpolicies.bestofferterms&quot; target=&quot;_blank&quot;&gt;bestOfferTerms&lt;/a&gt; container, which is used if the seller would like to support the Best Offer feature on their listing.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BestOffer : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express a dollar value and the applicable currency.</summary>
+        /// <summary>This is the price at which Best Offers are automatically accepted. If a buyer submits a Best Offer that is equal to or above this value, the offer is automatically accepted on behalf of the seller. This field is only applicable if the &lt;strong&gt;bestOfferEnabled&lt;/strong&gt; value is set to &lt;code&gt;true&lt;/code&gt;.&lt;br&gt;&lt;br&gt;The price set here must be lower than the current &apos;Buy it Now&apos; price. This field is only returned by &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer&quot;&gt;getOffer&lt;/a&gt; and &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers&quot;&gt;getOffers&lt;/a&gt; if set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Amount? AutoAcceptPrice { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.Amount AutoAcceptPrice { get; set; }
 #endif
-        /// <summary>This type is used to express a dollar value and the applicable currency.</summary>
+        /// <summary>This is the price at which Best Offers are automatically declined. If a buyer submits a Best Offer that is equal to or below this value, the offer is automatically declined on behalf of the seller. This field is only applicable if the &lt;strong&gt;bestOfferEnabled&lt;/strong&gt; value is set to &lt;code&gt;true&lt;/code&gt;.&lt;br&gt;&lt;br&gt;The price set here must be lower than the current &apos;Buy it Now&apos; price and the price set in the &lt;strong&gt;autoAcceptPrice&lt;/strong&gt; field (if used). This field is only returned by &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer&quot;&gt;getOffer&lt;/a&gt; and &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers&quot;&gt;getOffers&lt;/a&gt; if set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Amount? AutoDeclinePrice { get; set; }

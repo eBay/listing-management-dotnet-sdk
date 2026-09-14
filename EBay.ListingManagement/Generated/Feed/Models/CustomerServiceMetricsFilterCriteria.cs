@@ -29,23 +29,11 @@ namespace EBay.ListingManagement.Generated.Feed.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>An enumeration value that specifies the customer service metric that eBay tracks to measure seller performance.&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/api-docs/sell/feed/types/api:CustomerServiceMetricTypeEnum&quot;&gt;CustomerServiceMetricTypeEnum&lt;/a&gt; for values. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:CustomerServiceMetricTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CustomerServiceMetricType { get; set; }
-#nullable restore
-#else
-        public string CustomerServiceMetricType { get; set; }
-#endif
-        /// <summary>An enumeration value that specifies the eBay marketplace where the evaluation occurs.&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/api-docs/sell/feed/types/bas:MarketplaceIdEnum&quot;&gt;MarketplaceIdEnum&lt;/a&gt; for values. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/bas:MarketplaceIdEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? EvaluationMarketplaceId { get; set; }
-#nullable restore
-#else
-        public string EvaluationMarketplaceId { get; set; }
-#endif
-        /// <summary>A list of listing category IDs on which the service metric is measured. A seller can use one or more L1 (top-level) eBay categories to get metrics specific to those L1 categories. The Category IDs for each L1 category are required. Category ID values for L1 categories can be retrieved using the Taxonomy API.&lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Pass this attribute to narrow down your filter results for the &lt;code&gt;ITEM_NOT_AS_DESCRIBED&lt;/code&gt; customerServiceMetricType.&lt;/span&gt;&lt;/p&gt; &lt;p&gt;Supported categories include:&lt;/p&gt;&lt;p&gt;&lt;code&gt;primary(L1) category Id&lt;/code&gt;&lt;/p&gt;</summary>
+        /// <summary>An enumeration value that specifies the customer service metric that eBay tracks to measure seller performance.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.CustomerServiceMetricTypeEnum? CustomerServiceMetricType { get; set; }
+        /// <summary>An enumeration value that specifies the eBay marketplace where the evaluation occurs.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.MarketplaceIdEnum? EvaluationMarketplaceId { get; set; }
+        /// <summary>A list of listing category IDs on which the service metric is measured. A seller can use one or more L1 (top-level) eBay categories to get metrics specific to those L1 categories. The Category IDs for each L1 category are required. Category ID values for L1 categories can be retrieved using the Taxonomy API.&lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Pass this attribute to narrow down your filter results for the &lt;code&gt;ITEM_NOT_AS_DESCRIBED&lt;/code&gt; &lt;strong&gt;customerServiceMetricType&lt;/strong&gt;.&lt;/span&gt;&lt;/p&gt; &lt;p&gt;Supported categories include:&lt;/p&gt;&lt;p&gt;&lt;code&gt;primary(L1) category Id&lt;/code&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ListingCategories { get; set; }
@@ -53,13 +41,13 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public List<string> ListingCategories { get; set; }
 #endif
-        /// <summary>A list of shipping region enumeration values on which the service metric is measured. This comma delimited array allows the seller to customize the report to focus on domestic or international shipping. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Pass this attribute to narrow down your filter results for the &lt;code&gt;ITEM_NOT_RECEIVED&lt;/code&gt; customerServiceMetricType.&lt;/span&gt;&lt;/p&gt; &lt;p&gt;Supported categories include:&lt;/p&gt;&lt;p&gt;&lt;code&gt;primary(L1) category Id&lt;/code&gt;&lt;/p&gt;See &lt;strong&gt;ShippingRegionTypeEnum&lt;/strong&gt; for values</summary>
+        /// <summary>A list of shipping region enumeration values on which the service metric is measured. This comma delimited array allows the seller to customize the report to focus on domestic or international shipping. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;Pass this attribute to narrow down your filter results for the &lt;code&gt;ITEM_NOT_RECEIVED&lt;/code&gt; customerServiceMetricType.&lt;/span&gt;&lt;/p&gt; &lt;p&gt;Supported categories include:&lt;/p&gt;&lt;p&gt;&lt;code&gt;primary(L1) category Id&lt;/code&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ShippingRegions { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Feed.Models.ShippingRegionTypeEnum?>? ShippingRegions { get; set; }
 #nullable restore
 #else
-        public List<string> ShippingRegions { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Feed.Models.ShippingRegionTypeEnum?> ShippingRegions { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Feed.Models.CustomerServiceMetricsFilterCriteria"/> and sets the default values.
@@ -86,10 +74,10 @@ namespace EBay.ListingManagement.Generated.Feed.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "customerServiceMetricType", n => { CustomerServiceMetricType = n.GetStringValue(); } },
-                { "evaluationMarketplaceId", n => { EvaluationMarketplaceId = n.GetStringValue(); } },
+                { "customerServiceMetricType", n => { CustomerServiceMetricType = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.CustomerServiceMetricTypeEnum>(); } },
+                { "evaluationMarketplaceId", n => { EvaluationMarketplaceId = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.MarketplaceIdEnum>(); } },
                 { "listingCategories", n => { ListingCategories = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "shippingRegions", n => { ShippingRegions = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "shippingRegions", n => { ShippingRegions = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Feed.Models.ShippingRegionTypeEnum>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -99,10 +87,10 @@ namespace EBay.ListingManagement.Generated.Feed.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("customerServiceMetricType", CustomerServiceMetricType);
-            writer.WriteStringValue("evaluationMarketplaceId", EvaluationMarketplaceId);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.CustomerServiceMetricTypeEnum>("customerServiceMetricType", CustomerServiceMetricType);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.MarketplaceIdEnum>("evaluationMarketplaceId", EvaluationMarketplaceId);
             writer.WriteCollectionOfPrimitiveValues<string>("listingCategories", ListingCategories);
-            writer.WriteCollectionOfPrimitiveValues<string>("shippingRegions", ShippingRegions);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Feed.Models.ShippingRegionTypeEnum>("shippingRegions", ShippingRegions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

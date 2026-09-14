@@ -48,12 +48,15 @@ namespace EBay.ListingManagement.Generated.Inventory.Offer.Get_listing_fees
         {
         }
         /// <summary>
-        /// This call is used to retrieve the expected listing fees for up to 250 unpublished offers. An array of one or more &lt;strong&gt;offerId&lt;/strong&gt; values are passed in under the &lt;strong&gt;offers&lt;/strong&gt; container.&lt;br&gt;&lt;br&gt;In the response payload, all listing fees are grouped by eBay marketplace, and listing fees per offer are not shown. A &lt;strong&gt;fees&lt;/strong&gt; container will be returned for each eBay marketplace where the seller is selling the products associated with the specified offers. &lt;br&gt;&lt;br&gt;Errors will occur if the seller passes in &lt;strong&gt;offerIds&lt;/strong&gt; that represent published offers, so this call should be made before the seller publishes offers with the &lt;strong&gt;publishOffer&lt;/strong&gt;.
+        /// This call is used to retrieve the expected listing fees for up to 250 unpublished offers. An array of one or more &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getlistingfees.offerkeywithid.offerid&quot; target=&quot;_blank&quot;&gt;&gt;offerId&lt;/a&gt; values are passed in under the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getlistingfees.offerkeyswithid.offers&quot; target=&quot;_blank&quot;&gt;offers&lt;/a&gt; container.&lt;br&gt;&lt;br&gt;In the response payload, all listing fees are grouped by eBay marketplace, and listing fees per offer are not shown. A &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getlistingfees.feesummary.fees&quot; target=&quot;_blank&quot;&gt;fees&lt;/a&gt; container will be returned for each eBay marketplace where the seller is selling the products associated with the specified offers. &lt;br&gt;&lt;br&gt;Errors will occur if the seller passes in &lt;strong&gt;offerIds&lt;/strong&gt; that represent published offers, so this call should be made before the seller publishes offers with the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-publishoffer&quot; target=&quot;_blank&quot;&gt;publishOffer&lt;/a&gt;.
         /// </summary>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.FeesSummaryResponse"/></returns>
-        /// <param name="body">This type is used by the base request payload of the &lt;strong&gt;getListingFees&lt;/strong&gt; call.</param>
+        /// <param name="body">List of offers that needs fee information</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Inventory.Models.FeesSummaryResponse?> PostAsync(global::EBay.ListingManagement.Generated.Inventory.Models.OfferKeysWithId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -65,13 +68,19 @@ namespace EBay.ListingManagement.Generated.Inventory.Offer.Get_listing_fees
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Inventory.Models.FeesSummaryResponse>(requestInfo, global::EBay.ListingManagement.Generated.Inventory.Models.FeesSummaryResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Inventory.Models.FeesSummaryResponse>(requestInfo, global::EBay.ListingManagement.Generated.Inventory.Models.FeesSummaryResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This call is used to retrieve the expected listing fees for up to 250 unpublished offers. An array of one or more &lt;strong&gt;offerId&lt;/strong&gt; values are passed in under the &lt;strong&gt;offers&lt;/strong&gt; container.&lt;br&gt;&lt;br&gt;In the response payload, all listing fees are grouped by eBay marketplace, and listing fees per offer are not shown. A &lt;strong&gt;fees&lt;/strong&gt; container will be returned for each eBay marketplace where the seller is selling the products associated with the specified offers. &lt;br&gt;&lt;br&gt;Errors will occur if the seller passes in &lt;strong&gt;offerIds&lt;/strong&gt; that represent published offers, so this call should be made before the seller publishes offers with the &lt;strong&gt;publishOffer&lt;/strong&gt;.
+        /// This call is used to retrieve the expected listing fees for up to 250 unpublished offers. An array of one or more &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getlistingfees.offerkeywithid.offerid&quot; target=&quot;_blank&quot;&gt;&gt;offerId&lt;/a&gt; values are passed in under the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getlistingfees.offerkeyswithid.offers&quot; target=&quot;_blank&quot;&gt;offers&lt;/a&gt; container.&lt;br&gt;&lt;br&gt;In the response payload, all listing fees are grouped by eBay marketplace, and listing fees per offer are not shown. A &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-getlistingfees.feesummary.fees&quot; target=&quot;_blank&quot;&gt;fees&lt;/a&gt; container will be returned for each eBay marketplace where the seller is selling the products associated with the specified offers. &lt;br&gt;&lt;br&gt;Errors will occur if the seller passes in &lt;strong&gt;offerIds&lt;/strong&gt; that represent published offers, so this call should be made before the seller publishes offers with the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-publishoffer&quot; target=&quot;_blank&quot;&gt;publishOffer&lt;/a&gt;.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">This type is used by the base request payload of the &lt;strong&gt;getListingFees&lt;/strong&gt; call.</param>
+        /// <param name="body">List of offers that needs fee information</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

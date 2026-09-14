@@ -48,12 +48,14 @@ namespace EBay.ListingManagement.Generated.Inventory.Bulk_get_inventory_item
         {
         }
         /// <summary>
-        /// This call retrieves up to 25 inventory item records. The SKU value of each inventory item record to retrieve is specified in the request payload.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; In addition to the &lt;code&gt;authorization&lt;/code&gt; header, which is required for all Inventory API calls, this call also requires the &lt;code&gt;Content-Type&lt;/code&gt; header. See the &lt;a href=&quot;/api-docs/sell/inventory/resources/inventory_item/methods/bulkGetInventoryItem#h3-request-headers&quot;&gt;HTTP request headers&lt;/a&gt; for more information.&lt;/span&gt;&lt;br&gt;For those who prefer to retrieve only one inventory item record by SKU value, the &lt;strong&gt;getInventoryItem&lt;/strong&gt; method can be used. To retrieve all inventory item records defined on the seller&apos;s account, the &lt;strong&gt;getInventoryItems&lt;/strong&gt; method can be used (with pagination control if desired).
+        /// This call retrieves up to 25 inventory item records. The SKU value of each inventory item record to retrieve is specified in the request payload.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; In addition to the &lt;code&gt;authorization&lt;/code&gt; header, which is required for all Inventory API calls, this call also requires the &lt;code&gt;Content-Type&lt;/code&gt; header.&lt;/span&gt;&lt;br&gt;For those who prefer to retrieve only one inventory item record by SKU value, the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitem&quot; target=&quot;_blank&quot;&gt;getInventoryItem&lt;/a&gt; method can be used. To retrieve all inventory item records defined on the seller&apos;s account, the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems&quot; target=&quot;_blank&quot;&gt;getInventoryItems&lt;/a&gt; method can be used (with pagination control if desired).
         /// </summary>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.BulkGetInventoryItemResponse"/></returns>
-        /// <param name="body">This type is used by the base request of the &lt;strong&gt;bulkGetInventoryItem&lt;/strong&gt; method.</param>
+        /// <param name="body">Details of the inventories with sku and locale</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Inventory.Models.BulkGetInventoryItemResponse?> PostAsync(global::EBay.ListingManagement.Generated.Inventory.Models.BulkGetInventoryItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -65,13 +67,18 @@ namespace EBay.ListingManagement.Generated.Inventory.Bulk_get_inventory_item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Inventory.Models.BulkGetInventoryItemResponse>(requestInfo, global::EBay.ListingManagement.Generated.Inventory.Models.BulkGetInventoryItemResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Inventory.Models.BulkGetInventoryItemResponse>(requestInfo, global::EBay.ListingManagement.Generated.Inventory.Models.BulkGetInventoryItemResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This call retrieves up to 25 inventory item records. The SKU value of each inventory item record to retrieve is specified in the request payload.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; In addition to the &lt;code&gt;authorization&lt;/code&gt; header, which is required for all Inventory API calls, this call also requires the &lt;code&gt;Content-Type&lt;/code&gt; header. See the &lt;a href=&quot;/api-docs/sell/inventory/resources/inventory_item/methods/bulkGetInventoryItem#h3-request-headers&quot;&gt;HTTP request headers&lt;/a&gt; for more information.&lt;/span&gt;&lt;br&gt;For those who prefer to retrieve only one inventory item record by SKU value, the &lt;strong&gt;getInventoryItem&lt;/strong&gt; method can be used. To retrieve all inventory item records defined on the seller&apos;s account, the &lt;strong&gt;getInventoryItems&lt;/strong&gt; method can be used (with pagination control if desired).
+        /// This call retrieves up to 25 inventory item records. The SKU value of each inventory item record to retrieve is specified in the request payload.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; In addition to the &lt;code&gt;authorization&lt;/code&gt; header, which is required for all Inventory API calls, this call also requires the &lt;code&gt;Content-Type&lt;/code&gt; header.&lt;/span&gt;&lt;br&gt;For those who prefer to retrieve only one inventory item record by SKU value, the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitem&quot; target=&quot;_blank&quot;&gt;getInventoryItem&lt;/a&gt; method can be used. To retrieve all inventory item records defined on the seller&apos;s account, the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems&quot; target=&quot;_blank&quot;&gt;getInventoryItems&lt;/a&gt; method can be used (with pagination control if desired).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">This type is used by the base request of the &lt;strong&gt;bulkGetInventoryItem&lt;/strong&gt; method.</param>
+        /// <param name="body">Details of the inventories with sku and locale</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

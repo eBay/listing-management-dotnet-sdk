@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Feed.Models
 {
     /// <summary>
-    /// The type that defines the fields for the &lt;b&gt; createOrderTask&lt;/b&gt; request.
+    /// The type that defines the fields for the &lt;strong&gt;createOrderTask&lt;/strong&gt; request.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreateOrderTaskRequest : IAdditionalDataHolder, IParsable
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string FeedType { get; set; }
 #endif
-        /// <summary>The type that defines the fields for the order filters.</summary>
+        /// <summary>The container for the filter fields. This container is used to set the filter criteria for the order report. A seller can set date range filters and/or can retrieve orders in a specific state.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Feed.Models.OrderFilterCriteria? FilterCriteria { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public global::EBay.ListingManagement.Generated.Feed.Models.OrderFilterCriteria FilterCriteria { get; set; }
 #endif
-        /// <summary>The schema version of the LMS OrderReport. For the &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt; feed type, see the &lt;a href=&quot;/devzone/merchant-data/CallRef/OrderReport.html#OrderReport&quot;&gt;OrderReport&lt;/a&gt; reference page to see the present schema version. The &lt;b&gt; schemaVersion&lt;/b&gt; value is the version number shown at the top of the &lt;b&gt; OrderReport&lt;/b&gt; page. &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Restriction: &lt;/b&gt; This value must be 1113 or higher. The OrderReport schema version is updated about every two weeks. All version numbers are odd numbers (even numbers are skipped). For example, the next release version after &apos;1113&apos; is &apos;1115&apos;.</summary>
+        /// <summary>The schema version of the LMS OrderReport. For the &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt; feed type, see the &lt;a href=&quot;/devzone/merchant-data/CallRef/OrderReport.html#OrderReport&quot; target=&quot;_blank&quot;&gt;OrderReport&lt;/a&gt; reference page to see the present schema version. The &lt;strong&gt;schemaVersion&lt;/strong&gt; value is the version number shown at the top of the &lt;strong&gt;OrderReport&lt;/strong&gt; page. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Restriction: &lt;/strong&gt; This value must be 1113 or higher. The OrderReport schema version is updated about every two weeks. All version numbers are odd numbers (even numbers are skipped). For example, the next release version after &apos;1113&apos; is &apos;1115&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SchemaVersion { get; set; }

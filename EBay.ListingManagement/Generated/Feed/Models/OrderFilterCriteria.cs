@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The type that defines the fields for a date range.</summary>
+        /// <summary>The creation date range of the orders you want returned. Set the date range so it contains less than 10 days (maximum). If you do not specify a &lt;strong&gt;DateRange&lt;/strong&gt;, results from the last 10 days will be returned by default.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Feed.Models.DateRange? CreationDateRange { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public global::EBay.ListingManagement.Generated.Feed.Models.DateRange CreationDateRange { get; set; }
 #endif
-        /// <summary>The type that defines the fields for a date range.</summary>
+        /// <summary>The modified date range of the orders you want returned. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This container is for future use. At this time, the &lt;strong&gt;createOrderTask&lt;/strong&gt; method only supports order creation date filters and not modified order date filters.&lt;/span&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Feed.Models.DateRange? ModifiedDateRange { get; set; }
@@ -45,14 +45,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public global::EBay.ListingManagement.Generated.Feed.Models.DateRange ModifiedDateRange { get; set; }
 #endif
-        /// <summary>The order status of the orders returned. If the filter is omitted from createOrderTask call, orders that are in both &lt;code&gt;ACTIVE &lt;/code&gt;and&lt;code&gt; COMPLETED&lt;/code&gt; states are returned. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:OrderStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? OrderStatus { get; set; }
-#nullable restore
-#else
-        public string OrderStatus { get; set; }
-#endif
+        /// <summary>The order status of the orders returned. If the filter is omitted from the &lt;strong&gt;createOrderTask&lt;/strong&gt; call, orders that are in both &lt;code&gt;ACTIVE&lt;/code&gt; and &lt;code&gt;COMPLETED&lt;/code&gt; states are returned.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.OrderStatusEnum? OrderStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Feed.Models.OrderFilterCriteria"/> and sets the default values.
         /// </summary>
@@ -80,7 +74,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             {
                 { "creationDateRange", n => { CreationDateRange = n.GetObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.DateRange>(global::EBay.ListingManagement.Generated.Feed.Models.DateRange.CreateFromDiscriminatorValue); } },
                 { "modifiedDateRange", n => { ModifiedDateRange = n.GetObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.DateRange>(global::EBay.ListingManagement.Generated.Feed.Models.DateRange.CreateFromDiscriminatorValue); } },
-                { "orderStatus", n => { OrderStatus = n.GetStringValue(); } },
+                { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.OrderStatusEnum>(); } },
             };
         }
         /// <summary>
@@ -92,7 +86,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.DateRange>("creationDateRange", CreationDateRange);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.DateRange>("modifiedDateRange", ModifiedDateRange);
-            writer.WriteStringValue("orderStatus", OrderStatus);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.OrderStatusEnum>("orderStatus", OrderStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
