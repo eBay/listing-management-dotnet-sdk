@@ -12,27 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 namespace EBay.ListingManagement.Configuration;
 
 public sealed class ListingManagementConfiguration
 {
-    private string _inventoryBaseUrl = "https://api.ebay.com/sell/inventory/v1";
     private string _feedBaseUrl = "https://api.ebay.com/sell/feed/v1";
+    private string _inventoryBaseUrl = "https://api.ebay.com/sell/inventory/v1";
     private string _mediaBaseUrl = "https://apim.ebay.com/commerce/media/v1_beta";
     private string _storesBaseUrl = "https://api.ebay.com/sell/stores/v1";
     private string _graphQLBaseUrl = "https://api.ebay.com/graphql";
-
-    public string InventoryBaseUrl
-    {
-        get => _inventoryBaseUrl;
-        set => _inventoryBaseUrl = RequireHttps(value);
-    }
 
     public string FeedBaseUrl
     {
         get => _feedBaseUrl;
         set => _feedBaseUrl = RequireHttps(value);
+    }
+
+    public string InventoryBaseUrl
+    {
+        get => _inventoryBaseUrl;
+        set => _inventoryBaseUrl = RequireHttps(value);
     }
 
     public string MediaBaseUrl
@@ -72,20 +71,28 @@ public sealed class ListingManagementConfiguration
     /// <summary>Default headers applied to every REST request. Per-call RequestOptions override these.</summary>
     public RequestOptions DefaultRequestOptions { get; set; } = new();
 
-    internal IEnumerable<string> AllowedHosts =>
+    internal string RestBaseUrl(string apiId) => apiId switch
+    {
+        "feed" => _feedBaseUrl,
+        "inventory" => _inventoryBaseUrl,
+        "media" => _mediaBaseUrl,
+        "stores" => _storesBaseUrl,
+        _ => throw new ArgumentOutOfRangeException(nameof(apiId), apiId, "Unknown REST API.")
+    };
+
+    internal static IEnumerable<string> AllowedHosts =>
     [
-        new Uri(_inventoryBaseUrl).Host,
-        new Uri(_feedBaseUrl).Host,
-        new Uri(_mediaBaseUrl).Host,
-        new Uri(_storesBaseUrl).Host,
-        new Uri(_graphQLBaseUrl).Host,
-        "apiz.ebay.com",
+        "api.ebay.com",
+        "apim.ebay.com",
+        "apiz.ebay.com"
     ];
 
     private static string RequireHttps(string value)
     {
         if (!value.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        {
             throw new ArgumentException($"URL must use HTTPS: '{value}'", nameof(value));
+        }
         return value;
     }
 }
