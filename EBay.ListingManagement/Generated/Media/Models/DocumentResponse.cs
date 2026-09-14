@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public string DocumentId { get; set; }
 #endif
-        /// <summary>This type provides information about the &lt;b&gt;documentId&lt;/b&gt;.</summary>
+        /// <summary>This container provides the name, size, and type of the specified file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Media.Models.DocumentMetadata? DocumentMetadata { get; set; }
@@ -45,29 +45,17 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public global::EBay.ListingManagement.Generated.Media.Models.DocumentMetadata DocumentMetadata { get; set; }
 #endif
-        /// <summary>The status of the document resource.&lt;br&gt;&lt;br&gt;Once a document has been uploaded using the &lt;b&gt;uploadDocument&lt;/b&gt; method, the &lt;b&gt;documentStatus&lt;/b&gt; will be &lt;code&gt;SUBMITTED&lt;/code&gt;. The document will then either be accepted or rejected. Only documents with the status of &lt;code&gt;ACCEPTED&lt;/code&gt; are available to be added to a listing. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/commerce/media/types/api:DocumentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DocumentStatus { get; set; }
-#nullable restore
-#else
-        public string DocumentStatus { get; set; }
-#endif
-        /// <summary>The type of the document uploaded. For example, &lt;code&gt;USER_GUIDE_OR_MANUAL&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/commerce/media/types/api:DocumentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DocumentType { get; set; }
-#nullable restore
-#else
-        public string DocumentType { get; set; }
-#endif
+        /// <summary>The status of the document resource.&lt;br&gt;&lt;br&gt;Once a document has been uploaded using the &lt;strong&gt;uploadDocument&lt;/strong&gt; method, the &lt;strong&gt;documentStatus&lt;/strong&gt; will be &lt;code&gt;SUBMITTED&lt;/code&gt;. The document will then either be accepted or rejected. Only documents with the status of &lt;code&gt;ACCEPTED&lt;/code&gt; are available to be added to a listing.</summary>
+        public global::EBay.ListingManagement.Generated.Media.Models.DocumentStatusEnum? DocumentStatus { get; set; }
+        /// <summary>The type of the document uploaded. For example, &lt;code&gt;USER_GUIDE_OR_MANUAL&lt;/code&gt;.</summary>
+        public global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum? DocumentType { get; set; }
         /// <summary>This array shows the language(s) used in the document.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Languages { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum?>? Languages { get; set; }
 #nullable restore
 #else
-        public List<string> Languages { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum?> Languages { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Media.Models.DocumentResponse"/> and sets the default values.
@@ -96,9 +84,9 @@ namespace EBay.ListingManagement.Generated.Media.Models
             {
                 { "documentId", n => { DocumentId = n.GetStringValue(); } },
                 { "documentMetadata", n => { DocumentMetadata = n.GetObjectValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentMetadata>(global::EBay.ListingManagement.Generated.Media.Models.DocumentMetadata.CreateFromDiscriminatorValue); } },
-                { "documentStatus", n => { DocumentStatus = n.GetStringValue(); } },
-                { "documentType", n => { DocumentType = n.GetStringValue(); } },
-                { "languages", n => { Languages = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "documentStatus", n => { DocumentStatus = n.GetEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentStatusEnum>(); } },
+                { "documentType", n => { DocumentType = n.GetEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum>(); } },
+                { "languages", n => { Languages = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -110,9 +98,9 @@ namespace EBay.ListingManagement.Generated.Media.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("documentId", DocumentId);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentMetadata>("documentMetadata", DocumentMetadata);
-            writer.WriteStringValue("documentStatus", DocumentStatus);
-            writer.WriteStringValue("documentType", DocumentType);
-            writer.WriteCollectionOfPrimitiveValues<string>("languages", Languages);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentStatusEnum>("documentStatus", DocumentStatus);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum>("documentType", DocumentType);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum>("languages", Languages);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This string value identifies the motor vehicle aspect, such as &apos;make&apos;, &apos;model&apos;, &apos;year&apos;, &apos;trim&apos;, and &apos;engine&apos;. Typically, the make, model, and year of the motor vehicle are always required, with the trim and engine being necessary sometimes, but it will be dependent on the part or accessory, and on the vehicle class.&lt;br&gt;&lt;br&gt;The &lt;a href=&quot;/api-docs/commerce/taxonomy/resources/category_tree/methods/getCompatibilityProperties&quot; target=&quot;_blank&quot;&gt;getCompatibilityProperties&lt;/a&gt; method of the Taxonomy API can be used to retrieve applicable vehicle aspect names for a specified category.</summary>
+        /// <summary>This string value identifies the motor vehicle aspect, such as &apos;make&apos;, &apos;model&apos;, &apos;year&apos;, &apos;trim&apos;, and &apos;engine&apos;. Typically, the make, model, and year of the motor vehicle are always required, with the trim and engine being necessary sometimes, but it will be dependent on the part or accessory, and on the vehicle class.&lt;br&gt;&lt;br&gt;The &lt;a href=&quot;/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcompatibilityproperties&quot; target=&quot;_blank&quot;&gt;getCompatibilityProperties&lt;/a&gt; method of the Taxonomy API can be used to retrieve applicable vehicle aspect names for a specified category.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>This string value identifies the motor vehicle aspect specified in the corresponding &lt;strong&gt;name&lt;/strong&gt; field. For example, if the &lt;strong&gt;name&lt;/strong&gt; field is &apos;make&apos;, this field may be &apos;Toyota&apos;, or if the &lt;strong&gt;name&lt;/strong&gt; field is &apos;model&apos;, this field may be &apos;Camry&apos;.&lt;br&gt;&lt;br&gt;The &lt;a href=&quot;/api-docs/commerce/taxonomy/resources/category_tree/methods/getCompatibilityPropertyValues&quot; target=&quot;_blank&quot;&gt;getCompatibilityPropertyValues&lt;/a&gt; method of the Taxonomy API can be used to retrieve possible values for vehicle aspect names.</summary>
+        /// <summary>This string value identifies the motor vehicle aspect specified in the corresponding &lt;strong&gt;name&lt;/strong&gt; field. For example, if the &lt;strong&gt;name&lt;/strong&gt; field is &apos;make&apos;, this field may be &apos;Toyota&apos;, or if the &lt;strong&gt;name&lt;/strong&gt; field is &apos;model&apos;, this field may be &apos;Camry&apos;.&lt;br&gt;&lt;br&gt;The &lt;a href=&quot;/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcompatibilitypropertyvalues&quot; target=&quot;_blank&quot;&gt;getCompatibilityPropertyValues&lt;/a&gt; method of the Taxonomy API can be used to retrieve possible values for vehicle aspect names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Value { get; set; }

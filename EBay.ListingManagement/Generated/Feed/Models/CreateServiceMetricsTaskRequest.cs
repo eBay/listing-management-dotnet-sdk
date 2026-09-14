@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string FeedType { get; set; }
 #endif
-        /// <summary>A complex data type that filters data for report creation. See &lt;strong&gt;CustomerServiceMetricsFilterCriteria&lt;/strong&gt; for fields and descriptions.</summary>
+        /// <summary>This container is used to customize and set criteria for the Customer Service Metric report that will be associated with the task.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Feed.Models.CustomerServiceMetricsFilterCriteria? FilterCriteria { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public global::EBay.ListingManagement.Generated.Feed.Models.CustomerServiceMetricsFilterCriteria FilterCriteria { get; set; }
 #endif
-        /// <summary>The version number of the customer service metric.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field &lt;b&gt;must&lt;/b&gt; have a value of &lt;code&gt;1.0&lt;/code&gt;.&lt;/span&gt;</summary>
+        /// <summary>The version number of the customer service metric.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This field &lt;strong&gt;must&lt;/strong&gt; have a value of &lt;code&gt;1.0&lt;/code&gt;.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SchemaVersion { get; set; }

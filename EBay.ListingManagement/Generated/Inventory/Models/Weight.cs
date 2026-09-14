@@ -29,14 +29,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unit of measurement used to specify the weight of a shipping package. Both the &lt;strong&gt;unit&lt;/strong&gt; and &lt;strong&gt;value&lt;/strong&gt; fields are required if the &lt;strong&gt;weight&lt;/strong&gt; container is used. If the English system of measurement is being used, the applicable values for weight units are &lt;code&gt;POUND&lt;/code&gt; and &lt;code&gt;OUNCE&lt;/CODE&gt;. If the metric system of measurement is being used, the applicable values for weight units are &lt;code&gt;KILOGRAM&lt;/code&gt; and &lt;code&gt;GRAM&lt;/code&gt;. The metric system is used by most countries outside of the US. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:WeightUnitOfMeasureEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Unit { get; set; }
-#nullable restore
-#else
-        public string Unit { get; set; }
-#endif
+        /// <summary>The unit of measurement used to specify the weight of a shipping package. Both the &lt;strong&gt;unit&lt;/strong&gt; and &lt;strong&gt;value&lt;/strong&gt; fields are required if the &lt;strong&gt;weight&lt;/strong&gt; container is used. If the English system of measurement is being used, the applicable values for weight units are &lt;code&gt;POUND&lt;/code&gt; and &lt;code&gt;OUNCE&lt;/CODE&gt;. If the metric system of measurement is being used, the applicable values for weight units are &lt;code&gt;KILOGRAM&lt;/code&gt; and &lt;code&gt;GRAM&lt;/code&gt;. The metric system is used by most countries outside of the US.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.WeightUnitOfMeasureEnum? Unit { get; set; }
         /// <summary>The actual weight (in the measurement unit specified in the &lt;strong&gt;unit&lt;/strong&gt; field) of the shipping package. Both the &lt;strong&gt;unit&lt;/strong&gt; and &lt;strong&gt;value&lt;/strong&gt; fields are required if the &lt;strong&gt;weight&lt;/strong&gt; container is used. If a shipping package weighed 20.5 ounces, the container would look as follows: &lt;br&gt;&lt;pre&gt;&quot;weight&quot;: {&lt;br&gt; &quot;value&quot;: 20.5,&lt;br&gt; &quot;unit&quot;: &quot;OUNCE&quot;&lt;br&gt; }&lt;/pre&gt;</summary>
         public double? Value { get; set; }
         /// <summary>
@@ -64,7 +58,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "unit", n => { Unit = n.GetStringValue(); } },
+                { "unit", n => { Unit = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.WeightUnitOfMeasureEnum>(); } },
                 { "value", n => { Value = n.GetDoubleValue(); } },
             };
         }
@@ -75,7 +69,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("unit", Unit);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.WeightUnitOfMeasureEnum>("unit", Unit);
             writer.WriteDoubleValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

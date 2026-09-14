@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.Stores.Store.Tasks
     public partial class TasksRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the EBay.ListingManagement.Generated.Stores.store.tasks.item collection</summary>
-        /// <param name="position">The unique identifier of an eBay Store async task. A taskId value is returned in the response of other successful calls. (e.g.addStoreCategory, moveStoreCategory, deleteStoreCategory).</param>
+        /// <param name="position">The unique identifier of an eBay Store async task. A taskId value is returned in the response of a successful other calls. (e.g.addStoreCategory, moveStoreCategory, deleteStoreCategory).</param>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Stores.Store.Tasks.Item.WithTask_ItemRequestBuilder"/></returns>
         public global::EBay.ListingManagement.Generated.Stores.Store.Tasks.Item.WithTask_ItemRequestBuilder this[string position]
         {
@@ -66,6 +66,8 @@ namespace EBay.ListingManagement.Generated.Stores.Store.Tasks
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Stores.Models.GetStoreTasksResponseType"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Stores.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Stores.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Stores.Models.GetStoreTasksResponseType?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -76,7 +78,12 @@ namespace EBay.ListingManagement.Generated.Stores.Store.Tasks
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Stores.Models.GetStoreTasksResponseType>(requestInfo, global::EBay.ListingManagement.Generated.Stores.Models.GetStoreTasksResponseType.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Stores.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Stores.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Stores.Models.GetStoreTasksResponseType>(requestInfo, global::EBay.ListingManagement.Generated.Stores.Models.GetStoreTasksResponseType.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves the status of all async store tasks for a store. Every task is set as FAILED or COMPLETED once it&apos;s execution time reaches 24 hours.

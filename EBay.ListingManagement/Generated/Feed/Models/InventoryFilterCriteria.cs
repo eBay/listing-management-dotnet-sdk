@@ -29,14 +29,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The listing format for the ActiveInventoryReport being created. Supported types are:&lt;br&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;AUCTION&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;FIXED_PRICE&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:ListingFormatEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ListingFormat { get; set; }
-#nullable restore
-#else
-        public string ListingFormat { get; set; }
-#endif
+        /// <summary>The listing format for the ActiveInventoryReport being created. Supported types are:&lt;br&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;AUCTION&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;FIXED_PRICE&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.ListingFormatEnum? ListingFormat { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Feed.Models.InventoryFilterCriteria"/> and sets the default values.
         /// </summary>
@@ -62,7 +56,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "listingFormat", n => { ListingFormat = n.GetStringValue(); } },
+                { "listingFormat", n => { ListingFormat = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.ListingFormatEnum>(); } },
             };
         }
         /// <summary>
@@ -72,7 +66,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("listingFormat", ListingFormat);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.ListingFormatEnum>("listingFormat", ListingFormat);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

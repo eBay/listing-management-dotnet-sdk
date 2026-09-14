@@ -29,15 +29,9 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The enumeration value in this field indicates the availability status of the inventory item at the merchant&apos;s physical store specified by the &lt;strong&gt;pickupAtLocationAvailability.merchantLocationKey&lt;/strong&gt; field. This field is required if the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container is used, and is always returned with the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container.  &lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/api-docs/sell/inventory/types/slr:AvailabilityTypeEnum&quot; target=&quot;_blank&quot;&gt;AvailabilityTypeEnum&lt;/a&gt; for more information about how/when you use each enumeration value. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:AvailabilityTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AvailabilityType { get; set; }
-#nullable restore
-#else
-        public string AvailabilityType { get; set; }
-#endif
-        /// <summary>This type is used to indicate the fulfillment time for an In-Store Pickup order, or for an order than will be shipped to the buyer.</summary>
+        /// <summary>The enumeration value in this field indicates the availability status of the inventory item at the merchant&apos;s physical store specified by the &lt;strong&gt;pickupAtLocationAvailability.merchantLocationKey&lt;/strong&gt; field. This field is required if the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container is used, and is always returned with the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container.  &lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-bulkcreateorreplaceinventoryitem.availabilitytypeenum&quot; target=&quot;_blank&quot;&gt;AvailabilityTypeEnum&lt;/a&gt; for more information about how/when you use each enumeration value.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.AvailabilityTypeEnum? AvailabilityType { get; set; }
+        /// <summary>This container is used to indicate how soon an In-Store Pickup order will be available for pickup by the buyer after the order takes place. This container is required if the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container is used, and is always returned with the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.TimeDuration? FulfillmentTime { get; set; }
@@ -45,7 +39,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.TimeDuration FulfillmentTime { get; set; }
 #endif
-        /// <summary>The unique identifier of a merchant&apos;s store where the In-Store Pickup inventory item is currently located, or where inventory will be sent to. If the merchant&apos;s store is currently awaiting for inventory, the &lt;strong&gt;availabilityType&lt;/strong&gt; value should be &lt;code&gt;SHIP_TO_STORE&lt;/code&gt;. This field is required if the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container is used, and is always returned with the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/inventory/resources/location/methods/getInventoryLocations&quot; target=&quot;_blank&quot;&gt;getInventoryLocations&lt;/a&gt; method to retrieve merchant location keys.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 36</summary>
+        /// <summary>The unique identifier of a merchant&apos;s store where the In-Store Pickup inventory item is currently located, or where inventory will be sent to. If the merchant&apos;s store is currently awaiting for inventory, the &lt;strong&gt;availabilityType&lt;/strong&gt; value should be &lt;code&gt;SHIP_TO_STORE&lt;/code&gt;. This field is required if the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container is used, and is always returned with the &lt;strong&gt;pickupAtLocationAvailability&lt;/strong&gt; container.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations&quot; target=&quot;_blank&quot;&gt;getInventoryLocations&lt;/a&gt; method to retrieve merchant location keys.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 36</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MerchantLocationKey { get; set; }
@@ -80,7 +74,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "availabilityType", n => { AvailabilityType = n.GetStringValue(); } },
+                { "availabilityType", n => { AvailabilityType = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.AvailabilityTypeEnum>(); } },
                 { "fulfillmentTime", n => { FulfillmentTime = n.GetObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.TimeDuration>(global::EBay.ListingManagement.Generated.Inventory.Models.TimeDuration.CreateFromDiscriminatorValue); } },
                 { "merchantLocationKey", n => { MerchantLocationKey = n.GetStringValue(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
@@ -93,7 +87,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("availabilityType", AvailabilityType);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.AvailabilityTypeEnum>("availabilityType", AvailabilityType);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.TimeDuration>("fulfillmentTime", FulfillmentTime);
             writer.WriteStringValue("merchantLocationKey", MerchantLocationKey);
             writer.WriteIntValue("quantity", Quantity);

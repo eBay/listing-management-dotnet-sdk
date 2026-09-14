@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>An array of SKU values are passed in under the &lt;strong&gt;sku&lt;/strong&gt; container to retrieve up to 25 inventory item records.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/inventory/resources/inventory_item/methods/getInventoryItems&quot; target=&quot;_blank &quot;&gt;getInventoryItems&lt;/a&gt; method to retrieve SKU values.</summary>
+        /// <summary>An array of SKU values are passed in under the &lt;strong&gt;sku&lt;/strong&gt; container to retrieve up to 25 inventory item records.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems&quot; target=&quot;_blank &quot;&gt;getInventoryItems&lt;/a&gt; method to retrieve SKU values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sku { get; set; }

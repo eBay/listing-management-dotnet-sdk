@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule_template
     public partial class Schedule_templateRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the EBay.ListingManagement.Generated.Feed.schedule_template.item collection</summary>
-        /// <param name="position">This path parameter is the unique identifier of the schedule template being retrieved.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/feed/resources/schedule/methods/getScheduleTemplates&quot; target=&quot;_blank &quot;&gt;getScheduleTemplates&lt;/a&gt; method to retrieve schedule template IDs.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Template schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;</param>
+        /// <param name="position">This path parameter is the unique identifier of the schedule template being retrieved.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/develop/api/sell/feed_api#sell-feed_api-schedule-getscheduletemplates&quot; target=&quot;_blank&quot;&gt;getScheduleTemplates&lt;/a&gt; method to retrieve schedule template IDs.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Template schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;</param>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Feed.Schedule_template.Item.WithSchedule_template_ItemRequestBuilder"/></returns>
         public global::EBay.ListingManagement.Generated.Feed.Schedule_template.Item.WithSchedule_template_ItemRequestBuilder this[string position]
         {
@@ -66,6 +66,10 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule_template
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateCollection"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateCollection?> GetAsync(Action<RequestConfiguration<global::EBay.ListingManagement.Generated.Feed.Schedule_template.Schedule_templateRequestBuilder.Schedule_templateRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -76,7 +80,14 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule_template
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateCollection>(requestInfo, global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateCollection.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "401", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateCollection>(requestInfo, global::EBay.ListingManagement.Generated.Feed.Models.ScheduleTemplateCollection.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves an array containing the details and status of all schedule templates based on the specified &lt;strong&gt;feed_type&lt;/strong&gt;. Use this method to find a schedule template if you do not know the &lt;strong&gt;schedule_template_id&lt;/strong&gt;.
@@ -112,7 +123,7 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule_template
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class Schedule_templateRequestBuilderGetQueryParameters 
         {
-            /// <summary>The feed type of the schedule templates to retrieve. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;</summary>
+            /// <summary>The feed type of the schedule templates to retrieve. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("feed_type")]
@@ -122,26 +133,12 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule_template
             [QueryParameter("feed_type")]
             public string FeedType { get; set; }
 #endif
-            /// <summary>The maximum number of schedule templates that can be returned on each page of the paginated response. Use this parameter in conjunction with the &lt;strong&gt;offset&lt;/strong&gt; parameter to control the pagination of the output. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This feature employs a zero-based list, where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;For example, if &lt;strong&gt;offset&lt;/strong&gt; is set to 10 and &lt;strong&gt;limit&lt;/strong&gt; is set to 10, the call retrieves schedule templates 11 thru 20 from the result set.&lt;/p&gt;&lt;p&gt;If this parameter is omitted, the default value is used. &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Default: &lt;/b&gt; 10 &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Maximum: &lt;/b&gt;500</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+            /// <summary>The maximum number of schedule templates that can be returned on each page of the paginated response. Use this parameter in conjunction with the &lt;strong&gt;offset&lt;/strong&gt; parameter to control the pagination of the output. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This feature employs a zero-based list, where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;For example, if &lt;strong&gt;offset&lt;/strong&gt; is set to 10 and &lt;strong&gt;limit&lt;/strong&gt; is set to 10, the call retrieves schedule templates 11 thru 20 from the result set.&lt;/p&gt;&lt;p&gt;If this parameter is omitted, the default value is used. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Default: &lt;/strong&gt; 10 &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Maximum: &lt;/strong&gt;500</summary>
             [QueryParameter("limit")]
-            public string? Limit { get; set; }
-#nullable restore
-#else
-            [QueryParameter("limit")]
-            public string Limit { get; set; }
-#endif
-            /// <summary>The number of schedule templates to skip in the result set before returning the first template in the paginated response. &lt;p&gt;Combine &lt;strong&gt;offset&lt;/strong&gt; with the &lt;strong&gt;limit&lt;/strong&gt; query parameter to control the items returned in the response. For example, if you supply an &lt;strong&gt;offset&lt;/strong&gt; of &lt;code&gt;0&lt;/code&gt; and a &lt;strong&gt;limit&lt;/strong&gt; of &lt;code&gt;10&lt;/code&gt;, the first page of the response contains the first 10 items from the complete list of items retrieved by the call. If &lt;strong&gt;offset&lt;/strong&gt; is &lt;code&gt;10&lt;/code&gt; and &lt;strong&gt;limit&lt;/strong&gt; is &lt;code&gt;20&lt;/code&gt;, the first page of the response contains items 11-30 from the complete result set. If this query parameter is not set, the default value is used and the first page of records is returned.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Default: &lt;/b&gt;0</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+            public int? Limit { get; set; }
+            /// <summary>The number of schedule templates to skip in the result set before returning the first template in the paginated response. &lt;p&gt;Combine &lt;strong&gt;offset&lt;/strong&gt; with the &lt;strong&gt;limit&lt;/strong&gt; query parameter to control the items returned in the response. For example, if you supply an &lt;strong&gt;offset&lt;/strong&gt; of &lt;code&gt;0&lt;/code&gt; and a &lt;strong&gt;limit&lt;/strong&gt; of &lt;code&gt;10&lt;/code&gt;, the first page of the response contains the first 10 items from the complete list of items retrieved by the call. If &lt;strong&gt;offset&lt;/strong&gt; is &lt;code&gt;10&lt;/code&gt; and &lt;strong&gt;limit&lt;/strong&gt; is &lt;code&gt;20&lt;/code&gt;, the first page of the response contains items 11-30 from the complete result set. If this query parameter is not set, the default value is used and the first page of records is returned.&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Default: &lt;/strong&gt;0</summary>
             [QueryParameter("offset")]
-            public string? Offset { get; set; }
-#nullable restore
-#else
-            [QueryParameter("offset")]
-            public string Offset { get; set; }
-#endif
+            public int? Offset { get; set; }
         }
     }
 }

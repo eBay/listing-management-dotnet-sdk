@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A three-digit string value representing the type of currency being used. Both the &lt;strong&gt;value&lt;/strong&gt; and &lt;strong&gt;currency&lt;/strong&gt; fields are required/always returned when expressing prices. &lt;br&gt;&lt;br&gt;See the &lt;a href=&quot;/api-docs/sell/inventory/types/ba:CurrencyCodeEnum&quot; target=&quot;_blank&quot;&gt;CurrencyCodeEnum&lt;/a&gt; type for the full list of currencies and their corresponding three-digit string values.</summary>
+        /// <summary>A three-letter string value representing the type of currency being used. Both the &lt;strong&gt;value&lt;/strong&gt; and &lt;strong&gt;currency&lt;/strong&gt; fields are required/always returned when expressing prices. &lt;br&gt;&lt;br&gt;See &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html&quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; for more information and links to the full list of currencies and their corresponding three-letter string values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Currency { get; set; }

@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>An array of top-level categories defined for the eBay store. A childrenCategories array is used for second and third-level categories, if defined for the store.</summary>
+        /// <summary>An array of top-level categories defined for the eBay store. A &lt;strong&gt;childrenCategories&lt;/strong&gt; array is used for second and third-level categories, if defined for the store.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Stores.Models.StoreCategoryType>? StoreCategories { get; set; }

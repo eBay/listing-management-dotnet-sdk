@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
     public partial class TaskRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the EBay.ListingManagement.Generated.Feed.task.item collection</summary>
-        /// <param name="position">This path parameter is the unique identifier of the task being retrieved.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/feed/resources/task/methods/getTasks&quot; target=&quot;_blank &quot;&gt;getTasks&lt;/a&gt; method to retrieve task IDs.</param>
+        /// <param name="position">This path parameter is the unique identifier of the task being retrieved.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/develop/api/sell/feed_api#sell-feed_api-task-gettasks&quot; target=&quot;_blank&quot;&gt;getTasks&lt;/a&gt; method to retrieve task IDs.</param>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Feed.TaskNamespace.Item.WithTask_ItemRequestBuilder"/></returns>
         public global::EBay.ListingManagement.Generated.Feed.TaskNamespace.Item.WithTask_ItemRequestBuilder this[string position]
         {
@@ -61,11 +61,15 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
         {
         }
         /// <summary>
-        /// This method returns the details and status for an array of tasks based on a specified &lt;strong&gt;feed_type&lt;/strong&gt; or &lt;strong&gt;schedule_id&lt;/strong&gt;. Specifying both &lt;strong&gt;feed_type&lt;/strong&gt; and &lt;strong&gt;schedule_id&lt;/strong&gt; results in an error. Since schedules are based on feed types, you can specify a schedule (&lt;strong&gt;schedule_id&lt;/strong&gt;) that returns the needed &lt;strong&gt;feed_type&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;If specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, limit which tasks are returned by specifying filters, such as the creation date range or period of time using &lt;strong&gt;look_back_days&lt;/strong&gt;. Also, by specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, both on-demand and scheduled reports are returned.&lt;br /&gt;&lt;br /&gt;If specifying a &lt;strong&gt;schedule_id&lt;/strong&gt;, the schedule template (that the schedule ID is based on) determines which tasks are returned (see &lt;strong&gt;schedule_id&lt;/strong&gt; for additional information). Each &lt;strong&gt;scheduledId&lt;/strong&gt; applies to one &lt;strong&gt;feed_type&lt;/strong&gt;. 
+        /// This method returns the details and status for an array of tasks based on a specified &lt;strong&gt;feed_type&lt;/strong&gt; or &lt;strong&gt;schedule_id&lt;/strong&gt;. Specifying both &lt;strong&gt;feed_type&lt;/strong&gt; and &lt;strong&gt;schedule_id&lt;/strong&gt; results in an error. Since schedules are based on feed types, you can specify a schedule (&lt;strong&gt;schedule_id&lt;/strong&gt;) that returns the needed &lt;strong&gt;feed_type&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;If specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, limit which tasks are returned by specifying filters, such as the creation date range or period of time using &lt;strong&gt;look_back_days&lt;/strong&gt;. Also, by specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, both on-demand and scheduled reports are returned.&lt;br /&gt;&lt;br /&gt;If specifying a &lt;strong&gt;schedule_id&lt;/strong&gt;, the schedule template (that the schedule ID is based on) determines which tasks are returned (see &lt;strong&gt;schedule_id&lt;/strong&gt; for additional information). Each &lt;strong&gt;scheduledId&lt;/strong&gt; applies to one &lt;strong&gt;feed_type&lt;/strong&gt;.
         /// </summary>
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Feed.Models.TaskCollection"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Feed.Models.TaskCollection?> GetAsync(Action<RequestConfiguration<global::EBay.ListingManagement.Generated.Feed.TaskNamespace.TaskRequestBuilder.TaskRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -76,14 +80,26 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Feed.Models.TaskCollection>(requestInfo, global::EBay.ListingManagement.Generated.Feed.Models.TaskCollection.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "401", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Feed.Models.TaskCollection>(requestInfo, global::EBay.ListingManagement.Generated.Feed.Models.TaskCollection.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This method creates an upload task or a download task without filter criteria. When using this method, specify the &lt;b&gt; feedType&lt;/b&gt; and the feed file &lt;b&gt; schemaVersion&lt;/b&gt;. The feed type specified sets the task as a download or an upload task.  &lt;p&gt;For details about the upload and download flows, see &lt;a href=&quot;/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html&quot;&gt;Working with Order Feeds&lt;/a&gt; in the Selling Integration Guide.&lt;/p&gt;&lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The scope depends on the feed type. An error message results when an unsupported scope or feed type is specified.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The following list contains this method&apos;s authorization scopes and their corresponding feed types:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.inventory: See &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl&quot; target=&quot;_blank&quot;&gt;LMS FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for upload tasks). Also see &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl&quot; target=&quot;_blank&quot;&gt;LMS FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.marketing: None*&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly: None*&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;* Reserved for future release&lt;/p&gt;
+        /// This method creates an upload task or a download task without filter criteria. When using this method, specify the &lt;strong&gt;feedType&lt;/strong&gt; and the feed file &lt;strong&gt; schemaVersion&lt;/strong&gt;. The feed type specified sets the task as a download or an upload task.  &lt;p&gt;For details about the upload and download flows, see &lt;a href=&quot;/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html&quot;&gt;Working with Order Feeds&lt;/a&gt; in the Selling Integration Guide.&lt;/p&gt;&lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The scope depends on the feed type. An error message results when an unsupported scope or feed type is specified.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The following list contains this method&apos;s authorization scopes and their corresponding feed types:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.inventory: See &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available&quot; target=&quot;_blank&quot;&gt;LMS FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for upload tasks). Also see &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available&quot; target=&quot;_blank&quot;&gt;LMS FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.marketing: None*&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly: None*&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;* Reserved for future release&lt;/p&gt;
         /// </summary>
-        /// <param name="body">The type that defines the fields for the &lt;b&gt; createTask&lt;/b&gt; method.</param>
+        /// <param name="body">description not needed</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 409 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task PostAsync(global::EBay.ListingManagement.Generated.Feed.Models.CreateTaskRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -95,10 +111,18 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "401", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "409", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+            };
+            await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This method returns the details and status for an array of tasks based on a specified &lt;strong&gt;feed_type&lt;/strong&gt; or &lt;strong&gt;schedule_id&lt;/strong&gt;. Specifying both &lt;strong&gt;feed_type&lt;/strong&gt; and &lt;strong&gt;schedule_id&lt;/strong&gt; results in an error. Since schedules are based on feed types, you can specify a schedule (&lt;strong&gt;schedule_id&lt;/strong&gt;) that returns the needed &lt;strong&gt;feed_type&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;If specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, limit which tasks are returned by specifying filters, such as the creation date range or period of time using &lt;strong&gt;look_back_days&lt;/strong&gt;. Also, by specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, both on-demand and scheduled reports are returned.&lt;br /&gt;&lt;br /&gt;If specifying a &lt;strong&gt;schedule_id&lt;/strong&gt;, the schedule template (that the schedule ID is based on) determines which tasks are returned (see &lt;strong&gt;schedule_id&lt;/strong&gt; for additional information). Each &lt;strong&gt;scheduledId&lt;/strong&gt; applies to one &lt;strong&gt;feed_type&lt;/strong&gt;. 
+        /// This method returns the details and status for an array of tasks based on a specified &lt;strong&gt;feed_type&lt;/strong&gt; or &lt;strong&gt;schedule_id&lt;/strong&gt;. Specifying both &lt;strong&gt;feed_type&lt;/strong&gt; and &lt;strong&gt;schedule_id&lt;/strong&gt; results in an error. Since schedules are based on feed types, you can specify a schedule (&lt;strong&gt;schedule_id&lt;/strong&gt;) that returns the needed &lt;strong&gt;feed_type&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;If specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, limit which tasks are returned by specifying filters, such as the creation date range or period of time using &lt;strong&gt;look_back_days&lt;/strong&gt;. Also, by specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, both on-demand and scheduled reports are returned.&lt;br /&gt;&lt;br /&gt;If specifying a &lt;strong&gt;schedule_id&lt;/strong&gt;, the schedule template (that the schedule ID is based on) determines which tasks are returned (see &lt;strong&gt;schedule_id&lt;/strong&gt; for additional information). Each &lt;strong&gt;scheduledId&lt;/strong&gt; applies to one &lt;strong&gt;feed_type&lt;/strong&gt;.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -117,10 +141,10 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
             return requestInfo;
         }
         /// <summary>
-        /// This method creates an upload task or a download task without filter criteria. When using this method, specify the &lt;b&gt; feedType&lt;/b&gt; and the feed file &lt;b&gt; schemaVersion&lt;/b&gt;. The feed type specified sets the task as a download or an upload task.  &lt;p&gt;For details about the upload and download flows, see &lt;a href=&quot;/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html&quot;&gt;Working with Order Feeds&lt;/a&gt; in the Selling Integration Guide.&lt;/p&gt;&lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The scope depends on the feed type. An error message results when an unsupported scope or feed type is specified.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The following list contains this method&apos;s authorization scopes and their corresponding feed types:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.inventory: See &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl&quot; target=&quot;_blank&quot;&gt;LMS FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for upload tasks). Also see &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl&quot; target=&quot;_blank&quot;&gt;LMS FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.marketing: None*&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly: None*&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;* Reserved for future release&lt;/p&gt;
+        /// This method creates an upload task or a download task without filter criteria. When using this method, specify the &lt;strong&gt;feedType&lt;/strong&gt; and the feed file &lt;strong&gt; schemaVersion&lt;/strong&gt;. The feed type specified sets the task as a download or an upload task.  &lt;p&gt;For details about the upload and download flows, see &lt;a href=&quot;/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html&quot;&gt;Working with Order Feeds&lt;/a&gt; in the Selling Integration Guide.&lt;/p&gt;&lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The scope depends on the feed type. An error message results when an unsupported scope or feed type is specified.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The following list contains this method&apos;s authorization scopes and their corresponding feed types:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.inventory: See &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available&quot; target=&quot;_blank&quot;&gt;LMS FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for upload tasks). Also see &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available&quot; target=&quot;_blank&quot;&gt;LMS FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/sell.marketing: None*&lt;/li&gt;&lt;li&gt;https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly: None*&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;* Reserved for future release&lt;/p&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The type that defines the fields for the &lt;b&gt; createTask&lt;/b&gt; method.</param>
+        /// <param name="body">description not needed</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -134,6 +158,7 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
@@ -147,12 +172,12 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
             return new global::EBay.ListingManagement.Generated.Feed.TaskNamespace.TaskRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// This method returns the details and status for an array of tasks based on a specified &lt;strong&gt;feed_type&lt;/strong&gt; or &lt;strong&gt;schedule_id&lt;/strong&gt;. Specifying both &lt;strong&gt;feed_type&lt;/strong&gt; and &lt;strong&gt;schedule_id&lt;/strong&gt; results in an error. Since schedules are based on feed types, you can specify a schedule (&lt;strong&gt;schedule_id&lt;/strong&gt;) that returns the needed &lt;strong&gt;feed_type&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;If specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, limit which tasks are returned by specifying filters, such as the creation date range or period of time using &lt;strong&gt;look_back_days&lt;/strong&gt;. Also, by specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, both on-demand and scheduled reports are returned.&lt;br /&gt;&lt;br /&gt;If specifying a &lt;strong&gt;schedule_id&lt;/strong&gt;, the schedule template (that the schedule ID is based on) determines which tasks are returned (see &lt;strong&gt;schedule_id&lt;/strong&gt; for additional information). Each &lt;strong&gt;scheduledId&lt;/strong&gt; applies to one &lt;strong&gt;feed_type&lt;/strong&gt;. 
+        /// This method returns the details and status for an array of tasks based on a specified &lt;strong&gt;feed_type&lt;/strong&gt; or &lt;strong&gt;schedule_id&lt;/strong&gt;. Specifying both &lt;strong&gt;feed_type&lt;/strong&gt; and &lt;strong&gt;schedule_id&lt;/strong&gt; results in an error. Since schedules are based on feed types, you can specify a schedule (&lt;strong&gt;schedule_id&lt;/strong&gt;) that returns the needed &lt;strong&gt;feed_type&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;If specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, limit which tasks are returned by specifying filters, such as the creation date range or period of time using &lt;strong&gt;look_back_days&lt;/strong&gt;. Also, by specifying the &lt;strong&gt;feed_type&lt;/strong&gt;, both on-demand and scheduled reports are returned.&lt;br /&gt;&lt;br /&gt;If specifying a &lt;strong&gt;schedule_id&lt;/strong&gt;, the schedule template (that the schedule ID is based on) determines which tasks are returned (see &lt;strong&gt;schedule_id&lt;/strong&gt; for additional information). Each &lt;strong&gt;scheduledId&lt;/strong&gt; applies to one &lt;strong&gt;feed_type&lt;/strong&gt;.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class TaskRequestBuilderGetQueryParameters 
         {
-            /// <summary>Specifies the range of task creation dates used to filter the results. The results are filtered to include only tasks with a creation date that is equal to this date or is within specified range. Only tasks that are less than 90 days can be retrieved. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Maximum date range window size is 90 days.&lt;/span&gt;&lt;/p&gt; &lt;br /&gt;&lt;b&gt;Valid Format (UTC):&lt;/b&gt;&lt;code&gt;yyyy-MM-ddThh:mm:ss.SSSZ..yyyy-MM-ddThh:mm:ss.SSSZ &lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example: Tasks created on September 8, 2019&lt;br /&gt; &lt;code&gt;2019-09-08T00:00:00.000Z..2019-09-09T00:00:00.000Z&lt;/code&gt;</summary>
+            /// <summary>Specifies the range of task creation dates used to filter the results. The results are filtered to include only tasks with a creation date that is equal to this date or is within the specified range. Only tasks that are less than 90 days can be retrieved. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Maximum date range window size is 90 days.&lt;/span&gt;&lt;/p&gt; &lt;br /&gt;&lt;strong&gt;Valid Format (UTC):&lt;/strong&gt;&lt;code&gt;yyyy-MM-ddThh:mm:ss.SSSZ..yyyy-MM-ddThh:mm:ss.SSSZ &lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example: Tasks created on September 8, 2019&lt;br /&gt; &lt;code&gt;2019-09-08T00:00:00.000Z..2019-09-09T00:00:00.000Z&lt;/code&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("date_range")]
@@ -162,7 +187,7 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
             [QueryParameter("date_range")]
             public string DateRange { get; set; }
 #endif
-            /// <summary>The feed type associated with the tasks to be returned. Only use a &lt;strong&gt;feedType&lt;/strong&gt; that is available for your API: &lt;ul&gt;&lt;li&gt;Order Feeds: &lt;code&gt;LMS_ORDER_ACK, LMS_ORDER_REPORT&lt;/code&gt;&lt;/li&gt;&lt;li&gt;Inventory Upload Feed Types: See &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl&quot; target=&quot;_blank&quot;&gt;Available FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;Do not use with the &lt;strong&gt;schedule_id&lt;/strong&gt; parameter. Since schedules are based on feed types, you can specify a schedule (&lt;strong&gt;schedule_id&lt;/strong&gt;) that returns the needed &lt;strong&gt;feed_type&lt;/strong&gt;.</summary>
+            /// <summary>The feed type associated with the tasks to be returned. Only use a &lt;strong&gt;feedType&lt;/strong&gt; that is available for your API: &lt;ul&gt;&lt;li&gt;Order Feeds: &lt;code&gt;LMS_ORDER_ACK, LMS_ORDER_REPORT&lt;/code&gt;&lt;/li&gt;&lt;li&gt;Inventory Upload Feed Types: See &lt;a href=&quot;/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available&quot; target=&quot;_blank&quot;&gt;Available FeedTypes&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;Do not use with the &lt;strong&gt;schedule_id&lt;/strong&gt; parameter. Since schedules are based on feed types, you can specify a schedule (&lt;strong&gt;schedule_id&lt;/strong&gt;) that returns the needed &lt;strong&gt;feed_type&lt;/strong&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("feed_type")]
@@ -172,37 +197,16 @@ namespace EBay.ListingManagement.Generated.Feed.TaskNamespace
             [QueryParameter("feed_type")]
             public string FeedType { get; set; }
 #endif
-            /// <summary>The maximum number of tasks that can be returned on each page of the paginated response. Use this parameter in conjunction with the &lt;strong&gt;offset&lt;/strong&gt; parameter to control the pagination of the output. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This feature employs a zero-based list, where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;For example, if &lt;strong&gt;offset&lt;/strong&gt; is set to 10 and &lt;strong&gt;limit&lt;/strong&gt; is set to 10, the call retrieves tasks 11 thru 20 from the result set.&lt;/p&gt;&lt;p&gt;If this parameter is omitted, the default value is used. &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Default: &lt;/b&gt; 10 &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Maximum: &lt;/b&gt;500</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+            /// <summary>The maximum number of tasks that can be returned on each page of the paginated response. Use this parameter in conjunction with the &lt;strong&gt;offset&lt;/strong&gt; parameter to control the pagination of the output. &lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This feature employs a zero-based list, where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;For example, if &lt;strong&gt;offset&lt;/strong&gt; is set to 10 and &lt;strong&gt;limit&lt;/strong&gt; is set to 10, the call retrieves tasks 11 thru 20 from the result set.&lt;/p&gt;&lt;p&gt;If this parameter is omitted, the default value is used. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Default: &lt;/strong&gt; 10 &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Maximum: &lt;/strong&gt;500</summary>
             [QueryParameter("limit")]
-            public string? Limit { get; set; }
-#nullable restore
-#else
-            [QueryParameter("limit")]
-            public string Limit { get; set; }
-#endif
-            /// <summary>The number of previous days in which to search for tasks. Do not use with the &lt;code&gt;date_range&lt;/code&gt; parameter. If both &lt;code&gt;date_range&lt;/code&gt; and &lt;code&gt;look_back_days&lt;/code&gt; are omitted, this parameter&apos;s default value is used.  &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Default: &lt;/b&gt; 7 &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Range: &lt;/b&gt; 1-90 (inclusive)</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+            public int? Limit { get; set; }
+            /// <summary>The number of previous days in which to search for tasks. Do not use with the &lt;code&gt;date_range&lt;/code&gt; parameter. If both &lt;code&gt;date_range&lt;/code&gt; and &lt;code&gt;look_back_days&lt;/code&gt; are omitted, this parameter&apos;s default value is used.  &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Default: &lt;/strong&gt; 7 &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Range: &lt;/strong&gt; 1-90 (inclusive)</summary>
             [QueryParameter("look_back_days")]
-            public string? LookBackDays { get; set; }
-#nullable restore
-#else
-            [QueryParameter("look_back_days")]
-            public string LookBackDays { get; set; }
-#endif
-            /// <summary>The number of tasks to skip in the result set before returning the first task in the paginated response. &lt;p&gt;Combine &lt;strong&gt;offset&lt;/strong&gt; with the &lt;strong&gt;limit&lt;/strong&gt; query parameter to control the items returned in the response. For example, if you supply an &lt;strong&gt;offset&lt;/strong&gt; of &lt;code&gt;0&lt;/code&gt; and a &lt;strong&gt;limit&lt;/strong&gt; of &lt;code&gt;10&lt;/code&gt;, the first page of the response contains the first 10 items from the complete list of items retrieved by the call. If &lt;strong&gt;offset&lt;/strong&gt; is &lt;code&gt;10&lt;/code&gt; and &lt;strong&gt;limit&lt;/strong&gt; is &lt;code&gt;20&lt;/code&gt;, the first page of the response contains items 11-30 from the complete result set. If this query parameter is not set, the default value is used and the first page of records is returned. &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Default: &lt;/b&gt;0</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+            public int? LookBackDays { get; set; }
+            /// <summary>The number of tasks to skip in the result set before returning the first task in the paginated response. &lt;p&gt;Combine &lt;strong&gt;offset&lt;/strong&gt; with the &lt;strong&gt;limit&lt;/strong&gt; query parameter to control the items returned in the response. For example, if you supply an &lt;strong&gt;offset&lt;/strong&gt; of &lt;code&gt;0&lt;/code&gt; and a &lt;strong&gt;limit&lt;/strong&gt; of &lt;code&gt;10&lt;/code&gt;, the first page of the response contains the first 10 items from the complete list of items retrieved by the call. If &lt;strong&gt;offset&lt;/strong&gt; is &lt;code&gt;10&lt;/code&gt; and &lt;strong&gt;limit&lt;/strong&gt; is &lt;code&gt;20&lt;/code&gt;, the first page of the response contains items 11-30 from the complete result set. If this query parameter is not set, the default value is used and the first page of records is returned. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Default: &lt;/strong&gt;0</summary>
             [QueryParameter("offset")]
-            public string? Offset { get; set; }
-#nullable restore
-#else
-            [QueryParameter("offset")]
-            public string Offset { get; set; }
-#endif
-            /// <summary>The unique identifier associated with the tasks being returned. A schedule periodically generates a report for the feed type specified by the schedule template.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;&lt;br&gt;Do not use with the &lt;strong&gt;feed_type&lt;/strong&gt; parameter.</summary>
+            public int? Offset { get; set; }
+            /// <summary>The unique identifier associated with the tasks being returned. A schedule periodically generates a report for the feed type specified by the schedule template.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Schedules are currently only available for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;.&lt;/span&gt;&lt;br&gt;Do not use with the &lt;strong&gt;feed_type&lt;/strong&gt; parameter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("schedule_id")]

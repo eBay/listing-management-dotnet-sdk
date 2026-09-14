@@ -58,6 +58,10 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule.Item
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -68,7 +72,14 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "401", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+            };
+            await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method retrieves schedule details and status of the specified schedule. Specify the schedule to retrieve using the &lt;strong&gt;schedule_id&lt;/strong&gt;. Use the &lt;strong&gt;getSchedules&lt;/strong&gt; method to find a schedule if you do not know the &lt;strong&gt;schedule_id&lt;/strong&gt;.
@@ -76,6 +87,10 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule.Item
         /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Feed.Models.UserScheduleResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.ListingManagement.Generated.Feed.Models.UserScheduleResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -86,14 +101,27 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Feed.Models.UserScheduleResponse>(requestInfo, global::EBay.ListingManagement.Generated.Feed.Models.UserScheduleResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "401", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Feed.Models.UserScheduleResponse>(requestInfo, global::EBay.ListingManagement.Generated.Feed.Models.UserScheduleResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method updates an existing schedule. Specify the schedule to update using the &lt;strong&gt;schedule_id&lt;/strong&gt; path parameter. If the schedule template has changed after the schedule was created or updated, the input will be validated using the changed template.&lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Make sure to include all fields required by the schedule template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). Call the &lt;strong&gt;getScheduleTemplate&lt;/strong&gt; method (or the &lt;strong&gt;getScheduleTemplates&lt;/strong&gt; method), to find out which fields are required or optional. If you do not know the &lt;strong&gt;scheduleTemplateId&lt;/strong&gt;, call the &lt;strong&gt;getSchedule&lt;/strong&gt; method to find out.&lt;/span&gt;&lt;/p&gt;
         /// </summary>
-        /// <param name="body">The type that defines the fields for a schedule update to a schedule generated with the Feed API.</param>
+        /// <param name="body">In the request payload: &lt;strong&gt;scheduleName&lt;/strong&gt; is optional; &lt;strong&gt;preferredTriggerHour&lt;/strong&gt;, &lt;strong&gt;preferredTriggerDayOfWeek&lt;/strong&gt;, &lt;strong&gt;preferredTriggerDayOfMonth&lt;/strong&gt;, &lt;strong&gt;scheduleStartDate&lt;/strong&gt;, &lt;strong&gt;scheduleEndDate&lt;/strong&gt;, and &lt;strong&gt;schemaVersion&lt;/strong&gt; are conditional.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 403 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 409 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Feed.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task PutAsync(global::EBay.ListingManagement.Generated.Feed.Models.UpdateUserScheduleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -105,7 +133,16 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "401", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "404", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "409", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Feed.Models.Error.CreateFromDiscriminatorValue },
+            };
+            await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method deletes an existing schedule. Specify the schedule to delete using the &lt;strong&gt;schedule_id&lt;/strong&gt; path parameter.
@@ -123,6 +160,7 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule.Item
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -148,7 +186,7 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule.Item
         /// This method updates an existing schedule. Specify the schedule to update using the &lt;strong&gt;schedule_id&lt;/strong&gt; path parameter. If the schedule template has changed after the schedule was created or updated, the input will be validated using the changed template.&lt;p&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Make sure to include all fields required by the schedule template (&lt;strong&gt;scheduleTemplateId&lt;/strong&gt;). Call the &lt;strong&gt;getScheduleTemplate&lt;/strong&gt; method (or the &lt;strong&gt;getScheduleTemplates&lt;/strong&gt; method), to find out which fields are required or optional. If you do not know the &lt;strong&gt;scheduleTemplateId&lt;/strong&gt;, call the &lt;strong&gt;getSchedule&lt;/strong&gt; method to find out.&lt;/span&gt;&lt;/p&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The type that defines the fields for a schedule update to a schedule generated with the Feed API.</param>
+        /// <param name="body">In the request payload: &lt;strong&gt;scheduleName&lt;/strong&gt; is optional; &lt;strong&gt;preferredTriggerHour&lt;/strong&gt;, &lt;strong&gt;preferredTriggerDayOfWeek&lt;/strong&gt;, &lt;strong&gt;preferredTriggerDayOfMonth&lt;/strong&gt;, &lt;strong&gt;scheduleStartDate&lt;/strong&gt;, &lt;strong&gt;scheduleEndDate&lt;/strong&gt;, and &lt;strong&gt;schemaVersion&lt;/strong&gt; are conditional.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -162,6 +200,7 @@ namespace EBay.ListingManagement.Generated.Feed.Schedule.Item
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

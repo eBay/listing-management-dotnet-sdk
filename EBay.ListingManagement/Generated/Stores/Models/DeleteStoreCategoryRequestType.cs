@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Stores.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This field is only needed if the category to be deleted or any of its children categories have one or more active listings. The operation will fail otherwise. All active listings in or under the category to be deleted will be moved to the store category specified in this field.&lt;br&gt;The &lt;a href=&quot;/api-docs/sell/stores/resources/store/methods/getStoreCategories&quot;&gt;&lt;b&gt;getStoreCategories&lt;/b&gt;&lt;/a&gt; method can be used to retrieve store category IDs.&lt;br&gt;&lt;br&gt; &lt;b&gt;Default: OTHER&lt;/b&gt; category ID &lt;b&gt;(1)&lt;/b&gt; if it&apos;s null.</summary>
+        /// <summary>When deleting store category, if the deleted category category_id is a leaf category and it has active items, you must specify listingDestinationCategoryId. The system will move the items from category_id to listingDestinationCategoryId. The listingDestinationCategoryId should be a leaf category which has no child categories. Default value: OTHER category ID (1) if it&apos;s null.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ListingDestinationCategoryId { get; set; }

@@ -22,14 +22,14 @@ using System;
 namespace EBay.ListingManagement.Generated.Feed.Models
 {
     /// <summary>
-    /// The type that defines the fields for a date range.
+    /// This type defines the fields for a date range.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DateRange : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The beginning date in the range. If the parent type is included, both the &lt;strong&gt;from&lt;/strong&gt; and/or the &lt;strong&gt;to&lt;/strong&gt; fields become conditionally required.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Format: &lt;/b&gt;UTC &lt;code&gt;yyyy-MM-ddThh:mm:ss.SSSZ &lt;/code&gt; &lt;br /&gt;&lt;br /&gt; &lt;b&gt; For example: &lt;/b&gt; Tasks within a range  &lt;br /&gt; &lt;code&gt;yyyy-MM-ddThh:mm:ss.SSSZ..yyyy-MM-ddThh:mm:ss.SSSZ &lt;/code&gt; &lt;br /&gt;&lt;br /&gt; Tasks created on March 31, 2021  &lt;br /&gt;&lt;code&gt;2021-03-31T00:00:00.000Z..2021-03-31T00:00:00.000Z&lt;/code&gt;    </summary>
+        /// <summary>The beginning date in the range. If the parent type is included, both the &lt;strong&gt;from&lt;/strong&gt; and the &lt;strong&gt;to&lt;/strong&gt; fields become conditionally required.&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Format: &lt;/strong&gt;UTC &lt;code&gt;yyyy-MM-ddThh:mm:ss.SSSZ &lt;/code&gt; &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;For example: &lt;/strong&gt; Tasks within a range  &lt;br /&gt; &lt;code&gt;yyyy-MM-ddThh:mm:ss.SSSZ..yyyy-MM-ddThh:mm:ss.SSSZ &lt;/code&gt; &lt;br /&gt;&lt;br /&gt; Tasks created on March 31, 2021&lt;br /&gt;&lt;code&gt;2021-03-31T00:00:00.000Z..2021-03-31T00:00:00.000Z&lt;/code&gt;    </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? From { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string From { get; set; }
 #endif
-        /// <summary>The end date for the date range, which is inclusive. If the parent type is included, both the &lt;strong&gt;from&lt;/strong&gt; and/or the &lt;strong&gt;to&lt;/strong&gt; fields become conditionally required.  &lt;br /&gt;&lt;br /&gt; &lt;b&gt; For example: &lt;/b&gt; &lt;br /&gt;&lt;br /&gt;Tasks within a range  &lt;br /&gt; &lt;code&gt;yyyy-MM-ddThh:mm:ss.SSSZ..yyyy-MM-ddThh:mm:ss.SSSZ &lt;/code&gt; &lt;br /&gt;&lt;br /&gt; Tasks created on March 31, 2021 &lt;br /&gt; &lt;code&gt;2021-03-31T00:00:00.000Z..2021-03-31T00:00:00.000Z&lt;/code&gt;  </summary>
+        /// <summary>The end date for the date range, which is inclusive. If the parent type is included, both the &lt;strong&gt;from&lt;/strong&gt; and the &lt;strong&gt;to&lt;/strong&gt; fields become conditionally required.  &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;For example: &lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;Tasks within a range  &lt;br /&gt; &lt;code&gt;yyyy-MM-ddThh:mm:ss.SSSZ..yyyy-MM-ddThh:mm:ss.SSSZ &lt;/code&gt; &lt;br /&gt;&lt;br /&gt; Tasks created on March 31, 2021&lt;br /&gt; &lt;code&gt;2021-03-31T00:00:00.000Z..2021-03-31T00:00:00.000Z&lt;/code&gt;  </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? To { get; set; }

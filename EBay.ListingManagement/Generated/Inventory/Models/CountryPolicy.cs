@@ -29,15 +29,9 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 3166-1&lt;/a&gt; country code identifying the country to which the policy or policies specified in the corresponding policyIds array will apply. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Country { get; set; }
-#nullable restore
-#else
-        public string Country { get; set; }
-#endif
-        /// <summary>An array of custom policy identifiers that apply to the country specified by &lt;a href=&quot;#request.listingPolicies.regionalProductCompliancePolicies.countryPolicies.country&quot;&gt;listingPolicies.regionalTakeBackPolicies.countryPolicies.country&lt;/a&gt;.&lt;br&gt;&lt;br&gt;Product compliance and take-back policy information may be returned using the following methods:&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies &quot; target=&quot;_blank&quot;&gt;getCustomPolicies&lt;/a&gt;&lt;br&gt;&lt;br&gt;Set &lt;code&gt;policy_types&lt;/code&gt; to:&lt;ul&gt;&lt;li&gt;&lt;code&gt;PRODUCT_COMPLIANCE&lt;/code&gt; for product compliance policies&lt;/li&gt;&lt;li&gt;&lt;code&gt;TAKE_BACK&lt;/code&gt; for takeback policies&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;This returns the list of specified policies and corresponding &lt;b&gt;customPolicyId&lt;/b&gt; values a seller has created.&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicy &quot; target=&quot;_blank&quot;&gt;getCustomPolicy&lt;/a&gt; with &lt;code&gt;custom_policy_id = customPolicyId&lt;/code&gt;&lt;br&gt;&lt;br&gt;Returns the details of the policy specified by &lt;b&gt;customPolicyId&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;For information about creating and managing custom policies, refer to the &lt;a href=&quot;/api-docs/sell/account/resources/methods#h2-custom_policy &quot; target=&quot;_blank&quot;&gt;custom_policy&lt;/a&gt; resource in the &lt;b&gt;Sell Account&lt;/b&gt; API.</summary>
+        /// <summary>The two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 3166-1&lt;/a&gt; country code identifying the country to which the policy or policies specified in the corresponding policyIds array will apply.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum? Country { get; set; }
+        /// <summary>An array of custom policy identifiers that apply to the country specified by &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-bulkcreateoffer.countrypolicy.country&quot;&gt;listingPolicies.regionalTakeBackPolicies.countryPolicies.country&lt;/a&gt;.&lt;br&gt;&lt;br&gt;Product compliance and take-back policy information may be returned using the following methods:&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;/develop/api/sell/account_api_v1#sell-account_api_v1-get-getcustompolicies&quot; target=&quot;_blank&quot;&gt;getCustomPolicies&lt;/a&gt;&lt;br&gt;&lt;br&gt;Set &lt;code&gt;policy_types&lt;/code&gt; to:&lt;ul&gt;&lt;li&gt;&lt;code&gt;PRODUCT_COMPLIANCE&lt;/code&gt; for product compliance policies&lt;/li&gt;&lt;li&gt;&lt;code&gt;TAKE_BACK&lt;/code&gt; for takeback policies&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;This returns the list of specified policies and corresponding &lt;b&gt;customPolicyId&lt;/b&gt; values a seller has created.&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/develop/api/sell/account_api_v1#sell-account_api_v1-get-getcustompolicy&quot; target=&quot;_blank&quot;&gt;getCustomPolicy&lt;/a&gt; with &lt;code&gt;custom_policy_id = customPolicyId&lt;/code&gt;&lt;br&gt;&lt;br&gt;Returns the details of the policy specified by &lt;b&gt;customPolicyId&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;For information about creating and managing custom policies, refer to the &lt;a href=&quot;/api-docs/sell/account/resources/methods#h2-custom_policy&quot; target=&quot;_blank&quot;&gt;custom_policy&lt;/a&gt; resource in the &lt;b&gt;Account API v1&lt;/b&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? PolicyIds { get; set; }
@@ -70,7 +64,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "country", n => { Country = n.GetStringValue(); } },
+                { "country", n => { Country = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum>(); } },
                 { "policyIds", n => { PolicyIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -81,7 +75,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("country", Country);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum>("country", Country);
             writer.WriteCollectionOfPrimitiveValues<string>("policyIds", PolicyIds);
             writer.WriteAdditionalData(AdditionalData);
         }

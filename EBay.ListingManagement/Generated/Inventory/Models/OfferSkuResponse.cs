@@ -32,27 +32,15 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>This container will be returned at the offer level, and will contain one or more errors if any occurred with the attempted creation of the corresponding offer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error>? Errors { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error> Errors { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3> Errors { get; set; }
 #endif
-        /// <summary>This enumeration value indicates the listing format of the offer. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:FormatTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Format { get; set; }
-#nullable restore
-#else
-        public string Format { get; set; }
-#endif
-        /// <summary>This enumeration value is the unique identifier of the eBay marketplace for which the offer will be made available. This enumeration value should be the same for all offers since the &lt;strong&gt;bulkCreateOffer&lt;/strong&gt; method can only be used to create offers for one eBay marketplace at a time. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:MarketplaceEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MarketplaceId { get; set; }
-#nullable restore
-#else
-        public string MarketplaceId { get; set; }
-#endif
+        /// <summary>This enumeration value indicates the listing format of the offer.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.FormatTypeEnum? Format { get; set; }
+        /// <summary>This enumeration value is the unique identifier of the eBay marketplace for which the offer will be made available. This enumeration value should be the same for all offers since the &lt;strong&gt;bulkCreateOffer&lt;/strong&gt; method can only be used to create offers for one eBay marketplace at a time.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.MarketplaceEnum? MarketplaceId { get; set; }
         /// <summary>The unique identifier of the newly-created offer. This identifier should be automatically created by eBay if the creation of the offer was successful. It is not returned if the creation of the offer was not successful. In which case, the user may want to scan the corresponding &lt;strong&gt;errors&lt;/strong&gt; and/or &lt;strong&gt;warnings&lt;/strong&gt; container to see what the issue may be.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,10 +62,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>This container will be returned at the offer level, and will contain one or more warnings if any occurred with the attempted creation of the corresponding offer. Note that it is possible that an offer can be created successfully even if one or more warnings are triggered.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error>? Warnings { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error> Warnings { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.OfferSkuResponse"/> and sets the default values.
@@ -104,13 +92,13 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>(global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "format", n => { Format = n.GetStringValue(); } },
-                { "marketplaceId", n => { MarketplaceId = n.GetStringValue(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>(global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "format", n => { Format = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.FormatTypeEnum>(); } },
+                { "marketplaceId", n => { MarketplaceId = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.MarketplaceEnum>(); } },
                 { "offerId", n => { OfferId = n.GetStringValue(); } },
                 { "sku", n => { Sku = n.GetStringValue(); } },
                 { "statusCode", n => { StatusCode = n.GetIntValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>(global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>(global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -120,13 +108,13 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>("errors", Errors);
-            writer.WriteStringValue("format", Format);
-            writer.WriteStringValue("marketplaceId", MarketplaceId);
+            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>("errors", Errors);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.FormatTypeEnum>("format", Format);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.MarketplaceEnum>("marketplaceId", MarketplaceId);
             writer.WriteStringValue("offerId", OfferId);
             writer.WriteStringValue("sku", Sku);
             writer.WriteIntValue("statusCode", StatusCode);
-            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>("warnings", Warnings);
+            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

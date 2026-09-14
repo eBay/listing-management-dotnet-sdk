@@ -16,6 +16,9 @@
 
 set -euo pipefail
 
+echo "Pinning Kiota to 1.35.0..."
+dotnet tool update microsoft.openapi.kiota --local --version 1.35.0 --allow-downgrade
+
 echo "Restoring tools..."
 dotnet tool restore
 
@@ -24,7 +27,7 @@ rm -rf ./EBay.ListingManagement/Generated
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/openapi/feed.yaml \
+  -d specs/openapi/feed.json \
   -c FeedApiClient \
   -n EBay.ListingManagement.Generated.Feed \
   -o EBay.ListingManagement/Generated/Feed \
@@ -32,7 +35,7 @@ dotnet kiota generate \
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/openapi/inventory.yaml \
+  -d specs/openapi/inventory.json \
   -c InventoryApiClient \
   -n EBay.ListingManagement.Generated.Inventory \
   -o EBay.ListingManagement/Generated/Inventory \
@@ -40,7 +43,7 @@ dotnet kiota generate \
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/openapi/media.yaml \
+  -d specs/openapi/media.json \
   -c MediaApiClient \
   -n EBay.ListingManagement.Generated.Media \
   -o EBay.ListingManagement/Generated/Media \
@@ -48,7 +51,7 @@ dotnet kiota generate \
 
 dotnet kiota generate \
   -l csharp \
-  -d specs/openapi/stores.yaml \
+  -d specs/openapi/stores.json \
   -c StoresApiClient \
   -n EBay.ListingManagement.Generated.Stores \
   -o EBay.ListingManagement/Generated/Stores \

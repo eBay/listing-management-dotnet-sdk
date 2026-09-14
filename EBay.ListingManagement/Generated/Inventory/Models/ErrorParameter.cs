@@ -21,15 +21,14 @@ using System.IO;
 using System;
 namespace EBay.ListingManagement.Generated.Inventory.Models
 {
-    /// <summary>
-    /// This type is used to indicate the parameter field/value that caused an issue with the call request.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+    #pragma warning disable CS1591
     public partial class ErrorParameter : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type contains the name and value of an input parameter that contributed to a specific error or warning condition.</summary>
+        /// <summary>The object of the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -37,7 +36,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>This is the actual value that was passed in for the element specified in the &lt;strong&gt;name&lt;/strong&gt; field.</summary>
+        /// <summary>The value of the object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Value { get; set; }

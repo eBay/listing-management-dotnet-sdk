@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unique identifier of the document to be uploaded.&lt;br&gt;&lt;br&gt;This value is returned in the response and &lt;b&gt;location&lt;/b&gt; header of the &lt;b&gt;createDocument&lt;/b&gt; and &lt;b&gt;createDocumentFromUrl&lt;/b&gt; methods. This ID can be used with the &lt;b&gt;getDocument&lt;/b&gt; and &lt;b&gt;uploadDocument&lt;/b&gt; methods, and to add an uploaded document to a listing. See &lt;a href=&quot;/api-docs/sell/static/inventory/managing-document-media.html#add-documents&quot; target=&quot;_blank&quot;&gt;Adding documents to listings&lt;/a&gt; for more information. </summary>
+        /// <summary>The unique identifier of the document to be uploaded.&lt;br&gt;&lt;br&gt;This value is returned in the response and &lt;strong&gt;location&lt;/strong&gt; header of the &lt;strong&gt;createDocument&lt;/strong&gt; and &lt;strong&gt;createDocumentFromUrl&lt;/strong&gt; methods. This ID can be used with the &lt;strong&gt;getDocument&lt;/strong&gt; and &lt;strong&gt;uploadDocument&lt;/strong&gt; methods, and to add an uploaded document to a listing. See &lt;a href=&quot;/api-docs/sell/static/inventory/managing-document-media.html#add-documents&quot; target=&quot;_blank&quot;&gt;Adding documents to listings&lt;/a&gt; for more information. </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DocumentId { get; set; }
@@ -37,29 +37,17 @@ namespace EBay.ListingManagement.Generated.Media.Models
 #else
         public string DocumentId { get; set; }
 #endif
-        /// <summary>The status of the document resource.&lt;br&gt;&lt;br&gt;For example, the value &lt;code&gt;PENDING_UPLOAD&lt;/code&gt; is the initial state when the reference to the document has been created using the &lt;b&gt;createDocument&lt;/b&gt; method. When creating a document using the &lt;b&gt;createDocumentFromUrl&lt;/b&gt; method, the initial state will be &lt;code&gt;SUBMITTED&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/commerce/media/types/api:DocumentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DocumentStatus { get; set; }
-#nullable restore
-#else
-        public string DocumentStatus { get; set; }
-#endif
-        /// <summary>The type of the document uploaded. For example, &lt;code&gt;USER_GUIDE_OR_MANUAL&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/commerce/media/types/api:DocumentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DocumentType { get; set; }
-#nullable restore
-#else
-        public string DocumentType { get; set; }
-#endif
+        /// <summary>The status of the document resource.&lt;br&gt;&lt;br&gt;For example, the value &lt;code&gt;PENDING_UPLOAD&lt;/code&gt; is the initial state when the reference to the document has been created using the &lt;strong&gt;createDocument&lt;/strong&gt; method. When creating a document using the &lt;strong&gt;createDocumentFromUrl&lt;/strong&gt; method, the initial state will be &lt;code&gt;SUBMITTED&lt;/code&gt;.</summary>
+        public global::EBay.ListingManagement.Generated.Media.Models.DocumentStatusEnum? DocumentStatus { get; set; }
+        /// <summary>The type of the document uploaded. For example, &lt;code&gt;USER_GUIDE_OR_MANUAL&lt;/code&gt;.</summary>
+        public global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum? DocumentType { get; set; }
         /// <summary>This array shows the language(s) used in the document.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Languages { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum?>? Languages { get; set; }
 #nullable restore
 #else
-        public List<string> Languages { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum?> Languages { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Media.Models.CreateDocumentResponse"/> and sets the default values.
@@ -87,9 +75,9 @@ namespace EBay.ListingManagement.Generated.Media.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "documentId", n => { DocumentId = n.GetStringValue(); } },
-                { "documentStatus", n => { DocumentStatus = n.GetStringValue(); } },
-                { "documentType", n => { DocumentType = n.GetStringValue(); } },
-                { "languages", n => { Languages = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "documentStatus", n => { DocumentStatus = n.GetEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentStatusEnum>(); } },
+                { "documentType", n => { DocumentType = n.GetEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum>(); } },
+                { "languages", n => { Languages = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -100,9 +88,9 @@ namespace EBay.ListingManagement.Generated.Media.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("documentId", DocumentId);
-            writer.WriteStringValue("documentStatus", DocumentStatus);
-            writer.WriteStringValue("documentType", DocumentType);
-            writer.WriteCollectionOfPrimitiveValues<string>("languages", Languages);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentStatusEnum>("documentStatus", DocumentStatus);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Media.Models.DocumentTypeEnum>("documentType", DocumentType);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.LanguageEnum>("languages", Languages);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

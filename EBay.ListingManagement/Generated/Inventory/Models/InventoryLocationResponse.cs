@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to provide shipping specification details, such as the weekly cut-off schedule for order handling and cut-off override(s), for a fulfillment center location. </summary>
+        /// <summary>This container provides information about a fulfillment center&apos;s shipping specifications, such as the weekly cut-off time schedule for order handling and any cut-off time overrides.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only returned for fulfillment center locations.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.FulfillmentCenterSpecifications? FulfillmentCenterSpecifications { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.FulfillmentCenterSpecifications FulfillmentCenterSpecifications { get; set; }
 #endif
-        /// <summary>A complex type that is used to provide the physical address of a location, and it geo-coordinates.</summary>
+        /// <summary>This container provides location details of an inventory location. The &lt;strong&gt;address&lt;/strong&gt; container will always be returned, but it will not always have a complete street address. Except in the case of a store or fulfillment center location, a full address is not a requirement when setting up an inventory location. The &lt;strong&gt;geoCoordinates&lt;/strong&gt; container will only be returned if the merchant provided geographical coordinates. The &lt;strong&gt;locationId&lt;/strong&gt; field is always returned, but this value is only used internally by eBay.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Location? Location { get; set; }
@@ -64,10 +64,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>This container defines the function of the inventory location. Typically, a location will serve as a store, warehouse, or fulfillment center, but in some cases, an inventory location may be more than one type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? LocationTypes { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum?>? LocationTypes { get; set; }
 #nullable restore
 #else
-        public List<string> LocationTypes { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum?> LocationTypes { get; set; }
 #endif
         /// <summary>This text field shows the  Website address (URL) associated with the inventory location. This field is returned if defined for the location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -85,14 +85,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string MerchantLocationKey { get; set; }
 #endif
-        /// <summary>This field indicates whether the inventory location is enabled (inventory can be loaded to location) or disabled (inventory can not be loaded to location). The merchant can use the &lt;strong&gt;enableInventoryLocation&lt;/strong&gt; call to enable a location in disabled status, or the &lt;strong&gt;disableInventoryLocation&lt;/strong&gt; call to disable a location in enabled status. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/api:StatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MerchantLocationStatus { get; set; }
-#nullable restore
-#else
-        public string MerchantLocationStatus { get; set; }
-#endif
+        /// <summary>This field indicates whether the inventory location is enabled (inventory can be loaded to location) or disabled (inventory cannot be loaded to location). The merchant can use the &lt;strong&gt;enableInventoryLocation&lt;/strong&gt; call to enable a location in disabled status, or the &lt;strong&gt;disableInventoryLocation&lt;/strong&gt; call to disable a location in enabled status.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.StatusEnum? MerchantLocationStatus { get; set; }
         /// <summary>The name of the inventory location. This name should be a human-friendly name as it will be displayed in In-Store Pickup and Click and Collect listings. For store inventory locations, this field is not required for the &lt;strong&gt;createInventoryLocation&lt;/strong&gt; call, but a store inventory location must have a defined &lt;strong&gt;name&lt;/strong&gt; value before an In-Store Pickup and Click and Collect enabled offer is published. So, if the seller omits this field in the &lt;strong&gt;createInventoryLocation&lt;/strong&gt; call, it will have to be added later through a &lt;strong&gt;updateInventoryLocation&lt;/strong&gt; call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -162,10 +156,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
                 { "location", n => { Location = n.GetObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.Location>(global::EBay.ListingManagement.Generated.Inventory.Models.Location.CreateFromDiscriminatorValue); } },
                 { "locationAdditionalInformation", n => { LocationAdditionalInformation = n.GetStringValue(); } },
                 { "locationInstructions", n => { LocationInstructions = n.GetStringValue(); } },
-                { "locationTypes", n => { LocationTypes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "locationTypes", n => { LocationTypes = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum>()?.AsList(); } },
                 { "locationWebUrl", n => { LocationWebUrl = n.GetStringValue(); } },
                 { "merchantLocationKey", n => { MerchantLocationKey = n.GetStringValue(); } },
-                { "merchantLocationStatus", n => { MerchantLocationStatus = n.GetStringValue(); } },
+                { "merchantLocationStatus", n => { MerchantLocationStatus = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.StatusEnum>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "operatingHours", n => { OperatingHours = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours>(global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "phone", n => { Phone = n.GetStringValue(); } },
@@ -184,10 +178,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.Location>("location", Location);
             writer.WriteStringValue("locationAdditionalInformation", LocationAdditionalInformation);
             writer.WriteStringValue("locationInstructions", LocationInstructions);
-            writer.WriteCollectionOfPrimitiveValues<string>("locationTypes", LocationTypes);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum>("locationTypes", LocationTypes);
             writer.WriteStringValue("locationWebUrl", LocationWebUrl);
             writer.WriteStringValue("merchantLocationKey", MerchantLocationKey);
-            writer.WriteStringValue("merchantLocationStatus", MerchantLocationStatus);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.StatusEnum>("merchantLocationStatus", MerchantLocationStatus);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours>("operatingHours", OperatingHours);
             writer.WriteStringValue("phone", Phone);

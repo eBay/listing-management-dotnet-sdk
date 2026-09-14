@@ -40,10 +40,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>This container will be returned if there were one or more warnings associated with the attempt to withdraw the offer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error>? Warnings { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error> Warnings { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.WithdrawResponse"/> and sets the default values.
@@ -71,7 +71,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "listingId", n => { ListingId = n.GetStringValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>(global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>(global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -82,7 +82,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("listingId", ListingId);
-            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>("warnings", Warnings);
+            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

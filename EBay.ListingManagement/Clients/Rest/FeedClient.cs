@@ -36,16 +36,16 @@ public sealed class FeedClient
     }
 
     /// <summary>
-    /// This method returns the details and status for an array of order tasks based on a specified <b>feed_type</b> or <b>schedule_id</b>. Specifying both <b>feed_type</b> and <b>schedule_id</b> results in an error. Since schedules are based on feed types, you can specify a schedule (<b>schedule_id</b>) that returns the needed <b>feed_type</b>.
+    /// This method returns the details and status for an array of order tasks. Rather than using a request payload, it does this through specified input in query parameters, such as <b>feed_type</b> or <b>schedule_id</b>. Specifying both <b>feed_type</b> and <b>schedule_id</b> results in an error. Since schedules are based on feed types, you can specify a schedule (<b>schedule_id</b>) that returns the needed <b>feed_type</b>.
     /// If specifying the <b>feed_type</b>, limit which order tasks are returned by specifying filters such as the creation date range or period of time using <b>look_back_days</b>.
     /// If specifying a <b>schedule_id</b>, the schedule template (that the <b>schedule_id</b> is based on) determines which order tasks are returned (see <b>schedule_id</b> for additional information). Each <b>schedule_id</b> applies to one <b>feed_type</b>.
     /// </summary>
     public Task<OrderTaskCollection?> GetOrderTasksAsync(
         string? dateRange = null,
         string? feedType = null,
-        string? limit = null,
-        string? lookBackDays = null,
-        string? offset = null,
+        int? limit = null,
+        int? lookBackDays = null,
+        int? offset = null,
         string? scheduleId = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
@@ -83,10 +83,10 @@ public sealed class FeedClient
         }, ct));
 
     /// <summary>
-    /// This method creates an order download task with filter criteria for the order report. When using this method, specify the <b> feedType</b>, <b> schemaVersion</b>, and <b> filterCriteria</b> for the report. The method returns the <b> location</b> response header containing the getOrderTask call URI to retrieve the order task you just created. The URL includes the eBay-assigned task ID, which you can use to reference the order task.
+    /// This method creates an order download task with filter criteria for the order report. When using this method, specify the <b>feedType</b>, <b>schemaVersion</b>, and <b>filterCriteria</b> for the report. The method returns the <b>location</b> response header containing the <b>getOrderTask</b> call URI to retrieve the order task you just created. The URL includes the eBay-assigned task ID, which you can use to reference the order task.
     /// To retrieve the status of the task, use the <b>getOrderTask</b> method to retrieve a single task ID or the <b>getOrderTasks</b> method to retrieve multiple order task IDs.
     /// <b>Note:</b> The scope depends on the feed type. An error message results when an unsupported scope or feed type is specified.
-    /// The following list contains this method's authorization scope and its corresponding feed type:
+    /// The following contains this method's authorization scope and its corresponding feed type:
     /// - https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_REPORT
     /// For details about how this method is used, see <see href="/api-docs/sell/static/feed/general-feed-tasks.html">General feed types</see> in the Selling Integration Guide.
     /// <b>Note:</b> At this time, the <b>createOrderTask</b> method only supports order creation date filters and not modified order date filters. Do not include the <b>modifiedDateRange</b> filter in your request payload.
@@ -122,15 +122,15 @@ public sealed class FeedClient
         }, ct));
 
     /// <summary>
-    /// This method searches for multiple tasks of a specific feed type, and includes date filters and pagination.
+    /// This method searches for multiple tasks of a specific feed type and includes date filters and pagination.
     /// </summary>
     public Task<InventoryTaskCollection?> GetInventoryTasksAsync(
-        string? feedType = null,
+        string feedType,
         string? scheduleId = null,
-        string? lookBackDays = null,
+        int? lookBackDays = null,
         string? dateRange = null,
-        string? limit = null,
-        string? offset = null,
+        int? limit = null,
+        int? offset = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -139,10 +139,7 @@ public sealed class FeedClient
             accessToken,
             () => _kiota.Inventory_task.GetAsync(cfg =>
         {
-            if (feedType is not null)
-            {
-                cfg.QueryParameters.FeedType = feedType;
-            }
+            cfg.QueryParameters.FeedType = feedType;
             if (scheduleId is not null)
             {
                 cfg.QueryParameters.ScheduleId = scheduleId;
@@ -207,8 +204,8 @@ public sealed class FeedClient
     /// </summary>
     public Task<UserScheduleCollection?> GetSchedulesAsync(
         string feedType,
-        string? limit = null,
-        string? offset = null,
+        int? limit = null,
+        int? offset = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -234,7 +231,7 @@ public sealed class FeedClient
     /// <b>Note:</b> Make sure to include all fields required by the schedule template (<b>scheduleTemplateId</b>). Call the <b>getScheduleTemplate</b> method (or the <b>getScheduleTemplates</b> method), to find out which fields are required or optional. If a field is optional and a default value is provided by the template, the default value will be used if omitted from the payload.
     /// A successful call returns the location response header containing the <b>getSchedule</b> call URI to retrieve the schedule you just created. The URL includes the eBay-assigned schedule ID, which you can use to reference the schedule task.
     /// To retrieve the details of the create schedule task, use the <b>getSchedule</b> method for a single schedule ID or the <b>getSchedules</b> method to retrieve all schedule details for the specified <b>feed_type</b>. The number of schedules for each feedType is limited. Error code 160031 is returned when you have reached this maximum.
-    /// <b>Note:</b> Except for schedules with a HALF-HOUR frequency, all schedules will ideally run at the start of each hour ('00' minutes). Actual start time may vary time may vary due to load and other factors.
+    /// <b>Note:</b> Except for schedules with a HALF-HOUR frequency, all schedules will ideally run at the start of each hour ('00' minutes). Actual start time may vary due to load and other factors.
     /// </summary>
     public Task CreateScheduleAsync(
         CreateUserScheduleRequest body,
@@ -336,8 +333,8 @@ public sealed class FeedClient
     /// </summary>
     public Task<ScheduleTemplateCollection?> GetScheduleTemplatesAsync(
         string feedType,
-        string? limit = null,
-        string? offset = null,
+        int? limit = null,
+        int? offset = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -366,9 +363,9 @@ public sealed class FeedClient
     public Task<TaskCollection?> GetTasksAsync(
         string? dateRange = null,
         string? feedType = null,
-        string? limit = null,
-        string? lookBackDays = null,
-        string? offset = null,
+        int? limit = null,
+        int? lookBackDays = null,
+        int? offset = null,
         string? scheduleId = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
@@ -406,12 +403,12 @@ public sealed class FeedClient
         }, ct));
 
     /// <summary>
-    /// This method creates an upload task or a download task without filter criteria. When using this method, specify the <b> feedType</b> and the feed file <b> schemaVersion</b>. The feed type specified sets the task as a download or an upload task.
+    /// This method creates an upload task or a download task without filter criteria. When using this method, specify the <b>feedType</b> and the feed file <b> schemaVersion</b>. The feed type specified sets the task as a download or an upload task.
     /// For details about the upload and download flows, see <see href="/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
     /// <b>Note:</b> The scope depends on the feed type. An error message results when an unsupported scope or feed type is specified.
     /// The following list contains this method's authorization scopes and their corresponding feed types:
-    /// - https://api.ebay.com/oauth/api_scope/sell.inventory: See <see href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl">LMS FeedTypes</see>
-    /// - https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for upload tasks). Also see <see href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl">LMS FeedTypes</see>
+    /// - https://api.ebay.com/oauth/api_scope/sell.inventory: See <see href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available">LMS FeedTypes</see>
+    /// - https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for upload tasks). Also see <see href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available">LMS FeedTypes</see>
     /// - https://api.ebay.com/oauth/api_scope/sell.marketing: None*
     /// - https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly: None*
     /// * Reserved for future release
@@ -437,7 +434,7 @@ public sealed class FeedClient
         }, ct));
 
     /// <summary>
-    /// This method downloads the file previously uploaded using <b>uploadFile</b>. Specify the task_id from the <b>uploadFile</b> call.
+    /// This method downloads a file previously uploaded using <b>uploadFile</b>. Specify the <b>task_id</b> from the <b>uploadFile</b> call.
     /// <b>Note:</b> With respect to LMS, this method applies to all feed types except <c>LMS_ORDER_REPORT</c> and <c>LMS_ACTIVE_INVENTORY_REPORT</c>. See <see href="/api-docs/sell/static/feed/lms-feeds.html">LMS API Feeds</see> in the Selling Integration Guide.
     /// </summary>
     public Task GetInputFileAsync(
@@ -456,7 +453,7 @@ public sealed class FeedClient
     /// <summary>
     /// This method retrieves the generated file that is associated with the specified task ID. The response of this call is a compressed or uncompressed CSV, XML, or JSON file, with the applicable file extension (for example: csv.gz).
     /// For details about how this method is used, see <see href="/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
-    /// <b>Note:</b> The status of the task to retrieve must be in the COMPLETED or COMPLETED_WITH_ERROR state before this method can retrieve the file. You can use the getTask or getTasks method to retrieve the status of the task.
+    /// <b>Note:</b> The status of the task to retrieve must be in the <c>COMPLETED</c> or <c>COMPLETED_WITH_ERROR</c> state before this method can retrieve the file. You can use the <b>getTask</b> or <b>getTasks</b> method to retrieve the status of the task.
     /// </summary>
     public Task GetResultFileAsync(
         string taskId,
@@ -490,7 +487,7 @@ public sealed class FeedClient
 
     /// <summary>
     /// This method associates the specified file with the specified task ID and uploads the input file. After the file has been uploaded, the processing of the file begins.
-    /// Reports often take time to generate and it's common for this method to return an HTTP status of 202, which indicates the report is being generated. Use the <b> getTask</b> with the task ID or <b> getTasks</b> to determine the status of a report.
+    /// Reports often take time to generate and it's common for this method to return an HTTP status of 202, which indicates the report is being generated. Use the <b>getTask</b> with the task ID or <b>getTasks</b> to determine the status of a report.
     /// The status flow is <c>QUEUED</c> &gt; <c>IN_PROCESS</c> &gt; <c>COMPLETED</c> or <c>COMPLETED_WITH_ERROR</c>. When the status is <c>COMPLETED</c> or <c>COMPLETED_WITH_ERROR</c>, this indicates the file has been processed and the order report can be downloaded. If there are errors, they will be indicated in the report file.
     /// For details of how this method is used in the upload flow, see <see href="/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
     /// This call does not have a JSON Request payload but uploads the file as form-data. For example:
@@ -498,9 +495,9 @@ public sealed class FeedClient
     /// name: "file"
     /// type: "form-data"
     /// file: @"/C:/Users/.../AddFixedPriceItem_Macbook.7z"
-    /// See <see href="/api-docs/sell/feed/resources/task/methods/uploadFile#h2-samples">Samples</see> for information.
+    /// See <b>Samples</b> for information.
     /// <b>Note:</b> This method applies to all <see href="/api-docs/sell/static/feed/fx-feeds-quick-reference.html#availabl">Seller Hub feed types</see>, and to all <see href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl">LMS feed types</see> except <c>LMS_ORDER_REPORT</c> and <c>LMS_ACTIVE_INVENTORY_REPORT</c>.
-    /// <b>Note:</b> You must use a <b>Content-Type</b> header with its value set to "<b>multipart/form-data</b>". See <see href="/api-docs/sell/feed/resources/task/methods/uploadFile#h2-samples">Samples</see> for information.
+    /// <b>Note:</b> You must use a <b>Content-Type</b> header with its value set to "<b>multipart/form-data</b>". See <b>Samples</b> for information.
     /// <b>Note:</b> For LMS feed types, upload a regular XML file or an XML file in zipped format (both formats are allowed).
     /// </summary>
     public Task UploadFileAsync(
@@ -515,7 +512,7 @@ public sealed class FeedClient
             accessToken,
             () =>
             {
-                var requestInfo = _kiota.Task[taskId].Upload_file.ToPostRequestInformation();
+                var requestInfo = _kiota.Task[taskId].Upload_file.ToPostRequestInformation(new MultipartBody());
                 RestInvocation.ApplyHeaders(requestInfo.Headers, _config, requestOptions);
                 return RestInvocation.SendMultipartFileAsync(
                     _adapter,
@@ -528,14 +525,14 @@ public sealed class FeedClient
 
     /// <summary>
     /// Use this method to return an array of customer service metric tasks. You can limit the tasks returned by specifying a date range.
-    /// <b>Note:</b> You can pass in either the <c>look_back_days </c>or<c> date_range</c>, but not both.
+    /// <b>Note:</b> You can pass in either the <c>look_back_days</c> or <c>date_range</c>, but not both.
     /// </summary>
     public Task<CustomerServiceMetricTaskCollection?> GetCustomerServiceMetricTasksAsync(
+        string feedType,
         string? dateRange = null,
-        string? feedType = null,
-        string? limit = null,
-        string? lookBackDays = null,
-        string? offset = null,
+        int? limit = null,
+        int? lookBackDays = null,
+        int? offset = null,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default)
@@ -544,13 +541,10 @@ public sealed class FeedClient
             accessToken,
             () => _kiota.Customer_service_metric_task.GetAsync(cfg =>
         {
+            cfg.QueryParameters.FeedType = feedType;
             if (dateRange is not null)
             {
                 cfg.QueryParameters.DateRange = dateRange;
-            }
-            if (feedType is not null)
-            {
-                cfg.QueryParameters.FeedType = feedType;
             }
             if (limit is not null)
             {
@@ -570,7 +564,7 @@ public sealed class FeedClient
     /// <summary>
     /// Use this method to create a customer service metrics download task with filter criteria for the customer service metrics report. When using this method, specify the <b>feedType</b> and <b>filterCriteria</b> including both <b>evaluationMarketplaceId</b> and <b>customerServiceMetricType</b> for the report. The method returns the location response header containing the call URI to use with <b>getCustomerServiceMetricTask</b> to retrieve status and details on the task.
     /// Only CURRENT Customer Service Metrics reports can be generated with the Sell Feed API. PROJECTED reports are not supported at this time. See the <see href="/api-docs/sell/analytics/resources/customer_service_metric/methods/getCustomerServiceMetric">getCustomerServiceMetric</see> method document in the Analytics API for more information about these two types of reports.
-    /// <b>Note:</b> Before calling this API, retrieve the summary of the seller's performance and rating for the customer service metric by calling <b>getCustomerServiceMetric</b> (part of the <see href="/api-docs/sell/analytics/resources/methods">Analytics API</see>). You can then populate the create task request fields with the values from the response. This technique eliminates failed tasks that request a report for a <b>customerServiceMetricType</b> and <b>evaluationMarketplaceId</b> that are without evaluation.
+    /// <b>Note:</b> Before calling this API, retrieve the summary of the seller's performance and rating for the customer service metric by calling <b>getCustomerServiceMetric</b> (part of the <see href="/develop/api/sell/analytics_api">Analytics API</see>). You can then populate the create task request fields with the values from the response. This technique eliminates failed tasks that request a report for a <b>customerServiceMetricType</b> and <b>evaluationMarketplaceId</b> that are without evaluation.
     /// </summary>
     public Task CreateCustomerServiceMetricTaskAsync(
         string acceptLanguage,

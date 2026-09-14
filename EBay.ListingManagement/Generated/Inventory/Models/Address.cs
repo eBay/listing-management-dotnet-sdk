@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The first line of a street address. This field is required for store and fulfillment center locations. A street address is not required for warehouse locations.&lt;br&gt;&lt;br&gt;This field will be returned if defined for an inventory location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 128</summary>
+        /// <summary>The first line of a street address. This field is required for store and fulfillment center locations. A street address is not required for warehouse locations.&lt;br&gt;&lt;br&gt;This field will be returned if defined for an inventory location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 128</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AddressLine1 { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string AddressLine1 { get; set; }
 #endif
-        /// <summary>The second line of a street address. This field can be used for additional address information, such as a suite or apartment number. &lt;br&gt;&lt;br&gt;This field will be returned if defined for an inventory location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 128</summary>
+        /// <summary>The second line of a street address. This field can be used for additional address information, such as a suite or apartment number. &lt;br&gt;&lt;br&gt;This field will be returned if defined for an inventory location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 128</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AddressLine2 { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string AddressLine2 { get; set; }
 #endif
-        /// <summary>The city in which the inventory location resides. This field is required for store and fulfillment center locations. For warehouse locations, this field is conditionally required as part of a &lt;strong&gt;city&lt;/strong&gt; and &lt;strong&gt;stateOrProvince&lt;/strong&gt; pair if a &lt;strong&gt;postalCode&lt;/strong&gt; is not provided. If a &lt;strong&gt;postalCode&lt;/strong&gt; is provided, the city is derived from the provided postal code and this field is technically optional.&lt;br&gt;&lt;br&gt;This field is returned if defined for an inventory location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 128</summary>
+        /// <summary>The city in which the inventory location resides. This field is required for store and fulfillment center locations. For warehouse locations, this field is conditionally required as part of a &lt;strong&gt;city&lt;/strong&gt; and &lt;strong&gt;stateOrProvince&lt;/strong&gt; pair if a &lt;strong&gt;postalCode&lt;/strong&gt; is not provided. If a &lt;strong&gt;postalCode&lt;/strong&gt; is provided, the city is derived from the provided postal code and this field is technically optional.&lt;br&gt;&lt;br&gt;This field is returned if defined for an inventory location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 128</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? City { get; set; }
@@ -53,14 +53,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string City { get; set; }
 #endif
-        /// <summary>The country in which the address resides, represented as two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States, and &lt;code&gt;DE&lt;/code&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Country { get; set; }
-#nullable restore
-#else
-        public string Country { get; set; }
-#endif
+        /// <summary>The country in which the address resides, represented as two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States, and &lt;code&gt;DE&lt;/code&gt; represents Germany.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum? Country { get; set; }
         /// <summary>The county in which the address resides.&lt;br&gt;&lt;br&gt;This field is returned if defined for an inventory location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -69,7 +63,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string County { get; set; }
 #endif
-        /// <summary>The postal/zip code of the address. eBay uses postal codes to surface In-Store Pickup items within the vicinity of a buyer&apos;s location, and it also uses postal codes (origin and destination) to estimate shipping costs when the seller uses calculated shipping. This field is required for store and fulfillment center locations. &lt;br&gt;&lt;br&gt;For warehouse locations, this field is conditionally required if a &lt;strong&gt;city&lt;/strong&gt; and &lt;strong&gt;stateOrProvince&lt;/strong&gt; pair is not provided.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; For warehouse locations, &lt;strong&gt;city&lt;/strong&gt; and &lt;strong&gt;stateOrProvince&lt;/strong&gt; pair can be used instead of a &lt;strong&gt;postalCode&lt;/strong&gt; value, and then the postal code is just derived from the city and state/province.&lt;/span&gt;&lt;br&gt;&lt;br&gt;This field is returned if defined for an inventory location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 16</summary>
+        /// <summary>The postal/zip code of the address. eBay uses postal codes to surface In-Store Pickup items within the vicinity of a buyer&apos;s location, and it also uses postal codes (origin and destination) to estimate shipping costs when the seller uses calculated shipping. This field is required for store and fulfillment center locations. &lt;br&gt;&lt;br&gt;For warehouse locations, this field is conditionally required if a &lt;strong&gt;city&lt;/strong&gt; and &lt;strong&gt;stateOrProvince&lt;/strong&gt; pair is not provided.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; For warehouse locations, &lt;strong&gt;city&lt;/strong&gt; and &lt;strong&gt;stateOrProvince&lt;/strong&gt; pair can be used instead of a &lt;strong&gt;postalCode&lt;/strong&gt; value, and then the postal code is just derived from the city and state/province.&lt;/span&gt;&lt;br&gt;This field is returned if defined for an inventory location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 16</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PostalCode { get; set; }
@@ -77,7 +71,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string PostalCode { get; set; }
 #endif
-        /// <summary>The state/province in which the inventory location resides. This field is required for store and fulfillment center locations. For warehouse locations, this field is conditionally required as part of a &lt;strong&gt;city&lt;/strong&gt; and &lt;strong&gt;stateOrProvince&lt;/strong&gt; pair if a &lt;strong&gt;postalCode&lt;/strong&gt; is not provided. If a &lt;strong&gt;postalCode&lt;/strong&gt; is provided, the state or province is derived from the provided zip code and this field is technically optional.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 128</summary>
+        /// <summary>The state/province in which the inventory location resides. This field is required for store and fulfillment center locations. For warehouse locations, this field is conditionally required as part of a &lt;strong&gt;city&lt;/strong&gt; and &lt;strong&gt;stateOrProvince&lt;/strong&gt; pair if a &lt;strong&gt;postalCode&lt;/strong&gt; is not provided. If a &lt;strong&gt;postalCode&lt;/strong&gt; is provided, the state or province is derived from the provided zip code and this field is technically optional.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 128</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? StateOrProvince { get; set; }
@@ -113,7 +107,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
                 { "addressLine1", n => { AddressLine1 = n.GetStringValue(); } },
                 { "addressLine2", n => { AddressLine2 = n.GetStringValue(); } },
                 { "city", n => { City = n.GetStringValue(); } },
-                { "country", n => { Country = n.GetStringValue(); } },
+                { "country", n => { Country = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum>(); } },
                 { "county", n => { County = n.GetStringValue(); } },
                 { "postalCode", n => { PostalCode = n.GetStringValue(); } },
                 { "stateOrProvince", n => { StateOrProvince = n.GetStringValue(); } },
@@ -129,7 +123,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             writer.WriteStringValue("addressLine1", AddressLine1);
             writer.WriteStringValue("addressLine2", AddressLine2);
             writer.WriteStringValue("city", City);
-            writer.WriteStringValue("country", Country);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum>("country", Country);
             writer.WriteStringValue("county", County);
             writer.WriteStringValue("postalCode", PostalCode);
             writer.WriteStringValue("stateOrProvince", StateOrProvince);

@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to express a dollar value and the applicable currency.</summary>
+        /// <summary>This is the fee paid for new items to the eco-organization (for example, &quot;eco-organisme&quot; in France). It is a contribution to the financing of the elimination of the item responsibly.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; &lt;code&gt;0&lt;/code&gt; should not be used as a default value.&lt;/span&gt;&lt;/br&gt;&lt;b&gt;Minimum:&lt;/b&gt; 0.0</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Amount? EcoParticipationFee { get; set; }

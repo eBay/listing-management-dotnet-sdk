@@ -37,21 +37,15 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.Fee> Fees { get; set; }
 #endif
-        /// <summary>This is the unique identifier of the eBay site for which  listing fees for the offer are applicable. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:MarketplaceEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MarketplaceId { get; set; }
-#nullable restore
-#else
-        public string MarketplaceId { get; set; }
-#endif
+        /// <summary>This is the unique identifier of the eBay site for which  listing fees for the offer are applicable.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.MarketplaceEnum? MarketplaceId { get; set; }
         /// <summary>This container will contain an array of errors and/or warnings when a call is made, and errors and/or warnings occur.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error>? Warnings { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.ListingManagement.Generated.Inventory.Models.Error> Warnings { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.FeeSummary"/> and sets the default values.
@@ -79,8 +73,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "fees", n => { Fees = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Fee>(global::EBay.ListingManagement.Generated.Inventory.Models.Fee.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "marketplaceId", n => { MarketplaceId = n.GetStringValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>(global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "marketplaceId", n => { MarketplaceId = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.MarketplaceEnum>(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>(global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -91,8 +85,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Fee>("fees", Fees);
-            writer.WriteStringValue("marketplaceId", MarketplaceId);
-            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.Error>("warnings", Warnings);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.MarketplaceEnum>("marketplaceId", MarketplaceId);
+            writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.ErrorDetailV3>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

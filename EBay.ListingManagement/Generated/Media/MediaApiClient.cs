@@ -16,6 +16,7 @@
 #pragma warning disable CS0618
 using EBay.ListingManagement.Generated.Media.Document;
 using EBay.ListingManagement.Generated.Media.Image;
+using EBay.ListingManagement.Generated.Media.Post_order;
 using EBay.ListingManagement.Generated.Media.Video;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
@@ -45,6 +46,11 @@ namespace EBay.ListingManagement.Generated.Media
         {
             get => new global::EBay.ListingManagement.Generated.Media.Image.ImageRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The post_order property</summary>
+        public global::EBay.ListingManagement.Generated.Media.Post_order.Post_orderRequestBuilder Post_order
+        {
+            get => new global::EBay.ListingManagement.Generated.Media.Post_order.Post_orderRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The video property</summary>
         public global::EBay.ListingManagement.Generated.Media.Video.VideoRequestBuilder Video
         {
@@ -65,7 +71,7 @@ namespace EBay.ListingManagement.Generated.Media
             ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
             if (string.IsNullOrEmpty(RequestAdapter.BaseUrl))
             {
-                RequestAdapter.BaseUrl = "https://apim.ebay.com{basePath}";
+                RequestAdapter.BaseUrl = "https://apim.ebay.com/commerce/media/v1_beta";
             }
             PathParameters.TryAdd("baseurl", RequestAdapter.BaseUrl);
         }

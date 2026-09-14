@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.CompatibleProduct> CompatibleProducts { get; set; }
 #endif
-        /// <summary>The seller-defined SKU value of the inventory item that will be associated with the compatible vehicles.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field is not applicable to the &lt;strong&gt;createOrReplaceProductCompatibility&lt;/strong&gt; method, as the SKU value for the inventory item is passed in as part of the call URI and not in the request payload. It is always returned with the &lt;a href=&quot;/api-docs/sell/inventory/resources/inventory_item/product_compatibility/methods/getProductCompatibility&quot; target=&quot;_blank &quot;&gt;getProductCompatibility&lt;/a&gt; method.&lt;/span&gt;</summary>
+        /// <summary>The seller-defined SKU value of the inventory item that will be associated with the compatible vehicles.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This field is not applicable to the &lt;strong&gt;createOrReplaceProductCompatibility&lt;/strong&gt; method, as the SKU value for the inventory item is passed in as part of the call URI and not in the request payload. It is always returned with the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-product_compatibility-getproductcompatibility&quot; target=&quot;_blank &quot;&gt;getProductCompatibility&lt;/a&gt; method.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sku { get; set; }

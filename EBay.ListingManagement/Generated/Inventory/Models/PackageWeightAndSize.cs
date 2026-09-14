@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to specify the dimensions (and the unit used to measure those dimensions) of a shipping package. The &lt;strong&gt;dimensions&lt;/strong&gt; container is conditionally required if the seller will be offering calculated shipping rates to determine shipping cost. See the &lt;a href=&quot;https://pages.ebay.com/help/pay/calculated-shipping.html &quot; target=&quot;_blank&quot;&gt;Calculated shipping&lt;/a&gt; help page for more information on calculated shipping.</summary>
+        /// <summary>This container is used to indicate the length, width, and height of the shipping package that will be used to ship the inventory item. The dimensions of a shipping package are needed when calculated shipping is used.&lt;br&gt;&lt;br&gt;This container will be returned if package dimensions are set for the inventory item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Dimension? Dimensions { get; set; }
@@ -37,17 +37,11 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.Dimension Dimensions { get; set; }
 #endif
-        /// <summary>This enumeration value indicates the type of shipping package used to ship the inventory item. The supported values for this field can be found in the &lt;a href=&quot;/api-docs/sell/inventory/types/slr:PackageTypeEnum&quot; target=&quot;_blank&quot;&gt;PackageTypeEnum&lt;/a&gt; type.&lt;br&gt;&lt;br&gt;This field will be returned if the package type is set for the inventory item.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; You can use the &lt;a href=&quot;/Devzone/XML/docs/Reference/eBay/GeteBayDetails.html#Response.ShippingPackageDetails&quot; target=&quot;_blank&quot;&gt;GeteBayDetails&lt;/a&gt; Trading API call to retrieve a list of supported package types for a specific marketplace.&lt;/span&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:PackageTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PackageType { get; set; }
-#nullable restore
-#else
-        public string PackageType { get; set; }
-#endif
+        /// <summary>This enumeration value indicates the type of shipping package used to ship the inventory item. The supported values for this field can be found in the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-bulkcreateorreplaceinventoryitem.packagetypeenum&quot; target=&quot;_blank&quot;&gt;PackageTypeEnum&lt;/a&gt; type.&lt;br&gt;&lt;br&gt;This field will be returned if the package type is set for the inventory item.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; You can use the &lt;a href=&quot;/Devzone/XML/docs/Reference/eBay/GeteBayDetails.html#Response.ShippingPackageDetails&quot; target=&quot;_blank&quot;&gt;GeteBayDetails&lt;/a&gt; Trading API call to retrieve a list of supported package types for a specific marketplace.&lt;/span&gt;</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.PackageTypeEnum? PackageType { get; set; }
         /// <summary>A value of &lt;code&gt;true&lt;/code&gt; indicates that the package is irregular and cannot go through the stamping machine at the shipping service office. This field applies to calculated shipping only. Irregular packages require special or fragile handling.</summary>
         public bool? ShippingIrregular { get; set; }
-        /// <summary>This type is used to specify the weight (and the unit used to measure that weight) of a shipping package. The &lt;strong&gt;weight&lt;/strong&gt; container is conditionally required if the seller will be offering calculated shipping rates to determine shipping cost, or is using flat-rate costs, but charging a weight surcharge. See the &lt;a href=&quot;https://pages.ebay.com/help/pay/calculated-shipping.html &quot; target=&quot;_blank&quot;&gt;Calculated shipping&lt;/a&gt; help page for more information on calculated shipping.</summary>
+        /// <summary>This container is used to specify the weight of the shipping package that will be used to ship the inventory item. The weight of a shipping package are needed when calculated shipping is used, or if flat-rate shipping rates are used, but with a weight surcharge.&lt;br&gt;&lt;br&gt;This field will be returned if package weight is set for the inventory item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Weight? Weight { get; set; }
@@ -81,7 +75,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "dimensions", n => { Dimensions = n.GetObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.Dimension>(global::EBay.ListingManagement.Generated.Inventory.Models.Dimension.CreateFromDiscriminatorValue); } },
-                { "packageType", n => { PackageType = n.GetStringValue(); } },
+                { "packageType", n => { PackageType = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.PackageTypeEnum>(); } },
                 { "shippingIrregular", n => { ShippingIrregular = n.GetBoolValue(); } },
                 { "weight", n => { Weight = n.GetObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.Weight>(global::EBay.ListingManagement.Generated.Inventory.Models.Weight.CreateFromDiscriminatorValue); } },
             };
@@ -94,7 +88,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.Dimension>("dimensions", Dimensions);
-            writer.WriteStringValue("packageType", PackageType);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.PackageTypeEnum>("packageType", PackageType);
             writer.WriteBoolValue("shippingIrregular", ShippingIrregular);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.Weight>("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);

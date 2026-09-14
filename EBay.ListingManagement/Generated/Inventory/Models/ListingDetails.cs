@@ -37,16 +37,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string ListingId { get; set; }
 #endif
-        /// <summary>Indicates if a listing is on hold due to an eBay policy violation.&lt;br&gt;&lt;p&gt;If a listing is put on hold, users are unable to view the listing details, the listing is hidden from search, and all attempted purchases, offers, and bids for the listing are blocked. eBay, however, gives sellers the opportunity to address violations and get listings fully reinstated. A listing will be ended if a seller does not address a violation, or if the violation can not be rectified.&lt;/p&gt;&lt;br&gt;&lt;p&gt;If a listing is fixable, the seller should be able to view the listing details and this boolean will be returned as true.&lt;/p&gt;&lt;br&gt;&lt;p&gt;Once a listing is fixed, this boolean will no longer be returned.&lt;/p&gt;</summary>
+        /// <summary>Indicates if a listing is on hold due to an eBay policy violation.&lt;br&gt;&lt;br&gt;If a listing is put on hold, users are unable to view the listing details, the listing is hidden from search, and all attempted purchases, offers, and bids for the listing are blocked. eBay, however, gives sellers the opportunity to address violations and get listings fully reinstated. A listing will be ended if a seller does not address a violation, or if the violation can not be rectified.&lt;br&gt;&lt;br&gt;If a listing is fixable, the seller should be able to view the listing details and this boolean will be returned as true.&lt;br&gt;&lt;br&gt;Once a listing is fixed, this boolean will no longer be returned.</summary>
         public bool? ListingOnHold { get; set; }
-        /// <summary>The enumeration value returned in this field indicates the status of the listing that is associated with the published offer. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/slr:ListingStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ListingStatus { get; set; }
-#nullable restore
-#else
-        public string ListingStatus { get; set; }
-#endif
+        /// <summary>The enumeration value returned in this field indicates the status of the listing that is associated with the published offer.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.ListingStatusEnum? ListingStatus { get; set; }
         /// <summary>This integer value indicates the quantity of the product that has been sold for the published offer.</summary>
         public int? SoldQuantity { get; set; }
         /// <summary>
@@ -76,7 +70,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             {
                 { "listingId", n => { ListingId = n.GetStringValue(); } },
                 { "listingOnHold", n => { ListingOnHold = n.GetBoolValue(); } },
-                { "listingStatus", n => { ListingStatus = n.GetStringValue(); } },
+                { "listingStatus", n => { ListingStatus = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.ListingStatusEnum>(); } },
                 { "soldQuantity", n => { SoldQuantity = n.GetIntValue(); } },
             };
         }
@@ -89,7 +83,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("listingId", ListingId);
             writer.WriteBoolValue("listingOnHold", ListingOnHold);
-            writer.WriteStringValue("listingStatus", ListingStatus);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.ListingStatusEnum>("listingStatus", ListingStatus);
             writer.WriteIntValue("soldQuantity", SoldQuantity);
             writer.WriteAdditionalData(AdditionalData);
         }

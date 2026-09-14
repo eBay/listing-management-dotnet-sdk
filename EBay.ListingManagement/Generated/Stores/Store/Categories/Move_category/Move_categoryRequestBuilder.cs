@@ -50,9 +50,11 @@ namespace EBay.ListingManagement.Generated.Stores.Store.Categories.Move_category
         /// <summary>
         /// This method is used to move an existing user&apos;s eBay store custom category through an asynchronous request. A successful call returns the &lt;b&gt;getStoreTask&lt;/b&gt; URI in the Location response header. The user calls &lt;b&gt;getStoreTask&lt;/b&gt; to retrieve the status of the move category operation.&lt;br&gt;&lt;br&gt;&lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt; If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.&lt;/p&gt;&lt;/div&gt;
         /// </summary>
-        /// <param name="body">The base request type of the &lt;b&gt;moveStoreCategory&lt;/b&gt; method. It is used to provide the name of the category to be moved and its new location.</param>
+        /// <param name="body">This method is used to move one category of a user&apos;s eBay store. This operation is an asynchronous request. A successful call returns the &lt;b&gt;getStoreTask&lt;/b&gt; URI in the Location response header. The user calls &lt;b&gt;getStoreTask&lt;/b&gt; to retrieve the status of the add category operation.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Stores.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Stores.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task PostAsync(global::EBay.ListingManagement.Generated.Stores.Models.MoveStoreCategoryRequestType body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -64,13 +66,18 @@ namespace EBay.ListingManagement.Generated.Stores.Store.Categories.Move_category
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Stores.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Stores.Models.Error.CreateFromDiscriminatorValue },
+            };
+            await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method is used to move an existing user&apos;s eBay store custom category through an asynchronous request. A successful call returns the &lt;b&gt;getStoreTask&lt;/b&gt; URI in the Location response header. The user calls &lt;b&gt;getStoreTask&lt;/b&gt; to retrieve the status of the move category operation.&lt;br&gt;&lt;br&gt;&lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt; If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.&lt;/p&gt;&lt;/div&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The base request type of the &lt;b&gt;moveStoreCategory&lt;/b&gt; method. It is used to provide the name of the category to be moved and its new location.</param>
+        /// <param name="body">This method is used to move one category of a user&apos;s eBay store. This operation is an asynchronous request. A successful call returns the &lt;b&gt;getStoreTask&lt;/b&gt; URI in the Location response header. The user calls &lt;b&gt;getStoreTask&lt;/b&gt; to retrieve the status of the add category operation.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -84,6 +91,7 @@ namespace EBay.ListingManagement.Generated.Stores.Store.Categories.Move_category
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

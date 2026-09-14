@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.PickupAtLocationAvailability> PickupAtLocationAvailability { get; set; }
 #endif
-        /// <summary>This type is used to specify the total &apos;ship-to-home&apos; quantity of the inventory items that will be available for purchase through one or more published offers.</summary>
+        /// <summary>This container specifies the quantity of the inventory items that are available for a standard purchase, where the item is shipped to the buyer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.ShipToLocationAvailabilityWithAll? ShipToLocationAvailability { get; set; }

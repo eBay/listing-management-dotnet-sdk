@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The first line of the Responsible Person&apos;s street address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 180 characters</summary>
+        /// <summary>The first line of the Responsible Person&apos;s street address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 180 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AddressLine1 { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string AddressLine1 { get; set; }
 #endif
-        /// <summary>The second line of the Responsible Person&apos;s address. This field is not always used, but can be used for secondary address information such as &apos;Suite Number&apos; or &apos;Apt Number&apos;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 180 characters</summary>
+        /// <summary>The second line of the Responsible Person&apos;s address. This field is not always used, but can be used for secondary address information such as &apos;Suite Number&apos; or &apos;Apt Number&apos;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 180 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AddressLine2 { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string AddressLine2 { get; set; }
 #endif
-        /// <summary>The city of the Responsible Person&apos;s street address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 64 characters</summary>
+        /// <summary>The city of the Responsible Person&apos;s street address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 64 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? City { get; set; }
@@ -53,7 +53,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string City { get; set; }
 #endif
-        /// <summary>The name of the Responsible Person or entity.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 100 characters</summary>
+        /// <summary>The name of the Responsible Person or entity.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 100 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CompanyName { get; set; }
@@ -61,7 +61,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string CompanyName { get; set; }
 #endif
-        /// <summary>The contact URL of the Responsible Person or entity.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 250 characters</summary>
+        /// <summary>The contact URL of the Responsible Person or entity.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 250 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ContactUrl { get; set; }
@@ -69,15 +69,9 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string ContactUrl { get; set; }
 #endif
-        /// <summary>This defines the list of valid country codes, adapted from http://www.iso.org/iso/country_codes, ISO 3166-1 country code. List elements take the following form to identify a two-letter code with a short name in English, a three-digit code, and a three-letter code: For example, the entry for Japan includes Japan, 392, JPN. Short codes provide uniform recognition, avoiding language-dependent country names. The number code is helpful where Latin script may be problematic. Not all listed codes are universally recognized as countries, for example: code AQ is Antarctica, 010, ATA For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/inventory/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Country { get; set; }
-#nullable restore
-#else
-        public string Country { get; set; }
-#endif
-        /// <summary>The Responsible Person&apos;s email address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 180 characters</summary>
+        /// <summary>This defines the list of valid country codes, adapted from &lt;a href=&quot;http://www.iso.org/iso/country_codes&quot; target=&quot;_blank&quot;&gt;ISO 3166-1&lt;/a&gt; country codes. List elements take the form of a two-letter code (Alpha-2), a three-letter code (Alpha-3), and  a three-digit code (Numeric). For example, the entry for Japan includes JP, JPN, 392. Short codes provide uniform recognition, avoiding language-dependent country names. The numeric code is helpful where Latin script may be problematic. Not all listed codes are universally recognized as countries. For example, Antarctica is AQ, ATA, 010.</summary>
+        public global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum? Country { get; set; }
+        /// <summary>The Responsible Person&apos;s email address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 180 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Email { get; set; }
@@ -85,7 +79,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string Email { get; set; }
 #endif
-        /// <summary>The Responsible Person&apos;s business phone number.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 64 characters</summary>
+        /// <summary>The Responsible Person&apos;s business phone number.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 64 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Phone { get; set; }
@@ -93,7 +87,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string Phone { get; set; }
 #endif
-        /// <summary>The postal code of the Responsible Person&apos;s street address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 9 characters</summary>
+        /// <summary>The postal code of the Responsible Person&apos;s street address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 9 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PostalCode { get; set; }
@@ -101,7 +95,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string PostalCode { get; set; }
 #endif
-        /// <summary>The state of province of the Responsible Person&apos;s street address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 64 characters</summary>
+        /// <summary>The state of province of the Responsible Person&apos;s street address.&lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 64 characters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? StateOrProvince { get; set; }
@@ -112,10 +106,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>The type(s) associated with the Responsible Person or entity.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Currently, the only supported value is &lt;code&gt;EUResponsiblePerson&lt;/code&gt;.&lt;/span&gt; </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Types { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ResponsiblePersonTypeEnum?>? Types { get; set; }
 #nullable restore
 #else
-        public List<string> Types { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.ResponsiblePersonTypeEnum?> Types { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.ResponsiblePerson"/> and sets the default values.
@@ -147,12 +141,12 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
                 { "city", n => { City = n.GetStringValue(); } },
                 { "companyName", n => { CompanyName = n.GetStringValue(); } },
                 { "contactUrl", n => { ContactUrl = n.GetStringValue(); } },
-                { "country", n => { Country = n.GetStringValue(); } },
+                { "country", n => { Country = n.GetEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum>(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "phone", n => { Phone = n.GetStringValue(); } },
                 { "postalCode", n => { PostalCode = n.GetStringValue(); } },
                 { "stateOrProvince", n => { StateOrProvince = n.GetStringValue(); } },
-                { "types", n => { Types = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "types", n => { Types = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Inventory.Models.ResponsiblePersonTypeEnum>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -167,12 +161,12 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             writer.WriteStringValue("city", City);
             writer.WriteStringValue("companyName", CompanyName);
             writer.WriteStringValue("contactUrl", ContactUrl);
-            writer.WriteStringValue("country", Country);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Inventory.Models.CountryCodeEnum>("country", Country);
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("phone", Phone);
             writer.WriteStringValue("postalCode", PostalCode);
             writer.WriteStringValue("stateOrProvince", StateOrProvince);
-            writer.WriteCollectionOfPrimitiveValues<string>("types", Types);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Inventory.Models.ResponsiblePersonTypeEnum>("types", Types);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

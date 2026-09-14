@@ -40,10 +40,10 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>This comma-separated array defines the days of week for which the specified &lt;b&gt;cutOffTime&lt;/b&gt; is used.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? DayOfWeekEnum { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.DayOfWeekEnum?>? DayOfWeekEnum { get; set; }
 #nullable restore
 #else
-        public List<string> DayOfWeekEnum { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.DayOfWeekEnum?> DayOfWeekEnum { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Inventory.Models.WeeklySchedule"/> and sets the default values.
@@ -71,7 +71,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "cutOffTime", n => { CutOffTime = n.GetStringValue(); } },
-                { "dayOfWeekEnum", n => { DayOfWeekEnum = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "dayOfWeekEnum", n => { DayOfWeekEnum = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Inventory.Models.DayOfWeekEnum>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -82,7 +82,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("cutOffTime", CutOffTime);
-            writer.WriteCollectionOfPrimitiveValues<string>("dayOfWeekEnum", DayOfWeekEnum);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Inventory.Models.DayOfWeekEnum>("dayOfWeekEnum", DayOfWeekEnum);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The creation date of the schedule in hours based on the 24-hour Coordinated Universal Time (UTC) clock.</summary>
+        /// <summary>The creation date of the schedule in hours based on the 24&amp;#8209;hour Coordinated Universal Time (UTC) clock.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CreationDate { get; set; }
@@ -55,15 +55,9 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #endif
         /// <summary>The preferred day of the month to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for monthly schedules. The last day of the month is used for numbers larger than the number of days in the month.</summary>
         public int? PreferredTriggerDayOfMonth { get; set; }
-        /// <summary>The preferred day of the week to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for weekly schedules. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:DayOfWeekEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PreferredTriggerDayOfWeek { get; set; }
-#nullable restore
-#else
-        public string PreferredTriggerDayOfWeek { get; set; }
-#endif
-        /// <summary>The preferred two-digit hour of the day to trigger the schedule. &lt;br /&gt;&lt;br /&gt;&lt;b&gt;Format:&lt;/b&gt; UTC &lt;code&gt;hhZ&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents 11:00 am UTC:&lt;br /&gt;&lt;br /&gt;&lt;code&gt;11Z&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;</summary>
+        /// <summary>The preferred day of the week to trigger the schedule. This field can be used with &lt;strong&gt;preferredTriggerHour&lt;/strong&gt; for weekly schedules.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.DayOfWeekEnum? PreferredTriggerDayOfWeek { get; set; }
+        /// <summary>The preferred two-digit hour of the day to trigger the schedule. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Format:&lt;/strong&gt; UTC &lt;code&gt;hhZ&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;For example, the following represents 11:00 am UTC: &lt;code&gt;11Z&lt;/code&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PreferredTriggerHour { get; set; }
@@ -111,7 +105,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string ScheduleTemplateId { get; set; }
 #endif
-        /// <summary>The schema version of the feedType for the schedule.</summary>
+        /// <summary>The schema version of the &lt;strong&gt;feedType&lt;/strong&gt; for the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SchemaVersion { get; set; }
@@ -119,22 +113,10 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string SchemaVersion { get; set; }
 #endif
-        /// <summary>The enumeration value that indicates the state of the schedule. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:StatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
-        /// <summary>The reason the schedule is inactive. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:StatusReasonEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? StatusReason { get; set; }
-#nullable restore
-#else
-        public string StatusReason { get; set; }
-#endif
+        /// <summary>The enumeration value that indicates the state of the schedule.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.StatusEnum? Status { get; set; }
+        /// <summary>The reason the schedule is inactive.</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.StatusReasonEnum? StatusReason { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Feed.Models.UserScheduleResponse"/> and sets the default values.
         /// </summary>
@@ -164,7 +146,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
                 { "feedType", n => { FeedType = n.GetStringValue(); } },
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetStringValue(); } },
                 { "preferredTriggerDayOfMonth", n => { PreferredTriggerDayOfMonth = n.GetIntValue(); } },
-                { "preferredTriggerDayOfWeek", n => { PreferredTriggerDayOfWeek = n.GetStringValue(); } },
+                { "preferredTriggerDayOfWeek", n => { PreferredTriggerDayOfWeek = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.DayOfWeekEnum>(); } },
                 { "preferredTriggerHour", n => { PreferredTriggerHour = n.GetStringValue(); } },
                 { "scheduleEndDate", n => { ScheduleEndDate = n.GetStringValue(); } },
                 { "scheduleId", n => { ScheduleId = n.GetStringValue(); } },
@@ -172,8 +154,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
                 { "scheduleStartDate", n => { ScheduleStartDate = n.GetStringValue(); } },
                 { "scheduleTemplateId", n => { ScheduleTemplateId = n.GetStringValue(); } },
                 { "schemaVersion", n => { SchemaVersion = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetStringValue(); } },
-                { "statusReason", n => { StatusReason = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.StatusEnum>(); } },
+                { "statusReason", n => { StatusReason = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.StatusReasonEnum>(); } },
             };
         }
         /// <summary>
@@ -187,7 +169,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             writer.WriteStringValue("feedType", FeedType);
             writer.WriteStringValue("lastModifiedDate", LastModifiedDate);
             writer.WriteIntValue("preferredTriggerDayOfMonth", PreferredTriggerDayOfMonth);
-            writer.WriteStringValue("preferredTriggerDayOfWeek", PreferredTriggerDayOfWeek);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.DayOfWeekEnum>("preferredTriggerDayOfWeek", PreferredTriggerDayOfWeek);
             writer.WriteStringValue("preferredTriggerHour", PreferredTriggerHour);
             writer.WriteStringValue("scheduleEndDate", ScheduleEndDate);
             writer.WriteStringValue("scheduleId", ScheduleId);
@@ -195,8 +177,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             writer.WriteStringValue("scheduleStartDate", ScheduleStartDate);
             writer.WriteStringValue("scheduleTemplateId", ScheduleTemplateId);
             writer.WriteStringValue("schemaVersion", SchemaVersion);
-            writer.WriteStringValue("status", Status);
-            writer.WriteStringValue("statusReason", StatusReason);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.StatusEnum>("status", Status);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.StatusReasonEnum>("statusReason", StatusReason);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

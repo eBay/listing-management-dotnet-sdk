@@ -48,11 +48,13 @@ namespace EBay.ListingManagement.Generated.Inventory.Offer.Withdraw_by_inventory
         {
         }
         /// <summary>
-        /// This call is used to end a multiple-variation eBay listing that is associated with the specified inventory item group. This call only ends multiple-variation eBay listing associated with the inventory item group but does not delete the inventory item group object. Similarly, this call also does not delete any of the offers associated with the inventory item group, but instead all of these offers go into the unpublished state. If the seller wanted to relist the multiple-variation eBay listing, they could use the &lt;strong&gt;publishOfferByInventoryItemGroup&lt;/strong&gt; method.
+        /// This call is used to end a multiple-variation eBay listing that is associated with the specified inventory item group. This call only ends multiple-variation eBay listing associated with the inventory item group but does not delete the inventory item group object. Similarly, this call also does not delete any of the offers associated with the inventory item group, but instead all of these offers go into the unpublished state. If the seller wanted to relist the multiple-variation eBay listing, they could use the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-publishofferbyinventoryitemgroup&quot; target=&quot;_blank&quot;&gt;publishOfferByInventoryItemGroup&lt;/a&gt; method.
         /// </summary>
-        /// <param name="body">This type is used by the base request of the &lt;strong&gt;WithdrawByInventoryItemGroup&lt;/strong&gt; method, which is used to end a multiple-variation listing.</param>
+        /// <param name="body">The base request of the &lt;strong&gt;withdrawOfferByInventoryItemGroup&lt;/strong&gt; call.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.ListingManagement.Generated.Inventory.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task PostAsync(global::EBay.ListingManagement.Generated.Inventory.Models.WithdrawByInventoryItemGroupRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -64,13 +66,18 @@ namespace EBay.ListingManagement.Generated.Inventory.Offer.Withdraw_by_inventory
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+                { "500", global::EBay.ListingManagement.Generated.Inventory.Models.Error.CreateFromDiscriminatorValue },
+            };
+            await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This call is used to end a multiple-variation eBay listing that is associated with the specified inventory item group. This call only ends multiple-variation eBay listing associated with the inventory item group but does not delete the inventory item group object. Similarly, this call also does not delete any of the offers associated with the inventory item group, but instead all of these offers go into the unpublished state. If the seller wanted to relist the multiple-variation eBay listing, they could use the &lt;strong&gt;publishOfferByInventoryItemGroup&lt;/strong&gt; method.
+        /// This call is used to end a multiple-variation eBay listing that is associated with the specified inventory item group. This call only ends multiple-variation eBay listing associated with the inventory item group but does not delete the inventory item group object. Similarly, this call also does not delete any of the offers associated with the inventory item group, but instead all of these offers go into the unpublished state. If the seller wanted to relist the multiple-variation eBay listing, they could use the &lt;a href=&quot;/develop/api/sell/inventory_api#sell-inventory_api-offer-publishofferbyinventoryitemgroup&quot; target=&quot;_blank&quot;&gt;publishOfferByInventoryItemGroup&lt;/a&gt; method.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">This type is used by the base request of the &lt;strong&gt;WithdrawByInventoryItemGroup&lt;/strong&gt; method, which is used to end a multiple-variation listing.</param>
+        /// <param name="body">The base request of the &lt;strong&gt;withdrawOfferByInventoryItemGroup&lt;/strong&gt; call.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -84,6 +91,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Offer.Withdraw_by_inventory
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

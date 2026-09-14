@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used to provide shipping specification details, such as the weekly cut-off schedule for order handling and cut-off override(s), for a fulfillment center location. </summary>
+        /// <summary>This container is used to update information about a fulfillment center&apos;s shipping specifications, such as the weekly cut-off time schedule for order handling and any cut-off overrides.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.FulfillmentCenterSpecifications? FulfillmentCenterSpecifications { get; set; }
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.FulfillmentCenterSpecifications FulfillmentCenterSpecifications { get; set; }
 #endif
-        /// <summary>This type is used by the &lt;b&gt;createInventoryLocation&lt;/b&gt; call to provide an full or partial address of an inventory location.</summary>
+        /// <summary>This container is used to add any addition physical address and geographical coordinate information for a warehouse, store, or fulfillment center inventory location.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; For warehouse and store inventory locations, address fields can be updated any number of times. For fulfilment center locations, address fields cannot be updated. However, if any address fields were omitted during the &lt;b&gt;createInventoryLocation&lt;/b&gt; call, they can be added through this method.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; When updating a warehouse location to a fulfillment center, sellers can update any of the address fields a single time during the same call used to make this update. After this, they can no longer be updated.&lt;/span&gt; </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.LocationDetails? Location { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.LocationDetails Location { get; set; }
 #endif
-        /// <summary>This text field is used by the merchant to provide/update additional information about an inventory location. Whatever text is passed in this field will replace the current text string defined for this field. If the text will not change, the same text should be passed in once again. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 256</summary>
+        /// <summary>This text field is used by the merchant to provide/update additional information about an inventory location. Whatever text is passed in this field will replace the current text string defined for this field. If the text will not change, the same text should be passed in once again. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 256</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LocationAdditionalInformation { get; set; }
@@ -53,7 +53,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string LocationAdditionalInformation { get; set; }
 #endif
-        /// <summary>This text field is generally used by the merchant to provide/update special pickup instructions for a store inventory location. Although this field is optional, it is recommended that merchants provide this field to create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders. If this field is not included in the call request payload, eBay will use the default pickup instructions contained in the merchant&apos;s profile (if available). Whatever text is passed in this field will replace the current text string defined for this field. If the text will not change, the same text should be passed in once again. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 1000</summary>
+        /// <summary>This text field is generally used by the merchant to provide/update special pickup instructions for a store inventory location. Although this field is optional, it is recommended that merchants provide this field to create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders. If this field is not included in the call request payload, eBay will use the default pickup instructions contained in the merchant&apos;s profile (if available). Whatever text is passed in this field will replace the current text string defined for this field. If the text will not change, the same text should be passed in once again. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 1000</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LocationInstructions { get; set; }
@@ -64,12 +64,12 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
         /// <summary>This container is used to update the location type(s) associated with an inventory location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? LocationTypes { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum?>? LocationTypes { get; set; }
 #nullable restore
 #else
-        public List<string> LocationTypes { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum?> LocationTypes { get; set; }
 #endif
-        /// <summary>This text field is used by the merchant to provide/update the Website address (URL) associated with the inventory location. The URL that is passed in this field will replace any other URL that may be defined for this field. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 512</summary>
+        /// <summary>This text field is used by the merchant to provide/update the Website address (URL) associated with the inventory location. The URL that is passed in this field will replace any other URL that may be defined for this field. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 512</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LocationWebUrl { get; set; }
@@ -93,7 +93,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours> OperatingHours { get; set; }
 #endif
-        /// <summary>This text field is used by the merchant to provide/update the phone number for the inventory location. The phone number that is passed in this field will replace any other phone number that may be defined for this field. &lt;br&gt;&lt;br&gt;&lt;b&gt;Max length&lt;/b&gt;: 36</summary>
+        /// <summary>This text field is used by the merchant to provide/update the phone number for the inventory location. The phone number that is passed in this field will replace any other phone number that may be defined for this field. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 36</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Phone { get; set; }
@@ -146,7 +146,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
                 { "location", n => { Location = n.GetObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.LocationDetails>(global::EBay.ListingManagement.Generated.Inventory.Models.LocationDetails.CreateFromDiscriminatorValue); } },
                 { "locationAdditionalInformation", n => { LocationAdditionalInformation = n.GetStringValue(); } },
                 { "locationInstructions", n => { LocationInstructions = n.GetStringValue(); } },
-                { "locationTypes", n => { LocationTypes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "locationTypes", n => { LocationTypes = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum>()?.AsList(); } },
                 { "locationWebUrl", n => { LocationWebUrl = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "operatingHours", n => { OperatingHours = n.GetCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours>(global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -166,7 +166,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Inventory.Models.LocationDetails>("location", Location);
             writer.WriteStringValue("locationAdditionalInformation", LocationAdditionalInformation);
             writer.WriteStringValue("locationInstructions", LocationInstructions);
-            writer.WriteCollectionOfPrimitiveValues<string>("locationTypes", LocationTypes);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum>("locationTypes", LocationTypes);
             writer.WriteStringValue("locationWebUrl", LocationWebUrl);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours>("operatingHours", OperatingHours);

@@ -32,10 +32,10 @@ namespace EBay.ListingManagement.Generated.Media.Models
         /// <summary>The reason(s) why the specified video was blocked by moderators.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? RejectReasons { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.RejectReasonEnum?>? RejectReasons { get; set; }
 #nullable restore
 #else
-        public List<string> RejectReasons { get; set; }
+        public List<global::EBay.ListingManagement.Generated.Media.Models.RejectReasonEnum?> RejectReasons { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.ListingManagement.Generated.Media.Models.Moderation"/> and sets the default values.
@@ -62,7 +62,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "rejectReasons", n => { RejectReasons = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "rejectReasons", n => { RejectReasons = n.GetCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.RejectReasonEnum>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -72,7 +72,7 @@ namespace EBay.ListingManagement.Generated.Media.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("rejectReasons", RejectReasons);
+            writer.WriteCollectionOfEnumValues<global::EBay.ListingManagement.Generated.Media.Models.RejectReasonEnum>("rejectReasons", RejectReasons);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

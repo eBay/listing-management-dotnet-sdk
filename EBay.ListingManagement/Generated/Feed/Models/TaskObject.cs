@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The timestamp when the task went into the &lt;code&gt;COMPLETED&lt;/code&gt; or &lt;code&gt;COMPLETED_WITH_ERROR&lt;/code&gt; state. This state means that eBay has compiled the report for the seller based on the seller’s filter criteria, and the seller can run a &lt;strong&gt;getResultFile&lt;/strong&gt; call to download the report.</summary>
+        /// <summary>The timestamp when the task went into the &lt;code&gt;COMPLETED&lt;/code&gt; or &lt;code&gt;COMPLETED_WITH_ERROR&lt;/code&gt; state. This state means that eBay has compiled the report for the seller based on the seller&apos;s filter criteria, and the seller can run a &lt;strong&gt;getResultFile&lt;/strong&gt; call to download the report.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CompletionDate { get; set; }
@@ -45,7 +45,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string CreationDate { get; set; }
 #endif
-        /// <summary>The path to the call URI used to retrieve the task. This field points to the GetOrderTask URI if the task is for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt; or will be null if this task is for &lt;code&gt;LMS_ORDER_ACK&lt;/code&gt;.</summary>
+        /// <summary>The path to the call URI used to retrieve the task. This field points to the &lt;strong&gt;GetOrderTask&lt;/strong&gt; URI if the task is for &lt;code&gt;LMS_ORDER_REPORT&lt;/code&gt;, or it will be null if this task is for &lt;code&gt;LMS_ORDER_ACK&lt;/code&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DetailHref { get; set; }
@@ -69,14 +69,8 @@ namespace EBay.ListingManagement.Generated.Feed.Models
 #else
         public string SchemaVersion { get; set; }
 #endif
-        /// <summary>The enumeration value that indicates the state of the task that was submitted in the request. See &lt;strong&gt;FeedStatusEnum&lt;/strong&gt; for information. &lt;p&gt;The values &lt;code&gt;COMPLETED &lt;/code&gt;and&lt;code&gt; COMPLETED_WITH_ERROR&lt;/code&gt; indicate the Order Report file is ready to download.&lt;/p&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/feed/types/api:FeedStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
+        /// <summary>The enumeration value that indicates the state of the task that was submitted in the request. See &lt;strong&gt;FeedStatusEnum&lt;/strong&gt; for information. &lt;p&gt;The values &lt;code&gt;COMPLETED&lt;/code&gt; and &lt;code&gt;COMPLETED_WITH_ERROR&lt;/code&gt; indicate the Order Report file is ready to download.&lt;/p&gt;</summary>
+        public global::EBay.ListingManagement.Generated.Feed.Models.FeedStatusEnum? Status { get; set; }
         /// <summary>The ID of the task that was submitted in the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -123,7 +117,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
                 { "detailHref", n => { DetailHref = n.GetStringValue(); } },
                 { "feedType", n => { FeedType = n.GetStringValue(); } },
                 { "schemaVersion", n => { SchemaVersion = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.FeedStatusEnum>(); } },
                 { "taskId", n => { TaskId = n.GetStringValue(); } },
                 { "uploadSummary", n => { UploadSummary = n.GetObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.UploadSummary>(global::EBay.ListingManagement.Generated.Feed.Models.UploadSummary.CreateFromDiscriminatorValue); } },
             };
@@ -140,7 +134,7 @@ namespace EBay.ListingManagement.Generated.Feed.Models
             writer.WriteStringValue("detailHref", DetailHref);
             writer.WriteStringValue("feedType", FeedType);
             writer.WriteStringValue("schemaVersion", SchemaVersion);
-            writer.WriteStringValue("status", Status);
+            writer.WriteEnumValue<global::EBay.ListingManagement.Generated.Feed.Models.FeedStatusEnum>("status", Status);
             writer.WriteStringValue("taskId", TaskId);
             writer.WriteObjectValue<global::EBay.ListingManagement.Generated.Feed.Models.UploadSummary>("uploadSummary", UploadSummary);
             writer.WriteAdditionalData(AdditionalData);

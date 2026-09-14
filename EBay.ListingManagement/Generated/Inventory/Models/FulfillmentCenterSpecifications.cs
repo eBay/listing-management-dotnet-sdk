@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This type is used by the &lt;b&gt;createInventoryLocation&lt;/b&gt; call to specify cut-off time(s) for an inventory location, as well as any overrides for these times.</summary>
+        /// <summary>&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; This container only applies to listings with same-day handling.&lt;/span&gt;&lt;br&gt;This container specifies cut-off time(s) for order handling (and optionally cut-off overrides) at a fulfillment center location.&lt;br&gt;&lt;br&gt;For example, if the cut-off time for order handling is &lt;code&gt;14:00&lt;/code&gt;, any orders made after this time will be handled on the next available business day.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; Shipping cut-off times must be specified if one of the &lt;b&gt;locationTypes&lt;/b&gt; of the inventory location is &lt;code&gt;FULFILLMENT_CENTER&lt;/code&gt;.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.SameDayShippingCutOffTimes? SameDayShippingCutOffTimes { get; set; }
