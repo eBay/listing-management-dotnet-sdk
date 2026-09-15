@@ -1,50 +1,54 @@
 # ChangeLog
 
-## 2.0.0 (09/14/2026)
+## 0.3.0 (09/14/2026)
 
-**Breaking changes**
-- The following operations changed signature on `FeedClient`:
-  - `GetCustomerServiceMetricTasksAsync`: `(string? dateRange, string? feedType, string? limit, string? lookBackDays, string? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` → `(string feedType, string? dateRange, int? limit, int? lookBackDays, int? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)`
-  - `GetInventoryTasksAsync`: `(string?, string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, string?, int?, string?, int?, int?, string?, RequestOptions?, CancellationToken)`
-  - `GetOrderTasksAsync`: `(string?, string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, int?, int?, int?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetSchedulesAsync`: `(string, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, int?, int?, string?, RequestOptions?, CancellationToken)`
-  - `GetScheduleTemplatesAsync`: `(string, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string, int?, int?, string?, RequestOptions?, CancellationToken)`
-  - `GetTasksAsync`: `(string?, string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, int?, int?, int?, string?, string?, RequestOptions?, CancellationToken)`
-- The following operations changed signature on `InventoryClient`:
-  - `GetOffersAsync`: `(string? format, string? limit, string? marketplaceId, string? offset, string? sku, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` → `(string sku, string? format, string? limit, string? marketplaceId, string? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)`
-- The following operations changed signature on `MediaClient`:
-  - `UploadVideoAsync`: `(string videoId, Stream body, string? contentLength, string? contentRange, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` → `(string videoId, string? contentLength, string? contentRange, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)`
+### Breaking changes
 
-- The following operations were added to `MediaClient`:
-  - `DownloadPostOrderDocumentAsync(string, string?, RequestOptions?, CancellationToken)`
-  - `RemovePostOrderDocumentAsync(string, string?, RequestOptions?, CancellationToken)`
-  - `UploadPostOrderDocumentAsync(Stream, string, string?, RequestOptions?, CancellationToken)`
+#### Renamed operations
 
-## 1.0.0 (09/14/2026)
+| Client | Previous | Current |
+| --- | --- | --- |
+| `ListingGraphQLClient` | `GetSellerListingsAsync` | `SellerListingsAsync` |
+| `ListingGraphQLClient` | `GetSellerListingSearchAsync` | `SellerListingSearchAsync` |
+| `ListingGraphQLClient` | `GetVideosByIdsAsync` | `VideosByIdsAsync` |
 
-**Breaking changes**
-- The following operations were removed from `ListingGraphQLClient`:
-  - `GetSellerListingsAsync`
-  - `GetSellerListingSearchAsync`
-  - `GetVideosByIdsAsync`
-- The following operations changed signature on `FeedClient`:
-  - `CreateCustomerServiceMetricTaskAsync`: `(CreateServiceMetricsTaskRequest, string?, RequestOptions?, CancellationToken)` → `(string, CreateServiceMetricsTaskRequest, string?, RequestOptions?, CancellationToken)`
-  - `CreateTaskAsync`: `(CreateTaskRequest, string?, RequestOptions?, CancellationToken)` → `(string, CreateTaskRequest, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetCustomerServiceMetricTasksAsync`: `(Action<RequestConfiguration<Customer_service_metric_taskRequestBuilder.Customer_service_metric_taskRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetInventoryTasksAsync`: `(Action<RequestConfiguration<Inventory_taskRequestBuilder.Inventory_taskRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetOrderTasksAsync`: `(Action<RequestConfiguration<Order_taskRequestBuilder.Order_taskRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetSchedulesAsync`: `(Action<RequestConfiguration<ScheduleRequestBuilder.ScheduleRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetScheduleTemplatesAsync`: `(Action<RequestConfiguration<Schedule_templateRequestBuilder.Schedule_templateRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string, string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetTasksAsync`: `(Action<RequestConfiguration<TaskRequestBuilder.TaskRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-- The following operations changed signature on `InventoryClient`:
-  - `GetInventoryItemsAsync`: `(Action<RequestConfiguration<Inventory_itemRequestBuilder.Inventory_itemRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetInventoryLocationsAsync`: `(Action<RequestConfiguration<LocationRequestBuilder.LocationRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, string?, RequestOptions?, CancellationToken)`
-  - `GetOffersAsync`: `(Action<RequestConfiguration<OfferRequestBuilder.OfferRequestBuilderGetQueryParameters>>?, string?, RequestOptions?, CancellationToken)` → `(string?, string?, string?, string?, string?, string?, RequestOptions?, CancellationToken)`
-- The following operations changed signature on `MediaClient`:
-  - `UploadVideoAsync`: `(string, Stream, string?, RequestOptions?, CancellationToken)` → `(string, Stream, string?, string?, string?, RequestOptions?, CancellationToken)`
+#### Changed signatures
 
-- The following operations were added to `ListingGraphQLClient`:
-  - `SellerListingsAsync`
-  - `SellerListingSearchAsync`
-  - `UserSavedSearchesAsync`
-  - `VideosByIdsAsync`
+`FeedClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `CreateCustomerServiceMetricTaskAsync` | `(CreateServiceMetricsTaskRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string acceptLanguage, CreateServiceMetricsTaskRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `CreateTaskAsync` | `(CreateTaskRequest body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string xEBAYCMARKETPLACEID, CreateTaskRequest body, string? acceptLanguage, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetCustomerServiceMetricTasksAsync` | `(Action<RequestConfiguration<Customer_service_metric_taskRequestBuilder.Customer_service_metric_taskRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string feedType, string? dateRange, int? limit, int? lookBackDays, int? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetInventoryTasksAsync` | `(Action<RequestConfiguration<Inventory_taskRequestBuilder.Inventory_taskRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string feedType, string? scheduleId, int? lookBackDays, string? dateRange, int? limit, int? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetOrderTasksAsync` | `(Action<RequestConfiguration<Order_taskRequestBuilder.Order_taskRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string? dateRange, string? feedType, int? limit, int? lookBackDays, int? offset, string? scheduleId, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetSchedulesAsync` | `(Action<RequestConfiguration<ScheduleRequestBuilder.ScheduleRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string feedType, int? limit, int? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetScheduleTemplatesAsync` | `(Action<RequestConfiguration<Schedule_templateRequestBuilder.Schedule_templateRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string feedType, int? limit, int? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetTasksAsync` | `(Action<RequestConfiguration<TaskRequestBuilder.TaskRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string? dateRange, string? feedType, int? limit, int? lookBackDays, int? offset, string? scheduleId, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+
+`InventoryClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `GetInventoryItemsAsync` | `(Action<RequestConfiguration<Inventory_itemRequestBuilder.Inventory_itemRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string? limit, string? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetInventoryLocationsAsync` | `(Action<RequestConfiguration<LocationRequestBuilder.LocationRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string? limit, string? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+| `GetOffersAsync` | `(Action<RequestConfiguration<OfferRequestBuilder.OfferRequestBuilderGetQueryParameters>>? configure, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string sku, string? format, string? limit, string? marketplaceId, string? offset, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+
+`MediaClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `UploadVideoAsync` | `(string videoId, Stream body, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `(string videoId, string? contentLength, string? contentRange, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+
+### Added
+
+`ListingGraphQLClient`:
+
+- `UserSavedSearchesAsync`
+
+`MediaClient`:
+
+- `DownloadPostOrderDocumentAsync(string documentId, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)`
+- `RemovePostOrderDocumentAsync(string documentId, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)`
+- `UploadPostOrderDocumentAsync(Stream fileContent, string fileName, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)`
