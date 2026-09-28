@@ -4,7 +4,7 @@ A .NET SDK for eBay seller listing management. Wraps four REST APIs (Kiota-gener
 
 ## Target framework
 
-`net10.0`
+`net8.0`, `net9.0`, and `net10.0`
 
 ## What's included
 
