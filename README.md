@@ -84,7 +84,7 @@ var config = new ListingManagementConfiguration
     FeedBaseUrl      = "https://api.sandbox.ebay.com/sell/feed/v1",
     MediaBaseUrl     = "https://apim.sandbox.ebay.com/commerce/media/v1_beta",
     StoresBaseUrl    = "https://api.sandbox.ebay.com/sell/stores/v1",
-    GraphQLBaseUrl   = "https://api.sandbox.ebay.com/graphql",
+    GraphQLBaseUrl   = "https://graphqlapi.sandbox.ebay.com/graphql",
 };
 ```
 

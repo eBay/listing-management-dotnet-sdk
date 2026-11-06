@@ -288,7 +288,7 @@ public sealed class MediaClient
     /// <b>Note: </b>After a document is uploaded (but not yet published), its status is <b>SUBMITTED</b>. Once its identifier is linked to a post‑order entity through an eBay GraphQL mutation, the status changes to <b>PUBLISHED</b>. A post-order entity is part of eBay's order management for activities after purchase (such as returns).
     /// Important! "&gt;<b>Important! </b>The document must be in the <b>SUBMITTED</b> or <b>PUBLISHED</b> state to be downloadable. All documents (published or submitted) expire and become inaccessible after their expiration date.
     /// </summary>
-    public Task DownloadPostOrderDocumentAsync(
+    public Task<Stream?> DownloadPostOrderDocumentAsync(
         string documentId,
         string? accessToken = null,
         RequestOptions? requestOptions = null,

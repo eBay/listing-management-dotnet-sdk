@@ -108,7 +108,9 @@ internal static class RestInvocation
         string fileName,
         CancellationToken ct)
     {
-        using var multipart = new MultipartFormDataContent();
+        // Not disposed: disposing the multipart content would dispose its StreamContent and close
+        // fileContent, which belongs to the caller. It holds nothing else that needs disposing.
+        var multipart = new MultipartFormDataContent();
         multipart.Add(new StreamContent(fileContent), partName, fileName);
         var memStream = new MemoryStream();
 #if NETFRAMEWORK
