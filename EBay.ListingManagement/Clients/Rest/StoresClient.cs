@@ -53,7 +53,7 @@ public sealed class StoresClient
     /// <summary>
     /// This method is used to add a single new custom category to a user's eBay store through an asynchronous request. A successful call returns the <b>getStoreTask</b> URI in the Location response header. Call <b>getStoreTask</b> (or <b>getStoreTasks</b>) method to retrieve the status of the add category operation.
     /// <b>Note:</b> Three levels of store categories are supported.
-    /// Important! </b>"&gt;<b>Important!</b> If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.
+    /// Important! "&gt;<b>Important!</b> If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.
     /// </summary>
     public Task AddStoreCategoryAsync(
         AddStoreCategoryRequestType body,
@@ -87,7 +87,7 @@ public sealed class StoresClient
 
     /// <summary>
     /// This method is used to delete one custom category of a user's eBay store through an asynchronous request. A successful call returns the <b>getStoreTask</b> URI in the Location response header. Call <b>getStoreTask</b> (or <b>getStoreTasks</b>) method to retrieve the status of the delete category operation.
-    /// Important! </b>"&gt;<b>Important!</b> If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.
+    /// Important! "&gt;<b>Important!</b> If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.
     /// </summary>
     public Task DeleteStoreCategoryAsync(
         string categoryId,
@@ -151,7 +151,7 @@ public sealed class StoresClient
 
     /// <summary>
     /// This method is used to move an existing user's eBay store custom category through an asynchronous request. A successful call returns the <b>getStoreTask</b> URI in the Location response header. The user calls <b>getStoreTask</b> to retrieve the status of the move category operation.
-    /// Important! </b>"&gt;<b>Important!</b> If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.
+    /// Important! "&gt;<b>Important!</b> If you initiate a category change, you cannot make additional category changes until the previous change request has completed. Use getStoreTask (or getStoreTasks) method to get latest status of your last request.
     /// </summary>
     public Task MoveStoreCategoryAsync(
         MoveStoreCategoryRequestType body,

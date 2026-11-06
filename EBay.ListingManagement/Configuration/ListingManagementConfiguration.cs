@@ -66,7 +66,7 @@ public sealed class ListingManagementConfiguration
     public bool DiagnosticLogging { get; set; }
 
     /// <summary>Timeout applied to all HTTP requests. Defaults to 30 seconds.</summary>
-    public TimeSpan HttpTimeout { get; init; } = TimeSpan.FromSeconds(30);
+    public TimeSpan HttpTimeout { get; set; } = TimeSpan.FromSeconds(30);
 
     /// <summary>Default headers applied to every REST request. Per-call RequestOptions override these.</summary>
     public RequestOptions DefaultRequestOptions { get; set; } = new();
@@ -80,12 +80,52 @@ public sealed class ListingManagementConfiguration
         _ => throw new ArgumentOutOfRangeException(nameof(apiId), apiId, "Unknown REST API.")
     };
 
-    internal static IEnumerable<string> AllowedHosts =>
-    [
+    /// <summary>eBay hosts that receive the access token by default.</summary>
+    public static IReadOnlyList<string> DefaultAllowedHosts { get; } = Array.AsReadOnly(new[]
+    {
         "api.ebay.com",
+        "api.sandbox.ebay.com",
         "apim.ebay.com",
-        "apiz.ebay.com"
-    ];
+        "apim.sandbox.ebay.com",
+        "apiz.ebay.com",
+        "apiz.sandbox.ebay.com"
+    });
+
+    /// <summary>
+    /// Additional hosts the SDK trusts with the access token, for example <c>api.sandbox.ebay.com</c>.
+    /// Every configured base URL must use a host from <see cref="DefaultAllowedHosts"/> or this list;
+    /// the client constructor throws otherwise. Requests to any other host never carry the token.
+    /// </summary>
+    public IList<string> AllowedHosts { get; set; } = new List<string>();
+
+    internal ISet<string> TrustedHosts() =>
+        new HashSet<string>(DefaultAllowedHosts.Concat(AllowedHosts ?? new List<string>()), StringComparer.OrdinalIgnoreCase);
+
+    internal bool IsTrustedHost(Uri? uri) =>
+        uri is not null
+        && string.Equals(uri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase)
+        && TrustedHosts().Contains(uri.Host);
+
+    internal void ValidateTrustedHosts()
+    {
+        var trusted = TrustedHosts();
+        foreach (var (name, url) in new (string Name, string Url)[]
+        {
+            ("FeedBaseUrl", FeedBaseUrl),
+            ("InventoryBaseUrl", InventoryBaseUrl),
+            ("MediaBaseUrl", MediaBaseUrl),
+            ("StoresBaseUrl", StoresBaseUrl),
+            ("GraphQLBaseUrl", GraphQLBaseUrl)
+        })
+        {
+            var host = new Uri(url).Host;
+            if (!trusted.Contains(host))
+            {
+                throw new InvalidOperationException(
+                    $"{name} uses host '{host}', which is not trusted with the access token. Add it to ListingManagementConfiguration.AllowedHosts.");
+            }
+        }
+    }
 
     private static string RequireHttps(string value)
     {

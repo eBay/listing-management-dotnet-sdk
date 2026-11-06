@@ -88,7 +88,7 @@ public sealed class FeedClient
     /// <b>Note:</b> The scope depends on the feed type. An error message results when an unsupported scope or feed type is specified.
     /// The following contains this method's authorization scope and its corresponding feed type:
     /// - https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_REPORT
-    /// For details about how this method is used, see <see href="/api-docs/sell/static/feed/general-feed-tasks.html">General feed types</see> in the Selling Integration Guide.
+    /// For details about how this method is used, see <see href="https://developer.ebay.com/api-docs/sell/static/feed/general-feed-tasks.html">General feed types</see> in the Selling Integration Guide.
     /// <b>Note:</b> At this time, the <b>createOrderTask</b> method only supports order creation date filters and not modified order date filters. Do not include the <b>modifiedDateRange</b> filter in your request payload.
     /// </summary>
     public Task CreateOrderTaskAsync(
@@ -106,7 +106,7 @@ public sealed class FeedClient
 
     /// <summary>
     /// This method retrieves the task details and status of the specified task. The input is <b>task_id</b>.
-    /// For details about how this method is used, see <see href="/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
+    /// For details about how this method is used, see <see href="https://developer.ebay.com/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
     /// </summary>
     public Task<OrderTask?> GetOrderTaskAsync(
         string taskId,
@@ -404,11 +404,11 @@ public sealed class FeedClient
 
     /// <summary>
     /// This method creates an upload task or a download task without filter criteria. When using this method, specify the <b>feedType</b> and the feed file <b> schemaVersion</b>. The feed type specified sets the task as a download or an upload task.
-    /// For details about the upload and download flows, see <see href="/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
+    /// For details about the upload and download flows, see <see href="https://developer.ebay.com/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
     /// <b>Note:</b> The scope depends on the feed type. An error message results when an unsupported scope or feed type is specified.
     /// The following list contains this method's authorization scopes and their corresponding feed types:
-    /// - https://api.ebay.com/oauth/api_scope/sell.inventory: See <see href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available">LMS FeedTypes</see>
-    /// - https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for upload tasks). Also see <see href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available">LMS FeedTypes</see>
+    /// - https://api.ebay.com/oauth/api_scope/sell.inventory: See <see href="https://developer.ebay.com/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available">LMS FeedTypes</see>
+    /// - https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for upload tasks). Also see <see href="https://developer.ebay.com/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Available">LMS FeedTypes</see>
     /// - https://api.ebay.com/oauth/api_scope/sell.marketing: None*
     /// - https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly: None*
     /// * Reserved for future release
@@ -435,7 +435,7 @@ public sealed class FeedClient
 
     /// <summary>
     /// This method downloads a file previously uploaded using <b>uploadFile</b>. Specify the <b>task_id</b> from the <b>uploadFile</b> call.
-    /// <b>Note:</b> With respect to LMS, this method applies to all feed types except <c>LMS_ORDER_REPORT</c> and <c>LMS_ACTIVE_INVENTORY_REPORT</c>. See <see href="/api-docs/sell/static/feed/lms-feeds.html">LMS API Feeds</see> in the Selling Integration Guide.
+    /// <b>Note:</b> With respect to LMS, this method applies to all feed types except <c>LMS_ORDER_REPORT</c> and <c>LMS_ACTIVE_INVENTORY_REPORT</c>. See <see href="https://developer.ebay.com/api-docs/sell/static/feed/lms-feeds.html">LMS API Feeds</see> in the Selling Integration Guide.
     /// </summary>
     public Task GetInputFileAsync(
         string taskId,
@@ -452,7 +452,7 @@ public sealed class FeedClient
 
     /// <summary>
     /// This method retrieves the generated file that is associated with the specified task ID. The response of this call is a compressed or uncompressed CSV, XML, or JSON file, with the applicable file extension (for example: csv.gz).
-    /// For details about how this method is used, see <see href="/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
+    /// For details about how this method is used, see <see href="https://developer.ebay.com/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
     /// <b>Note:</b> The status of the task to retrieve must be in the <c>COMPLETED</c> or <c>COMPLETED_WITH_ERROR</c> state before this method can retrieve the file. You can use the <b>getTask</b> or <b>getTasks</b> method to retrieve the status of the task.
     /// </summary>
     public Task GetResultFileAsync(
@@ -470,7 +470,7 @@ public sealed class FeedClient
 
     /// <summary>
     /// This method retrieves the details and status of the specified task. The input is <b>task_id</b>.
-    /// For details of how this method is used, see <see href="/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
+    /// For details of how this method is used, see <see href="https://developer.ebay.com/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
     /// </summary>
     public Task<TaskObject?> GetTaskAsync(
         string taskId,
@@ -489,14 +489,14 @@ public sealed class FeedClient
     /// This method associates the specified file with the specified task ID and uploads the input file. After the file has been uploaded, the processing of the file begins.
     /// Reports often take time to generate and it's common for this method to return an HTTP status of 202, which indicates the report is being generated. Use the <b>getTask</b> with the task ID or <b>getTasks</b> to determine the status of a report.
     /// The status flow is <c>QUEUED</c> &gt; <c>IN_PROCESS</c> &gt; <c>COMPLETED</c> or <c>COMPLETED_WITH_ERROR</c>. When the status is <c>COMPLETED</c> or <c>COMPLETED_WITH_ERROR</c>, this indicates the file has been processed and the order report can be downloaded. If there are errors, they will be indicated in the report file.
-    /// For details of how this method is used in the upload flow, see <see href="/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
+    /// For details of how this method is used in the upload flow, see <see href="https://developer.ebay.com/api-docs/sell/static/orders/generating-and-retrieving-order-reports.html">Working with Order Feeds</see> in the Selling Integration Guide.
     /// This call does not have a JSON Request payload but uploads the file as form-data. For example:
     /// fileName: "AddFixedPriceItem_Macbook.xml"
     /// name: "file"
     /// type: "form-data"
     /// file: @"/C:/Users/.../AddFixedPriceItem_Macbook.7z"
     /// See <b>Samples</b> for information.
-    /// <b>Note:</b> This method applies to all <see href="/api-docs/sell/static/feed/fx-feeds-quick-reference.html#availabl">Seller Hub feed types</see>, and to all <see href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl">LMS feed types</see> except <c>LMS_ORDER_REPORT</c> and <c>LMS_ACTIVE_INVENTORY_REPORT</c>.
+    /// <b>Note:</b> This method applies to all <see href="https://developer.ebay.com/api-docs/sell/static/feed/fx-feeds-quick-reference.html#availabl">Seller Hub feed types</see>, and to all <see href="https://developer.ebay.com/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Availabl">LMS feed types</see> except <c>LMS_ORDER_REPORT</c> and <c>LMS_ACTIVE_INVENTORY_REPORT</c>.
     /// <b>Note:</b> You must use a <b>Content-Type</b> header with its value set to "<b>multipart/form-data</b>". See <b>Samples</b> for information.
     /// <b>Note:</b> For LMS feed types, upload a regular XML file or an XML file in zipped format (both formats are allowed).
     /// </summary>
@@ -563,8 +563,8 @@ public sealed class FeedClient
 
     /// <summary>
     /// Use this method to create a customer service metrics download task with filter criteria for the customer service metrics report. When using this method, specify the <b>feedType</b> and <b>filterCriteria</b> including both <b>evaluationMarketplaceId</b> and <b>customerServiceMetricType</b> for the report. The method returns the location response header containing the call URI to use with <b>getCustomerServiceMetricTask</b> to retrieve status and details on the task.
-    /// Only CURRENT Customer Service Metrics reports can be generated with the Sell Feed API. PROJECTED reports are not supported at this time. See the <see href="/api-docs/sell/analytics/resources/customer_service_metric/methods/getCustomerServiceMetric">getCustomerServiceMetric</see> method document in the Analytics API for more information about these two types of reports.
-    /// <b>Note:</b> Before calling this API, retrieve the summary of the seller's performance and rating for the customer service metric by calling <b>getCustomerServiceMetric</b> (part of the <see href="/develop/api/sell/analytics_api">Analytics API</see>). You can then populate the create task request fields with the values from the response. This technique eliminates failed tasks that request a report for a <b>customerServiceMetricType</b> and <b>evaluationMarketplaceId</b> that are without evaluation.
+    /// Only CURRENT Customer Service Metrics reports can be generated with the Sell Feed API. PROJECTED reports are not supported at this time. See the <see href="https://developer.ebay.com/api-docs/sell/analytics/resources/customer_service_metric/methods/getCustomerServiceMetric">getCustomerServiceMetric</see> method document in the Analytics API for more information about these two types of reports.
+    /// <b>Note:</b> Before calling this API, retrieve the summary of the seller's performance and rating for the customer service metric by calling <b>getCustomerServiceMetric</b> (part of the <see href="https://developer.ebay.com/develop/api/sell/analytics_api">Analytics API</see>). You can then populate the create task request fields with the values from the response. This technique eliminates failed tasks that request a report for a <b>customerServiceMetricType</b> and <b>evaluationMarketplaceId</b> that are without evaluation.
     /// </summary>
     public Task CreateCustomerServiceMetricTaskAsync(
         string acceptLanguage,

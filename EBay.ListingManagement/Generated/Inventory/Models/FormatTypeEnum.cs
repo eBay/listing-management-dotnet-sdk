@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.ListingManagement.Generated.Inventory.Models
 {
-    /// <summary>This enumeration value indicates the listing format of the offer.</summary>
+    /// <summary>This enumerated value indicates the listing format of the offer.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum FormatTypeEnum
     {

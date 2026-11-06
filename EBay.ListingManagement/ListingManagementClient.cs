@@ -15,13 +15,10 @@
 using EBay.ListingManagement.Clients.GraphQL;
 using EBay.ListingManagement.Clients.Rest;
 using EBay.ListingManagement.Configuration;
-using EBay.ListingManagement.Extensions;
 using EBay.ListingManagement.Generated.Feed;
-using EBay.ListingManagement.Generated.GraphQL;
 using EBay.ListingManagement.Generated.Inventory;
 using EBay.ListingManagement.Generated.Media;
 using EBay.ListingManagement.Generated.Stores;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using System.Collections.Generic;
@@ -30,14 +27,13 @@ using System.Net.Http;
 
 namespace EBay.ListingManagement;
 
+/// <summary>
+/// Entry point for the Listing Management APIs. The client owns its HTTP connections:
+/// create one per application (or register it with <c>AddListingManagementSdk</c>, which adds it
+/// as a singleton) and dispose it on shutdown. Reach the individual APIs through its properties.
+/// </summary>
 public class ListingManagementClient : IDisposable
 {
-    internal const string FeedClientName = "ListingManagementClient.Feed";
-    internal const string InventoryClientName = "ListingManagementClient.Inventory";
-    internal const string MediaClientName = "ListingManagementClient.Media";
-    internal const string StoresClientName = "ListingManagementClient.Stores";
-    internal const string GraphQLClientName = "ListingManagementGraphQLClient";
-
     private readonly HttpClient[] _ownedClients;
 
     public FeedClient Feed { get; private set; } = null!;
@@ -47,77 +43,79 @@ public class ListingManagementClient : IDisposable
 
     public ListingGraphQLClient GraphQL { get; }
 
-    /// <summary>
-    /// DI-friendly constructor. Named HttpClients come from <see cref="IHttpClientFactory"/>.
-    /// </summary>
-    internal ListingManagementClient(
-        ListingManagementConfiguration config,
-        IHttpClientFactory factory,
-        IListingManagementGraphQLClient graphQLClient,
-        ITokenContext tokenContext)
+    /// <summary>Creates a client with its own HTTP connections.</summary>
+    public ListingManagementClient(ListingManagementConfiguration config)
+        : this(config, CreateDefaultPrimaryHandler, disposeHandlers: true)
     {
-        _ownedClients = [];
-        var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
-        InitializeRestClients(auth, config, tokenContext, endpoint => factory.CreateClient(endpoint.HttpClientName));
-        GraphQL = new ListingGraphQLClient(
-            graphQLClient,
-            new DynamicGraphQLClient(factory.CreateClient(GraphQLClientName), config, tokenContext),
-            tokenContext);
     }
 
     /// <summary>
-    /// Standalone constructor for use outside DI (tests, scripts).
-    /// Creates its own HttpClients with DiagnosticLoggingHandler.
-    /// Typed GraphQL operations are unavailable; use GraphQL.ExecuteRawUnsafeAsync instead.
+    /// Creates a client that sends every request through <paramref name="primaryHandler"/>, for example to
+    /// configure a proxy or client certificates, or to substitute a test double. The handler is shared by
+    /// all APIs and is not disposed by this client.
     /// </summary>
-    public ListingManagementClient(ListingManagementConfiguration config)
+    public ListingManagementClient(ListingManagementConfiguration config, HttpMessageHandler primaryHandler)
+        : this(config, RequireHandler(primaryHandler), disposeHandlers: false)
     {
+    }
+
+    private ListingManagementClient(
+        ListingManagementConfiguration config,
+        Func<HttpMessageHandler> primaryHandler,
+        bool disposeHandlers)
+    {
+        config.ValidateTrustedHosts();
         var tokenContext = new AsyncLocalTokenContext();
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
         var owned = new List<HttpClient>();
-        InitializeRestClients(auth, config, tokenContext, endpoint =>
+        HttpClient Build(DelegatingHandler logging, string baseUrl)
         {
-            var client = BuildStandaloneHttpClient(config, endpoint.BaseUrl);
+            logging.InnerHandler = primaryHandler();
+            var client = new HttpClient(logging, disposeHandlers)
+            {
+                BaseAddress = new Uri(baseUrl),
+                Timeout = config.HttpTimeout
+            };
             owned.Add(client);
             return client;
-        });
-        var graphQLHttp = BuildStandaloneHttpClient(config, config.GraphQLBaseUrl);
-        owned.Add(graphQLHttp);
-        _ownedClients = [.. owned];
+        }
+        InitializeRestClients(auth, config, tokenContext, endpoint => Build(new DiagnosticLoggingHandler(config), endpoint.BaseUrl));
+        var graphQLHttp = Build(new GraphQLHttpHandler(config), config.GraphQLBaseUrl);
         GraphQL = new ListingGraphQLClient(
-            BuildStandaloneGqlClient(config, tokenContext),
+            new GraphQLExecutor(graphQLHttp, config, tokenContext),
             new DynamicGraphQLClient(graphQLHttp, config, tokenContext),
             tokenContext);
+        _ownedClients = [.. owned];
     }
 
-    private static IListingManagementGraphQLClient BuildStandaloneGqlClient(
-        ListingManagementConfiguration config, ITokenContext tokenContext)
-    {
-        var services = new ServiceCollection();
-        services.AddListingManagementSdk(config);
-        services.AddSingleton<ITokenContext>(tokenContext);
-        return services.BuildServiceProvider().GetRequiredService<IListingManagementGraphQLClient>();
-    }
+    private static HttpMessageHandler CreateDefaultPrimaryHandler() =>
+#if NETFRAMEWORK
+        // .NET Framework defaults to 2 connections per host outside ASP.NET.
+        new HttpClientHandler { MaxConnectionsPerServer = 64 };
+#else
+        new SocketsHttpHandler { PooledConnectionLifetime = TimeSpan.FromMinutes(2) };
+#endif
 
-    private static HttpClient BuildStandaloneHttpClient(ListingManagementConfiguration config, string baseUrl)
+    private static Func<HttpMessageHandler> RequireHandler(HttpMessageHandler primaryHandler)
     {
-        var handler = new DiagnosticLoggingHandler(config)
+#if NETFRAMEWORK
+        if (primaryHandler is null)
         {
-            InnerHandler = new SocketsHttpHandler { PooledConnectionLifetime = TimeSpan.FromMinutes(2) }
-        };
-        return new HttpClient(handler) { BaseAddress = new Uri(baseUrl), Timeout = config.HttpTimeout };
+            throw new ArgumentNullException(nameof(primaryHandler));
+        }
+#else
+        ArgumentNullException.ThrowIfNull(primaryHandler);
+#endif
+        return () => primaryHandler;
     }
-
-    internal static IReadOnlyList<(string ApiId, string HttpClientName)> RestEndpointNames { get; } =
-    [
-        ("feed", FeedClientName),
-        ("inventory", InventoryClientName),
-        ("media", MediaClientName),
-        ("stores", StoresClientName)
-    ];
 
     internal static IReadOnlyList<RestEndpoint> RestEndpoints(ListingManagementConfiguration config) =>
-        [.. RestEndpointNames.Select(name => new RestEndpoint(name.ApiId, name.HttpClientName, config.RestBaseUrl(name.ApiId)))];
+    [
+        new RestEndpoint("feed", config.RestBaseUrl("feed")),
+        new RestEndpoint("inventory", config.RestBaseUrl("inventory")),
+        new RestEndpoint("media", config.RestBaseUrl("media")),
+        new RestEndpoint("stores", config.RestBaseUrl("stores"))
+    ];
 
     private void InitializeRestClients(
         IAuthenticationProvider auth,
@@ -146,6 +144,6 @@ public class ListingManagementClient : IDisposable
     }
 }
 
-internal sealed record RestEndpoint(string ApiId, string HttpClientName, string BaseUrl);
+internal sealed record RestEndpoint(string ApiId, string BaseUrl);
 
 internal delegate HttpClient RestHttpClientProvider(RestEndpoint endpoint);

@@ -22,8 +22,9 @@ using System;
 namespace EBay.ListingManagement.Generated.Inventory.Models
 {
     /// <summary>
-    /// This type is used to express the regular operating hours of a merchant&apos;s store or fulfillment center during the days of the week.
+    /// &lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.
     /// </summary>
+    [Obsolete("")]
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class OperatingHours : IAdditionalDataHolder, IParsable
     {
