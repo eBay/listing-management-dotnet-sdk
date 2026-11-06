@@ -48,9 +48,9 @@ internal sealed partial class LiveRun
             using var image = new MemoryStream(png);
             var created = await _client.Media.CreateImageFromFileAsync(image, "sdk-test.png");
             imageUrl = created?.ImageUrl;
-            // Known SDK issue: the upload disposes the caller's stream.
-            var streamNote = image.CanRead ? "" : "; note: the SDK closed the caller's stream";
-            return $"uploaded {png.Length} bytes → {imageUrl ?? "(no imageUrl)"}{streamNote}";
+            return image.CanRead
+                ? $"uploaded {png.Length} bytes → {imageUrl ?? "(no imageUrl)"}"
+                : throw new InvalidOperationException("the SDK closed the caller's stream");
         });
 
         var listingInput = CreateListingInput(sku, title, imageUrl, OperationMode.Validate);

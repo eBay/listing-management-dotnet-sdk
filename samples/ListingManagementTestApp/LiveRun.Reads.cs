@@ -207,9 +207,13 @@ internal sealed partial class LiveRun
             });
             await Step("Feed", "getResultFile", async () =>
             {
-                // The generated wrapper returns no body (see README), so this only checks the request succeeds.
-                await _client.Feed.GetResultFileAsync(taskId);
-                return "200; file content is not exposed by the SDK";
+                await using var file = await _client.Feed.GetResultFileAsync(taskId);
+                using var copy = new MemoryStream();
+                if (file is not null)
+                {
+                    await file.CopyToAsync(copy);
+                }
+                return $"downloaded {copy.Length} bytes";
             }, 400, 404);
         }
         else

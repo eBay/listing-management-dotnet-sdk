@@ -53,15 +53,13 @@ Each line is `OK`, `N/A` (eBay says the data doesn't exist for this account, or 
 
 **Token:** a user access token (eBay developer portal → *User Tokens*, or your own OAuth flow) for the environment you pick. `getInventoryItems` needs `sell.inventory` (or `sell.inventory.readonly`) and `getStore` needs `sell.stores`; the GraphQL schema doesn't document scopes for the listing queries. A token for the wrong environment gives 401 on every call.
 
-**Sandbox GraphQL:** `https://api.sandbox.ebay.com/graphql` returns 404. The sandbox GraphQL API is at `https://graphqlapi.sandbox.ebay.com/graphql` (verified with a sandbox user token). That host isn't one of the SDK's default trusted hosts yet, so the app adds it to `AllowedHosts`.
+**Sandbox GraphQL:** `https://api.sandbox.ebay.com/graphql` returns 404. The sandbox GraphQL API is at `https://graphqlapi.sandbox.ebay.com/graphql`, which the SDK trusts by default.
 
 **REST error details:** the OpenAPI specs declare error responses as a single `Error` object, but eBay returns `{"errors":[...]}`. The SDK's REST exceptions therefore carry the HTTP status code but none of eBay's error text, so the app prints only the status. To see eBay's message, repeat the call with curl. For example, `getStore` in the sandbox returns 400 "The user must have an active store subscription." for an account without a store.
 
 ## Known SDK issues this app works around
 
-These exist on `main` as well; they are not caused by the StrawberryShake replacement.
+These exist on `main` as well; they are not caused by the StrawberryShake replacement. (File downloads and upload streams are fixed on this branch: `getResultFile` reads the file, and the upload step fails if the SDK closes the caller's stream.)
 
 - **REST error details are lost** (above).
-- **Feed file downloads return no content:** `GetResultFileAsync`, `GetLatestResultFileAsync` and `GetInputFileAsync` return `Task`, so the downloaded file can't be read. The app only checks that the call succeeds.
-- **`CreateImageFromFileAsync` disposes the caller's stream** (the multipart content takes ownership of it). Don't reuse the stream after uploading.
 - **Feed `FrequencyEnum` doesn't match eBay's values** in the sandbox: eBay sends `1-HOUR`/`4-HOURS`, the spec says `ONE_HOUR`/`FOUR_HOURS`, so those templates show no frequency.

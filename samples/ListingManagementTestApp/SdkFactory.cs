@@ -21,16 +21,14 @@ internal static class SdkFactory
         var config = new ListingManagementConfiguration { AccessToken = token, DiagnosticLogging = verbose };
         if (environment == EbayEnvironment.Sandbox)
         {
-            // The REST sandbox hosts are in DefaultAllowedHosts, so they need no AllowedHosts entry.
+            // All sandbox hosts are in DefaultAllowedHosts, so they need no AllowedHosts entry.
             config.InventoryBaseUrl = "https://api.sandbox.ebay.com/sell/inventory/v1";
             config.FeedBaseUrl = "https://api.sandbox.ebay.com/sell/feed/v1";
             config.MediaBaseUrl = "https://apim.sandbox.ebay.com/commerce/media/v1_beta";
             config.StoresBaseUrl = "https://api.sandbox.ebay.com/sell/stores/v1";
 
-            // api.sandbox.ebay.com/graphql returns 404; the sandbox GraphQL API is on graphqlapi.sandbox.ebay.com
-            // (verified with a sandbox token). That host is not one of the SDK's defaults yet, so it is trusted explicitly.
+            // The sandbox GraphQL API is on graphqlapi.sandbox.ebay.com (api.sandbox.ebay.com/graphql returns 404).
             config.GraphQLBaseUrl = SandboxGraphQLUrl;
-            config.AllowedHosts.Add(new Uri(SandboxGraphQLUrl).Host);
         }
         if (graphQLUrl is not null)
         {
