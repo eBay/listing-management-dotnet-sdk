@@ -27,9 +27,8 @@ internal static class SdkFactory
             config.MediaBaseUrl = "https://apim.sandbox.ebay.com/commerce/media/v1_beta";
             config.StoresBaseUrl = "https://api.sandbox.ebay.com/sell/stores/v1";
 
-            // api.sandbox.ebay.com/graphql returns 404. graphqlapi.sandbox.ebay.com answers like an eBay API
-            // ("Invalid access token" for a bad token) but is not documented, so it is not one of the SDK's
-            // default hosts and has to be trusted explicitly.
+            // api.sandbox.ebay.com/graphql returns 404; the sandbox GraphQL API is on graphqlapi.sandbox.ebay.com
+            // (verified with a sandbox token). That host is not one of the SDK's defaults yet, so it is trusted explicitly.
             config.GraphQLBaseUrl = SandboxGraphQLUrl;
             config.AllowedHosts.Add(new Uri(SandboxGraphQLUrl).Host);
         }

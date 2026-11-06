@@ -123,6 +123,9 @@ internal static class LiveRun
         UnauthorizedException => "401 Unauthorized: the token is missing, expired, for the other environment, or lacks the scope.",
         GraphQLException graphQL => "GraphQL errors: " + string.Join("; ", graphQL.Errors),
         HttpRequestException http => $"HTTP error: {http.Message}",
+        // The specs declare error bodies as a single Error, but eBay sends {"errors":[...]}, so the mapped
+        // exception has no details; only the status code is reliable. --verbose logs the request.
+        Microsoft.Kiota.Abstractions.ApiException api => $"HTTP {api.ResponseStatusCode} ({api.GetType().FullName}); no error details, see README",
         _ => $"{ex.GetType().Name}: {ex.Message}",
     };
 }
