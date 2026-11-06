@@ -1,7 +1,7 @@
 using ListingManagementTestApp;
 
 // dotnet run -- smoke
-// dotnet run -- live --env sandbox|production [--token <token>] [--limit 5] [--graphql-url <url>] [--di] [--verbose]
+// dotnet run -- live --env sandbox|production [--token <token>] [--limit 5] [--graphql-url <url>] [--di] [--verbose] [--write]
 var command = args.FirstOrDefault()?.ToLowerInvariant();
 var options = Options.Parse(args.Skip(1).ToArray());
 
@@ -22,14 +22,16 @@ switch (command)
                   Offline checks with canned eBay responses: no network, no token.
 
               dotnet run -- live --env sandbox|production [options]
-                  Read-only calls against eBay with your user access token:
-                  GraphQL sellerListingSearch + sellerListings, REST getInventoryItems and getStore.
+                  Calls against eBay with your user access token: every read-only GraphQL query and REST GET
+                  the SDK offers for which the account has data (ids found by one call feed the next).
 
                   --token <token>      user access token (default: $EBAY_ACCESS_TOKEN)
                   --limit <n>          how many listings / inventory items to fetch (default 5)
                   --graphql-url <url>  override the GraphQL endpoint (a non-default host is added to AllowedHosts)
                   --di                 build the client through AddListingManagementSdk instead of new()
                   --verbose            SDK diagnostic logging of failed HTTP calls to stderr
+                  --write              sandbox only: also create, upload, validate/create/end a listing, and delete
+                                       (everything under a fresh SDKTEST- SKU, cleaned up at the end)
             """);
         return command is null or "help" or "--help" ? 0 : 2;
 }
@@ -40,7 +42,8 @@ internal sealed record Options(
     int Limit,
     string? GraphQLUrl,
     bool UseDependencyInjection,
-    bool Verbose)
+    bool Verbose,
+    bool Write)
 {
     public static Options Parse(string[] args)
     {
@@ -62,6 +65,7 @@ internal sealed record Options(
             int.TryParse(Value("--limit"), out var limit) && limit > 0 ? limit : 5,
             Value("--graphql-url"),
             args.Contains("--di"),
-            args.Contains("--verbose"));
+            args.Contains("--verbose"),
+            args.Contains("--write"));
     }
 }

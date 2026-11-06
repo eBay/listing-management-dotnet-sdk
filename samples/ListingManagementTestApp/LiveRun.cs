@@ -1,131 +1,134 @@
 using EBay.ListingManagement;
 using EBay.ListingManagement.Exceptions;
-using EBay.ListingManagement.Generated.GraphQL;
+using Microsoft.Kiota.Abstractions;
 
 namespace ListingManagementTestApp;
 
-/// <summary>Read-only calls against eBay: nothing is created, changed or ended.</summary>
-internal static class LiveRun
+/// <summary>
+/// Calls eBay through the SDK. Read steps (<see cref="RunReadsAsync"/>) never change anything; write steps
+/// (<see cref="RunWritesAsync"/>) only run in the sandbox. Each call feeds ids to the next (SKU → offer → listing,
+/// task → result file, ...) and reports OK, N/A (eBay says the data doesn't exist for this account), SKIP (nothing
+/// to call it with) or FAIL. The exit code is the number of FAILs.
+/// </summary>
+internal sealed partial class LiveRun
 {
+    private readonly ListingManagementClient _client;
+    private readonly Options _options;
+    private int _ok, _notAvailable, _skipped, _failed;
+
+    private LiveRun(ListingManagementClient client, Options options)
+    {
+        _client = client;
+        _options = options;
+    }
+
     public static async Task<int> RunAsync(Options options, HttpMessageHandler? handler = null)
     {
+        if (options.Write && options.Environment != EbayEnvironment.Sandbox)
+        {
+            Console.Error.WriteLine("--write only runs in the sandbox (--env sandbox). Nothing was called.");
+            return 2;
+        }
+
         var config = SdkFactory.Configure(options.Environment, options.Token, options.GraphQLUrl, options.Verbose);
         var (client, owner) = SdkFactory.Create(config, options.UseDependencyInjection, handler);
         using var _ = owner;
 
-        Console.WriteLine($"Environment: {options.Environment}   client: {(options.UseDependencyInjection ? "AddListingManagementSdk" : "new ListingManagementClient")}");
-        Console.WriteLine($"GraphQL: {config.GraphQLBaseUrl}");
-        Console.WriteLine($"Inventory: {config.InventoryBaseUrl}");
+        Console.WriteLine($"Environment: {options.Environment}   client: {(options.UseDependencyInjection ? "AddListingManagementSdk" : "new ListingManagementClient")}   mode: {(options.Write ? "read + write" : "read-only")}");
+        Console.WriteLine($"GraphQL {config.GraphQLBaseUrl} | Inventory {config.InventoryBaseUrl} | Media {config.MediaBaseUrl}");
         Console.WriteLine();
 
-        var failures = 0;
-        var listingIds = await Step("GraphQL sellerListingSearch (active listings)", () => SearchActiveListingsAsync(client, options.Limit));
-        if (listingIds is { Count: > 0 })
+        var run = new LiveRun(client, options);
+        await run.RunReadsAsync();
+        if (options.Write)
         {
-            await Step("GraphQL sellerListings (details for those listings)", () => ListingDetailsAsync(client, listingIds));
+            Console.WriteLine();
+            await run.RunWritesAsync();
         }
-        await Step("REST Inventory getInventoryItems", () => InventoryItemsAsync(client, options.Limit));
-        await Step("REST Stores getStore", () => StoreAsync(client));
 
-        Console.WriteLine(failures == 0 ? "All calls succeeded." : $"{failures} call(s) failed (see above).");
-        return failures == 0 ? 0 : 1;
-
-        async Task<T?> Step<T>(string title, Func<Task<T>> call)
-        {
-            Console.WriteLine($"== {title}");
-            try
-            {
-                var result = await call();
-                Console.WriteLine();
-                return result;
-            }
-            catch (Exception ex)
-            {
-                failures++;
-                Console.WriteLine($"   FAILED: {Describe(ex)}");
-                Console.WriteLine();
-                return default;
-            }
-        }
+        Console.WriteLine();
+        Console.WriteLine($"{run._ok} OK, {run._notAvailable} N/A, {run._skipped} skipped, {run._failed} failed");
+        return run._failed;
     }
 
-    private static async Task<IReadOnlyList<string>> SearchActiveListingsAsync(ListingManagementClient client, int limit)
+    /// <summary>Runs one call. <paramref name="notAvailable"/> lists HTTP statuses that mean "no such data for this account".</summary>
+    private async Task Step(string area, string name, Func<Task<string>> call, params int[] notAvailable)
     {
-        var result = await client.GraphQL.SellerListingSearchAsync(new SellerActiveListingSearchInput
+        try
         {
-            Pagination = new PaginationInput { MaxPageSize = limit },
-        });
-
-        switch (result?.ActiveListings)
+            Report("OK", area, name, await call());
+        }
+        catch (Exception ex) when (StatusOf(ex) is { } status && notAvailable.Contains(status))
         {
-            case ISellerListingSearch_SellerListingSearch_ActiveListings_SellerListings found:
-                var ids = found.Listings?.Select(l => l.ListingId).ToList() ?? [];
-                Console.WriteLine($"   {found.Pagination?.TotalElements ?? ids.Count} active listing(s); showing {ids.Count}: {string.Join(", ", ids)}");
-                return ids;
-            case ISellerListingSearch_SellerListingSearch_ActiveListings_SellerListingSearchInvalidInput invalid:
-                throw new InvalidOperationException($"{invalid.ErrorCode}: {invalid.DisplayableErrorMessage}");
-            default:
-                Console.WriteLine("   no result");
-                return [];
+            Report("N/A", area, name, $"HTTP {status}");
+        }
+        catch (Exception ex) when (IsPermissionDenied(ex))
+        {
+            Report("N/A", area, name, "no permission: the token lacks the scope or the account isn't enabled for this API");
+        }
+        catch (Exception ex)
+        {
+            Report("FAIL", area, name, Describe(ex));
         }
     }
 
-    private static async Task<int> ListingDetailsAsync(ListingManagementClient client, IReadOnlyList<string> listingIds)
-    {
-        var result = await client.GraphQL.SellerListingsAsync(new SellerListingsInput
-        {
-            Listings = listingIds.Select(id => new SellerListingInput { ListingId = id }).ToList(),
-        });
+    /// <summary>403s and GraphQL permission errors say the token or account can't use the API, not that the SDK failed.</summary>
+    private static bool IsPermissionDenied(Exception ex) =>
+        StatusOf(ex) == 403
+        || ex is GraphQLException graphQL && graphQL.Errors.Any(e => e.Contains("permission", StringComparison.OrdinalIgnoreCase));
 
-        Console.WriteLine($"   {"Listing",-14} {"Kind",-10} {"Format",-14} {"Status",-10} {"Qty",4}  Title");
-        foreach (var entry in result?.Listings ?? [])
+    /// <summary>A call that must fail with one of <paramref name="expected"/>: checks the SDK's error path.</summary>
+    private async Task ExpectError(string area, string name, Func<Task> call, params int[] expected)
+    {
+        try
         {
-            if (entry is not ISellerListings_SellerListings_Listings_ListingSuccess { Listing: { } listing } success)
-            {
-                Console.WriteLine($"   {entry.__typename}");
-                continue;
-            }
-            var kind = listing switch
-            {
-                ISellerListings_SellerListings_Listings_Listing_VariationListing => "variation",
-                ISellerListings_SellerListings_Listings_Listing_SingleSkuListing => "single",
-                _ => listing.GetType().Name,
-            };
-            var terms = listing.ListingTerms;
-            Console.WriteLine(
-                $"   {success.ListingId,-14} {kind,-10} {terms?.ListingFormat,-14} {terms?.LifecycleTerms?.ListingStatus,-10} " +
-                $"{terms?.TotalQuantityAvailable,4}  {listing.SellerProduct?.Title}");
+            await call();
+            Report("FAIL", area, name, "expected an error, the call succeeded");
         }
-        return result?.Listings.Count ?? 0;
-    }
-
-    private static async Task<int> InventoryItemsAsync(ListingManagementClient client, int limit)
-    {
-        var page = await client.Inventory.GetInventoryItemsAsync(limit: limit.ToString());
-        var items = page?.InventoryItemsProp ?? [];
-        Console.WriteLine($"   {page?.Total ?? 0} inventory item(s); showing {items.Count}");
-        foreach (var item in items)
+        catch (Exception ex) when (StatusOf(ex) is { } status && expected.Contains(status))
         {
-            Console.WriteLine($"   {item.Sku,-24} qty {item.Availability?.ShipToLocationAvailability?.Quantity,4}  {item.Product?.Title}");
+            Report("OK", area, name, $"failed as expected with HTTP {status} ({ex.GetType().Name})");
         }
-        return items.Count;
+        catch (Exception ex)
+        {
+            Report("FAIL", area, name, Describe(ex));
+        }
     }
 
-    private static async Task<bool> StoreAsync(ListingManagementClient client)
+    private void Skip(string area, string name, string reason) => Report("SKIP", area, name, reason);
+
+    private void Report(string status, string area, string name, string summary)
     {
-        var store = await client.Stores.GetStoreAsync();
-        Console.WriteLine($"   store: {store?.Name ?? "(none)"} {store?.Url}");
-        return store is not null;
+        _ = status switch
+        {
+            "OK" => _ok++,
+            "N/A" => _notAvailable++,
+            "SKIP" => _skipped++,
+            _ => _failed++,
+        };
+        Console.WriteLine($"{status,-5} {area,-9} {name,-36} {summary}");
     }
+
+    private static int? StatusOf(Exception ex) => ex switch
+    {
+        ApiException api => api.ResponseStatusCode,
+        UnauthorizedException => 401,
+        _ => null,
+    };
 
     private static string Describe(Exception ex) => ex switch
     {
-        UnauthorizedException => "401 Unauthorized: the token is missing, expired, for the other environment, or lacks the scope.",
+        UnauthorizedException => "401 Unauthorized: the token is missing, expired, for the other environment, or lacks the scope",
         GraphQLException graphQL => "GraphQL errors: " + string.Join("; ", graphQL.Errors),
-        HttpRequestException http => $"HTTP error: {http.Message}",
         // The specs declare error bodies as a single Error, but eBay sends {"errors":[...]}, so the mapped
         // exception has no details; only the status code is reliable. --verbose logs the request.
-        Microsoft.Kiota.Abstractions.ApiException api => $"HTTP {api.ResponseStatusCode} ({api.GetType().FullName}); no error details, see README",
+        ApiException api => $"HTTP {api.ResponseStatusCode} ({api.GetType().Name}); no error details, see README",
         _ => $"{ex.GetType().Name}: {ex.Message}",
     };
+
+    private static string Join<T>(IEnumerable<T> values, int max = 3)
+    {
+        var list = values.ToList();
+        return list.Count == 0 ? "none" : string.Join(", ", list.Take(max)) + (list.Count > max ? $", … ({list.Count})" : "");
+    }
 }

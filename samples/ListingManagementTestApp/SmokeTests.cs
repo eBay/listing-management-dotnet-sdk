@@ -41,6 +41,7 @@ internal static class SmokeTests
                     () => LiveFlowAsync(environment, useDi));
             }
         }
+        await Check("--write refuses to run in production and sends nothing", WriteRefusedInProductionAsync);
         await Check("GraphQL unions parse into the generated interfaces", UnionsAsync);
         await Check("GraphQL request carries operationName, variables and the per-call token", RequestShapeAsync);
         await Check("GraphQL errors throw GraphQLException with every message", GraphQLErrorsAsync);
@@ -55,15 +56,25 @@ internal static class SmokeTests
     private static async Task LiveFlowAsync(EbayEnvironment environment, bool useDi)
     {
         var fake = new FakeEbay();
-        var options = new Options(environment, Token, 2, null, useDi, false);
+        // Write calls only run in the sandbox, so the sandbox runs cover them too.
+        var write = environment == EbayEnvironment.Sandbox;
+        var options = new Options(environment, Token, 2, null, useDi, false, write);
 
         var config = SdkFactory.Configure(environment, Token);
         var exitCode = await Quietly(() => LiveRun.RunAsync(options, fake));
 
-        Assert(exitCode == 0, $"live flow exit code {exitCode}");
-        Assert(fake.Requests.Select(r => r.Operation).SequenceEqual(["SellerListingSearch", "SellerListings", "inventory_item", "store"]),
-            "calls: " + string.Join(", ", fake.Requests.Select(r => r.Operation)));
-        var configured = new[] { config.GraphQLBaseUrl, config.InventoryBaseUrl, config.StoresBaseUrl };
+        Assert(exitCode == 0, $"live flow had {exitCode} failed call(s); rerun with SMOKE_VERBOSE=1 to see them");
+        var expected = new List<string> { "SellerListingSearch", "SellerListings", "UserSavedSearches", "GET inventory_item", "POST bulk_get_inventory_item",
+            "GET offer", "GET location", "GET task", "GET task/T1/download_result_file", "GET schedule_template", "GET image/sdk-test-does-not-exist", "GET store" };
+        if (write)
+        {
+            expected.AddRange(["PUT inventory_item/SDKTEST", "POST image/create_image_from_file", "CreateListing", "EndListing", "DELETE inventory_item/SDKTEST"]);
+        }
+        var seen = fake.Requests.Select(r => r.Operation).ToList();
+        var missing = expected.Where(e => !seen.Any(s => s.StartsWith(e, StringComparison.Ordinal))).ToList();
+        Assert(missing.Count == 0, "never called: " + string.Join(", ", missing));
+
+        var configured = new[] { config.GraphQLBaseUrl, config.InventoryBaseUrl, config.FeedBaseUrl, config.MediaBaseUrl, config.StoresBaseUrl };
         foreach (var request in fake.Requests)
         {
             Assert(configured.Any(url => request.Uri.AbsoluteUri.StartsWith(url, StringComparison.Ordinal)),
@@ -72,9 +83,29 @@ internal static class SmokeTests
                 $"{request.Operation} left the sandbox: {request.Uri.Host}");
             Assert(request.Authorization == "Bearer " + Token, $"{request.Operation} Authorization: {request.Authorization}");
         }
-        var details = fake.Requests[1].Body!.RootElement.GetProperty("variables").GetProperty("input").GetProperty("listings");
+        var details = fake.Requests.First(r => r.Operation == "SellerListings").Body!.RootElement.GetProperty("variables").GetProperty("input").GetProperty("listings");
         Assert(details.GetArrayLength() == 2 && details[0].GetProperty("listingId").GetString() == "110000000001",
             "sellerListings did not receive the ids from sellerListingSearch: " + details);
+        if (write)
+        {
+            var modes = fake.Requests.Where(r => r.Operation == "CreateListing")
+                .Select(r => r.Body!.RootElement.GetProperty("variables").GetProperty("input").GetProperty("options").GetProperty("operationMode").GetString());
+            Assert(modes.SequenceEqual(["VALIDATE", "EXECUTE"]), "createListing modes: " + string.Join(", ", modes));
+            var input = fake.Requests.First(r => r.Operation == "CreateListing").Body!.RootElement.GetProperty("variables").GetProperty("input");
+            if (System.Environment.GetEnvironmentVariable("SMOKE_VERBOSE") is { Length: > 0 })
+            {
+                Console.WriteLine("createListing input: " + input.GetRawText());
+            }
+            Assert(!input.GetProperty("listingTerms").GetProperty("lifecycleTerms").TryGetProperty("scheduledToStartAt", out _),
+                "unset scheduledToStartAt was sent: " + input.GetProperty("listingTerms").GetRawText());
+        }
+    }
+
+    private static async Task WriteRefusedInProductionAsync()
+    {
+        var fake = new FakeEbay();
+        var exitCode = await Quietly(() => LiveRun.RunAsync(new Options(EbayEnvironment.Production, Token, 2, null, false, false, true), fake));
+        Assert(exitCode != 0 && fake.Requests.Count == 0, $"--write in production: exit {exitCode}, {fake.Requests.Count} request(s)");
     }
 
     private static async Task UnionsAsync()
@@ -157,8 +188,13 @@ internal static class SmokeTests
         Assert(fake.Requests.Count == 0, "a request was sent");
     }
 
+    /// <summary>Hides the inner run's output unless SMOKE_VERBOSE is set.</summary>
     private static async Task<T> Quietly<T>(Func<Task<T>> body)
     {
+        if (System.Environment.GetEnvironmentVariable("SMOKE_VERBOSE") is { Length: > 0 })
+        {
+            return await body();
+        }
         var console = Console.Out;
         Console.SetOut(TextWriter.Null);
         try
@@ -204,70 +240,4 @@ internal static class SmokeTests
             throw new InvalidOperationException(message);
         }
     }
-
-    internal sealed record SeenRequest(string Operation, Uri Uri, string? Authorization, JsonDocument? Body);
-
-    /// <summary>Answers the calls the test app makes with eBay-shaped payloads.</summary>
-    private sealed class FakeEbay : HttpMessageHandler
-    {
-        public List<SeenRequest> Requests { get; } = [];
-        public HttpStatusCode Status { get; init; } = HttpStatusCode.OK;
-        public string? GraphQLOverride { get; init; }
-
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            var uri = request.RequestUri!;
-            var text = request.Content is null ? null : await request.Content.ReadAsStringAsync(cancellationToken);
-            var body = string.IsNullOrEmpty(text) ? null : JsonDocument.Parse(text);
-            var operation = body?.RootElement.TryGetProperty("operationName", out var name) == true
-                ? name.GetString()!
-                : uri.AbsolutePath.Split('/').Last();
-            lock (Requests)
-            {
-                Requests.Add(new SeenRequest(operation, uri, request.Headers.Authorization?.ToString(), body));
-            }
-
-            var json = operation switch
-            {
-                _ when GraphQLOverride is not null && uri.AbsolutePath.EndsWith("/graphql", StringComparison.Ordinal) => GraphQLOverride,
-                "SellerListingSearch" => SellerListingSearch,
-                "SellerListings" => SellerListings,
-                "inventory_item" => InventoryItems,
-                "store" => Store,
-                _ => null,
-            };
-            return new HttpResponseMessage(json is null ? HttpStatusCode.NotFound : Status)
-            {
-                RequestMessage = request,
-                Content = new StringContent(json ?? "{}", Encoding.UTF8, "application/json"),
-            };
-        }
-    }
-
-    private const string SellerListingSearch = """
-        {"data":{"sellerListingSearch":{"__typename":"SellerListingSearchOutput",
-          "activeListings":{"__typename":"SellerListings",
-            "listings":[{"__typename":"ListingReference","listingId":"110000000001"},{"__typename":"ListingReference","listingId":"110000000002"}],
-            "pagination":{"__typename":"PaginationOutput","nextCursor":null,"previousCursor":null,"totalElements":2,"totalPages":1}},
-          "scheduledListings":{"__typename":"SellerListings","listings":[],"pagination":null},
-          "endedListings":{"__typename":"SellerListings","listings":[],"pagination":null}}}}
-        """;
-
-    private const string SellerListings = """
-        {"data":{"sellerListings":{"__typename":"SellerListingsOutput","listings":[
-          {"__typename":"ListingSuccess","listingId":"110000000001","listing":{"__typename":"SingleSkuListing","listingId":"110000000001",
-            "marketplace":"EBAY_US","sellerProduct":{"__typename":"SellerProduct","title":"Vintage camera","ebayGeneratedTitle":null,"description":null,"images":null},
-            "listingTerms":{"__typename":"ListingTerms","listingFormat":"FIXED_PRICE","totalQuantityAvailable":3,
-              "lifecycleTerms":{"__typename":"ListingLifecycle","listingStatus":"ACTIVE","createdAt":"2026-10-01T12:00:00Z","startAt":null,"actualEndAt":null,"scheduledEndAt":null,"endListingReason":null,"listingDurationInDays":null}}}},
-          {"__typename":"ListingSuccess","listingId":"110000000002","listing":{"__typename":"VariationListing","listingId":"110000000002",
-            "marketplace":"EBAY_US","sellerProduct":{"__typename":"SellerProduct","title":"T-shirt","ebayGeneratedTitle":null,"description":null,"images":null},
-            "listingTerms":null}}]}}}
-        """;
-
-    private const string InventoryItems = """
-        {"total":1,"size":1,"inventoryItems":[{"sku":"CAM-001","product":{"title":"Vintage camera"},
-          "availability":{"shipToLocationAvailability":{"quantity":3}}}]}
-        """;
-
-    private const string Store = """{"name":"Camera Corner","url":"https://www.ebay.com/str/cameracorner"}""";
 }
