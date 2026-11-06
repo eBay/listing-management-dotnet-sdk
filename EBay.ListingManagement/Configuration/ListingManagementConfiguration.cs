@@ -88,7 +88,8 @@ public sealed class ListingManagementConfiguration
         "apim.ebay.com",
         "apim.sandbox.ebay.com",
         "apiz.ebay.com",
-        "apiz.sandbox.ebay.com"
+        "apiz.sandbox.ebay.com",
+        "graphqlapi.sandbox.ebay.com"
     });
 
     /// <summary>
