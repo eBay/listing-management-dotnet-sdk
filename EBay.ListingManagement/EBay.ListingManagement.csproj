@@ -14,6 +14,8 @@
     <PackageProjectUrl>https://github.com/eBay/listing-management-dotnet-sdk</PackageProjectUrl>
     <RepositoryUrl>https://github.com/eBay/listing-management-dotnet-sdk</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <!-- PolySharp 1.17 generates IsClosedTypeAttribute as public; keep it out of the SDK's public API (PublicApiTests). -->
+    <PolySharpExcludeGeneratedTypes>System.Runtime.CompilerServices.IsClosedTypeAttribute</PolySharpExcludeGeneratedTypes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,8 +23,8 @@
     <PackageReference Include="Microsoft.Kiota.Bundle" Version="$(KiotaVersion)" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(DependencyInjectionVersion)" />
 
-    <!-- Compiler attributes (init, required, nullable) for net472 -->
-    <PackageReference Include="PolySharp" Version="1.*" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    <!-- Compiler attributes (init, required, nullable) for net472. A build-time source generator: pinned, upgrade deliberately. -->
+    <PackageReference Include="PolySharp" Version="1.17.0" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
   </ItemGroup>
 
   <!-- .NET Framework: System.Text.Json and System.Net.Http are not in the framework -->
