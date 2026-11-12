@@ -20,22 +20,15 @@ namespace EBay.ListingManagement.Clients.GraphQL;
 
 public sealed class ListingGraphQLClient
 {
-    private readonly IListingManagementGraphQLClient? _client;
+    private readonly GraphQLExecutor _executor;
     private readonly DynamicGraphQLClient _dynamic;
     private readonly ITokenContext _tokenContext;
 
     internal ListingGraphQLClient(
-        IListingManagementGraphQLClient? client,
+        GraphQLExecutor executor,
         DynamicGraphQLClient dynamic,
         ITokenContext tokenContext)
-        => (_client, _dynamic, _tokenContext) = (client, dynamic, tokenContext);
-
-    private void EnsureTypedClientAvailable()
-    {
-        if (_client is null)
-            throw new NotSupportedException(
-                "Typed GraphQL operations require DI. Use ExecuteRawUnsafeAsync for standalone mode.");
-    }
+        => (_executor, _dynamic, _tokenContext) = (executor, dynamic, tokenContext);
 
     public Task<IBulkUpdateInventory_BulkUpdateInventory?> BulkUpdateInventoryAsync(
         BulkUpdateInventoryInput input,
@@ -43,8 +36,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.BulkUpdateInventory.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                BulkUpdateInventoryOperation.OperationName,
+                BulkUpdateInventoryOperation.Document,
+                writer => BulkUpdateInventoryOperation.WriteVariables(writer, input),
+                BulkUpdateInventoryOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.BulkUpdateInventory;
         });
@@ -55,8 +52,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.CreateListing.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                CreateListingOperation.OperationName,
+                CreateListingOperation.Document,
+                writer => CreateListingOperation.WriteVariables(writer, input),
+                CreateListingOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.CreateListing;
         });
@@ -67,8 +68,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.CreateSecondChanceListing.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                CreateSecondChanceListingOperation.OperationName,
+                CreateSecondChanceListingOperation.Document,
+                writer => CreateSecondChanceListingOperation.WriteVariables(writer, input),
+                CreateSecondChanceListingOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.CreateSecondChanceListing;
         });
@@ -79,8 +84,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.EndListing.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                EndListingOperation.OperationName,
+                EndListingOperation.Document,
+                writer => EndListingOperation.WriteVariables(writer, input),
+                EndListingOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.EndListing;
         });
@@ -91,8 +100,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.ListingPreviewsCreationTaskById.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                ListingPreviewsCreationTaskByIdOperation.OperationName,
+                ListingPreviewsCreationTaskByIdOperation.Document,
+                writer => ListingPreviewsCreationTaskByIdOperation.WriteVariables(writer, input),
+                ListingPreviewsCreationTaskByIdOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.ListingPreviewsCreationTaskById;
         });
@@ -103,8 +116,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.RelistListing.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                RelistListingOperation.OperationName,
+                RelistListingOperation.Document,
+                writer => RelistListingOperation.WriteVariables(writer, input),
+                RelistListingOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.RelistListing;
         });
@@ -115,8 +132,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.SellerListings.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                SellerListingsOperation.OperationName,
+                SellerListingsOperation.Document,
+                writer => SellerListingsOperation.WriteVariables(writer, input),
+                SellerListingsOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.SellerListings;
         });
@@ -129,8 +150,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.SellerListingSearch.ExecuteAsync(activeListingsSearchInput, endedListingsSearchInput, scheduledListingsSearchInput, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                SellerListingSearchOperation.OperationName,
+                SellerListingSearchOperation.Document,
+                writer => SellerListingSearchOperation.WriteVariables(writer, activeListingsSearchInput, endedListingsSearchInput, scheduledListingsSearchInput),
+                SellerListingSearchOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.SellerListingSearch;
         });
@@ -141,8 +166,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.StartListingPreviewsCreation.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                StartListingPreviewsCreationOperation.OperationName,
+                StartListingPreviewsCreationOperation.Document,
+                writer => StartListingPreviewsCreationOperation.WriteVariables(writer, input),
+                StartListingPreviewsCreationOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.StartListingPreviewsCreation;
         });
@@ -153,8 +182,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.UpdateListing.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                UpdateListingOperation.OperationName,
+                UpdateListingOperation.Document,
+                writer => UpdateListingOperation.WriteVariables(writer, input),
+                UpdateListingOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.UpdateListing;
         });
@@ -165,8 +198,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.UserSavedSearches.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                UserSavedSearchesOperation.OperationName,
+                UserSavedSearchesOperation.Document,
+                writer => UserSavedSearchesOperation.WriteVariables(writer, input),
+                UserSavedSearchesOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.UserSavedSearches;
         });
@@ -177,8 +214,12 @@ public sealed class ListingGraphQLClient
         CancellationToken ct = default)
         => _tokenContext.RunAsync(accessToken, async () =>
         {
-            EnsureTypedClientAvailable();
-            var result = await GraphQLInvocation.ExecuteAsync(() => _client!.VideosByIds.ExecuteAsync(input, ct));
+            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
+                VideosByIdsOperation.OperationName,
+                VideosByIdsOperation.Document,
+                writer => VideosByIdsOperation.WriteVariables(writer, input),
+                VideosByIdsOperation.Parse,
+                ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.VideosByIds;
         });

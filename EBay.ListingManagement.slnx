@@ -1,3 +1,5 @@
 <Solution>
-<Project Path="EBay.ListingManagement/EBay.ListingManagement.csproj" />
+  <Project Path="EBay.ListingManagement/EBay.ListingManagement.csproj" />
+  <Project Path="tests/EBay.ListingManagement.CSharp73/EBay.ListingManagement.CSharp73.csproj" />
+  <Project Path="tests/EBay.ListingManagement.Tests/EBay.ListingManagement.Tests.csproj" />
 </Solution>

@@ -71,7 +71,7 @@ namespace EBay.ListingManagement.Generated.Media
             ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
             if (string.IsNullOrEmpty(RequestAdapter.BaseUrl))
             {
-                RequestAdapter.BaseUrl = "https://apim.ebay.com/commerce/media/v1_beta";
+                RequestAdapter.BaseUrl = "https://apim.ebay.com{basePath}";
             }
             PathParameters.TryAdd("baseurl", RequestAdapter.BaseUrl);
         }

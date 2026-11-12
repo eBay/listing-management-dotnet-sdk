@@ -22,14 +22,15 @@ using System;
 namespace EBay.ListingManagement.Generated.Inventory.Models
 {
     /// <summary>
-    /// This type is used to specify the quantity of the inventory item that is available for purchase if the item will be shipped to the buyer, and the quantity of the inventory item that is available for In-Store Pickup at one or more of the merchant&apos;s physical stores. In-Store Pickup is only available to large merchants selling on the US, UK, Germany, and Australia sites.
+    /// This type is used to specify the quantity of the inventory item that is available for purchase if the item will be shipped to the buyer.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Availability : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>This container consists of an array of one or more of the merchant&apos;s physical store locations where the inventory item is available for In-Store Pickup orders. The merchant&apos;s location, the quantity available, and the fulfillment time (how soon the item will be ready for pickup after the order takes place) are all in this container. In-Store Pickup is only available to large merchants selling on the US, UK, Germany, and Australia sites.</summary>
+        /// <summary>&lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.</summary>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.PickupAtLocationAvailability>? PickupAtLocationAvailability { get; set; }

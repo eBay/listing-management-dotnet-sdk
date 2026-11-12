@@ -60,7 +60,7 @@ dotnet kiota generate \
 echo "Adding license headers to generated files..."
 ./add-license-headers.sh ./EBay.ListingManagement/Generated
 
-echo "Building (triggers StrawberryShake GraphQL codegen)..."
+echo "Building (compile check)..."
 DOTNET_ROLL_FORWARD=LatestMajor dotnet build EBay.ListingManagement/EBay.ListingManagement.csproj
 
 echo "Done."

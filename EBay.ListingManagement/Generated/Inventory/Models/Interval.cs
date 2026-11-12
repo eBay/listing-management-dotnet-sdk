@@ -22,8 +22,9 @@ using System;
 namespace EBay.ListingManagement.Generated.Inventory.Models
 {
     /// <summary>
-    /// This type is used by the &lt;strong&gt;intervals&lt;/strong&gt; container to define the opening and closing times of a store location&apos;s working day. Local time (in Military format) is used, with the following format: &lt;code&gt;hh:mm:ss&lt;/code&gt;.
+    /// &lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.
     /// </summary>
+    [Obsolete("")]
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Interval : IAdditionalDataHolder, IParsable
     {

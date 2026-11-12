@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System;
 namespace EBay.ListingManagement.Generated.Inventory.Models
 {
-    /// <summary>An enumerated type defining the inventory location types. | - **STORE**: This enumeration value indicates the inventory location is a merchant&apos;s store. - **WAREHOUSE**: This enumeration value indicates the inventory location is a merchant&apos;s warehouse. - **FULFILLMENT_CENTER**: This enumeration value indicates the inventory location is a merchant&apos;s fulfillment center. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Note&lt;/strong&gt;: This location type must be used to take advantage of the Multi-warehouse program to get improved EDD on listing.</summary>
+    /// <summary>An enumerated type defining the inventory location types. | - **STORE**: &lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported. - **WAREHOUSE**: This enumeration value indicates the inventory location is a merchant&apos;s warehouse. - **FULFILLMENT_CENTER**: This enumeration value indicates the inventory location is a merchant&apos;s fulfillment center. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Note&lt;/strong&gt;: This location type must be used to take advantage of the Multi-warehouse program to get improved EDD on listing.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum StoreTypeEnum
     {
