@@ -31,7 +31,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_traits;
 
         /// <summary>
-        /// This container is used to add or modify a Global Trade Item Number (GTIN) or add an eBay product ID (ePID) for a product. If an eBay catalog product is found that maps to a GTIN or an ePID, product details of that eBay catalog product will be used to update the product details of the active or scheduled listing. The product details in a catalog product include product title, product description, aspects, eBay leaf category, and stock photo.
+        /// This object is used to add or modify a Global Trade Item Number (GTIN) or add an eBay product ID (ePID) for a product. If an eBay catalog product is found that maps to a GTIN or an ePID, product details of that eBay catalog product will be used to update the product details of the active or scheduled listing. The product details in a catalog product include product title, product description, aspects, eBay leaf category, and stock photo.
+        ///
         /// **Note**: If an eBay catalog product is found and used to update a listing, any other product-related details defined in the listing may be dropped.
         /// </summary>
         public UpdateListingProductIdentifiersInput? ProductIdentifiers
@@ -45,9 +46,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array is needed if the seller wants to add a new variation to an active or scheduled multiple-SKU listing. This array is used to provide the traits that make each item unique in context of the multiple-SKU listing. Each item in a multiple-SKU listing must have a unique combination of trait values, and the trait names and trait values specified here must be defined as available trait names and trait values in the **variationDetails** container. An error will be thrown if the specified traits do not match the variation traits defined in the **variationDetails** container.
-        /// **Note**: The trait names and values must match the marketplace's language and locale.
-        /// **Max allowed traits**: 5.
+        /// This array is needed if the seller wants to add a new variation to an active or scheduled multiple-SKU listing. This array is used to provide the traits that make each item unique in context of the multiple-SKU listing. Each item in a multiple-SKU listing must have a unique combination of trait values, and the trait names and trait values specified here must be defined as available trait names and trait values in the **variationDetails** object. An error will be thrown if the specified traits do not match the variation traits defined in the **variationDetails** object.
+        ///
+        /// **Notes**:
+        /// - The trait names and values must match the marketplace's language and locale.
+        /// - The maximum allowed traits is 5
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<NameValuePairInput>? Traits
         {
@@ -61,13 +64,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_productIdentifiers || _set_traits))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_productIdentifiers)
             {

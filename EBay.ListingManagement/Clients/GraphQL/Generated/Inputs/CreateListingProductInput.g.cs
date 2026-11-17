@@ -46,7 +46,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to set name-value pairs that define the product aspects. Most leaf categories require at least a few aspects, and the listing will fail if these are not provided. The [getItemAspectsForCategory](https://developer.ebay.com/api-docs/sell/taxonomy/resources/category_tree/methods/getItemAspectsForCategory) method can be used to see which aspects are required, recommended, or optional for a leaf category. This method also returns typical values for an aspect name and will indicate if an aspect name supports multiple values or just one value. For a multiple-SKU listing, only the common aspects will be specified in this array, and the pivoting aspects (aka traits) will be specified at the item level.
-        /// **Max length**: 65 characters for each aspect name and value.
+        ///
+        /// **Maximum length**: 65 characters for each aspect name and value
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<NameValuesPairInput>? Aspects
         {
@@ -59,7 +60,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide the primary eBay category for the listing, and optionally, a secondary eBay category and eBay store categories. This container is required unless an eBay catalog product is used, and the eBay category is defined in that catalog product.
+        /// This object is used to provide the primary eBay category for the listing, and optionally, a secondary eBay category and eBay store categories. This object is required unless an eBay catalog product is used, and the eBay category is defined in that catalog product.
+        ///
         /// **Note**: If a seller has an eBay store and does not specify a store category ID, eBay will automatically put that listing into the default *Other* category in the seller's eBay store.
         /// </summary>
         public CreateListingProductCategoriesInput? Categories
@@ -74,7 +76,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to set the full description of the product or group of products. This field is required unless an eBay catalog product is being used and the product description is picked up from the catalog product instead. HTML markup and inline CSS can be used. However, a seller can not use any active content in their listing description. Active content includes animation or video via JavaScript, Flash, plug-ins, or form actions. All active content will be blocked/removed from a listing. Sellers are only allowed to provide links to product videos, freight shipping services, or other legally required information, and when providing these links in the listing description, the secure 'https' protocol must be used instead of 'http'. In addition, any valid links to sites outside of eBay should use the target="_blank" attribute in the a href tag so a new browser window will be loaded when the link is clicked instead of buyers being redirected off of eBay.
-        /// **Max length**: 500,000 characters (including all markup tags/CSS).
+        ///
+        /// **Maximum length**: 500,000 characters (including all markup tags/CSS)
         /// </summary>
         public string? Description
         {
@@ -88,7 +91,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to specify a list of image URLs that will become photos in the listing's photo gallery. Most eBay categories support up to 24 photos per listing at no extra charge. The URLs used in this array must use 'https'. Either all eBay Picture Services (EPS) or all self-hosted picture URLs may be used in this array, but not a combination of both.
-        /// **Max images allowed on a listing**: 24
+        ///
+        /// **Maximum images allowed on a listing**: 24
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? ImageUrls
         {
@@ -101,7 +105,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to express the condition of the item(s) in this listing. A large majority of eBay categories require a condition, and this condition is specified through a numeric identifier in the **conditionId** field. For non-new items, it is highly recommended that the **conditionDescription** field be used to provide specific details about the item's condition or 'wear and tear'. The **conditionDescriptor** array is used to provide condition details of graded and ungraded trading cards in a structured manner.
+        /// This object is used to express the condition of the item(s) in this listing. A large majority of eBay categories require a condition, and this condition is specified through a numeric identifier in the **conditionId** field. For non-new items, it is highly recommended that the **conditionDescription** field be used to provide specific details about the item's condition or 'wear and tear'. The **conditionDescriptor** array is used to provide condition details of graded and ungraded trading cards in a structured manner.
         /// </summary>
         public CreateListingItemConditionInput? ItemCondition
         {
@@ -115,7 +119,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to define the motor vehicles or assemblies that are compatible with a Parts &amp; Accessories item. This structured compatibility information helps buyers filter and find parts that are compatible with their specific vehicles. Year, Make, and Model are typical aspects used to identify a motor vehicle.
-        /// **Max compatibilities allowed on a listing**: 3000
+        ///
+        /// **Maximum compatibilities allowed on a listing**: 3000
         /// </summary>
         public CreateListingItemCompatibilitiesInput? ListingCompatibilities
         {
@@ -128,7 +133,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is needed for motor vehicle listings to provide the Vehicle Identification Number (VIN) or the Vehicle Registration Mark (VRM) for the motor vehicle.
+        /// This object is needed for motor vehicle listings to provide the Vehicle Identification Number (VIN) or the Vehicle Registration Mark (VRM) for the motor vehicle.
         /// </summary>
         public CreateListingMotorVehicleIdentifierInput? MotorVehicleIdentifier
         {
@@ -142,7 +147,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to add the product title displayed on the listing. This field is required unless the listing uses an eBay catalog product (in which case the title is obtained from the eBay catalog product) or if the listing is for a motor vehicle (in which case the vehicle’s Make, Model, and Year serve as the title).
-        /// **Max length**: 80 characters.
+        ///
+        /// **Maximum length**: 80 characters
         /// </summary>
         public string? Title
         {
@@ -156,6 +162,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add a seller's video to the listing. A unique identifier for a seller's video is passed into this array to add a product video to the listing. Although a video can be added to a listing before it is in the `LIVE` state, the video won't be available for viewing in the listing until it does reach this state. To know more about the video upload process and various states for a video, see the [Media API documentation](https://developer.ebay.com/api-docs/sell/media/overview).
+        ///
         /// **Note**: Currently, only one video may be added to each listing.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? VideoIds
@@ -170,13 +177,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_aspects || _set_categories || _set_description || _set_imageUrls || _set_itemCondition || _set_listingCompatibilities || _set_motorVehicleIdentifier || _set_title || _set_videoIds))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_aspects)
             {

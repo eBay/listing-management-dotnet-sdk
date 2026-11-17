@@ -27,13 +27,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
     {
         /// <summary>
         /// This query can be used to retrieve a user's saved searches. If successful, this query returns a list of a user's saved searches and information about each, such as their creation date, unique identifier, name, and URL. By default, saved searches are returned by the date they were saved, with the most recent first. Pagination settings can be specified in the input to control the page size of the response and navigation through the result set.
-        ///
-        /// **PossibleErrors**:
-        /// | Code                  | Message                                                                                    |
-        /// |-----------------------|--------------------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       | 'input.pagination.maxPageSize' has invalid numeric value: [value]. Value must be &gt;= 1.     |
-        /// | BAD_INPUT_VALUE       | Invalid cursor format.                                                                     |
-        /// | INTERNAL_SERVER_ERROR | An internal server error has occurred.                                                     |
         /// </summary>
         public IUserSavedSearches_UserSavedSearches UserSavedSearches { get; }
     }
@@ -50,13 +43,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This query can be used to retrieve a user's saved searches. If successful, this query returns a list of a user's saved searches and information about each, such as their creation date, unique identifier, name, and URL. By default, saved searches are returned by the date they were saved, with the most recent first. Pagination settings can be specified in the input to control the page size of the response and navigation through the result set.
-        ///
-        /// **PossibleErrors**:
-        /// | Code                  | Message                                                                                    |
-        /// |-----------------------|--------------------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       | 'input.pagination.maxPageSize' has invalid numeric value: [value]. Value must be &gt;= 1.     |
-        /// | BAD_INPUT_VALUE       | Invalid cursor format.                                                                     |
-        /// | INTERNAL_SERVER_ERROR | An internal server error has occurred.                                                     |
         /// </summary>
         public IUserSavedSearches_UserSavedSearches UserSavedSearches { get; }
 
@@ -141,13 +127,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the information about a user's saved search, such as its creation date, ID, name, and search criteria.
+    /// This type defines the information about a user's saved search, such as its creation date, unique ID, name, and search criteria.
     /// </summary>
     public partial interface IUserSavedSearches_UserSavedSearches_SavedSearches
     {
         /// <summary>
-        /// The date and time the user saved this search.
-        /// **Format**: ISO 8601 date-time string ('YYYY-MM-DDTHH:mm:ss.sssZ')
+        /// The date and time that the user saved this search.
+        ///
+        /// **Format**: ISO 8601 date-time string (`YYYY-MM-DDTHH:mm:ss.sssZ`)
         /// **Time zone**: UTC
         /// </summary>
         public global::System.DateTimeOffset SavedAt { get; }
@@ -156,44 +143,43 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string SavedSearchId { get; }
         /// <summary>
-        ///    The name of the saved search.
-        ///    **Format**: Alphanumeric characters, spaces, and common punctuation
-        /// **Note:** By default, this name will be the text of the search query string. Users are able to give a saved search a custom name.
+        /// The name of the saved search.
+        ///
+        /// **Note**: By default, this name will be the text of the search query string. Users are able to give a saved search a custom name.
         /// </summary>
         public string SavedSearchName { get; }
         /// <summary>
         /// The URL to the user's saved search. The user can copy and paste this URL into a browser to view the search results.
-        /// **Maximum length**: 2048 characters
-        /// **Format**: Valid URL with protocol ('https://')
         /// </summary>
         public string SavedSearchUrl { get; }
     }
 
     /// <summary>
-    /// This type defines the information about a user's saved search, such as its creation date, ID, name, and search criteria.
+    /// This type defines the information about a user's saved search, such as its creation date, unique ID, name, and search criteria.
     /// </summary>
     public partial interface IUserSavedSearches_UserSavedSearches_SavedSearches_UserSavedSearch : IUserSavedSearches_UserSavedSearches_SavedSearches
     {
     }
 
     /// <summary>
-    /// The base response type for the **userSavedSearches** query. This type contains information about one or more of a user's saved searches and includes paginated search results and navigation information for efficient data retrieval.
+    /// This base response type for the **userSavedSearches** query contains information about one or more of a user's saved searches and includes paginated search results and navigation information for efficient data retrieval.
     /// </summary>
     public partial interface IUserSavedSearches_UserSavedSearches
     {
         /// <summary>
-        /// This container returns pagination information for navigating through multiple pages of saved searches.
+        /// This object returns pagination information for navigating through multiple pages of saved searches.
         /// </summary>
         public IUserSavedSearches_UserSavedSearches_Pagination? Pagination { get; }
         /// <summary>
-        ///    This array returns a list of the user's saved searches. Saved searches are ordered according to the specified sort parameter. If no sort parameters are specified, saved searches are sorted by the date they were saved with the most recent first.
-        /// **Note:** This array may be empty if the user has no saved searches.
+        /// This array returns a list of the user's saved searches. Saved searches are ordered according to the specified sort parameter. If no sort parameters are specified, saved searches are sorted by the date they were saved with the most recent first.
+        ///
+        /// **Note**: This array may be empty if the user has no saved searches.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUserSavedSearches_UserSavedSearches_SavedSearches> SavedSearches { get; }
     }
 
     /// <summary>
-    /// The base response type for the **userSavedSearches** query. This type contains information about one or more of a user's saved searches and includes paginated search results and navigation information for efficient data retrieval.
+    /// This base response type for the **userSavedSearches** query contains information about one or more of a user's saved searches and includes paginated search results and navigation information for efficient data retrieval.
     /// </summary>
     public partial interface IUserSavedSearches_UserSavedSearches_UserSavedSearchesOutput : IUserSavedSearches_UserSavedSearches
     {
@@ -284,7 +270,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the information about a user's saved search, such as its creation date, ID, name, and search criteria.
+    /// This type defines the information about a user's saved search, such as its creation date, unique ID, name, and search criteria.
     /// </summary>
     public partial class UserSavedSearches_UserSavedSearches_SavedSearches_UserSavedSearch : global::System.IEquatable<UserSavedSearches_UserSavedSearches_SavedSearches_UserSavedSearch>, IUserSavedSearches_UserSavedSearches_SavedSearches_UserSavedSearch
     {
@@ -297,8 +283,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The date and time the user saved this search.
-        /// **Format**: ISO 8601 date-time string ('YYYY-MM-DDTHH:mm:ss.sssZ')
+        /// The date and time that the user saved this search.
+        ///
+        /// **Format**: ISO 8601 date-time string (`YYYY-MM-DDTHH:mm:ss.sssZ`)
         /// **Time zone**: UTC
         /// </summary>
         public global::System.DateTimeOffset SavedAt { get; }
@@ -309,16 +296,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string SavedSearchId { get; }
 
         /// <summary>
-        ///    The name of the saved search.
-        ///    **Format**: Alphanumeric characters, spaces, and common punctuation
-        /// **Note:** By default, this name will be the text of the search query string. Users are able to give a saved search a custom name.
+        /// The name of the saved search.
+        ///
+        /// **Note**: By default, this name will be the text of the search query string. Users are able to give a saved search a custom name.
         /// </summary>
         public string SavedSearchName { get; }
 
         /// <summary>
         /// The URL to the user's saved search. The user can copy and paste this URL into a browser to view the search results.
-        /// **Maximum length**: 2048 characters
-        /// **Format**: Valid URL with protocol ('https://')
         /// </summary>
         public string SavedSearchUrl { get; }
 
@@ -389,7 +374,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// The base response type for the **userSavedSearches** query. This type contains information about one or more of a user's saved searches and includes paginated search results and navigation information for efficient data retrieval.
+    /// This base response type for the **userSavedSearches** query contains information about one or more of a user's saved searches and includes paginated search results and navigation information for efficient data retrieval.
     /// </summary>
     public partial class UserSavedSearches_UserSavedSearches_UserSavedSearchesOutput : global::System.IEquatable<UserSavedSearches_UserSavedSearches_UserSavedSearchesOutput>, IUserSavedSearches_UserSavedSearches_UserSavedSearchesOutput
     {
@@ -400,13 +385,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container returns pagination information for navigating through multiple pages of saved searches.
+        /// This object returns pagination information for navigating through multiple pages of saved searches.
         /// </summary>
         public IUserSavedSearches_UserSavedSearches_Pagination? Pagination { get; }
 
         /// <summary>
-        ///    This array returns a list of the user's saved searches. Saved searches are ordered according to the specified sort parameter. If no sort parameters are specified, saved searches are sorted by the date they were saved with the most recent first.
-        /// **Note:** This array may be empty if the user has no saved searches.
+        /// This array returns a list of the user's saved searches. Saved searches are ordered according to the specified sort parameter. If no sort parameters are specified, saved searches are sorted by the date they were saved with the most recent first.
+        ///
+        /// **Note**: This array may be empty if the user has no saved searches.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUserSavedSearches_UserSavedSearches_SavedSearches> SavedSearches { get; }
 

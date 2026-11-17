@@ -48,8 +48,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to specify if the shipping service option identified through the corresponding **rank** field is a shipping service. The value of this field should be set to 'false' if the shipping service is a domestic shipping service, and 'true' if it is an international shipping service.
-        /// **Default value**: false
+        /// This field is used to specify if the shipping service option identified through the corresponding **rank** field is a shipping service. The value of this field should be set to `false` if the shipping service is a domestic shipping service, and `true` if it is an international shipping service.
+        ///
+        /// **Default**: false
         /// </summary>
         public bool? InternationalShippingOption
         {
@@ -62,7 +63,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The integer value specified here identifies the shipping service in the fulfillment business policy whose cost value(s) will be overridden. This should be a positive integer from 1 to 4 if overriding a domestic shipping service option or from 1 to 5 if overriding an international shipping service option. A rank value of '1' means it is the first shipping option displayed in the View Item page.
+        /// The integer value specified here identifies the shipping service in the fulfillment business policy whose cost value(s) will be overridden. This should be a positive integer from 1 to 4 if overriding a domestic shipping service option or from 1 to 5 if overriding an international shipping service option. A rank value of `1` means it is the first shipping option displayed in the View Item page.
         /// </summary>
         public int Rank
         {
@@ -89,13 +90,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_additionalUnitShippingCost || _set_internationalShippingOption || _set_rank || _set_shippingCost))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_additionalUnitShippingCost)
             {

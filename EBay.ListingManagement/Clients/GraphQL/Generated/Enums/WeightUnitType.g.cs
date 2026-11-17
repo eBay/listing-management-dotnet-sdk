@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This enumerated type consists of the units of measurement that are used to specify shipping package weight.
+    /// This enumeration type consists of the units of measurement that are used to specify shipping package weight.
     /// </summary>
     public enum WeightUnitType
     {

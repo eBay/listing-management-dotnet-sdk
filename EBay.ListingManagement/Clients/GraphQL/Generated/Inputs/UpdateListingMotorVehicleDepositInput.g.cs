@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
     /// </summary>
     public partial class UpdateListingMotorVehicleDepositInput : global::System.IEquatable<UpdateListingMotorVehicleDepositInput>
     {
@@ -49,7 +49,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field sets or modifies the deposit amount to secure the purchase of a motor vehicle. This field is required if the seller is requiring a deposit. This deposit must be made immediately by the buyer if **immediatePay** is set to 'true', or within 24, 48, or 72 hours (set with **hoursToDeposit** field) if **immediatePay** is set to 'false'.
-        /// **Max value**: 2000 USD (non-immediate pay), 500 USD (immediate pay)
+        ///
+        /// **Maximum value**: 2000 USD (non-immediate pay), 500 USD (immediate pay)
         /// </summary>
         public decimal? DepositAmount
         {
@@ -63,6 +64,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This boolean field is included and set to 'true' if the seller requires a deposit to secure the purchase of a motor vehicle.
+        ///
         /// **Note**: If a motor vehicle deposit is currently required for the motor vehicle listing, but the seller wants to disable, the field can be included and set to 'false'.
         /// </summary>
         public bool? DepositRequired
@@ -90,13 +92,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_daysToMakeFullPayment || _set_depositAmount || _set_depositRequired || _set_hoursToDeposit))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_daysToMakeFullPayment)
             {

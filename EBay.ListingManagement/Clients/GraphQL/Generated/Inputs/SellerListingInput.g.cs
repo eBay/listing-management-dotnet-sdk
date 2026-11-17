@@ -21,15 +21,32 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// The type is used to identify a listing to retrieve in the **sellerListings** query.
+    /// This type is used to identify a listing to retrieve in the **sellerListings** query.
     /// </summary>
     public partial class SellerListingInput : global::System.IEquatable<SellerListingInput>
     {
+        private global::System.Collections.Generic.IReadOnlyList<SellerListingItemsSelectionInput>? _value_itemsFilter;
+        private bool _set_itemsFilter;
         private string _value_listingId = default!;
         private bool _set_listingId;
 
         /// <summary>
-        /// ID of the listing
+        /// This optional field allows a user to specify a specific item within a multiple-SKU listing to retrieve.
+        /// - If omitted, all items in the listing are returned.
+        /// - If the provided SKU value does not match any items in the listing, an empty items list is returned.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<SellerListingItemsSelectionInput>? ItemsFilter
+        {
+            get => _value_itemsFilter;
+            set
+            {
+                _set_itemsFilter = true;
+                _value_itemsFilter = value;
+            }
+        }
+
+        /// <summary>
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId
         {
@@ -43,14 +60,34 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_listingId))
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
+            writer.WriteStartObject();
+            if (_set_itemsFilter)
             {
-                writer.WriteNullValue();
-                return;
+                writer.WritePropertyName("itemsFilter");
+                if (_value_itemsFilter is null)
+                {
+                    writer.WriteNullValue();
+                }
+                else
+                {
+                    if (_value_itemsFilter is null)
+                    {
+                        throw new global::System.ArgumentNullException("ItemsFilter");
+                    }
+                    writer.WriteStartArray();
+                    foreach (var item0 in _value_itemsFilter)
+                    {
+                        if (item0 is null)
+                        {
+                            throw new global::System.ArgumentNullException("ItemsFilter");
+                        }
+                        item0.WriteJson(writer);
+                    }
+                    writer.WriteEndArray();
+                }
             }
 
-            writer.WriteStartObject();
             if (_set_listingId)
             {
                 writer.WritePropertyName("listingId");
@@ -80,7 +117,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 return false;
             }
 
-            return global::System.Object.Equals(ListingId, other.ListingId);
+            return GraphQLJson.SequenceEqual(ItemsFilter, other.ItemsFilter)
+                && global::System.Object.Equals(ListingId, other.ListingId);
         }
 
         public override bool Equals(object? obj)
@@ -108,6 +146,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
             unchecked
             {
                 int hash = 5;
+                hash ^= 397 * GraphQLJson.SequenceHash(ItemsFilter);
                 if (ListingId is not null)
                 {
                     hash ^= 397 * ListingId.GetHashCode();

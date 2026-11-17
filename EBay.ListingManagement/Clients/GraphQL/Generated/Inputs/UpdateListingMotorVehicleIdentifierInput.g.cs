@@ -32,7 +32,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to add or change the Vehicle Identifier Number (VIN) of the motor vehicle that is to be sold. The VIN or the VRM IDs are needed for motor vehicle listings.
-        /// **Max length**: 17 characters.
         /// </summary>
         public string? Vin
         {
@@ -59,13 +58,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_vin || _set_vrm))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_vin)
             {

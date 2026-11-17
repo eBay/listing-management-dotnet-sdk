@@ -29,8 +29,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_endListingReason;
         private ListingIdentifierInput _value_listingIdentifier = default!;
         private bool _set_listingIdentifier;
-        private ListingIdentifierInput? _value_listingIdentifierInput;
-        private bool _set_listingIdentifierInput;
 
         /// <summary>
         /// The field is used to provide the seller's reason to end the listing. See the [`EndListingReason`] for the list of supported enumeration values.
@@ -46,7 +44,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to identify the listing to be ended. It can either be identified with the **listingId** or the SKU value if defined in the active listing.
+        /// This object is used to identify the listing to be ended. It can either be identified with the **listingId** or the SKU value if defined in the active listing.
         /// </summary>
         public ListingIdentifierInput ListingIdentifier
         {
@@ -58,28 +56,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
             }
         }
 
-        /// <summary>
-        /// This container is used to identify the listing to be ended. It can either be identified with the **listingId** or the SKU value if defined in the active listing.
-        /// </summary>
-        public ListingIdentifierInput? ListingIdentifierInput
-        {
-            get => _value_listingIdentifierInput;
-            set
-            {
-                _set_listingIdentifierInput = true;
-                _value_listingIdentifierInput = value;
-            }
-        }
-
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_endListingReason || _set_listingIdentifier || _set_listingIdentifierInput))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_endListingReason)
             {
@@ -95,23 +74,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     throw new global::System.ArgumentNullException("ListingIdentifier");
                 }
                 _value_listingIdentifier.WriteJson(writer);
-            }
-
-            if (_set_listingIdentifierInput)
-            {
-                writer.WritePropertyName("listingIdentifierInput");
-                if (_value_listingIdentifierInput is null)
-                {
-                    writer.WriteNullValue();
-                }
-                else
-                {
-                    if (_value_listingIdentifierInput is null)
-                    {
-                        throw new global::System.ArgumentNullException("ListingIdentifierInput");
-                    }
-                    _value_listingIdentifierInput.WriteJson(writer);
-                }
             }
             writer.WriteEndObject();
         }
@@ -134,8 +96,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
             }
 
             return global::System.Object.Equals(EndListingReason, other.EndListingReason)
-                && global::System.Object.Equals(ListingIdentifier, other.ListingIdentifier)
-                && global::System.Object.Equals(ListingIdentifierInput, other.ListingIdentifierInput);
+                && global::System.Object.Equals(ListingIdentifier, other.ListingIdentifier);
         }
 
         public override bool Equals(object? obj)
@@ -167,10 +128,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 if (ListingIdentifier is not null)
                 {
                     hash ^= 397 * ListingIdentifier.GetHashCode();
-                }
-                if (ListingIdentifierInput is not null)
-                {
-                    hash ^= 397 * ListingIdentifierInput.GetHashCode();
                 }
                 return hash;
             }

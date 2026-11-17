@@ -29,8 +29,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_addressLine1;
         private string? _value_addressLine2;
         private bool _set_addressLine2;
-        private string? _value_companyName;
-        private bool _set_companyName;
         private bool? _value_contactByEmailEnabled;
         private bool _set_contactByEmailEnabled;
         private CountryAlpha2Code? _value_country;
@@ -67,19 +65,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
             {
                 _set_addressLine2 = true;
                 _value_addressLine2 = value;
-            }
-        }
-
-        /// <summary>
-        /// This field adds or modifies the company name (if any) associated with the seller.
-        /// </summary>
-        public string? CompanyName
-        {
-            get => _value_companyName;
-            set
-            {
-                _set_companyName = true;
-                _value_companyName = value;
             }
         }
 
@@ -136,7 +121,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify the seller's primary support days and hours. This will generally be used to show support hours on weekdays. This container should always be provided to let potential buyers know when the seller may be contacted.
+        /// This object is used to add or modify the seller's primary support days and hours. This will generally be used to show support hours on weekdays. This object should always be provided to let potential buyers know when the seller may be contacted.
         /// </summary>
         public UpdateListingSellerContactHoursInput? PrimarySellerContactHours
         {
@@ -149,7 +134,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide the seller's secondary support days and hours. This will generally be used to show support hours on weekends if the support hours vary on weekends.
+        /// This object is used to provide the seller's secondary support days and hours. This will generally be used to show support hours on weekends if the support hours vary on weekends.
         /// </summary>
         public UpdateListingSellerContactHoursInput? SecondarySellerContactHours
         {
@@ -163,13 +148,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_addressLine1 || _set_addressLine2 || _set_companyName || _set_contactByEmailEnabled || _set_country || _set_county || _set_phone || _set_primarySellerContactHours || _set_secondarySellerContactHours))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_addressLine1)
             {
@@ -202,23 +181,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
                         throw new global::System.ArgumentNullException("AddressLine2");
                     }
                     GraphQLJson.WriteString(writer, _value_addressLine2);
-                }
-            }
-
-            if (_set_companyName)
-            {
-                writer.WritePropertyName("companyName");
-                if (_value_companyName is null)
-                {
-                    writer.WriteNullValue();
-                }
-                else
-                {
-                    if (_value_companyName is null)
-                    {
-                        throw new global::System.ArgumentNullException("CompanyName");
-                    }
-                    GraphQLJson.WriteString(writer, _value_companyName);
                 }
             }
 
@@ -337,7 +299,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
             return global::System.Object.Equals(AddressLine1, other.AddressLine1)
                 && global::System.Object.Equals(AddressLine2, other.AddressLine2)
-                && global::System.Object.Equals(CompanyName, other.CompanyName)
                 && global::System.Object.Equals(ContactByEmailEnabled, other.ContactByEmailEnabled)
                 && global::System.Object.Equals(Country, other.Country)
                 && global::System.Object.Equals(County, other.County)
@@ -378,10 +339,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 if (AddressLine2 is not null)
                 {
                     hash ^= 397 * AddressLine2.GetHashCode();
-                }
-                if (CompanyName is not null)
-                {
-                    hash ^= 397 * CompanyName.GetHashCode();
                 }
                 if (ContactByEmailEnabled is not null)
                 {

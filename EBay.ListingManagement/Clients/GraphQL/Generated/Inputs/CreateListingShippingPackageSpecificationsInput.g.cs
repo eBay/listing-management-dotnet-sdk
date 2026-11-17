@@ -37,8 +37,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_packageWeight;
 
         /// <summary>
-        /// This field should be included and set to 'true' if the package has an irregular or non-standard shape. A shipping carrier may charge additional handling fees for an irregular package.
-        /// **Default value**: false
+        /// This field should be included and set to `true` if the package has an irregular or non-standard shape. A shipping carrier may charge additional handling fees for an irregular package.
+        ///
+        /// **Default**: false
         /// </summary>
         public bool? IrregularPackage
         {
@@ -64,7 +65,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to specify the dimensions of the shipping package.
+        /// This object is used to specify the dimensions of the shipping package.
         /// </summary>
         public CreateListingPackageDimensionsInput? PackageDimensions
         {
@@ -90,7 +91,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to specify the weight of the shipping package. The weight of the shipping package is required when the listing is using the calculated shipping cost type.
+        /// This object is used to specify the weight of the shipping package. The weight of the shipping package is required when the listing is using the calculated shipping cost type.
         /// </summary>
         public CreateListingPackageWeightInput? PackageWeight
         {
@@ -104,13 +105,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_irregularPackage || _set_measurementSystem || _set_packageDimensions || _set_packageType || _set_packageWeight))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_irregularPackage)
             {

@@ -43,7 +43,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_vatRestrictedToBusinessUser;
 
         /// <summary>
-        /// This field is included and set to 'true' if the seller wants the sales tax rate for the jurisdiction to apply to the cumulative amount of item cost and shipping charges, or set to 'false' if the seller does not want sales tax to apply to shipping charges. This field is only applicable if the **salesTaxPercentage** and **salesTaxJurisdictionId** fields are also set.
+        /// This field is included and set to `true` if the seller wants the sales tax rate for the jurisdiction to apply to the cumulative amount of item cost and shipping charges, or set to `false` if the seller does not want sales tax to apply to shipping charges. This field is only applicable if the **salesTaxPercentage** and **salesTaxJurisdictionId** fields are also set.
         /// </summary>
         public bool? SalesTaxApplicableToShipping
         {
@@ -57,6 +57,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to specify a US territory or a Canadian province that will be charged the sales tax rate specified in the **salesTaxPercentage** field. The supported US territories are `AS` (America Samoa), `GU` (Guam), `MP` (Northern Mariana Islands), `PW` (Palau), and `VI` (US Virgin Islands). The two-letter codes for Canadian provinces can be found here on the [Government of Canada](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/completing-slips-summaries/financial-slips-summaries/return-investment-income-t5/provincial-territorial-codes.html) website.
+        ///
         /// **Note**: Sales tax rates are only applicable on the EBAY_US, EBAY_CA and EBAY_CAFR marketplaces.
         /// </summary>
         public string? SalesTaxJurisdictionId
@@ -71,6 +72,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used along with **salesTaxJurisdictionId** field to set or modify the sales tax rate for a specific US territory or a Canadian province. The percentage set here will be applied to sale price as the sales tax for the order line item. The value passed in is stored with a precision of 1 digits after the decimal point.
+        ///
         /// **Note**: Sales tax rates are only applicable on the EBAY_US, EBAY_CA and EBAY_CAFR marketplaces.
         /// </summary>
         public decimal? SalesTaxPercentage
@@ -84,7 +86,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is included and set to 'true' if the seller has an account level sales tax table set up and wishes to use the sales tax rates set up in that table. If this field is set to 'true', the values contained in the other sales tax fields (if set) in this container will be overridden by the values set in the sales tax table.
+        /// This field is included and set to `true` if the seller has an account level sales tax table set up and wishes to use the sales tax rates set up in that table. If this field is set to `true`, the values contained in the other sales tax fields (if set) in this object will be overridden by the values set in the sales tax table.
         /// </summary>
         public bool? SalesTaxTableUsed
         {
@@ -123,7 +125,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field should be included and set to 'true' if the seller is registered on the listing site as a Business Seller and intends to use listing features that are offered to business users only. This field must be included and set to 'true' if the **vatRestrictedToBusinessUser** field is also included and set to 'true'.
+        /// This field should be included and set to `true` if the seller is registered on the listing site as a Business Seller and intends to use listing features that are offered to business users only. This field must be included and set to `true` if the **vatRestrictedToBusinessUser** field is also included and set to `true`.
         /// </summary>
         public bool? VatRecognizedBusinessSeller
         {
@@ -136,7 +138,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is included and set to 'true' if a business seller wishes to make the listing exclusively available to potential buyers registered on eBay as business users. This feature is only applicable to business sellers residing in Germany, Austria, or Switzerland who are listing in a B2B VAT-enabled category on the eBay Germany (EBAY_DE), Austria (EBAY_AT), or Switzerland (EBAY_CH) marketplaces. To set this field as 'true', the **vatRecognizedBusinessSeller** field must also be included and set to 'true'.
+        /// This field is included and set to `true` if a business seller wishes to make the listing exclusively available to potential buyers registered on eBay as business users. This feature is only applicable to business sellers residing in Germany, Austria, or Switzerland who are listing in a B2B VAT-enabled category on the eBay Germany (EBAY_DE), Austria (EBAY_AT), or Switzerland (EBAY_CH) marketplaces. To set this field as `true`, the **vatRecognizedBusinessSeller** field must also be included and set to `true`.
         /// </summary>
         public bool? VatRestrictedToBusinessUser
         {
@@ -150,13 +152,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_salesTaxApplicableToShipping || _set_salesTaxJurisdictionId || _set_salesTaxPercentage || _set_salesTaxTableUsed || _set_thirdPartyTaxCategoryCode || _set_vatPercentage || _set_vatRecognizedBusinessSeller || _set_vatRestrictedToBusinessUser))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_salesTaxApplicableToShipping)
             {

@@ -49,7 +49,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// Available duration values are:
         /// - Fixed duration listing values, in days: 1, 3, 5, 7, 10, 30
         /// - Good 'Til Cancelled (GTC) listings are treated as having an infinite duration for sorting purposes.
-        ///     **Note:** 'Buy It Now' listings have a duration of GTC.
+        ///  *Note:** 'Buy It Now' listings have a duration of GTC.
         ///
         /// When sorted in Ascending order, GTC listings appear last: 1-day, 3-day, ..., 30-day, GTC
         ///
@@ -63,7 +63,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// This enumeration value indicates listings will be sorted by their `formatType`. When sorting listings in ascending order, `AUCTION` listings are first, followed by `FIXED_PRICE` listings, and then `CLASSIFIED_AD` listings.
         ///
-        /// **Note:** Auction listings with a 'Buy It Now' price enabled are considered `AUCTION` listings when being sorted.
+        /// **Note**: Auction listings with a 'Buy It Now' price enabled are considered `AUCTION` listings when being sorted.
         /// </summary>
         Format,
         /// <summary>

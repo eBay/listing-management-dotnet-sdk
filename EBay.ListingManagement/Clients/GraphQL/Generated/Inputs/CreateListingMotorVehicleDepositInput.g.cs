@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
     /// </summary>
     public partial class CreateListingMotorVehicleDepositInput : global::System.IEquatable<CreateListingMotorVehicleDepositInput>
     {
@@ -36,7 +36,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to set the due date (in days) for the buyer to pay off the full balance of the motor vehicle. The clock starts on the full payment due date as soon as the buyer commits to buying the vehicle by clicking the 'Buy It Now' button, by winning the auction, or by the seller accepting that buyer's Best Offer/counteroffer. The supported values here are `DAYS_3` `DAYS_7`, `DAYS_10`, and `DAYS_14`.
-        /// **Default value**: DAYS_7
+        ///
+        /// **Default**: DAYS_7
         /// </summary>
         public ListingTimeDuration? DaysToMakeFullPayment
         {
@@ -49,8 +50,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field sets the required deposit amount to secure the purchase of a motor vehicle. This field is required if the seller is requiring a deposit. This deposit must be made immediately by the buyer if **immediatePay** is set to 'true', or within 24, 48, or 72 hours (set with **hoursToDeposit** field) if **immediatePay** is set to 'false'.
-        /// **Max value**: 2000 USD (non-immediate pay), 500 USD (immediate pay)
+        /// This field sets the required deposit amount to secure the purchase of a motor vehicle. This field is required if the seller is requiring a deposit. This deposit must be made immediately by the buyer if **immediatePay** is set to `true`, or within 24, 48, or 72 hours (set with **hoursToDeposit** field) if **immediatePay** is set to `false`.
+        ///
+        /// **Maximum value**: 2000 USD (non-immediate pay), 500 USD (immediate pay)
         /// </summary>
         public decimal? DepositAmount
         {
@@ -63,8 +65,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is included and set to 'true' if the seller requires a deposit to secure the purchase of a motor vehicle.
-        /// **Default value**: false
+        /// This field is included and set to `true` if the seller requires a deposit to secure the purchase of a motor vehicle.
+        ///
+        /// **Default**: false
         /// </summary>
         public bool? DepositRequired
         {
@@ -77,8 +80,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to set the deadline (in hours) for the motor vehicle deposit. The deposit amount is specified in the **depositAmount** field. The clock starts on the deposit deadline as soon as the buyer commits to buying the vehicle by clicking the 'Buy It Now' button, by winning the auction, or by the seller accepting that buyer's Best Offer/counteroffer. The three supported integer values here are 24, 48, and 72 (hours). If **immediatePay** is 'true', and the listing qualifies for immediate payment (e.g. the 'Buy It Now' button is used), this field will not be applicable, since the buyer will be required to pay any deposit amount immediately (and not within 24, 48, and 72 hours).
-        /// **Default value**: 48
+        /// This field is used to set the deadline (in hours) for the motor vehicle deposit. The deposit amount is specified in the **depositAmount** field. The clock starts on the deposit deadline as soon as the buyer commits to buying the vehicle by clicking the 'Buy It Now' button, by winning the auction, or by the seller accepting that buyer's Best Offer/counteroffer. The three supported integer values here are 24, 48, and 72 (hours). If **immediatePay** is `true`, and the listing qualifies for immediate payment (e.g. the 'Buy It Now' button is used), this field will not be applicable, since the buyer will be required to pay any deposit amount immediately (and not within 24, 48, and 72 hours).
+        ///
+        /// **Default**: 48
         /// </summary>
         public int? HoursToDeposit
         {
@@ -92,13 +96,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_daysToMakeFullPayment || _set_depositAmount || _set_depositRequired || _set_hoursToDeposit))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_daysToMakeFullPayment)
             {

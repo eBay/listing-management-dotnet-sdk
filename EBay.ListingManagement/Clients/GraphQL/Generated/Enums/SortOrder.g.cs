@@ -26,11 +26,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public enum SortOrder
     {
         /// <summary>
-        /// Ascending order (oldest to newest).
+        /// This enum value is used to sort results of a query response in sscending order.
         /// </summary>
         Asc,
         /// <summary>
-        /// Descending (newest to oldest).
+        /// This enum value is used to sort results of a query response in descending order.
         /// </summary>
         Desc
     }

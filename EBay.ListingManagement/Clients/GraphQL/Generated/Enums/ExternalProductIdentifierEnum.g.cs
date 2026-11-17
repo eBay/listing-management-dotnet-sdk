@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    ///  An enumerated type defining values for different external product types.
+    /// An enumerated type defining values for different external product types.
     /// </summary>
     public enum ExternalProductIdentifierEnum
     {

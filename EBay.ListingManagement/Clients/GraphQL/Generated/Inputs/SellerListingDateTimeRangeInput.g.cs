@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// Specifies the date range for which a list of the seller's listings is being requested.
+    /// This input type specifies the date range for which a list of the seller's listings is being requested.
     /// </summary>
     public partial class SellerListingDateTimeRangeInput : global::System.IEquatable<SellerListingDateTimeRangeInput>
     {
@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// Specifies the end date, expressed in ISO 8601 format, of the date range for which a list of the seller's listings is being requested.
         ///
-        /// **Format:** YYYY-MM-DDTHH:MM:SS.SSSZ
+        /// **Format**: YYYY-MM-DDTHH:MM:SS.SSSZ
         ///
         /// **Example:** 2025-10-04T19:09:02.768Z
         /// </summary>
@@ -50,7 +50,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// Specifies the starting date, expressed in ISO 8601 format, of the date range for which a list of the seller's listings is being requested.
         ///
-        /// **Format:** YYYY-MM-DDTHH:MM:SS.SSSZ
+        /// **Format**: YYYY-MM-DDTHH:MM:SS.SSSZ
         ///
         /// **Example:** 2025-09-04T19:09:02.768Z
         /// </summary>
@@ -66,13 +66,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_endAt || _set_startAt))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_endAt)
             {

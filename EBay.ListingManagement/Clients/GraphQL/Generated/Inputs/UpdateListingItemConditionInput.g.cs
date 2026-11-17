@@ -34,8 +34,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to add or modify additional details about a non-new item's physical state, including any defects, wear, or other characteristics that affect its condition. This field can be used for all categories except those that require the **conditionDescriptors** array.
+        ///
         /// **Note**: If this field is used, the text provided in the field will completely overwrite the current condition description if one exists for the listing.
-        /// **Max length**: 1000 characters.
+        ///
+        /// **Maximum length**: 1000 characters.
         /// </summary>
         public string? ConditionDescription
         {
@@ -49,6 +51,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add or modify item condition information (through name-value pairs) for a single graded and ungraded trading card listed in the following categories: *Non-Sport Trading Card Singles (183050)*, *CCG Individual Cards (183454)*, and *Sports Trading Card Singles (261328)*. Graded cards require the **Grader** and the **Grade** descriptors, while ungraded cards require a **Card Condition** descriptor unique to trading cards, such as 'Near mint or better'.
+        ///
         /// **Note**: If any changes are being made to condition descriptor data, the full set of condition descriptor name-value pairs that you wish to be on the listing must be included, and not just the condition descriptor data that is being added or modified.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdateListingItemConditionDescriptorInput>? ConditionDescriptors
@@ -76,13 +79,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_conditionDescription || _set_conditionDescriptors || _set_conditionId))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_conditionDescription)
             {

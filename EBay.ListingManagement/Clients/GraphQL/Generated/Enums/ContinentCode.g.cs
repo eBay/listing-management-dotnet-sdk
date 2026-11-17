@@ -23,28 +23,28 @@ namespace EBay.ListingManagement.Generated.GraphQL
     /// <summary>
     /// This enumerated type provides continent codes for geographic identification.
     ///
-    /// **Note:** These codes are used to specify continents for shipping and location purposes. The values may change in future releases.
+    /// **Note**: These codes are used to specify continents for shipping and location purposes. The values may change in future releases.
     /// </summary>
     public enum ContinentCode
     {
         /// <summary>
-        /// Africa
+        /// This value indicates that the included or excluded shipping region/location is the continent of Africa.
         /// </summary>
         Africa,
         /// <summary>
-        /// Asia
+        /// This value indicates that the included or excluded shipping region/location is the continent of Asia.
         /// </summary>
         Asia,
         /// <summary>
-        /// Europe
+        /// This value indicates that the included or excluded shipping region/location is the continent of Europe.
         /// </summary>
         Europe,
         /// <summary>
-        /// North America
+        /// This value indicates that the included or excluded shipping region/location is the continent of North America.
         /// </summary>
         NorthAmerica,
         /// <summary>
-        /// South America
+        /// This value indicates that the included or excluded shipping region/location is the continent of South America.
         /// </summary>
         SouthAmerica
     }

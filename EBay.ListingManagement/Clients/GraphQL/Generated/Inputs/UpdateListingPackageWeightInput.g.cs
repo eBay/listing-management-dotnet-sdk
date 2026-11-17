@@ -32,9 +32,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The major weight value of the shipping package according to the unit of measurement applicable to the marketplace. The major weight value is the whole number part of the weight. For English measurement system, the supported unit of measurement for **majorUnit** is pounds. For Metric measurement system, the supported unit of measurement for **majorUnit** is kilograms.
+        ///
         /// **Note**: If the package weighs less than one pound or one kilogram, *0* can be used as the value for this field.
+        ///
         /// **Minimum value**: 0
-        /// **Maximum value**: As allowed by the selected shipping service.
+        /// **Maximum value**: As allowed by the selected shipping service
         /// </summary>
         public int? MajorUnit
         {
@@ -48,6 +50,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The minor weight value of the shipping package according to the unit of measurement applicable to the marketplace. The minor weight value is the decimal part of the weight. For English measurement system, the supported unit of measurement for **minorUnit** is ounces. For Metric measurement system, the supported unit of measurement for **minorUnit** is grams.
+        ///
         /// **Minimum value**: 0
         /// **Maximum value**: 15 for English measurement system (ounces); 999 for Metric measurement system (grams).
         /// </summary>
@@ -63,13 +66,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_majorUnit || _set_minorUnit))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_majorUnit)
             {

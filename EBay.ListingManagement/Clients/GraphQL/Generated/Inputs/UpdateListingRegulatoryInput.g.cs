@@ -41,10 +41,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_responsiblePersons;
 
         /// <summary>
-        /// This array is used to attach one or more documents to the listing using their unique identifiers. The **Media API** is used to upload documents to a seller's account. See the [DocumentTypeEnum](https://developer.ebay.com/api-docs/commerce/media/types/api:DocumentTypeEnum) type of the **Media API** for the full list of supported document types.
+        /// This array is used to attach one or more (up to 10) documents to the listing using their unique identifiers. The **Media API** is used to upload documents to a seller's account. See the [DocumentTypeEnum](https://developer.ebay.com/api-docs/commerce/media/types/api:DocumentTypeEnum) type of the **Media API** for the full list of supported document types.
+        ///
         /// **Note**: The document ID values for all documents that the seller would like to attach to the updated listing must be included in this array, and not just the new ones that are being added.
-        /// **Max number of document IDs allowed**: 10.
-        /// **Max length of each document ID**: 50 characters.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? DocumentIds
         {
@@ -57,7 +56,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify Energy Efficiency Label related information for such category types as appliances, smart phones, and tablets. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend Energy Efficiency Label information.
+        /// This object is used to add or modify Energy Efficiency Label related information for such category types as appliances, smart phones, and tablets. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend Energy Efficiency Label information.
         /// </summary>
         public UpdateListingEnergyEfficiencyLabelInput? EnergyEfficiencyLabel
         {
@@ -70,7 +69,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify hazardous material related information about a product, including pictograms and statements. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend hazardous material information.
+        /// This object is used to add or modify hazardous material related information about a product, including pictograms and statements. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend hazardous material information.
         /// </summary>
         public UpdateListingHazardousMaterialInput? HazardousMaterial
         {
@@ -83,7 +82,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add a product manufacturer contact or to update any of the data currently associated with the product manufacturer that is already defined in the listing. As a part of General Product Safety Regulation (GPSR) requirements, sellers operating in, or shipping to EU-based countries or Northern Ireland are conditionally required to provide product manufacturer information in their eBay listings.
+        /// This object is used to add a product manufacturer contact or to update any of the data currently associated with the product manufacturer that is already defined in the listing. As a part of General Product Safety Regulation (GPSR) requirements, sellers operating in, or shipping to EU-based countries or Northern Ireland are conditionally required to provide product manufacturer information in their eBay listings.
         /// </summary>
         public UpdateListingManufacturerInput? Manufacturer
         {
@@ -96,7 +95,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify product safety related information about a product, including pictograms and statements. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend product safety information.
+        /// This object is used to add or modify product safety related information about a product, including pictograms and statements. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend product safety information.
         /// </summary>
         public UpdateListingProductSafetyInput? ProductSafety
         {
@@ -110,8 +109,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to add or modify the manufacturer's repair index score for a product. This value should be between 0.1 (extremely difficult to fix) to 10 (extremely easy to fix). A maximum of one digit to the right of the decimal point may be used. 0 or 0.0 should never be used as values as this would indicate that the product is not repairable.
-        /// **Min value**: 0.1
-        /// **Max value**: 10.0
+        ///
+        /// **Minimum value**: 0.1
+        /// **Maximum value**: 10.0
         /// </summary>
         public double? RepairIndexScore
         {
@@ -124,9 +124,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array is used to add one or more responsible person contacts or to update any of the data currently associated with one or more of the responsible person entities that are already defined in the listing. As a part of General Product Safety Regulation (GPSR) requirements, sellers operating in, or shipping to EU-based countries or Northern Ireland are conditionally required to provide either the product manufacturer or responsible person(s) contact information in their eBay listings. This array is only necessary if the product manufacturer contact is not based in an EU country.
+        /// This array is used to add one or more (up to 5) responsible person contacts or to update any of the data currently associated with one or more of the responsible person entities that are already defined in the listing. As a part of General Product Safety Regulation (GPSR) requirements, sellers operating in, or shipping to EU-based countries or Northern Ireland are conditionally required to provide either the product manufacturer or responsible person(s) contact information in their eBay listings. This array is only necessary if the product manufacturer contact is not based in an EU country.
+        ///
         /// **Note**: If the listing already has one or more responsible persons defined, all current data must be included in the array, even the data that is not changing.
-        /// **Max number of EU responsible persons allowed**: 5.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdateListingResponsiblePersonInput>? ResponsiblePersons
         {
@@ -140,13 +140,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_documentIds || _set_energyEfficiencyLabel || _set_hazardousMaterial || _set_manufacturer || _set_productSafety || _set_repairIndexScore || _set_responsiblePersons))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_documentIds)
             {

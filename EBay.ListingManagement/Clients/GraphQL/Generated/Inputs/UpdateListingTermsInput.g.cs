@@ -65,7 +65,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_visualEnhancements;
 
         /// <summary>
-        /// This container is used for classified ad listings, and adds or modifies contact information for the seller, including days and hours when the seller accepts inquiries from potential buyers.
+        /// This object is used for classified ad listings, and adds or modifies contact information for the seller, including days and hours when the seller accepts inquiries from potential buyers.
         /// </summary>
         public UpdateListingSellerContactInput? AdsSellerContact
         {
@@ -78,7 +78,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used if the seller wishes to make changes to **Best Offer** settings, including enabling or disabling the Best Offer feature, or to add, modify, or remove the auto-accept and auto-reject thresholds.
+        /// This object is used if the seller wishes to make changes to **Best Offer** settings, including enabling or disabling the Best Offer feature, or to add, modify, or remove the auto-accept and auto-reject thresholds.
         /// </summary>
         public UpdateListingBestOfferTermsInput? BestOfferTerms
         {
@@ -91,7 +91,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to disable or enable a seller's account-level buyer restrictions and/or set or modify a quantity limit per buyer threshold for a multiple-quantity, fixed price listing.
+        /// This object is used to disable or enable a seller's account-level buyer restrictions and/or set or modify a quantity limit per buyer threshold for a multiple-quantity, fixed price listing.
         /// </summary>
         public UpdateListingBuyerRestrictionsInput? BuyerRestrictions
         {
@@ -104,7 +104,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used if the seller wishes to make the listing a charitable listing, or if a charity is already set up, this container is used to change the charitable organization and/or the donation percentage per sale.
+        /// This object is used if the seller wishes to make the listing a charitable listing, or if a charity is already set up, this object is used to change the charitable organization and/or the donation percentage per sale.
+        ///
         /// **Note**: eBay for Charity is only supported on the eBay US, eBay UK, eBay Germany, and eBay Canada marketplaces.
         /// </summary>
         public UpdateListingCharityInput? Charity
@@ -118,7 +119,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify global or country-specific product compliance and/or takeback policies for a listing.
+        /// This object is used to add or modify global or country-specific product compliance and/or takeback policies for a listing.
         /// </summary>
         public UpdateListingCustomPoliciesInput? CustomPolicies
         {
@@ -131,7 +132,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to modify details on how the item will be delivered to the buyer. The data under this container includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more. This container also has a **businessPolicyId** field that is used to associate a fulfillment business policy with the listing, and that must be used instead of the other fields in this container if the seller's account is opted into business policies.
+        /// This object is used to modify details on how the item will be delivered to the buyer. The data under this object includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more. This object also has a **businessPolicyId** field that is used to associate a fulfillment business policy with the listing, and that must be used instead of the other fields in this object if the seller's account is opted into business policies.
         /// </summary>
         public UpdateListingFulfillmentTermsInput? FulfillmentTerms
         {
@@ -157,7 +158,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array can be used if the seller wishes to add or modify site visibility settings. With site visibility, sellers can choose to actively display their listing on one or more other eBay marketplaces for a small fee. Currently, this feature can only be used on the EBAY_US, EBAY_CA, EBAY_GB, and EBAY_IE marketplaces. EBAY_US and EBAY_CA listings can specify `EBAY_GB` and `EBAY_IE` in this array to have their listing displayed on the EBAY_GB and EBAY_IE marketplaces, and EBAY_GB and EBAY_IE listings can specify `EBAY_US` and `EBAY_CA` in this array to have their listing display on the EBAY_US and EBAY_CA marketplaces.
+        /// This array can be used if the seller wishes to add or modify site visibility settings. With site visibility, sellers can choose to actively display their listing on one or more other eBay marketplaces for a small fee. Currently, this feature can only be used on the EBAY_US, EBAY_CA, EBAY_GB, and EBAY_IE marketplaces. EBAY_US and EBAY_CA listings can specify `UNITED_KINGDOM` in this array to have their listing displayed on the EBAY_GB and EBAY_IE marketplaces, and EBAY_GB and EBAY_IE listings can specify `NORTH_AMERICA` in this array to have their listing display on the EBAY_US and EBAY_CA marketplaces.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CrossBorderTradingRegion>? InternationalSiteVisibility
         {
@@ -170,7 +171,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to change the actual physical location of the item(s) in this listing. The **country** field is always required, and then either the **location** or **postalCode** must be provided, but not necessarily both.
+        /// This object is used to change the actual physical location of the item(s) in this listing. The **country** field is always required, and then either the **location** or **postalCode** must be provided, but not necessarily both.
         /// </summary>
         public UpdateListingItemLocationInput? ItemLocation
         {
@@ -183,7 +184,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to change the duration of the listing, and can also be used to modify the future date when a scheduled listing will become active.
+        /// This object is used to change the duration of the listing, and can also be used to modify the future date when a scheduled listing will become active.
         /// </summary>
         public UpdateListingLifecycleTermsInput? LifecycleTerms
         {
@@ -196,7 +197,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify the radius for a Motors Local Listing. The value supplied in the **distance** field sets the radius of the area in which the vehicle will be available and exposed to interested local buyers. The seller's supplied **postalCode** or **location** field value will be used as the center point for this radius. You can use the [getMotorsListingPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getMotorsListingPolicies) method of the **Metadata API** to get the supported listing distance values for a leaf category. Seller provide the unit of measurement for the **distance** value through the **distanceUnit** field.
+        /// This object is used to add or modify the radius for a Motors Local Listing. The value supplied in the **distance** field sets the radius of the area in which the vehicle will be available and exposed to interested local buyers. The seller's supplied **postalCode** or **location** field value will be used as the center point for this radius. You can use the [getMotorsListingPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getMotorsListingPolicies) method of the **Metadata API** to get the supported listing distance values for a leaf category. Seller provide the unit of measurement for the **distance** value through the **distanceUnit** field.
         /// </summary>
         public UpdateListingLocalDistanceInput? LocalListingDistance
         {
@@ -210,8 +211,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is needed to modify the lot size for the lot-enabled listing. With lot-enabled listing, the seller is selling a set of two or more similar/related items as a part of one listing. An example of a lot listing might be a collection of children's clothes. The value specified in this field will be the number of distinct items in the lot. Not all leaf categories support lot listings, and the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method can be used to see which leaf categories do support lot listings.
-        /// **Min value**: 2
-        /// **Max value**: 450,000
+        ///
+        /// **Minimum value**: 2
+        /// **Maximum value**: 450,000
         /// </summary>
         public int? LotSize
         {
@@ -225,7 +227,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A reference identifier used to attribute the source of data across API families. This ID is returned in the response of the **listingPreviewsCreationTaskById** query of the **Inventory Mapping API**. To ensure continuity and traceability of the data flow, it is strongly recommend that you include this reference ID in any create, update, or relist mutation. Using this ID associates any mutations with the listing preview referenced to create or update the listing.
-        /// **Max length**: 25
+        ///
+        /// **Maximum length**: 25
         /// </summary>
         public string? MappingReferenceId
         {
@@ -238,7 +241,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to modify payment terms and information for the listing, including immediate payment requirement, offline payment methods, and motor vehicle deposit information. This container also has a **businessPolicyId** field that is used to associate a payment business policy with the listing, and that must be used instead of the other fields in this container if the seller's account is opted into business policies. This container is optional for sellers not opted into business policies.
+        /// This object is used to modify payment terms and information for the listing, including immediate payment requirement, offline payment methods, and motor vehicle deposit information. This object also has a **businessPolicyId** field that is used to associate a payment business policy with the listing, and that must be used instead of the other fields in this object if the seller's account is opted into business policies. This object is optional for sellers not opted into business policies.
         /// </summary>
         public UpdateListingPaymentTermsInput? PaymentTerms
         {
@@ -251,7 +254,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify various types of regulatory information for a listing, including energy efficiency labels, hazardous material information, product safety information, and more. Based on the listing category, sellers doing business in an EU country or Northern Ireland may be legally required to provide some of this regulatory information for listings.
+        /// This object is used to add or modify various types of regulatory information for a listing, including energy efficiency labels, hazardous material information, product safety information, and more. Based on the listing category, sellers doing business in an EU country or Northern Ireland may be legally required to provide some of this regulatory information for listings.
         /// </summary>
         public UpdateListingRegulatoryInput? Regulatory
         {
@@ -264,7 +267,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to modify a domestic return policy and/or an international return policy (if the seller ships internationally) that is to be used for the listing. This container also has a **businessPolicyId** field that is used to associate a return business policy with the listing, and that must be used instead of the other fields in this container if the seller's account is opted into business policies. With the exception of a few categories, this container is generally required even if the seller's *return policy* is to not accept returns.
+        /// This object is used to modify a domestic return policy and/or an international return policy (if the seller ships internationally) that is to be used for the listing. This object also has a **businessPolicyId** field that is used to associate a return business policy with the listing, and that must be used instead of the other fields in this object if the seller's account is opted into business policies. With the exception of a few categories, listings generally require return policies even if the seller's *return policy* is to not accept returns.
         /// </summary>
         public UpdateListingReturnTermsInput? ReturnTerms
         {
@@ -278,8 +281,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used by the seller to add or modify custom, application-specific data associated with the listing. The string specified here is stored by eBay with the listing but it is not used by eBay in any way other than that.
+        ///
         /// **Note**: If this field is included, the text provided will overwrite the custom data text that is currently associated with the listing.
-        /// **Max length**: 32
+        ///
+        /// **Maximum length**: 32
         /// </summary>
         public string? SellerCustomData
         {
@@ -292,7 +297,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify various tax information, including VAT rates, sales tax rates to US territories and Canadian provinces, and special tax category codes.
+        /// This object is used to add or modify various tax information, including VAT rates, sales tax rates to US territories and Canadian provinces, and special tax category codes.
         /// </summary>
         public UpdateListingTaxTermsInput? TaxTerms
         {
@@ -305,7 +310,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to enable or disable Bold Title or Gallery Plus listing upgrades, or to add, modify, or remove a Subtitle. Each of these listing upgrades will incur a small fee.
+        /// This object is used to enable or disable Bold Title or Gallery Plus listing upgrades, or to add, modify, or remove a Subtitle. Each of these listing upgrades will incur a small fee.
+        ///
         /// **Note**: If any of these listing upgrades are currently active on the listing but the seller chooses to disable one or more of them, the seller will generally not receive a refund against the fee that was charged for these listing upgrades when they were first added to the listing.
         /// </summary>
         public UpdateListingVisualEnhancementsInput? VisualEnhancements
@@ -320,13 +326,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_adsSellerContact || _set_bestOfferTerms || _set_buyerRestrictions || _set_charity || _set_customPolicies || _set_fulfillmentTerms || _set_hideParticipation || _set_internationalSiteVisibility || _set_itemLocation || _set_lifecycleTerms || _set_localListingDistance || _set_lotSize || _set_mappingReferenceId || _set_paymentTerms || _set_regulatory || _set_returnTerms || _set_sellerCustomData || _set_taxTerms || _set_visualEnhancements))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_adsSellerContact)
             {

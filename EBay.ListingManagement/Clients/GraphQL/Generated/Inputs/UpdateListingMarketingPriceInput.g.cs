@@ -118,13 +118,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_madeForOutletComparisonPrice || _set_minimumAdvertisedPrice || _set_minimumAdvertisedPriceExposure || _set_originalRetailPrice || _set_soldOffEbay || _set_soldOnEbay))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_madeForOutletComparisonPrice)
             {

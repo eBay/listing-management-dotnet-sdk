@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This container is used to add or modify a domestic return policy or an international return policy (if the seller ships internationally) that is to be used for the listing. This container also has a **businessPolicyId** field that is used to associate a return business policy with the listing, and that must be used instead of the other fields in this container if the seller's account is opted into business policies.
+    /// This input type is used to add or modify a domestic return policy or an international return policy (if the seller ships internationally) that is to be used for the listing. This type also has a **businessPolicyId** field that is used to associate a return business policy with the listing, and that must be used instead of the other fields in this type if the seller's account is opted into business policies.
     /// </summary>
     public partial class RelistListingReturnTermsInput : global::System.IEquatable<RelistListingReturnTermsInput>
     {
@@ -35,7 +35,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_returnInstructions;
 
         /// <summary>
-        /// This field is used to add or change a return business policy to use for the listing. If this field is used, none of the other fields in this container should be used since all return policy settings are configured in the business policy instead. The [getReturnPolicies](https://developer.ebay.com/api-docs/sell/account/resources/return_policy/methods/getReturnPolicies) method can be used to retrieve all return business policies defined for a seller on an eBay marketplace.
+        /// This field is used to add or change a return business policy to use for the listing. If this field is used, none of the other fields in this object should be used since all return policy settings are configured in the business policy instead. The [getReturnPolicies](https://developer.ebay.com/api-docs/sell/account/resources/return_policy/methods/getReturnPolicies) method can be used to retrieve all return business policies defined for a seller on an eBay marketplace.
         /// </summary>
         public string? BusinessPolicyId
         {
@@ -48,9 +48,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to modify the seller's domestic return policy for a listing, which includes whether or not the seller accepts returns for the item and the duration of the return period.
-        /// **Note**: If the listing only has a domestic return policy set up, but the item is shipped internationally, the settings in this container will also apply to international returns.
-        /// **Note**: This container is not applicable if the seller is using business policies.
+        /// This object is used to modify the seller's domestic return policy for a listing, which includes whether or not the seller accepts returns for the item and the duration of the return period.
+        ///
+        /// **Note**: If the listing only has a domestic return policy set up, but the item is shipped internationally, the settings in this object will also apply to international returns.
+        ///
+        /// **Note**: This object is not applicable if the seller is using business policies.
         /// </summary>
         public RelistListingReturnTermsOptionsInput? DomesticReturnTerms
         {
@@ -63,8 +65,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify the seller's international return policy for a listing, which includes whether or not the seller accepts returns for the item and the duration of the return period.
-        /// **Note**: This container is not applicable if the seller is using business policies.
+        /// This object is used to add or modify the seller's international return policy for a listing, which includes whether or not the seller accepts returns for the item and the duration of the return period.
+        ///
+        /// **Note**: This object is not applicable if the seller is using business policies.
         /// </summary>
         public RelistListingReturnTermsOptionsInput? InternationalReturnTerms
         {
@@ -78,9 +81,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This free-form text field is used to add or modify details about a seller's return policy. Currently, this field is only supported on the EBAY_DE, EBAY_AT, EBAY_FR, EBAY_IT, and EBAY_ES marketplaces.
+        ///
         /// **Note**: If this field is included, the text provided will overwrite existing return instructions if defined in the listing.
+        ///
         /// **Note**: This field is not applicable if the seller is using business policies.
-        /// **Max length**: 8000 (for EBAY_DE, EBAY_AT); 5000 (for EBAY_FR, EBAY_IT, EBAY_ES).
+        ///
+        /// **Maximum length**: 8000 (for EBAY_DE, EBAY_AT); 5000 (for EBAY_FR, EBAY_IT, EBAY_ES).
         /// </summary>
         public string? ReturnInstructions
         {
@@ -94,13 +100,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_businessPolicyId || _set_domesticReturnTerms || _set_internationalReturnTerms || _set_returnInstructions))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_businessPolicyId)
             {

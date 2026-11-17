@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to add or modify a domestic return policy or an international return policy (if the seller ships internationally) that is to be used for the listing. This container also has a **businessPolicyId** field that is used to associate a return business policy with the listing, and that must be used instead of the other fields in this container if the seller's account is opted into business policies.
+    /// This type is used to add or modify a shipping business policy that is to be used for the listing and/or to override the shipping costs for one or more shipping service options defined in the shipping business policy.
     /// </summary>
     public partial class UpdateShippingBusinessPolicyInput : global::System.IEquatable<UpdateShippingBusinessPolicyInput>
     {
@@ -31,7 +31,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_overrideShippingOptions;
 
         /// <summary>
-        /// This field is used to specify a fulfillment business policy to use for the listing. If this field is used, none of the other fields in this container should be used since all shipping settings are configured in the business policy instead. The [getFulfillmentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies) method can be used to retrieve all fulfillment business policies defined for a seller on an eBay marketplace.
+        /// This field is used to add or modify a shipping business policy that will be used for the listing. The [getFulfillmentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies) method can be used to retrieve all shipping business policies defined for a seller on an eBay marketplace.
         /// </summary>
         public string BusinessPolicyId
         {
@@ -44,7 +44,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array is used to override the shipping costs for one or more shipping service options defined in the fulfillment terms being used for the listing.
+        /// This array is used to override the shipping costs for one or more shipping service options defined in the shipping business policy being used for the listing.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdateListingOverrideShippingOptionInput>? OverrideShippingOptions
         {
@@ -58,13 +58,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_businessPolicyId || _set_overrideShippingOptions))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_businessPolicyId)
             {

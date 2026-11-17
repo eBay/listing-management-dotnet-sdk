@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to provide more item condition information through name-value pairs about single graded and ungraded trading cards in the following categories: *Non-Sport Trading Card Singles (183050)*, *CCG Individual Cards (183454)*, and *Sports Trading Card Singles (261328)*. Graded cards require the **Grader** and the **Grade** descriptors, while ungraded cards require a **Card Condition** descriptor unique to trading cards, such as 'Near mint or better'.
+    /// This type is used to provide more item condition information through name-value pairs about single graded and ungraded trading cards in the following categories: *Non-Sport Trading Card Singles (183050)*, *CCG Individual Cards (183454)*, and *Sports Trading Card Singles (261328)*. Graded cards require the **Grader** and the **Grade** descriptors, while ungraded cards require a **Card Condition** descriptor unique to trading cards, such as `Near mint or better`.
     /// </summary>
     public partial class CreateListingItemConditionDescriptorInput : global::System.IEquatable<CreateListingItemConditionDescriptorInput>
     {
@@ -34,7 +34,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field can be used to provide additional information about a condition descriptor. One example is using this field to specify the **Certification Number** for a graded card.
-        /// **Max length**: 30 characters.
+        ///
+        /// **Maximum length**: 30 characters
         /// </summary>
         public string? AdditionalInformation
         {
@@ -74,13 +75,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_additionalInformation || _set_name || _set_values))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_additionalInformation)
             {

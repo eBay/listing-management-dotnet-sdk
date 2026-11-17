@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_sku;
 
         /// <summary>
-        /// This container is used to specify the pricing information, available quantity, and eco-participation fee (if applicable) for a purchasable item. Each item should have price and quantity.
+        /// This object is used to specify the pricing information, available quantity, and eco-participation fee (if applicable) for a purchasable item. Each item should have price and quantity.
         /// </summary>
         public CreateListingItemTermsInput ItemTerms
         {
@@ -46,7 +46,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// For either a single-SKU or a multiple-SKU listing, this container can be used to provide a Global Trade Item Number (GTIN) for a product or an eBay product ID (ePID). If the ePID is found or if a provided GTIN value is matched to an eBay catalog product, the product details of that product definition will prefill the listing being created. For a multiple-SKU listing, the **traits** array is required and identifies the unique traits of the variation within that multiple-SKU listing. Common unique traits within a multiple-SKU listing are 'Color' and 'Size'. For example, a 'Blue, Large' shirt. Each item in a multiple-SKU listing must have a unique combination of trait values.
+        /// For either a single-SKU or a multiple-SKU listing, this object can be used to provide a Global Trade Item Number (GTIN) for a product or an eBay product ID (ePID). If the ePID is found or if a provided GTIN value is matched to an eBay catalog product, the product details of that product definition will prefill the listing being created. For a multiple-SKU listing, the **traits** array is required and identifies the unique traits of the variation within that multiple-SKU listing. Common unique traits within a multiple-SKU listing are `Color` and `Size`. For example, a `Blue, Large` shirt. Each item in a multiple-SKU listing must have a unique combination of trait values.
         /// </summary>
         public CreateListingItemProductInput? Product
         {
@@ -60,7 +60,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The seller-defined Stock-Keeping Unit (SKU) value uniquely identifies a purchasable item in the listing. Providing a SKU for any item ensures the entire listing can be managed by SKU. For single-SKU listings, this field acts as a fallback and its value is used only if a SKU is not provided at the top level (**CreateListingInput**) Otherwise, this field is ignored if provided. For multiple-SKU listings, however, this field is required and its value must be unique for each variation in the listing.
-        /// **Max length**: 50 characters.
+        ///
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string? Sku
         {
@@ -74,13 +75,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_itemTerms || _set_product || _set_sku))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_itemTerms)
             {

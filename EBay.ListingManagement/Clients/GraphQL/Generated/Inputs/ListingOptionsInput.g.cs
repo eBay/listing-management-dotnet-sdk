@@ -29,7 +29,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_operationMode;
 
         /// <summary>
-        ///    This field controls whether a successful mutation will actually create/update a live listing or validation mode can be used where all data is checked and validated, but no new listing is created nor an existing listing updated. If this field is omitted, the mutation will be processed in `EXECUTE` mode. To validate only, this field must be included and set to `VALIDATE`.
+        /// This field controls whether a successful mutation will actually create/update a live listing or validation mode can be used where all data is checked and validated, but no new listing is created nor an existing listing updated. If this field is omitted, the mutation will be processed in `EXECUTE` mode. To validate only, this field must be included and set to `VALIDATE`.
+        ///
         /// **Default**: EXECUTE
         /// </summary>
         public OperationMode? OperationMode
@@ -44,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_operationMode))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_operationMode)
             {

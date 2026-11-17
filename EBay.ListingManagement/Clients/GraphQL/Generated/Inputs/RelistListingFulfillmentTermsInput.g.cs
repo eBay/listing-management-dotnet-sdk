@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to modify details on how the item will be delivered to the buyer. The data in this container includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
+    /// This type is used to modify details on how the item will be delivered to the buyer. The data in this type includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
     /// </summary>
     public partial class RelistListingFulfillmentTermsInput : global::System.IEquatable<RelistListingFulfillmentTermsInput>
     {
@@ -61,7 +61,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify information about the shipping package that will be used to ship the item, and includes package type, weight, and dimensions. Package weight is required when calculated shipping is used, and shipping services generally have dimension and weight restrictions.
+        /// This object is used to add or modify information about the shipping package that will be used to ship the item, and includes package type, weight, and dimensions. Package weight is required when calculated shipping is used, and shipping services generally have dimension and weight restrictions.
         /// </summary>
         public RelistListingShippingPackageSpecificationsInput? PackageSpecifications
         {
@@ -74,7 +74,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to modify information about where the item can be shipped, the shipping cost type, the shipping services offered, the handling time, applicable shipping discounts, and more.
+        /// This object is used to modify information about where the item can be shipped, the shipping cost type, the shipping services offered, the handling time, applicable shipping discounts, and more.
         /// </summary>
         public RelistListingShippingTermsInput? ShippingTerms
         {
@@ -88,13 +88,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_digitalDeliverySupported || _set_globalShippingSupported || _set_packageSpecifications || _set_shippingTerms))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_digitalDeliverySupported)
             {

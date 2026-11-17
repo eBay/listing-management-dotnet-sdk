@@ -30,6 +30,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to specify one or more country-specific product compliance policies.
+        ///
         /// **Note**: Up to 6 separate product compliance policies are allowed per country.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CreateListingCountryPolicyInput> CountryPolicies
@@ -44,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_countryPolicies))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_countryPolicies)
             {

@@ -27,8 +27,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
     {
         /// <summary>
         /// This mutation is used to perform a bulk update of price and quantity for multiple fixed price items for a single-SKU or multi-SKU listing. In the output, the operation returns the corresponding item in the successes list for items that were updated and the failure list for items where issues occurred during the update. The operation returns either the updated listing details or error information if the update fails. This field only returns null under exceptional circumstances, such as when an execution error is raised.
-        /// @authorize(scopes:[https://api.ebay.com/oauth/api_scope/sell.listing&amp;eBayUser])
-        /// @sandboxSupported("true")
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory? BulkUpdateInventory { get; }
     }
@@ -45,8 +43,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This mutation is used to perform a bulk update of price and quantity for multiple fixed price items for a single-SKU or multi-SKU listing. In the output, the operation returns the corresponding item in the successes list for items that were updated and the failure list for items where issues occurred during the update. The operation returns either the updated listing details or error information if the update fails. This field only returns null under exceptional circumstances, such as when an execution error is raised.
-        /// @authorize(scopes:[https://api.ebay.com/oauth/api_scope/sell.listing&amp;eBayUser])
-        /// @sandboxSupported("true")
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory? BulkUpdateInventory { get; }
 
@@ -124,12 +120,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_ListingItemIdentifier
     {
         /// <summary>
-        ///    The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: If an item was successfully updated, this field will be returned along with the **sku** field even if it was the **sku** that was used to identify the item in the input. If an item failed to be updated, this field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? ListingId { get; }
         /// <summary>
-        ///    The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: This field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? Sku { get; }
@@ -201,6 +199,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when subsidiary listing violations occur. Each violation identifies a specific input field or rule that must be corrected before the mutation can be retried successfully.
+    /// </summary>
+    public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation : IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations
+    {
+    }
+
+    /// <summary>
     /// This type is used to express name-value pairs for entities that have one name and one value. An example of an array that uses this type is the traits array which define the unique traits of SKUs within a multiple-SKU listing.
     /// </summary>
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation
@@ -256,12 +261,19 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning : IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings
+    {
+    }
+
+    /// <summary>
     /// This type is used to show the identifier(s) of an item that failed to be updated with a **bulkUpdateInventory** mutation. An array of one or more violations will be present and an array of non-blocking warnings will also be present if any occurred.
     /// </summary>
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures
     {
         /// <summary>
-        /// This container will show either the **listingId** of the item's listing that failed to be updated or the **sku** value of the item. Which of these identifiers is returned depends on which identifier was used in the input to identify the item.
+        /// This object will show either the **listingId** of the item's listing that failed to be updated or the **sku** value of the item. Which of these identifiers is returned depends on which identifier was used in the input to identify the item.
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory_Failures_ListingItemIdentifier ListingItemIdentifier { get; }
         /// <summary>
@@ -269,7 +281,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations> Violations { get; }
         /// <summary>
-        ///    This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        /// This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        ///
         /// **Note**: This array will be returned as empty if no warnings occurred.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings>? Warnings { get; }
@@ -313,12 +326,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Successes_ListingItemIdentifier
     {
         /// <summary>
-        ///    The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: If an item was successfully updated, this field will be returned along with the **sku** field even if it was the **sku** that was used to identify the item in the input. If an item failed to be updated, this field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? ListingId { get; }
         /// <summary>
-        ///    The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: This field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? Sku { get; }
@@ -393,16 +408,24 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial interface IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning : IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings
+    {
+    }
+
+    /// <summary>
     /// This type is used to show the identifier(s) of an item that was successfully updated with a **bulkUpdateInventory** mutation. An array of non-blocking warnings will also be present if any occurred.
     /// </summary>
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Successes
     {
         /// <summary>
-        /// This container will show the **listingId** of the item's listing that was successfully updated, and also the **sku** value of the item if the **sku** value was used in the input to identify the item.
+        /// This object will show the **listingId** of the item's listing that was successfully updated, and also the **sku** value of the item if the **sku** value was used in the input to identify the item.
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory_Successes_ListingItemIdentifier ListingItemIdentifier { get; }
         /// <summary>
-        ///    This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        /// This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        ///
         /// **Note**: This array will be returned as empty if no warnings occurred.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings>? Warnings { get; }
@@ -427,12 +450,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_ListingItemIdentifier_1
     {
         /// <summary>
-        ///    The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: If an item was successfully updated, this field will be returned along with the **sku** field even if it was the **sku** that was used to identify the item in the input. If an item failed to be updated, this field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? ListingId { get; }
         /// <summary>
-        ///    The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: This field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? Sku { get; }
@@ -504,6 +529,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when subsidiary listing violations occur. Each violation identifies a specific input field or rule that must be corrected before the mutation can be retried successfully.
+    /// </summary>
+    public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation_1 : IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_1
+    {
+    }
+
+    /// <summary>
     /// This type is used to express name-value pairs for entities that have one name and one value. An example of an array that uses this type is the traits array which define the unique traits of SKUs within a multiple-SKU listing.
     /// </summary>
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation_1
@@ -559,12 +591,19 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning_1 : IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_1
+    {
+    }
+
+    /// <summary>
     /// This type is used to show the identifier(s) of an item that failed to be updated with a **bulkUpdateInventory** mutation. An array of one or more violations will be present and an array of non-blocking warnings will also be present if any occurred.
     /// </summary>
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Failures_1
     {
         /// <summary>
-        /// This container will show either the **listingId** of the item's listing that failed to be updated or the **sku** value of the item. Which of these identifiers is returned depends on which identifier was used in the input to identify the item.
+        /// This object will show either the **listingId** of the item's listing that failed to be updated or the **sku** value of the item. Which of these identifiers is returned depends on which identifier was used in the input to identify the item.
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory_Failures_ListingItemIdentifier_1 ListingItemIdentifier { get; }
         /// <summary>
@@ -572,7 +611,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_1> Violations { get; }
         /// <summary>
-        ///    This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        /// This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        ///
         /// **Note**: This array will be returned as empty if no warnings occurred.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_1>? Warnings { get; }
@@ -620,12 +660,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Successes_ListingItemIdentifier_1
     {
         /// <summary>
-        ///    The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: If an item was successfully updated, this field will be returned along with the **sku** field even if it was the **sku** that was used to identify the item in the input. If an item failed to be updated, this field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? ListingId { get; }
         /// <summary>
-        ///    The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: This field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? Sku { get; }
@@ -700,16 +742,24 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial interface IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning_1 : IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_1
+    {
+    }
+
+    /// <summary>
     /// This type is used to show the identifier(s) of an item that was successfully updated with a **bulkUpdateInventory** mutation. An array of non-blocking warnings will also be present if any occurred.
     /// </summary>
     public partial interface IBulkUpdateInventory_BulkUpdateInventory_Successes_1
     {
         /// <summary>
-        /// This container will show the **listingId** of the item's listing that was successfully updated, and also the **sku** value of the item if the **sku** value was used in the input to identify the item.
+        /// This object will show the **listingId** of the item's listing that was successfully updated, and also the **sku** value of the item if the **sku** value was used in the input to identify the item.
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory_Successes_ListingItemIdentifier_1 ListingItemIdentifier { get; }
         /// <summary>
-        ///    This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        /// This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        ///
         /// **Note**: This array will be returned as empty if no warnings occurred.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_1>? Warnings { get; }
@@ -751,13 +801,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: If an item was successfully updated, this field will be returned along with the **sku** field even if it was the **sku** that was used to identify the item in the input. If an item failed to be updated, this field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? ListingId { get; }
 
         /// <summary>
-        ///    The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: This field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? Sku { get; }
@@ -975,6 +1027,102 @@ namespace EBay.ListingManagement.Generated.GraphQL
             }
 
             return Equals((BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_StandardListingValidationRuleViolation)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ViolationCode is not null)
+                {
+                    hash ^= 397 * ViolationCode.GetHashCode();
+                }
+                if (ViolationDescription is not null)
+                {
+                    hash ^= 397 * ViolationDescription.GetHashCode();
+                }
+                hash ^= 397 * GraphQLJson.SequenceHash(InputPath);
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type is used when subsidiary listing violations occur. Each violation identifies a specific input field or rule that must be corrected before the mutation can be retried successfully.
+    /// </summary>
+    public partial class BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation>, IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation
+    {
+        public BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation(string violationCode, string violationDescription, global::System.Collections.Generic.IReadOnlyList<string> inputPath, global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_AdditionalInformation>? additionalInformation)
+        {
+            this.ViolationCode = violationCode;
+            this.ViolationDescription = violationDescription;
+            this.InputPath = inputPath;
+            this.AdditionalInformation = additionalInformation;
+        }
+
+        /// <summary>
+        /// A unique identifier of the violation. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string ViolationCode { get; }
+
+        /// <summary>
+        /// A human-readable description of the violation, intended to be displayed to an end user.
+        /// </summary>
+        public string ViolationDescription { get; }
+
+        /// <summary>
+        /// This array will show one or more string values that show the full path(s) to the input field(s) that caused the violation.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<string> InputPath { get; }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the violation. For example, for a maximum length exceeded violation, this might contain {name: "maxLength", value: "80"}. Null values in a name-value pair indicates that no additional information is available on the violation.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_AdditionalInformation>? AdditionalInformation { get; }
+
+        public virtual bool Equals(BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(ViolationCode, other.ViolationCode)
+                && global::System.Object.Equals(ViolationDescription, other.ViolationDescription)
+                && GraphQLJson.SequenceEqual(InputPath, other.InputPath)
+                && GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation)obj);
         }
 
         public override int GetHashCode()
@@ -1254,6 +1402,94 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial class BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning>, IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning
+    {
+        public BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning(string warningCode, string warningMessage, global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation>? additionalInformation)
+        {
+            this.WarningCode = warningCode;
+            this.WarningMessage = warningMessage;
+            this.AdditionalInformation = additionalInformation;
+        }
+
+        /// <summary>
+        /// A unique identifier of the warning. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string WarningCode { get; }
+
+        /// <summary>
+        /// A human-readable description of the warning, intended to be displayed to an end user.
+        /// </summary>
+        public string WarningMessage { get; }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the warning. Null values in a name-value pair indicates that no additional information is available on the warning.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation>? AdditionalInformation { get; }
+
+        public virtual bool Equals(BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(WarningCode, other.WarningCode)
+                && global::System.Object.Equals(WarningMessage, other.WarningMessage)
+                && GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (WarningCode is not null)
+                {
+                    hash ^= 397 * WarningCode.GetHashCode();
+                }
+                if (WarningMessage is not null)
+                {
+                    hash ^= 397 * WarningMessage.GetHashCode();
+                }
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
     /// This type is used to show the identifier(s) of an item that failed to be updated with a **bulkUpdateInventory** mutation. An array of one or more violations will be present and an array of non-blocking warnings will also be present if any occurred.
     /// </summary>
     public partial class BulkUpdateInventory_BulkUpdateInventory_Failures_UpdateInventoryFailure : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Failures_UpdateInventoryFailure>, IBulkUpdateInventory_BulkUpdateInventory_Failures_UpdateInventoryFailure
@@ -1266,7 +1502,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container will show either the **listingId** of the item's listing that failed to be updated or the **sku** value of the item. Which of these identifiers is returned depends on which identifier was used in the input to identify the item.
+        /// This object will show either the **listingId** of the item's listing that failed to be updated or the **sku** value of the item. Which of these identifiers is returned depends on which identifier was used in the input to identify the item.
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory_Failures_ListingItemIdentifier ListingItemIdentifier { get; }
 
@@ -1276,7 +1512,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations> Violations { get; }
 
         /// <summary>
-        ///    This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        /// This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        ///
         /// **Note**: This array will be returned as empty if no warnings occurred.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings>? Warnings { get; }
@@ -1453,13 +1690,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: If an item was successfully updated, this field will be returned along with the **sku** field even if it was the **sku** that was used to identify the item in the input. If an item failed to be updated, this field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? ListingId { get; }
 
         /// <summary>
-        ///    The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: This field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? Sku { get; }
@@ -1780,6 +2019,94 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial class BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning>, IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning
+    {
+        public BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning(string warningCode, string warningMessage, global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation>? additionalInformation)
+        {
+            this.WarningCode = warningCode;
+            this.WarningMessage = warningMessage;
+            this.AdditionalInformation = additionalInformation;
+        }
+
+        /// <summary>
+        /// A unique identifier of the warning. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string WarningCode { get; }
+
+        /// <summary>
+        /// A human-readable description of the warning, intended to be displayed to an end user.
+        /// </summary>
+        public string WarningMessage { get; }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the warning. Null values in a name-value pair indicates that no additional information is available on the warning.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation>? AdditionalInformation { get; }
+
+        public virtual bool Equals(BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(WarningCode, other.WarningCode)
+                && global::System.Object.Equals(WarningMessage, other.WarningMessage)
+                && GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (WarningCode is not null)
+                {
+                    hash ^= 397 * WarningCode.GetHashCode();
+                }
+                if (WarningMessage is not null)
+                {
+                    hash ^= 397 * WarningMessage.GetHashCode();
+                }
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
     /// This type is used to show the identifier(s) of an item that was successfully updated with a **bulkUpdateInventory** mutation. An array of non-blocking warnings will also be present if any occurred.
     /// </summary>
     public partial class BulkUpdateInventory_BulkUpdateInventory_Successes_UpdateInventorySuccess : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Successes_UpdateInventorySuccess>, IBulkUpdateInventory_BulkUpdateInventory_Successes_UpdateInventorySuccess
@@ -1791,12 +2118,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container will show the **listingId** of the item's listing that was successfully updated, and also the **sku** value of the item if the **sku** value was used in the input to identify the item.
+        /// This object will show the **listingId** of the item's listing that was successfully updated, and also the **sku** value of the item if the **sku** value was used in the input to identify the item.
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory_Successes_ListingItemIdentifier ListingItemIdentifier { get; }
 
         /// <summary>
-        ///    This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        /// This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        ///
         /// **Note**: This array will be returned as empty if no warnings occurred.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings>? Warnings { get; }
@@ -1875,13 +2203,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: If an item was successfully updated, this field will be returned along with the **sku** field even if it was the **sku** that was used to identify the item in the input. If an item failed to be updated, this field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? ListingId { get; }
 
         /// <summary>
-        ///    The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: This field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? Sku { get; }
@@ -2099,6 +2429,102 @@ namespace EBay.ListingManagement.Generated.GraphQL
             }
 
             return Equals((BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_StandardListingValidationRuleViolation_1)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ViolationCode is not null)
+                {
+                    hash ^= 397 * ViolationCode.GetHashCode();
+                }
+                if (ViolationDescription is not null)
+                {
+                    hash ^= 397 * ViolationDescription.GetHashCode();
+                }
+                hash ^= 397 * GraphQLJson.SequenceHash(InputPath);
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type is used when subsidiary listing violations occur. Each violation identifies a specific input field or rule that must be corrected before the mutation can be retried successfully.
+    /// </summary>
+    public partial class BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation_1 : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation_1>, IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation_1
+    {
+        public BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation_1(string violationCode, string violationDescription, global::System.Collections.Generic.IReadOnlyList<string> inputPath, global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_AdditionalInformation_1>? additionalInformation)
+        {
+            this.ViolationCode = violationCode;
+            this.ViolationDescription = violationDescription;
+            this.InputPath = inputPath;
+            this.AdditionalInformation = additionalInformation;
+        }
+
+        /// <summary>
+        /// A unique identifier of the violation. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string ViolationCode { get; }
+
+        /// <summary>
+        /// A human-readable description of the violation, intended to be displayed to an end user.
+        /// </summary>
+        public string ViolationDescription { get; }
+
+        /// <summary>
+        /// This array will show one or more string values that show the full path(s) to the input field(s) that caused the violation.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<string> InputPath { get; }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the violation. For example, for a maximum length exceeded violation, this might contain {name: "maxLength", value: "80"}. Null values in a name-value pair indicates that no additional information is available on the violation.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_AdditionalInformation_1>? AdditionalInformation { get; }
+
+        public virtual bool Equals(BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation_1? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(ViolationCode, other.ViolationCode)
+                && global::System.Object.Equals(ViolationDescription, other.ViolationDescription)
+                && GraphQLJson.SequenceEqual(InputPath, other.InputPath)
+                && GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation_1)obj);
         }
 
         public override int GetHashCode()
@@ -2378,6 +2804,94 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial class BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning_1 : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning_1>, IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning_1
+    {
+        public BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning_1(string warningCode, string warningMessage, global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation_1>? additionalInformation)
+        {
+            this.WarningCode = warningCode;
+            this.WarningMessage = warningMessage;
+            this.AdditionalInformation = additionalInformation;
+        }
+
+        /// <summary>
+        /// A unique identifier of the warning. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string WarningCode { get; }
+
+        /// <summary>
+        /// A human-readable description of the warning, intended to be displayed to an end user.
+        /// </summary>
+        public string WarningMessage { get; }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the warning. Null values in a name-value pair indicates that no additional information is available on the warning.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation_1>? AdditionalInformation { get; }
+
+        public virtual bool Equals(BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning_1? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(WarningCode, other.WarningCode)
+                && global::System.Object.Equals(WarningMessage, other.WarningMessage)
+                && GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning_1)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (WarningCode is not null)
+                {
+                    hash ^= 397 * WarningCode.GetHashCode();
+                }
+                if (WarningMessage is not null)
+                {
+                    hash ^= 397 * WarningMessage.GetHashCode();
+                }
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
     /// This type is used to show the identifier(s) of an item that failed to be updated with a **bulkUpdateInventory** mutation. An array of one or more violations will be present and an array of non-blocking warnings will also be present if any occurred.
     /// </summary>
     public partial class BulkUpdateInventory_BulkUpdateInventory_Failures_UpdateInventoryFailure_1 : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Failures_UpdateInventoryFailure_1>, IBulkUpdateInventory_BulkUpdateInventory_Failures_UpdateInventoryFailure_1
@@ -2390,7 +2904,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container will show either the **listingId** of the item's listing that failed to be updated or the **sku** value of the item. Which of these identifiers is returned depends on which identifier was used in the input to identify the item.
+        /// This object will show either the **listingId** of the item's listing that failed to be updated or the **sku** value of the item. Which of these identifiers is returned depends on which identifier was used in the input to identify the item.
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory_Failures_ListingItemIdentifier_1 ListingItemIdentifier { get; }
 
@@ -2400,7 +2914,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_1> Violations { get; }
 
         /// <summary>
-        ///    This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        /// This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        ///
         /// **Note**: This array will be returned as empty if no warnings occurred.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_1>? Warnings { get; }
@@ -2585,13 +3100,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The unique identifier of the listing that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: If an item was successfully updated, this field will be returned along with the **sku** field even if it was the **sku** that was used to identify the item in the input. If an item failed to be updated, this field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? ListingId { get; }
 
         /// <summary>
-        ///    The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        /// The seller-defined SKU of the item that was successfully updated (if returned in the **successes** array) or which failed to be updated (if returned in the **failures** array).
+        ///
         /// **Note**: This field will only be returned if it was used to identify the item in the input.
         /// </summary>
         public string? Sku { get; }
@@ -2912,6 +3429,94 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial class BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning_1 : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning_1>, IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning_1
+    {
+        public BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning_1(string warningCode, string warningMessage, global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation_1>? additionalInformation)
+        {
+            this.WarningCode = warningCode;
+            this.WarningMessage = warningMessage;
+            this.AdditionalInformation = additionalInformation;
+        }
+
+        /// <summary>
+        /// A unique identifier of the warning. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string WarningCode { get; }
+
+        /// <summary>
+        /// A human-readable description of the warning, intended to be displayed to an end user.
+        /// </summary>
+        public string WarningMessage { get; }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the warning. Null values in a name-value pair indicates that no additional information is available on the warning.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation_1>? AdditionalInformation { get; }
+
+        public virtual bool Equals(BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning_1? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(WarningCode, other.WarningCode)
+                && global::System.Object.Equals(WarningMessage, other.WarningMessage)
+                && GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning_1)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (WarningCode is not null)
+                {
+                    hash ^= 397 * WarningCode.GetHashCode();
+                }
+                if (WarningMessage is not null)
+                {
+                    hash ^= 397 * WarningMessage.GetHashCode();
+                }
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
     /// This type is used to show the identifier(s) of an item that was successfully updated with a **bulkUpdateInventory** mutation. An array of non-blocking warnings will also be present if any occurred.
     /// </summary>
     public partial class BulkUpdateInventory_BulkUpdateInventory_Successes_UpdateInventorySuccess_1 : global::System.IEquatable<BulkUpdateInventory_BulkUpdateInventory_Successes_UpdateInventorySuccess_1>, IBulkUpdateInventory_BulkUpdateInventory_Successes_UpdateInventorySuccess_1
@@ -2923,12 +3528,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container will show the **listingId** of the item's listing that was successfully updated, and also the **sku** value of the item if the **sku** value was used in the input to identify the item.
+        /// This object will show the **listingId** of the item's listing that was successfully updated, and also the **sku** value of the item if the **sku** value was used in the input to identify the item.
         /// </summary>
         public IBulkUpdateInventory_BulkUpdateInventory_Successes_ListingItemIdentifier_1 ListingItemIdentifier { get; }
 
         /// <summary>
-        ///    This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        /// This array will show one or more non-blocking validation warnings or issues that occurred during the update operation.
+        ///
         /// **Note**: This array will be returned as empty if no warnings occurred.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_1>? Warnings { get; }
@@ -3212,12 +3818,24 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         private static IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Violations(global::System.Text.Json.JsonElement element)
         {
-            GraphQLJson.EnsureTypename(element, "StandardListingValidationRuleViolation", "IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations");
-            return new BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_StandardListingValidationRuleViolation(
+            var typename = GraphQLJson.ReadTypename(element);
+            switch (typename)
+            {
+            case "StandardListingValidationRuleViolation":
+                return new BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_StandardListingValidationRuleViolation(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "violationCode")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "violationDescription")),
                     GraphQLJson.ReadList(GraphQLJson.Required(element, "inputPath"), i0 => GraphQLJson.ReadString(i0)),
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_AdditionalInformation(i1))));
+            case "SubsidiaryListingViolation":
+                return new BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "violationCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "violationDescription")),
+                    GraphQLJson.ReadList(GraphQLJson.Required(element, "inputPath"), i0 => GraphQLJson.ReadString(i0)),
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_AdditionalInformation(i1))));
+            default:
+                throw new GraphQLResultException($"Unknown __typename '{typename}' for IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations.");
+            }
         }
 
         private static IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation(global::System.Text.Json.JsonElement element)
@@ -3240,6 +3858,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation(i1))));
             case "StandardListingWarning":
                 return new BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_StandardListingWarning(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation(i1))));
+            case "SubsidiaryListingWarning":
+                return new BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation(i1))));
@@ -3288,6 +3911,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation(i1))));
+            case "SubsidiaryListingWarning":
+                return new BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation(i1))));
             default:
                 throw new GraphQLResultException($"Unknown __typename '{typename}' for IBulkUpdateInventory_BulkUpdateInventory_Successes_Warnings.");
             }
@@ -3319,12 +3947,24 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         private static IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_1 Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_1(global::System.Text.Json.JsonElement element)
         {
-            GraphQLJson.EnsureTypename(element, "StandardListingValidationRuleViolation", "IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_1");
-            return new BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_StandardListingValidationRuleViolation_1(
+            var typename = GraphQLJson.ReadTypename(element);
+            switch (typename)
+            {
+            case "StandardListingValidationRuleViolation":
+                return new BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_StandardListingValidationRuleViolation_1(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "violationCode")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "violationDescription")),
                     GraphQLJson.ReadList(GraphQLJson.Required(element, "inputPath"), i0 => GraphQLJson.ReadString(i0)),
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_AdditionalInformation_1(i1))));
+            case "SubsidiaryListingViolation":
+                return new BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_SubsidiaryListingViolation_1(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "violationCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "violationDescription")),
+                    GraphQLJson.ReadList(GraphQLJson.Required(element, "inputPath"), i0 => GraphQLJson.ReadString(i0)),
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Violations_AdditionalInformation_1(i1))));
+            default:
+                throw new GraphQLResultException($"Unknown __typename '{typename}' for IBulkUpdateInventory_BulkUpdateInventory_Failures_Violations_1.");
+            }
         }
 
         private static IBulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation_1 Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation_1(global::System.Text.Json.JsonElement element)
@@ -3347,6 +3987,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation_1(i1))));
             case "StandardListingWarning":
                 return new BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_StandardListingWarning_1(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation_1(i1))));
+            case "SubsidiaryListingWarning":
+                return new BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_SubsidiaryListingWarning_1(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Failures_Warnings_AdditionalInformation_1(i1))));
@@ -3392,6 +4037,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation_1(i1))));
             case "StandardListingWarning":
                 return new BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_StandardListingWarning_1(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation_1(i1))));
+            case "SubsidiaryListingWarning":
+                return new BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_SubsidiaryListingWarning_1(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_BulkUpdateInventory_BulkUpdateInventory_Successes_Warnings_AdditionalInformation_1(i1))));

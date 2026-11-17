@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to provide a Global Trade Item Number (GTIN) for the item. GTIN is a globally unique identifier for trade items used by companies to identify products. GTINs include UPCs, EANs, and ISBNs. Optionally, eBay will search for a catalog product against a provided GTIN if the **includeEbayProductDetails** field is included and set to 'true'. If a matching eBay catalog product is found, the listing will automatically be updated with product details of that catalog product, including product title, product description, product aspects, and stock photo(s).
+    /// This type is used to provide a Global Trade Item Number (GTIN) for the item. GTIN is a globally unique identifier for trade items used by companies to identify products. GTINs include UPCs, EANs, and ISBNs. Optionally, eBay will search for a catalog product against a provided GTIN if the **includeEbayProductDetails** field is included and set to `true`. If a matching eBay catalog product is found, the listing will automatically be updated with product details of that catalog product, including product title, product description, product aspects, and stock photo(s).
     /// </summary>
     public partial class UpdateListingGlobalProductIdentifiersInput : global::System.IEquatable<UpdateListingGlobalProductIdentifiersInput>
     {
@@ -34,7 +34,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to supply a European Article Number (EAN) for a product. It is a 13-digit barcode standard used internationally for retail product identification. Also known as International Article Number. Some leaf categories may require an EAN, and you can use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see if a leaf category supports or requires this GTIN type. If you wish to search for an eBay catalog product based on this EAN, include the **includeEbayProductDetails** field and set its value to true.
-        /// **Max length**: 13 characters.
         /// </summary>
         public string? Ean
         {
@@ -48,7 +47,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to supply an International Standard Book Number (ISBN) for a product. It is a unique identifier for books and book-like products. Can be 10 digits (older format) or 13 digits (current format). Some leaf categories may require an ISBN, and you can use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see if a leaf category supports or requires this GTIN type. If you wish to search for an eBay catalog product based on this ISBN, include the **includeEbayProductDetails** field and set its value to true.
-        /// **Max length**: 13 characters.
         /// </summary>
         public string? Isbn
         {
@@ -61,8 +59,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to supply a Universal Product Code (UPC) for a product. It is a 12-digit barcode standard used primarily in North America for retail product identification. Some leaf categories may require a UPC, and you can use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see if a leaf category supports or requires this GTIN type. If you wish to search for an eBay catalog product based on this UPC, include the **includeEbayProductDetails** field and set its value to 'true'.
-        /// **Max value**: 12 characters.
+        /// This field is used to supply a Universal Product Code (UPC) for a product. It is a 12-digit barcode standard used primarily in North America for retail product identification. Some leaf categories may require a UPC, and you can use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see if a leaf category supports or requires this GTIN type. If you wish to search for an eBay catalog product based on this UPC, include the **includeEbayProductDetails** field and set its value to `true`.
         /// </summary>
         public string? Upc
         {
@@ -76,13 +73,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_ean || _set_isbn || _set_upc))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_ean)
             {

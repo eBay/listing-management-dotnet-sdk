@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This container controls the maximum number of listings to be displayed on each page data, as well as the page number of the page of data currently being viewed.
+    /// This input type controls the maximum number of listings to be displayed on each page data, as well as the page number of the page of data currently being viewed.
     /// </summary>
     public partial class PaginationInput : global::System.IEquatable<PaginationInput>
     {
@@ -35,7 +35,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// This integer value specifies the maximum number of entries to return in a single page of data. This value, along with the number of entries that match the input criteria, determines the total number of pages of data that is being returned.
         ///
-        /// **Note:** This field should only be used/included in the initial pagination query.
+        /// **Note**: This field should only be used/included in the initial pagination query.
         /// </summary>
         public int? MaxPageSize
         {
@@ -50,7 +50,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// Specifies the page number of the page of data to be displayed. This value is a positive integer equal to, or less than, the total number of pages of data returned by the initial request. For example, if 75 pages of data are available for display following the original query, to view data on page 18, enter `18` for this field.
         ///
-        /// **Note:** This field should not used/included in the initial pagination query.
+        /// **Note**: This field should not used/included in the initial pagination query.
         /// </summary>
         public string? PageCursor
         {
@@ -65,7 +65,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// This field is the integer value corresponding to the numeric string specified by `pageCursor`. `pageIndex` should always be provided with `pageCursor`.
         ///
-        /// **Note:** This field should not used/included in the initial pagination query.
+        /// **Note**: This field should not used/included in the initial pagination query.
         ///
         /// Refers to a page of data within the collection of data implied by pageCursor. `pageIndex` should always be provided with pageCursor, and like pageCursor should not be provided in an initial pagination query.
         /// </summary>
@@ -81,13 +81,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_maxPageSize || _set_pageCursor || _set_pageIndex))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_maxPageSize)
             {

@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type consists of the offline payment methods that sellers can specify as available payment methods if the sales transaction happens off an eBay. Note that availability of specific offline payment methods may vary by eBay marketplace and category. The [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method can be used to see which payment methods are supported by a leaf category.
+    /// This enumerated type consists of the offline payment methods that sellers can specify as available payment methods if the sales transaction happens off an eBay. Note that availability of specific offline payment methods may vary by eBay marketplace and category. The [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method can be used to see which payment methods are supported by a leaf category.
     /// </summary>
     public enum ListingPaymentMethod
     {

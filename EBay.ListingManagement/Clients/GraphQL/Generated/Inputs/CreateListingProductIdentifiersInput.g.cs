@@ -46,7 +46,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to specify a UPC, EAN, or ISBN value for a product, and optionally, try to match the value to an eBay catalog product so that the product details of that catalog product can be prefilled in the resultant listing. Some leaf categories require a GTIN, and the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method can be used to see if a leaf category requires a UPC, EAN, or ISBN.
+        /// This object is used to specify a UPC, EAN, or ISBN value for a product, and optionally, try to match the value to an eBay catalog product so that the product details of that catalog product can be prefilled in the resultant listing. Some leaf categories require a GTIN, and the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method can be used to see if a leaf category requires a UPC, EAN, or ISBN.
         /// </summary>
         public CreateListingGlobalProductIdentifiersInput? GlobalIdentifiers
         {
@@ -60,7 +60,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field controls whether or not an eBay catalog product is leveraged to prefill a listing with that catalog product's details, including product title, product description, item specifics, and stock photo. If you want to use an eBay catalog product to populate your listing, you can either set this field to true or omit it entirely, as true is the default value. If you provide a GTIN (Global Trade Item Number) or eBay Product ID but do not want to use the corresponding eBay catalog product to prefill your listing, you must set this field to false. If set to false, you will be required to provide your own listing title, description, category, and at least one image. This is only applicable to single-SKU listings.
-        /// **Default value**: true
+        ///
+        /// **Default**: true
         /// </summary>
         public bool? IncludeEbayProductDetails
         {
@@ -74,13 +75,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_ebayProductId || _set_globalIdentifiers || _set_includeEbayProductDetails))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_ebayProductId)
             {

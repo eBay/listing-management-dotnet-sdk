@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_marketingPrice;
 
         /// <summary>
-        /// This container is used to provide auction-specific price settings including starting bid price and reserve price.
+        /// This object is used to provide auction-specific price settings including starting bid price and reserve price.
         /// </summary>
         public CreateListingAuctionPriceInput? AuctionPrice
         {
@@ -59,7 +59,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide pricing and other settings related to the Minimum Advertised Price, Strikethrough Pricing, or eBay Outlet features. All three of these features are restricted and sellers must qualify to use them.
+        /// This object is used to provide pricing and other settings related to the Minimum Advertised Price, Strikethrough Pricing, or eBay Outlet features. All three of these features are restricted and sellers must qualify to use them.
         /// </summary>
         public CreateListingMarketingPriceInput? MarketingPrice
         {
@@ -73,13 +73,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_auctionPrice || _set_fixedPrice || _set_marketingPrice))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_auctionPrice)
             {

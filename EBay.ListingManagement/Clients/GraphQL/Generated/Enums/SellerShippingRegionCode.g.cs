@@ -26,27 +26,32 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public enum SellerShippingRegionCode
     {
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to the Adelaide Metro area.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to the Adelaide Metro area.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         AdelaideMetro,
         /// <summary>
-        ///    This enumeration value is used to indicate that a US-based seller will not ship to the states of Alaska or Hawaii.
+        /// This enumeration value is used to indicate that a US-based seller will not ship to the states of Alaska or Hawaii.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay US listing.
         /// </summary>
         AlaskaHawaii,
         /// <summary>
-        ///    This enumeration value is used to indicate that a seller will or will not ship to North America and South America.
+        /// This enumeration value is used to indicate that a seller will or will not ship to North America and South America.
+        ///
         /// **Note**: This enumeration value does not include Central America, which is grouped together with the Caribbean.
         /// </summary>
         Americas,
         /// <summary>
-        ///    This enumeration value is used to indicate that a US-based seller will not ship to Army Post Office (APO) or a Fleet Post Office (FPO).
+        /// This enumeration value is used to indicate that a US-based seller will not ship to Army Post Office (APO) or a Fleet Post Office (FPO).
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay US listing.
         /// </summary>
         ApoFpo,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to the Brisbane Metro area.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to the Brisbane Metro area.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         BrisbaneMetro,
@@ -55,7 +60,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         CentralAmericaAndCaribbean,
         /// <summary>
-        ///    This enumeration value is used to indicate that a UK-based seller will not ship to the Channel Islands.
+        /// This enumeration value is used to indicate that a UK-based seller will not ship to the Channel Islands.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay UK listing.
         /// </summary>
         ChannelIslands,
@@ -64,22 +70,26 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         EuropeanUnion,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Hong Kong-based seller will or will not ship to the Greater China area, which includes mainland China, Taiwan, Hong Kong, and Macau.
+        /// This enumeration value is used to indicate that a Hong Kong-based seller will or will not ship to the Greater China area, which includes mainland China, Taiwan, Hong Kong, and Macau.
+        ///
         /// **Note**: This value can only be used in an eBay Hong Kong listing.
         /// </summary>
         GreaterChina,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Germany-based seller will not ship to the German island of Hiddensee.
+        /// This enumeration value is used to indicate that a Germany-based seller will not ship to the German island of Hiddensee.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Germany listing.
         /// </summary>
         Hiddensee,
         /// <summary>
-        ///    This enumeration value is used to indicate that a UK-based seller will not ship to the Isle of Wight.
+        /// This enumeration value is used to indicate that a UK-based seller will not ship to the Isle of Wight.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay UK listing.
         /// </summary>
         IsleOfWight,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to the Melbourne Metro area.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to the Melbourne Metro area.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         MelbourneMetro,
@@ -92,22 +102,26 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         None,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Germany-based seller will not ship to the North Frisian Islands.
+        /// This enumeration value is used to indicate that a Germany-based seller will not ship to the North Frisian Islands.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Germany listing.
         /// </summary>
         NordfriesischeInseln,
         /// <summary>
-        ///    This enumeration value is used to indicate that a UK-based seller will not ship to Northern Ireland.
+        /// This enumeration value is used to indicate that a UK-based seller will not ship to Northern Ireland.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay UK listing.
         /// </summary>
         NorthernIreland,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to the Northern Territory region.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to the Northern Territory region.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         NorthernTerritory,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to the New South Wales (NSW) region.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to the New South Wales (NSW) region.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         NswRegional,
@@ -116,102 +130,122 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         Oceania,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Germany-based seller will not ship to the East Frisian Islands.
+        /// This enumeration value is used to indicate that a Germany-based seller will not ship to the East Frisian Islands.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Germany listing.
         /// </summary>
         OstfriesischeInseln,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Germany-based seller will not ship to a Packstation, which is an automated DHL parcel locker system.
+        /// This enumeration value is used to indicate that a Germany-based seller will not ship to a Packstation, which is an automated DHL parcel locker system.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Germany listing.
         /// </summary>
         PackStation,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to the Perth Metro area.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to the Perth Metro area.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         PerthMetro,
         /// <summary>
-        ///    This enumeration value is used to indicate that a seller will not ship to a Post Office (PO) Box.
+        /// This enumeration value is used to indicate that a seller will not ship to a Post Office (PO) Box.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in a listing across all eBay marketplaces.
         /// </summary>
         PoBox,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to Far North Queensland (QLD).
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to Far North Queensland (QLD).
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         QldFarNorth,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to regions of Queensland (QLD) beside Far North Queensland and South East Queensland.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to regions of Queensland (QLD) beside Far North Queensland and South East Queensland.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         QldRegional,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to South East Queensland (QLD).
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to South East Queensland (QLD).
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         QldSouthEast,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Hong Kong-based seller will or will not ship to Asian countries outside of the Greater China area, which includes mainland China, Taiwan, Hong Kong, and Macau.
+        /// This enumeration value is used to indicate that a Hong Kong-based seller will or will not ship to Asian countries outside of the Greater China area, which includes mainland China, Taiwan, Hong Kong, and Macau.
+        ///
         /// **Note**: This value can only be used in an eBay Hong Kong listing.
         /// </summary>
         RestOfAsia,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to Regional South Australia (SA).
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to Regional South Australia (SA).
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         SaRegional,
         /// <summary>
-        ///    This enumeration value is used to indicate that a UK-based seller will not ship to the Scilly Isles (also known as Isles of Scilly).
+        /// This enumeration value is used to indicate that a UK-based seller will not ship to the Scilly Isles (also known as Isles of Scilly).
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay UK listing.
         /// </summary>
         ScillyIsles,
         /// <summary>
-        ///    This enumeration value is used to indicate that a UK-based seller will not ship to the Scottish Highlands.
+        /// This enumeration value is used to indicate that a UK-based seller will not ship to the Scottish Highlands.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay UK listing.
         /// </summary>
         ScottishHighlands,
         /// <summary>
-        ///    This enumeration value is used to indicate that a UK-based seller will not ship to the Scottish Islands.
+        /// This enumeration value is used to indicate that a UK-based seller will not ship to the Scottish Islands.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay UK listing.
         /// </summary>
         ScottishIslands,
         /// <summary>
-        ///    This enumeration value is used to indicate that a seller will or will not ship to Southeast Asia, which includes Cambodia, Indonesia, Vietnam, Hong Kong, Philippines, Malaysia, Taiwan, Laos, Thailand, Singapore, Macau, and Brunei Darussalam.
+        /// This enumeration value is used to indicate that a seller will or will not ship to Southeast Asia, which includes Cambodia, Indonesia, Vietnam, Hong Kong, Philippines, Malaysia, Taiwan, Laos, Thailand, Singapore, Macau, and Brunei Darussalam.
+        ///
         /// **Note**: This value should not be used by a Hong Kong-based seller. Instead, they should use GREATER_CHINA (which includes mainland China, Taiwan, Hong Kong, and Macau) and REST_OF_ASIA to include or exclude other Asian countries.
         /// </summary>
         SoutheastAsia,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to the Sydney Metro area.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to the Sydney Metro area.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         SydneyMetro,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to the island state of Tasmania .
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to the island state of Tasmania .
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         Tasmania,
         /// <summary>
-        ///    This enumeration value is used to indicate that a US-based seller will not ship to any of the following US protectorates: Puerto Rico, Guam, American Samoa, Northern Mariana Islands, and U.S. Virgin Islands.
+        /// This enumeration value is used to indicate that a US-based seller will not ship to any of the following US protectorates: Puerto Rico, Guam, American Samoa, Northern Mariana Islands, and U.S. Virgin Islands.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay US listing.
         /// </summary>
         UsProtectorates,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to Regional Victoria, which are areas of the Australian state of Victoria outside the greater Melbourne metropolitan area.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to Regional Victoria, which are areas of the Australian state of Victoria outside the greater Melbourne metropolitan area.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         VicRegional,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to Regional Western Australia (WA), which are areas outside the greater Perth metropolitan area.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to Regional Western Australia (WA), which are areas outside the greater Perth metropolitan area.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         WaRegional,
         /// <summary>
-        ///    This enumeration value is used to indicate that a Australia-based seller will not ship to Remote Western Australia (WA), which are isolated areas far from major cities, especially in the north and northeast.
+        /// This enumeration value is used to indicate that a Australia-based seller will not ship to Remote Western Australia (WA), which are isolated areas far from major cities, especially in the north and northeast.
+        ///
         /// **Note**: This value can only be used as an excluded shipping location in an eBay Australia listing.
         /// </summary>
         WaRemote,
         /// <summary>
-        ///    This enumeration value is used as a shipping location, and covers all continents, large geographical regions, countries, and special domestic locations.
+        /// This enumeration value is used as a shipping location, and covers all continents, large geographical regions, countries, and special domestic locations.
+        ///
         /// **Note**: It is generally accompanied by numerous excluded shipping locations unless a seller truly ships everywhere.
         /// </summary>
         Worldwide

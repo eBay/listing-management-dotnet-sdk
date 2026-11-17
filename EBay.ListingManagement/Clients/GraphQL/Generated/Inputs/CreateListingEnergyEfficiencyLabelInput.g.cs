@@ -34,7 +34,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to provide a brief text-based summary of the information included on the Energy Efficiency Label for a product. The description should be concise and informative, providing key details about the energy efficiency of the product. If you provide `imageDescription`, then you need to provide `imageUrl`.
-        /// **Max length**: 280
+        ///
+        /// **Maximum length**: 280 characters
         /// </summary>
         public string? ImageDescription
         {
@@ -48,7 +49,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to specify the URL to the Energy Efficiency Label image that is applicable to a product. This field is required if an Energy Efficiency Label is provided, and the URL provided must be an eBay Picture Services (EPS) URL using 'https'. The image resource of the **Media API** can be used to upload images to eBay.
-        /// **Max length**: 200 characters
+        ///
+        /// **Maximum length**: 200 characters
         /// </summary>
         public string? ImageUrl
         {
@@ -62,7 +64,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The URL to the Product Information Sheet image that is applicable to a product. This field is required if an Energy Efficiency Label is provided, and the URL provided must be an eBay Picture Services (EPS) URL using 'https'. The image resource of the **Media API** can be used to upload images to eBay.
-        /// **Max length**: 200 characters
+        ///
+        /// **Maximum length**: 200 characters
         /// </summary>
         public string? ProductInformationSheetUrl
         {
@@ -76,13 +79,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_imageDescription || _set_imageUrl || _set_productInformationSheetUrl))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_imageDescription)
             {

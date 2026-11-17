@@ -31,7 +31,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_quantityLimitPerBuyer;
 
         /// <summary>
-        /// This field can be included and set to 'true' if the seller wishes to disable all buyer restrictions (that are set in the seller's account) for the listing, or set to 'false' if the seller wishes to have all account-level buyer restrictions to apply to the listing.
+        /// This field can be included and set to `true` if the seller wishes to disable all buyer restrictions (that are set in the seller's account) for the listing, or set to `false` if the seller wishes to have all account-level buyer restrictions to apply to the listing.
         /// </summary>
         public bool? DisableBuyerRestrictions
         {
@@ -44,7 +44,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to set or modify the maximum quantity of items that a single buyer may purchase during the duration of a fixed price listing (single or multiple-variation). The buyer is blocked from the purchase if that buyer is attempting to purchase a quantity of items that will exceed this value. Previous purchases made by the buyer are taken into account. For example, if **quantityLimitPerBuyer** is set to '5' for a listing, and *Buyer1* purchases a quantity of three in a previous sale, *Buyer1* is only allowed to purchase an additional quantity of two in subsequent orders on the same listing.
+        /// This field is used to set or modify the maximum quantity of items that a single buyer may purchase during the duration of a fixed price listing (single or multiple-variation). The buyer is blocked from the purchase if that buyer is attempting to purchase a quantity of items that will exceed this value. Previous purchases made by the buyer are taken into account. For example, if **quantityLimitPerBuyer** is set to `5` for a listing, and *Buyer1* purchases a quantity of three in a previous sale, *Buyer1* is only allowed to purchase an additional quantity of two in subsequent orders on the same listing.
         /// </summary>
         public int? QuantityLimitPerBuyer
         {
@@ -58,13 +58,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_disableBuyerRestrictions || _set_quantityLimitPerBuyer))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_disableBuyerRestrictions)
             {

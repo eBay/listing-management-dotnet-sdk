@@ -40,7 +40,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field sets the first line of the entity's street address.
-        /// **Max length**: 180 characters.
+        ///
+        /// **Maximum length**: 180 characters
         /// </summary>
         public string AddressLine1
         {
@@ -54,7 +55,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field sets the second line of the entity's street address. This field is not always used, but can be used for secondary address information such as 'Suite Number' or 'Apt Number'.
-        /// **Max length**: 180 characters.
+        ///
+        /// **Maximum length**: 180 characters
         /// </summary>
         public string? AddressLine2
         {
@@ -68,7 +70,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field sets the city of the entity's street address.
-        /// **Max length**: 64 characters.
+        ///
+        /// **Maximum length**: 64 characters
         /// </summary>
         public string City
         {
@@ -95,7 +98,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field sets the postal code of the entity's street address.
-        /// **Max length**: 9 characters.
+        ///
+        /// **Maximum length**: 9 characters
         /// </summary>
         public string PostalCode
         {
@@ -109,7 +113,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field sets the state or province of the entity's street address.
-        /// **Max length**: 64 characters.
+        ///
+        /// **Maximum length**: 64 characters
         /// </summary>
         public string? StateOrProvince
         {
@@ -123,13 +128,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_addressLine1 || _set_addressLine2 || _set_city || _set_country || _set_postalCode || _set_stateOrProvince))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_addressLine1)
             {

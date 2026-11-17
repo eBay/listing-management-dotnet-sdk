@@ -34,10 +34,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add or modify the list of compatible vehicles or assemblies that are compatible with a Parts and Accessory item. The required/applicable names and values are specific to the primary category for the listing, and can be found using the [getCompatibilityPropertyNames](https://developer.ebay.com/api-docs/sell/metadata/resources/compatibilities/methods/getCompatibilityPropertyNames) and [getCompatibilityPropertyValues](https://developer.ebay.com/api-docs/sell/metadata/resources/compatibilities/methods/getCompatibilityPropertyValues) methods of the **Metadata API**.
+        ///
         /// **Note**: If any changes are being made to the compatibility list, the full set of compatibility name-value pairs that you wish to be on the listing must be included, and not just the compatibilities that are being added or modified.
-        /// **Max number of allowed compatibilities on the listing**: 3000
-        /// **Max compatibility name length**: 65
-        /// **Max compatibility value length**: 65
+        ///
+        /// **Maximum number of allowed compatibilities on the listing**: 3000
+        /// **Maximum compatibility name length**: 65
+        /// **Maximum compatibility value length**: 65
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<NameValuesPairInput> Compatibilities
         {
@@ -51,8 +53,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The seller can use this field to add or modify compatibility notes pertaining to the parts compatibility being specified. For example, if this compatibility information applies to a vehicle, a seller may use this field to specify the placement of the part on a vehicle or the type of vehicle a part fits.
+        ///
         /// **Note**: If this field is used, the text provided in the field will completely overwrite the current compatibility notes text if it exists for the listing.
-        /// **Max length**: 500 characters.
+        ///
+        /// **Maximum length**: 500 characters
         /// </summary>
         public string? CompatibilityNotes
         {
@@ -66,7 +70,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field indicates if the compatibility is to be deleted. If `true`, the compatibility specified by the `compatibilities` will be removed from the listing's compatibility list. If `false` or omitted, the compatibility specified by the `compatibilities` will be added or updated in the listing's compatibility list.
-        /// **Default value**: false
+        ///
+        /// **Default**: false
         /// </summary>
         public bool? RemoveCompatibilityFromListing
         {
@@ -80,13 +85,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_compatibilities || _set_compatibilityNotes || _set_removeCompatibilityFromListing))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_compatibilities)
             {

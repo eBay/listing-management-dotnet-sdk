@@ -35,9 +35,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_takebackPolicyId;
 
         /// <summary>
-        /// This array is used to add or modify the global product compliance policies that will be used for the listing. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used with the **policyTypes** query parameter to retrieve all product compliance policies defined for a seller's account. The product compliance policies set with this array will apply to all countries where the seller operates. Product compliance policies provide buyers with important information and disclosures about products. Country-specific policies should be set with the **regionalProductCompliancePolicies** container instead.
-        /// **Max number of product compliance policies allowed per listing**: 6.
-        /// **Max length of each product compliance policy ID**: 15 characters.
+        /// This array is used to add or modify the global product compliance policies that will be used for the listing. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used with the **policyTypes** query parameter to retrieve all product compliance policies defined for a seller's account. The product compliance policies set with this array will apply to all countries where the seller operates. Product compliance policies provide buyers with important information and disclosures about products. Country-specific policies should be set with the **regionalProductCompliancePolicies** object instead.
+        ///
+        ///
+        /// **Maximum number of product compliance policies allowed per listing**: 6
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? ProductCompliancePolicyIds
         {
@@ -50,9 +51,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used add or modify the country-specific product compliance policies that will be used for the listing. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used with the **policyTypes** query parameter to retrieve all product compliance policies defined for a seller's account. Product compliance policies provide buyers with important information and disclosures about products. Country-specific policies may be needed where countries might have special legal/regulatory requirements. For example, if you sell batteries in a country requiring disclosures that apply only to that country, a country-specific product compliance policy could contain this information. If country-specific policies are not needed, use the **productCompliancePolicyIds** array instead.
-        /// **Maximum number of product compliance policies allowed per marketplace**: 6 (with supported countries being GB, DE, FR, IT, and ES).
-        /// **Maximum number of product compliance policies allowed per listing**: 30 (6 per country).
+        /// This object is used add or modify the country-specific product compliance policies that will be used for the listing. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used with the **policyTypes** query parameter to retrieve all product compliance policies defined for a seller's account. Product compliance policies provide buyers with important information and disclosures about products. Country-specific policies may be needed where countries might have special legal/regulatory requirements. For example, if you sell batteries in a country requiring disclosures that apply only to that country, a country-specific product compliance policy could contain this information. If country-specific policies are not needed, use the **productCompliancePolicyIds** array instead.
+        ///
+        /// **Maximum number of product compliance policies allowed per marketplace**: 6 (with supported countries being GB, DE, FR, IT, and ES)
+        /// **Maximum number of product compliance policies allowed per listing**: 30 (6 per country)
         /// </summary>
         public RelistListingRegionalProductCompliancePoliciesInput? RegionalProductCompliancePolicies
         {
@@ -65,9 +67,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify one or more country-specific takeback policies that will be used for a listing. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used with the **policyTypes** query parameter to retrieve all takeback policies defined for a seller's account. The law in some countries may require sellers to take back a used product when the buyer buys a new product but wishes to dispose of it. Each country may only have one specific takeback policy. If a country-specific takeback policy is not needed, one global takeback policy is set with the **takebackPolicyId** field.
-        /// **Maximum number of takeback policies allowed per marketplace**: 1 (with supported countries being GB, DE, FR, IT, and ES).
-        /// **Maximum number of takeback policies allowed per listing**: 5 (1 per country).
+        /// This object is used to add or modify one or more country-specific takeback policies that will be used for a listing. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used with the **policyTypes** query parameter to retrieve all takeback policies defined for a seller's account. The law in some countries may require sellers to take back a used product when the buyer buys a new product but wishes to dispose of it. Each country may only have one specific takeback policy. If a country-specific takeback policy is not needed, one global takeback policy is set with the **takebackPolicyId** field.
+        ///
+        /// **Maximum number of takeback policies allowed per marketplace**: 1 (with supported countries being GB, DE, FR, IT, and ES)
+        /// **Maximum number of takeback policies allowed per listing**: 5 (1 per country)
         /// </summary>
         public RelistListingRegionalTakebackPoliciesInput? RegionalTakebackPolicies
         {
@@ -80,9 +83,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to add, change, or remove the global takeback policy to use for the listing. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used with the **policyTypes** query parameter to retrieve all takeback policies defined for a seller's account. The takeback policy set with this field will apply to all countries where the seller operates. Country-specific policies should be set with **regionalTakebackPolicies** container instead.
+        /// This field is used to add, change, or remove the global takeback policy to use for the listing. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used with the **policyTypes** query parameter to retrieve all takeback policies defined for a seller's account. The takeback policy set with this field will apply to all countries where the seller operates. Country-specific policies should be set with **regionalTakebackPolicies** object instead.
+        ///
         /// **Note**: To remove a global takeback policy, include this field and set its value as empty or null.
-        /// **Max length of takeback policy ID**: 15 characters.
         /// </summary>
         public string? TakebackPolicyId
         {
@@ -96,13 +99,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_productCompliancePolicyIds || _set_regionalProductCompliancePolicies || _set_regionalTakebackPolicies || _set_takebackPolicyId))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_productCompliancePolicyIds)
             {

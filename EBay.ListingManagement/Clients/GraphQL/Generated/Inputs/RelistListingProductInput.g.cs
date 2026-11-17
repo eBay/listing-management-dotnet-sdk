@@ -46,9 +46,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to set or modify name-value pairs that define the product aspects. Most leaf categories require at least a few aspects, and the listing will fail if these are not provided. The [getItemAspectsForCategory](https://developer.ebay.com/api-docs/sell/taxonomy/resources/category_tree/methods/getItemAspectsForCategory) method can be used to see which aspects are required, recommended, or optional for a leaf category. This method also returns typical values for an aspect name and will indicate if an aspect name supports multiple values or just one value. For a multiple-SKU listing, only the common aspects will be specified in this array, and the pivoting aspects (aka traits) will be specified at the item level.
+        ///
         /// **Note**: The specified aspects of the ended listing will be retained, but this array will be needed if the seller wants to make any changes. Changes most likely will be necessary if the primary eBay category is being changed.
+        ///
         /// **Note**: If any changes are being made to product aspects, the full set of aspect name-value pairs that you wish to be on the listing must be included, and not just the aspects that are being added or modified.
-        /// **Max length**: 65 characters for each aspect name and value.
+        ///
+        /// **Maximum length**: 65 characters for each aspect name and value.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<NameValuesPairInput?>? Aspects
         {
@@ -61,8 +64,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to change the primary eBay category for the listing, and optionally, to add or modify a secondary eBay category and/or eBay store categories.
-        /// **Note**: The specified categories of the ended listing will be retained, but this container can be used in case the seller wants to change or add new categories.
+        /// This object is used to change the primary eBay category for the listing, and optionally, to add or modify a secondary eBay category and/or eBay store categories.
+        ///
+        /// **Note**: The specified categories of the ended listing will be retained, but this object can be used in case the seller wants to change or add new categories.
         /// </summary>
         public RelistListingProductCategoriesInput? Categories
         {
@@ -76,8 +80,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to modify the full description of the product or group of products. HTML markup and inline CSS can be used. However, a seller can not use any active content in their listing description. Active content includes animation or video via JavaScript, Flash, plug-ins, or form actions. All active content will be blocked/removed from a listing. Sellers are only allowed to provide links to product videos, freight shipping services, or other legally required information, and when providing these links in the listing description, the secure 'https' protocol must be used instead of 'http'. In addition, any valid links to sites outside of eBay should use the target="_blank" attribute in the a href tag so a new browser window will be loaded when the link is clicked instead of buyers being redirected off of eBay.
+        ///
         /// **Note**: The **description** of the ended listing will be retained, so this field will only need to be included if the seller wishes to modify the description.
-        /// **Max length**: 500,000 characters (including all markup tags/CSS)
+        ///
+        /// **Maximum length**: 500,000 characters (including all markup tags/CSS)
         /// </summary>
         public string? Description
         {
@@ -91,8 +97,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to update the list of image URLs that will become photos in the listing's photo gallery. Most eBay categories support up to 24 photos per listing at no extra charge. The URLs used in this array must use 'https'. Either all eBay Picture Services (EPS) or all self-hosted picture URLs may be used in this array, but not a combination of both.
+        ///
         /// **Note**: The list of images of the ended listing will be retained, but this array will be needed if the seller wants to add or remove any images.
+        ///
         /// **Note**: The full set of image URLs that you wish to be images in the listing must be included, and not just the images that are being added.
+        ///
         /// **Max images allowed on a listing**: 24
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? ImageUrls
@@ -106,8 +115,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to change the condition of the item, to add or modify the condition description for a used item, or to make any changes to the condition descriptor data for a single trading cards listing.
-        /// **Note**: All condition information of the ended listing will be retained, but this container will be needed if the seller wants to make any changes.
+        /// This object is used to change the condition of the item, to add or modify the condition description for a used item, or to make any changes to the condition descriptor data for a single trading cards listing.
+        ///
+        /// **Note**: All condition information of the ended listing will be retained, but this object will be needed if the seller wants to make any changes.
         /// </summary>
         public RelistListingItemConditionInput? ItemCondition
         {
@@ -120,8 +130,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or update the list of motor vehicles or assemblies that are compatible with a Parts &amp; Accessories item. This structured compatibility information helps buyers filter and find parts that are compatible with their specific vehicles. Year, Make, and Model are typical aspects used to identify a motor vehicle.
-        /// **Note**: The specified compatibility list of the ended listing will be retained, but this container will be needed if the seller wants to make any changes.
+        /// This object is used to add or update the list of motor vehicles or assemblies that are compatible with a Parts &amp; Accessories item. This structured compatibility information helps buyers filter and find parts that are compatible with their specific vehicles. Year, Make, and Model are typical aspects used to identify a motor vehicle.
+        ///
+        /// **Note**: The specified compatibility list of the ended listing will be retained, but this object will be needed if the seller wants to make any changes.
+        ///
         /// **Max compatibilities allowed on a listing**: 3000
         /// </summary>
         public RelistListingItemCompatibilitiesInput? ListingCompatibilities
@@ -135,7 +147,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is needed for motor vehicle listings and is used to add or change the Vehicle Identification Number (VIN) or the Vehicle Registration Mark (VRM) for the motor vehicle.
+        /// This object is needed for motor vehicle listings and is used to add or change the Vehicle Identification Number (VIN) or the Vehicle Registration Mark (VRM) for the motor vehicle.
         /// </summary>
         public RelistListingMotorVehicleIdentifierInput? MotorVehicleIdentifier
         {
@@ -149,7 +161,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to modify the product title displayed on the listing. The **title** of the ended listing will be retained, so this field will only need to be included if the seller wishes to modify the title.
-        /// **Max length**: 80 characters.
+        ///
+        /// **Maximum length**: 80 characters
         /// </summary>
         public string? Title
         {
@@ -163,9 +176,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add, replace, or remove a seller's video to the listing. A unique identifier for a seller's video is passed into this array to add a product video to the listing. Although a video can be added to a listing before it is in the `LIVE` state, the video won't be available for viewing in the listing until it does reach this state. To know more about the video upload process and various states for a video, see the [Media API documentation](https://developer.ebay.com/api-docs/sell/media/overview).
+        ///
         /// **Note**: Currently, only one video may be added to each listing.
+        ///
         /// **Note**: If set, the video attached to the ended listing will be retained, but this array will be needed if the seller wants to change or remove the video. If a video is already associated with a listing, but a new video ID is passed into this field, that video will replace the current one. To remove the current video and not add a new one, include this array as empty and the current video will be removed.
-        /// **Max videos allowed on a listing**: 1
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? VideoIds
         {
@@ -179,13 +193,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_aspects || _set_categories || _set_description || _set_imageUrls || _set_itemCondition || _set_listingCompatibilities || _set_motorVehicleIdentifier || _set_title || _set_videoIds))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_aspects)
             {

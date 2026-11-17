@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to update the available quantity for a purchaseable item.
+    /// This type is used to update the available quantity for a purchasable item.
     /// </summary>
     public partial class RelistListingItemAvailabilityInput : global::System.IEquatable<RelistListingItemAvailabilityInput>
     {
@@ -30,7 +30,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The quantity available for an item. For auction listings, this value must always be 1, and it should still be 1 if the item in the ended auction listing didn't sell. For a multiple-SKU listing, each item variation can have its own quantity value, allowing sellers to manage inventory for each variation independently.
+        ///
         /// **Note**: For a multiple-SKU listing, the quantity for an item variation can be se set to 0 if the SKU is temporarily out of stock, but a seller wishes to retain the variation and restock inventory at a later time.
+        ///
         /// **Note**: It depends on how a listing was ended, but it is possible that any given purchasable item may still have quantity defined, but it is highly recommended that a seller revisits their inventory and makes sure that the quantity value is accurate.
         /// </summary>
         public int QuantityAvailable
@@ -45,13 +47,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_quantityAvailable))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_quantityAvailable)
             {

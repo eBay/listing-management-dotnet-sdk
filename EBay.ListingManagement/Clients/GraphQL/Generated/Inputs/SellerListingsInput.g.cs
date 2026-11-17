@@ -29,7 +29,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_listings;
 
         /// <summary>
-        /// List of SellerListingInput for bulk retrieval
+        /// This array is used to pass in the unique identifiers of the listings to retrieve.
+        ///
+        /// **Note**: With the initial release, only one eBay listing may be retrieved with this query.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<SellerListingInput> Listings
         {
@@ -43,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_listings))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_listings)
             {

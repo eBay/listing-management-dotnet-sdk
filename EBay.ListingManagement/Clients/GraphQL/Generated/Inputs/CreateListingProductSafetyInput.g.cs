@@ -33,8 +33,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_statementCodes;
 
         /// <summary>
-        /// This free-form text field is used to provide additional product safety information that goes beyond what is expressed through the pictogram(s) and/or safety statements.     **Note**: This field cannot be used without the **pictogramCodes** and/or **statementCodes** arrays.
-        /// **Max length**: 120 characters
+        /// This free-form text field is used to provide additional product safety information that goes beyond what is expressed through the pictogram(s) and/or safety statements.
+        ///
+        /// **Note**: This field cannot be used without the **pictogramCodes** and/or **statementCodes** arrays.
+        ///
+        /// **Maximum length**: 120 characters
         /// </summary>
         public string? AdditionalInformation
         {
@@ -48,8 +51,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to provide one to four product safety pictogram codes, and if successful, the pictogram(s) associated with these codes will be displayed on the View Item page. The [getProductSafetyLabels](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getProductSafetyLabels) method can be used to get these codes, and this method will also return the URLs to the pictograms so that these pictograms can be previewed before adding them to a listing.
-        /// **Max number of pictogram codes allowed**: 4 pictograms.
-        /// **Max length of each pictogram code**: 15 characters.
+        ///
+        /// **Maximum number of pictogram codes allowed**: 4 pictograms
+        ///
+        /// **Maximum length of each pictogram code**: 15 characters
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? PictogramCodes
         {
@@ -63,8 +68,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to provide one to eight product safety statement codes, and if successful, the safety statements associated with these codes will be displayed on the View Item page. The [getProductSafetyLabels](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getProductSafetyLabels) method can be used to get these codes and the safety statements associated with them.
-        /// **Max number of statement codes allowed**: 8 statements.
-        /// **Max length of each statement code**: 15 characters.
+        ///
+        /// **Maximum number of statement codes allowed**: 8 statements
+        ///
+        /// **Maximum length of each statement code**: 15 characters
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? StatementCodes
         {
@@ -78,13 +85,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_additionalInformation || _set_pictogramCodes || _set_statementCodes))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_additionalInformation)
             {

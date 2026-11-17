@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// The enumeration values in this type are used to enable active cross-border trading. In active cross-border trading, sellers selling on eBay US, eBay Canada, eBay UK, and eBay Ireland marketplaces can pay a small fee to have their listing exposed on other eBay marketplaces.
+    /// This enumerated type is used to enable active cross-border trading. In active cross-border trading, sellers selling on eBay US, eBay Canada, eBay UK, and eBay Ireland marketplaces can pay a small fee to have their listing exposed on other eBay marketplaces.
     /// </summary>
     public enum CrossBorderTradingRegion
     {

@@ -35,17 +35,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         Buyitnow,
         /// <summary>
         /// This enum value indicates a Listing Designer fee was charged for the listing.
-        /// **Note**: This fee type is deprecated.
         /// </summary>
         Designer,
         /// <summary>
-        ///    This enum value indicates an Extended Listing Duration fee was charged for the listing.
-        /// **Note**: This fee type is deprecated.
+        /// This enum value indicates an Extended Listing Duration fee was charged for the listing.
         /// </summary>
         ExtendedDurationListing,
         /// <summary>
-        ///    This enum value indicates a Gallery fee was charged for the listing.
-        /// **Note**: This fee type is deprecated.
+        /// This enum value indicates a Gallery fee was charged for the listing.
         /// </summary>
         Gallery,
         /// <summary>
@@ -63,12 +60,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
         InternationalListing,
         /// <summary>
         /// This enum value indicates a Picture Pack fee was charged for the listing.
-        /// **Note**: This fee type is deprecated.
         /// </summary>
         PhotoCount,
         /// <summary>
-        ///    This enum value indicates a Private Listing fee was charged for the listing.
-        /// **Note**: This fee type is deprecated.
+        /// This enum value indicates a Private Listing fee was charged for the listing.
         /// </summary>
         PrivateListing,
         /// <summary>

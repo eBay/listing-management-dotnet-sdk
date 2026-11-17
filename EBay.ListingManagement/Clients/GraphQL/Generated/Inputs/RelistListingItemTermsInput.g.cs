@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to provide quantity and pricing information for a purchasable item. All SKUs within a multiple-SKU listing must have their own quantity and price values. All SKUs may have the same price, but prices also may vary by SKU. This container is also used to provided an eco-participation fee if applicable for the item.
+    /// This type is used to provide quantity and pricing information for a purchasable item. All SKUs within a multiple-SKU listing must have their own quantity and price values. All SKUs may have the same price, but prices also may vary by SKU. This object is also used to provided an eco-participation fee if applicable for the item.
     /// </summary>
     public partial class RelistListingItemTermsInput : global::System.IEquatable<RelistListingItemTermsInput>
     {
@@ -33,7 +33,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_pricingTerms;
 
         /// <summary>
-        /// This container is used to provide the available quantity for a purchasable item. Quantity is mandatory for all purchasable items.
+        /// This object is used to provide the available quantity for a purchasable item. Quantity is mandatory for all purchasable items.
+        ///
         /// **Note**: It depends on how a listing was ended, but it is possible that any given purchasable item may still have quantity defined, but it is highly recommended that a seller revisits their inventory and makes sure that the quantity value is accurate.
         /// </summary>
         public RelistListingItemAvailabilityInput? Availability
@@ -47,7 +48,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify an eco-participation fee for an item. An eco-participation fee is a mandatory charge designed to fund the recycling and proper disposal of certain products at the end of their lifecycle. Eco-participation fees are one part of the Extended Producer Responsibility regulation enforced in EU countries.
+        /// This object is used to add or modify an eco-participation fee for an item. An eco-participation fee is a mandatory charge designed to fund the recycling and proper disposal of certain products at the end of their lifecycle. Eco-participation fees are one part of the Extended Producer Responsibility regulation enforced in EU countries.
         /// </summary>
         public RelistListingExtendedProducerResponsibilityInput? ExtendedProducerResponsibility
         {
@@ -60,8 +61,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        /// This object is used to provide price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        ///
         /// **Note**: Each item within a multiple-SKU listing can have its own price, allowing for different pricing based on traits (e.g., larger sizes might cost more than smaller ones).
+        ///
         /// **Note**: Price settings will generally carry over from the ended listing, but it is highly recommended that the price data is rechecked and that any necessary adjustments are made.
         /// </summary>
         public RelistListingItemPricingTermsInput? PricingTerms
@@ -76,13 +79,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_availability || _set_extendedProducerResponsibility || _set_pricingTerms))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_availability)
             {

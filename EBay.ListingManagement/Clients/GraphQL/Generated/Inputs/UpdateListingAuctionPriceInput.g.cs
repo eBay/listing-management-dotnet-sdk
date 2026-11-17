@@ -32,8 +32,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to add or modify the lowest price at which the seller is willing to sell an item in an auction listing. A small fee is charged to use this feature. If the **reservePrice** field value is not met or surpassed during bidding, the auction will end without a winning bidder. This price must be higher than the **startingBidPrice**. The price will be in the default currency for the marketplace for this listing. See the [Get Currencies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCurrencies) call for more information on the currency format.
-        /// **Note**: A Reserve Price can only be lowered in value and not increased, and if there are qualifying bids on the listing or the end time is less than 12 hours away, it can not be changed at all. See the [Setting a reserve price](https://www.ebay.com/help/selling/listings/selling-auctions/reserve-prices?id=4143) help topic for more information on how Reserve Prices work.
-        /// **Note**: If there are no bids in the listing and the end time is more than 12 hours away, you can remove the Reserve Price be including this field and setting its value to '0.0'.
+        ///
+        /// **Notes**:
+        /// - A Reserve Price can only be lowered in value and not increased, and if there are qualifying bids on the listing or the end time is less than 12 hours away, it can not be changed at all. See the [Setting a reserve price](https://www.ebay.com/help/selling/listings/selling-auctions/reserve-prices?id=4143) help topic for more information on how Reserve Prices work.
+        /// - If there are no bids in the listing and the end time is more than 12 hours away, you can remove the Reserve Price be including this field and setting its value to `0.0`.
         /// </summary>
         public decimal? ReservePrice
         {
@@ -47,6 +49,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to change the starting bid price for an auction listing. The first bid must meet or exceed this value or it will be rejected. The price will be in the default currency for the marketplace for this listing. See the [Get Currencies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCurrencies) call for more information on the currency format.
+        ///
         /// **Note**: The starting bid price cannot be changed once a listing has at least one qualifying bid.
         /// </summary>
         public decimal? StartingBidPrice
@@ -61,13 +64,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_reservePrice || _set_startingBidPrice))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_reservePrice)
             {

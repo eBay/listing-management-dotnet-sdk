@@ -33,7 +33,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_listingItemIdentifier;
 
         /// <summary>
-        ///    The new available quantity for the item in the fixed-price listing. If the available quantity for the item is not changing, this field does not need to be included.
+        /// The new available quantity for the item in the fixed-price listing. If the available quantity for the item is not changing, this field does not need to be included.
+        ///
         /// **Note**: If you are not changing the available quantity, you can include this field with no value, but providing a null value will result in an execution error.
         /// </summary>
         public int? AvailableQuantity
@@ -47,9 +48,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    The new 'Buy it Now' price for the item in the fixed-price listing. If the price for the item is not changing, this field does not need to be included.
-        /// **Note**: Up to two digits can be included to the right of the decimal point to indicate the new price, and the price will be in the currency of the listing marketplace.
-        /// **Note**: If you are not changing the price, you can include this field with no value, but providing a null value will result in an execution error.
+        /// The new 'Buy it Now' price for the item in the fixed-price listing. If the price for the item is not changing, this field does not need to be included.
+        ///
+        /// **Notes**:
+        /// - Up to two digits can be included to the right of the decimal point to indicate the new price, and the price will be in the currency of the listing marketplace.
+        /// - If you are not changing the price, you can include this field with no value, but providing a null value will result in an execution error.
         /// </summary>
         public decimal? FixedPrice
         {
@@ -62,7 +65,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    This container is used to identify a specific item to update. An item within a single-SKU listing can be identified with a **listingId** or a **sku** value (if a sku value is defined in the listing). A **sku** value must be used for an item within a multiple-SKU listing.
+        /// This object is used to identify a specific item to update. An item within a single-SKU listing can be identified with a **listingId** or a **sku** value (if a sku value is defined in the listing). A **sku** value must be used for an item within a multiple-SKU listing.
+        ///
         /// **Note**: Either the **listingId** or **sku** value is used to identify but don't use both.
         /// </summary>
         public ListingItemIdentifierInput ListingItemIdentifier
@@ -77,13 +81,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_availableQuantity || _set_fixedPrice || _set_listingItemIdentifier))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_availableQuantity)
             {

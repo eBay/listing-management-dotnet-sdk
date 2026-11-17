@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_bestOfferEnabled;
 
         /// <summary>
-        /// Include this field and set its value to a price at which Best Offers will be automatically accepted by the seller if they meet or exceed the price. For this field to have an effect, the listing category must support the Best Offer auto-accept feature and the corresponding **bestOfferEnabled** field must be included and set to 'true'.
+        /// Include this field and set its value to a price at which Best Offers will be automatically accepted by the seller if they meet or exceed the price. For this field to have an effect, the listing category must support the Best Offer auto-accept feature and the corresponding **bestOfferEnabled** field must be included and set to `true`.
         /// </summary>
         public decimal? AutoAcceptThreshold
         {
@@ -59,10 +59,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field enables or disables the Best Offer feature for a fixed-price or auction listing. If set to 'true', the Best Offer feature is enabled, allowing potential buyers to make offers on the item. If set to 'false', or omitted, the Best Offer feature is disabled.
-        /// **Note** For auction listings, the Buy It Now and Best Offer features cannot be used simultaneously.
-        /// **Note** If Best Offer is enabled for an auction listing, it is automatically disabled as soon as the listing receives a qualifying bid, and any pending offers or counteroffers are invalidated.
-        /// **Default value**: false
+        /// This field enables or disables the Best Offer feature for a fixed-price or auction listing. If set to `true`, the Best Offer feature is enabled, allowing potential buyers to make offers on the item. If set to `false`, or omitted, the Best Offer feature is disabled.
+        ///
+        /// **Note**: For auction listings, the Buy It Now and Best Offer features cannot be used simultaneously.
+        ///
+        /// **Note**: If Best Offer is enabled for an auction listing, it is automatically disabled as soon as the listing receives a qualifying bid, and any pending offers or counteroffers are invalidated.
+        ///
+        /// **Default**: false
         /// </summary>
         public bool? BestOfferEnabled
         {
@@ -76,13 +79,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_autoAcceptThreshold || _set_autoDeclineThreshold || _set_bestOfferEnabled))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_autoAcceptThreshold)
             {

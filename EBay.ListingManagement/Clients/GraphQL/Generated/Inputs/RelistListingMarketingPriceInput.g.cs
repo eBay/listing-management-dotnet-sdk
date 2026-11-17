@@ -65,7 +65,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is only applicable for the Minimum Advertised Price feature, and controls whether the discounted price is shown to buyers prior to checkout by the buyer clicking on a link on the View Item page, or the discounted price is shown just prior to checkout when the buyer has clicked the Buy button. See [`ListingMinimumAdvertisedPriceExposure`] for the list of supported enumeration values.
+        /// This field is only applicable for the Minimum Advertised Price feature, and controls whether the discounted price is shown to buyers prior to checkout by the buyer clicking on a link on the View Item page, or the discounted price is shown just prior to checkout when the buyer has clicked the Buy button. See **ListingMinimumAdvertisedPriceExposure** for the list of supported enumeration values.
         /// </summary>
         public ListingMinimumAdvertisedPriceExposure? MinimumAdvertisedPriceExposure
         {
@@ -78,7 +78,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This 'originalRetailPrice' price must be provided if a qualified seller is using the Strikethrough Price feature. The 'originalRetailPrice' price is the actual retail price set by the manufacturer (OEM). The price specified in this field should always be more than the price specified in the **fixedPrice** field. The price format must be according to the marketplace's currency format. See the [Get Currencies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCurrencies) call for more information on the currency format.
+        /// This **originalRetailPrice** price must be provided if a qualified seller is using the Strikethrough Price feature. The **originalRetailPrice** price is the actual retail price set by the manufacturer (OEM). The price specified in this field should always be more than the price specified in the **fixedPrice** field. The price format must be according to the marketplace's currency format. See the [Get Currencies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCurrencies) call for more information on the currency format.
         /// </summary>
         public decimal? OriginalRetailPrice
         {
@@ -91,7 +91,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is only applicable for the Strikethrough Price feature, and is used to indicate whether or not the same item was being sold on another e-commerce site at the manufacturer suggested (OEM) retail price. If the Strikethrough Price feature is being used, either this field or the **soldOnEbay** field must be included and set to 'true', and it is acceptable for them both to be included and set to 'true'. Set this field to 'true' if the item was being sold on another e-commerce site at the manufacturer suggested (OEM) retail price.
+        /// This field is only applicable for the Strikethrough Price feature, and is used to indicate whether or not the same item was being sold on another e-commerce site at the manufacturer suggested (OEM) retail price. If the Strikethrough Price feature is being used, either this field or the **soldOnEbay** field must be included and set to `true`, and it is acceptable for them both to be included and set to `true`. Set this field to `true` if the item was being sold on another e-commerce site at the manufacturer suggested (OEM) retail price.
         /// </summary>
         public bool? SoldOffEbay
         {
@@ -104,7 +104,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is only applicable for the Strikethrough Price feature, and is used to indicate whether or not the same item was being sold on an eBay marketplace at the manufacturer suggested (OEM) retail price. If the Strikethrough Price feature is being used, either this field or the **soldOffEbay** field must be included and set to 'true', and it is acceptable for them both to be included and set to 'true'. Set this field to 'true' if the item was being sold on an eBay marketplace at the manufacturer suggested (OEM) retail price.
+        /// This field is only applicable for the Strikethrough Price feature, and is used to indicate whether or not the same item was being sold on an eBay marketplace at the manufacturer suggested (OEM) retail price. If the Strikethrough Price feature is being used, either this field or the **soldOffEbay** field must be included and set to `true`, and it is acceptable for them both to be included and set to `true`. Set this field to `true` if the item was being sold on an eBay marketplace at the manufacturer suggested (OEM) retail price.
         /// </summary>
         public bool? SoldOnEbay
         {
@@ -118,13 +118,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_madeForOutletComparisonPrice || _set_minimumAdvertisedPrice || _set_minimumAdvertisedPriceExposure || _set_originalRetailPrice || _set_soldOffEbay || _set_soldOnEbay))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_madeForOutletComparisonPrice)
             {

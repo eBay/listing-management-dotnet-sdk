@@ -33,15 +33,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_packageHandlingCost;
         private bool? _value_promotionalShipping;
         private bool _set_promotionalShipping;
-        private string? _value_rateTableId;
-        private bool _set_rateTableId;
-        private string? _value_shippingDiscountRuleId;
-        private bool _set_shippingDiscountRuleId;
         private string? _value_shippingRateTableId;
         private bool _set_shippingRateTableId;
 
         /// <summary>
         /// This field is included to add, change or remove a specific flat or calculated shipping discount for the listing. The numeric identifier for the shipping discount is passed into this field. The [GetShippingDiscountProfiles](https://developer.ebay.com/devzone/xml/docs/Reference/eBay/GetShippingDiscountProfiles.html) call can be used to retrieve the numeric IDs of the shipping discounts defined for the seller's account. The shipping cost type must match the shipping discount type being enabled or the shipping discount will not be active in the listing.
+        ///
         /// **Note**: To remove the existing combined shipping rule, include this field and leave value as empty.
         /// </summary>
         public string? CombinedShippingRuleId
@@ -56,6 +53,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to change the shipping cost type for locations within marketplace and outside of marketplace shipping. Note that all of the specified shipping services should support the shipping cost type specified here.
+        ///
         /// **Note**: To specify local pick only option for listings, set this field to `NOT_SPECIFIED`.
         /// </summary>
         public ListingShippingType? CostType
@@ -70,7 +68,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is included to add, modify, or remove a flat-rate handling cost for shipping. This cost is in addition to whatever the final shipping cost is based on the buyer's location and selected shipping service option.
-        /// **Note**: To remove the existing package handling cost, include this field and set value to '0.0'.
+        ///
+        /// **Note**: To remove the existing package handling cost, include this field and set value to `0.0`.
         /// </summary>
         public decimal? PackageHandlingCost
         {
@@ -83,7 +82,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to enable or disable a seller's promotional shipping discount for the listing. A seller can only have one promotional shipping discount active on a marketplace. The [GetShippingDiscountProfiles](https://developer.ebay.com/devzone/xml/docs/Reference/eBay/GetShippingDiscountProfiles.html) call can be used to retrieve the details of the promotional shipping discount, and the [SetShippingDiscountProfiles](https://developer.ebay.com/devzone/xml/docs/Reference/eBay/SetShippingDiscountProfiles.html) call can be used to add/modify the promotional shipping discount.
+        /// This field is used to enable or disable a seller's promotional shipping discount for the listing. A seller can only have one promotional shipping discount active on a marketplace. The [getCombinedShippingRules](https://developer.ebay.com/api-docs/sell/account/v2/resources/combined_shipping_rules/methods/getCombinedShippingRules) method can be used to retrieve the details of the promotional shipping discount, and the [createPromotionalShippingRule](https://developer.ebay.com/api-docs/sell/account/v2/resources/combined_shipping_rules/methods/createPromotionalShippingRule) or [updatePromotionalShippingRule](https://developer.ebay.com/api-docs/sell/account/v2/resources/combined_shipping_rules/methods/updatePromotionalShippingRule) methods can be used to add/modify the promotional shipping discount.
         /// </summary>
         public bool? PromotionalShipping
         {
@@ -97,36 +96,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is included to add, change or remove a location within marketplace and outside of marketplace shipping rate table for the listing. Shipping rate tables let sellers customize flat-rate shipping costs based on buyer's location and selected shipping service level. The numeric identifier for the shipping rate table is passed into this field. The numeric IDs for a seller's shipping rate tables can be retrieved with the [getRateTables](https://developer.ebay.com/api-docs/sell/account/resources/rate_table/methods/getRateTables) method, and details on a specific shipping rate table can be retrieved with the [getRateTable](https://developer.ebay.com/api-docs/sell/account/v2/resources/rate_table/methods/getRateTable) method. The [updateShippingCost](https://developer.ebay.com/api-docs/sell/account/v2/resources/rate_table/methods/updateShippingCost) method can be used to modify the shipping costs for a shipping rate table.
+        ///
         /// **Note**: The shipping cost type must be set to flat-rate to use a shipping rate table.
-        /// **Note**: To remove the existing shipping rate table, include this field and leave value as empty.
-        /// </summary>
-        public string? RateTableId
-        {
-            get => _value_rateTableId;
-            set
-            {
-                _set_rateTableId = true;
-                _value_rateTableId = value;
-            }
-        }
-
-        /// <summary>
-        /// This field is included to add, change or remove a specific flat or calculated shipping discount for the listing. The numeric identifier for the shipping discount is passed into this field. The [GetShippingDiscountProfiles](https://developer.ebay.com/devzone/xml/docs/Reference/eBay/GetShippingDiscountProfiles.html) call can be used to retrieve the numeric IDs of the shipping discounts defined for the seller's account. The shipping cost type must match the shipping discount type being enabled or the shipping discount will not be active in the listing.
-        /// **Note**: To remove the existing shipping discount profile, include this field and leave value as empty.
-        /// </summary>
-        public string? ShippingDiscountRuleId
-        {
-            get => _value_shippingDiscountRuleId;
-            set
-            {
-                _set_shippingDiscountRuleId = true;
-                _value_shippingDiscountRuleId = value;
-            }
-        }
-
-        /// <summary>
-        /// This field is included to add, change or remove a location within marketplace and outside of marketplace shipping rate table for the listing. Shipping rate tables let sellers customize flat-rate shipping costs based on buyer's location and selected shipping service level. The numeric identifier for the shipping rate table is passed into this field. The numeric IDs for a seller's shipping rate tables can be retrieved with the [getRateTables](https://developer.ebay.com/api-docs/sell/account/resources/rate_table/methods/getRateTables) method, and details on a specific shipping rate table can be retrieved with the [getRateTable](https://developer.ebay.com/api-docs/sell/account/v2/resources/rate_table/methods/getRateTable) method. The [updateShippingCost](https://developer.ebay.com/api-docs/sell/account/v2/resources/rate_table/methods/updateShippingCost) method can be used to modify the shipping costs for a shipping rate table.
-        /// **Note**: The shipping cost type must be set to flat-rate to use a shipping rate table.
+        ///
         /// **Note**: To remove the existing shipping rate table, include this field and leave value as empty.
         /// </summary>
         public string? ShippingRateTableId
@@ -141,13 +113,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_combinedShippingRuleId || _set_costType || _set_packageHandlingCost || _set_promotionalShipping || _set_rateTableId || _set_shippingDiscountRuleId || _set_shippingRateTableId))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_combinedShippingRuleId)
             {
@@ -205,40 +171,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 }
             }
 
-            if (_set_rateTableId)
-            {
-                writer.WritePropertyName("rateTableId");
-                if (_value_rateTableId is null)
-                {
-                    writer.WriteNullValue();
-                }
-                else
-                {
-                    if (_value_rateTableId is null)
-                    {
-                        throw new global::System.ArgumentNullException("RateTableId");
-                    }
-                    GraphQLJson.WriteString(writer, _value_rateTableId);
-                }
-            }
-
-            if (_set_shippingDiscountRuleId)
-            {
-                writer.WritePropertyName("shippingDiscountRuleId");
-                if (_value_shippingDiscountRuleId is null)
-                {
-                    writer.WriteNullValue();
-                }
-                else
-                {
-                    if (_value_shippingDiscountRuleId is null)
-                    {
-                        throw new global::System.ArgumentNullException("ShippingDiscountRuleId");
-                    }
-                    GraphQLJson.WriteString(writer, _value_shippingDiscountRuleId);
-                }
-            }
-
             if (_set_shippingRateTableId)
             {
                 writer.WritePropertyName("shippingRateTableId");
@@ -279,8 +211,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 && global::System.Object.Equals(CostType, other.CostType)
                 && global::System.Object.Equals(PackageHandlingCost, other.PackageHandlingCost)
                 && global::System.Object.Equals(PromotionalShipping, other.PromotionalShipping)
-                && global::System.Object.Equals(RateTableId, other.RateTableId)
-                && global::System.Object.Equals(ShippingDiscountRuleId, other.ShippingDiscountRuleId)
                 && global::System.Object.Equals(ShippingRateTableId, other.ShippingRateTableId);
         }
 
@@ -324,14 +254,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 if (PromotionalShipping is not null)
                 {
                     hash ^= 397 * PromotionalShipping.GetHashCode();
-                }
-                if (RateTableId is not null)
-                {
-                    hash ^= 397 * RateTableId.GetHashCode();
-                }
-                if (ShippingDiscountRuleId is not null)
-                {
-                    hash ^= 397 * ShippingDiscountRuleId.GetHashCode();
                 }
                 if (ShippingRateTableId is not null)
                 {

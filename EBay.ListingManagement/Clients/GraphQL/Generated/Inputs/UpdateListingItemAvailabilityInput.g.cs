@@ -30,6 +30,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field updates the quantity available for an item. For auction listings, this value must always be 1. For a multiple-SKU listing, each item variation can have its own quantity value, allowing sellers to manage inventory for each variation independently.
+        ///
         /// **Note**: For a multiple-SKU listing, the quantity for an item variation can be set to 0 if the SKU is temporarily out of stock, but a seller wishes to retain the variation and restock inventory for that SKU at a later time.
         /// </summary>
         public int QuantityAvailable
@@ -44,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_quantityAvailable))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_quantityAvailable)
             {

@@ -29,8 +29,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_id;
 
         /// <summary>
-        ///  The unique identifier of the listing preview task to retrieve. This **id** value is returned in the **StartListingPreviewsCreation** mutation response.
-        /// **Max length**: 25 characters
+        /// The unique identifier of the listing preview task to retrieve. This **id** value is returned in the **StartListingPreviewsCreation** mutation response.
+        ///
+        /// **Maximum length**: 25 characters
         /// </summary>
         public string Id
         {
@@ -44,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_id))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_id)
             {

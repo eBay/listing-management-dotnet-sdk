@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to attach one or more country-specific product compliance policies.
+    /// This type is used to attach one or more (up to 6) country-specific product compliance policies.
     /// </summary>
     public partial class UpdateListingRegionalProductCompliancePoliciesInput : global::System.IEquatable<UpdateListingRegionalProductCompliancePoliciesInput>
     {
@@ -30,8 +30,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add or modify one or more country-specific product compliance policies.
+        ///
         /// **Note**: All country-specific product compliance policies that the seller wants to be attached to the listing should be included in this array, and not just any new ones that are being added.
-        /// **Max number of product compliance policies allowed per marketplace**: 6.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdateListingCountryPolicyInput> CountryPolicies
         {
@@ -45,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_countryPolicies))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_countryPolicies)
             {

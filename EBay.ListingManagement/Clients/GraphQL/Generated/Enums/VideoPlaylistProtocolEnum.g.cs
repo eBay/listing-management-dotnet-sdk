@@ -21,16 +21,16 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This enumerated type indicates the protocol for the video playlist. Supported protocols are 'DASH' (Dynamic Adaptive Streaming over HTTP) and 'HLS' (HTTP Live Streaming).
+    /// This enumerated type indicates the protocol for the video playlist. Supported protocols are `DASH` (Dynamic Adaptive Streaming over HTTP) and `HLS` (HTTP Live Streaming).
     /// </summary>
     public enum VideoPlaylistProtocolEnum
     {
         /// <summary>
-        /// This enum value indicates the protocol for the video playlist is 'DASH' (Dynamic Adaptive Streaming over HTTP).
+        /// This enum value indicates the protocol for the video playlist is `DASH` (Dynamic Adaptive Streaming over HTTP).
         /// </summary>
         Dash,
         /// <summary>
-        /// This enum value indicates the protocol for the video playlist is 'HLS' (HTTP Live Streaming).
+        /// This enum value indicates the protocol for the video playlist is `HLS` (HTTP Live Streaming).
         /// </summary>
         Hls
     }

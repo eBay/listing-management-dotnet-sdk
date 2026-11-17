@@ -1,5 +1,58 @@
 # ChangeLog
 
+## 0.6.0 (11/17/2026)
+
+Updates the GraphQL client to eBay's current GraphQL schema. The REST APIs are unchanged.
+
+### Breaking changes
+
+#### `SellerListingsAsync` returns a success or an error
+
+eBay's `sellerListings` query now returns either the listings or an error, and eBay rejects the query 0.5.0 sends ("cannot select field: listings on union"). `SellerListingsAsync` still returns `ISellerListings_SellerListings`, but `Listings` moved to the success type:
+
+```csharp
+var result = await client.GraphQL.SellerListingsAsync(input);
+switch (result)
+{
+    case ISellerListings_SellerListings_ListingsSuccess success:
+        // success.Listings, as before
+        break;
+    case ISellerListings_SellerListings_ListingIdsMaxLimitError tooMany:
+        // more listing ids than tooMany.MaxAllowed
+        break;
+}
+```
+
+`ISellerListings_SellerListings_SellerListingsOutput` and `SellerListings_SellerListings_SellerListingsOutput` are removed.
+
+#### Removed input fields
+
+eBay removed these deprecated input fields from the schema:
+
+- `CompanyName` from `CreateListingSellerContactInput`, `RelistListingSellerContactInput` and `UpdateListingSellerContactInput` (no longer supported)
+- `RateTableId` from `CreateListingShippingOptionsInput`, `RelistListingShippingOptionsInput` and `UpdateListingShippingOptionsInput`. Use `ShippingRateTableId`.
+- `ShippingDiscountRuleId` from the same three types. Use `CombinedShippingRuleId`.
+- `EndListingInput.ListingIdentifierInput`. Use `EndListingInput.ListingIdentifier`.
+
+#### GraphQL enum values renumbered
+
+New marketplaces are inserted between existing members, which changes the numeric values of the members after them in `BusinessPolicyMarketplace` and `ListingMarketplace`. Code that uses the member names is unaffected.
+
+### Added
+
+- `SellerListingInput.ItemsFilter` (`SellerListingItemsSelectionInput`): select items of a multiple-SKU listing by SKU.
+- `SellerActiveListingSearchFilterInput.PriceRange` (`SellerListingPriceRangeInput`): filter `SellerListingSearchAsync` by price.
+- `SellerListingSearchAsync` result types for the new errors `MinPriceExceedsMaxPriceError` and `SellerListingSearchInvalidPageCursorError`.
+- Result types for the new `SubsidiaryListingViolation` and `SubsidiaryListingWarning` in the violations and warnings of `CreateListingAsync`, `CreateSecondChanceListingAsync`, `RelistListingAsync`, `UpdateListingAsync`, `EndListingAsync` and `BulkUpdateInventoryAsync`.
+- `ListingPartialSuccess` as a listing type in `SellerListingsAsync` results.
+- Marketplaces `EbayBefr` and `EbayCafr` (both enums), `EbayBenl` and `EbayMotorsUs` (`ListingMarketplace`) and `EbayUsMotors` (`BusinessPolicyMarketplace`).
+
+### Fixed
+
+- `SellerListingsAsync` works again (see Breaking changes).
+- Responses that contain a `SubsidiaryListingViolation` or `SubsidiaryListingWarning` no longer fail with `GraphQLException` ("Unknown __typename").
+- A GraphQL input object with no properties set is sent as `{}` instead of `null`. Before, a call such as `StartListingPreviewsCreationAsync(new StartListingPreviewsCreationInput())` failed because eBay rejects `null` for a required input, and an empty object in a required field (for example `CreateListingItemTermsInput.PricingTerms`) was sent as `null`. Passing `null` itself works as before: it is sent as `null` where the operation accepts it and rejected where it doesn't.
+
 ## 0.5.0 (11/06/2026)
 
 ### Breaking changes

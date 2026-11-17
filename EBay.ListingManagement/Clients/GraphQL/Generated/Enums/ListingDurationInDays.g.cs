@@ -70,9 +70,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         Days90,
         /// <summary>
-        /// This enumeration value indicates that the listing will remain active until it is cancelled by the seller or the item is sold out (without the seller have Out of Stock option enabled).
-        /// `GTC` stands for *Good 'Til Cancelled*. All fixed-price listings must have `GTC` set as their listing duration.
-        /// As long as the listing has inventory, eBay will automatically renew the listing each month. Note that insertion fees may apply with renewal each month.
+        /// This enumeration value indicates that the listing will remain active until it is cancelled by the seller or the item is sold out (without the seller having Out of Stock option enabled). `GTC` stands for *Good 'Til Cancelled*. All fixed-price listings must have `GTC` set as their listing duration. As long as the listing has inventory, eBay will automatically renew the listing each month. Note that insertion fees may apply with renewal each month.
         /// </summary>
         Gtc
     }

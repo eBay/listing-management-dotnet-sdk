@@ -26,14 +26,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListingResult
     {
         /// <summary>
-        ///    This mutation is used to make one or multiple updates to an active or scheduled eBay listing. Either the listing ID or the SKU value must be specified to identify the listing to be updated. Common changes include changes to price, quantity, listing title, listing description, aspects, and other information. It can be used to update various listing attributes such as price, quantity, title, description, and other relevant information. The operation returns either the updated listing details or error information if the update fails.
+        /// This mutation is used to make one or multiple updates to an active or scheduled eBay listing. Either the listing ID or the SKU value must be specified to identify the listing to be updated. Common changes include changes to price, quantity, listing title, listing description, aspects, and other information. It can be used to update various listing attributes such as price, quantity, title, description, and other relevant information. The operation returns either the updated listing details or error information if the update fails.
         ///
         /// Some general notes on update behavior are captured below:
         ///    - With most collection fields (arrays), complete replacement is performed, which means that existing values not included will be removed from the listing. The exceptions to these rules include the **variationDetails**, **items**, and **itemCompatibilities** arrays. More information is provided in the descriptions for those arrays.
         ///    - An individual field should only be provided if the seller wants to modify the setting/value for that field.
         ///    - To remove/disable an optional field/feature, include that field and set it to null or leave empty as appropriate. More information is provided in the descriptions for those optional fields.
-        ///    @authorize(scopes:[https://api.ebay.com/oauth/api_scope/sell.listing&amp;eBayUser])
-        ///    @sandboxSupported("true")
         /// </summary>
         public IUpdateListing_UpdateListing? UpdateListing { get; }
     }
@@ -49,14 +47,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    This mutation is used to make one or multiple updates to an active or scheduled eBay listing. Either the listing ID or the SKU value must be specified to identify the listing to be updated. Common changes include changes to price, quantity, listing title, listing description, aspects, and other information. It can be used to update various listing attributes such as price, quantity, title, description, and other relevant information. The operation returns either the updated listing details or error information if the update fails.
+        /// This mutation is used to make one or multiple updates to an active or scheduled eBay listing. Either the listing ID or the SKU value must be specified to identify the listing to be updated. Common changes include changes to price, quantity, listing title, listing description, aspects, and other information. It can be used to update various listing attributes such as price, quantity, title, description, and other relevant information. The operation returns either the updated listing details or error information if the update fails.
         ///
         /// Some general notes on update behavior are captured below:
         ///    - With most collection fields (arrays), complete replacement is performed, which means that existing values not included will be removed from the listing. The exceptions to these rules include the **variationDetails**, **items**, and **itemCompatibilities** arrays. More information is provided in the descriptions for those arrays.
         ///    - An individual field should only be provided if the seller wants to modify the setting/value for that field.
         ///    - To remove/disable an optional field/feature, include that field and set it to null or leave empty as appropriate. More information is provided in the descriptions for those optional fields.
-        ///    @authorize(scopes:[https://api.ebay.com/oauth/api_scope/sell.listing&amp;eBayUser])
-        ///    @sandboxSupported("true")
         /// </summary>
         public IUpdateListing_UpdateListing? UpdateListing { get; }
 
@@ -115,7 +111,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This union type is used to represent the possible outcomes of the **updateListing** mutation. Three possible results of a **updateListing** mutation are: a listing container (and possibly one or more warnings); a listing container with validation success and possibly one or more warnings; or an array of blocking errors if the mutation fails and the listing is not updated. If a mutation fails, there will always be at least one blocking error, and there may also be one or more warning messages that are triggered.
+    /// This union type is used to represent the possible outcomes of the **updateListing** mutation. Three possible results of a **updateListing** mutation are: a listing object (and possibly one or more warnings); a listing object with validation success and possibly one or more warnings; or an array of blocking errors if the mutation fails and the listing is not updated. If a mutation fails, there will always be at least one blocking error, and there may also be one or more warning messages that are triggered.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing
     {
@@ -123,44 +119,48 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_ListingFees_FeeAmount
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_ListingFees_FeeAmount_Amount : IUpdateListing_UpdateListing_ListingFees_FeeAmount
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount_Amount : IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount
     {
@@ -172,15 +172,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_ListingFees
     {
         /// <summary>
-        /// This container shows the amount of the fee in the currency used by the listing marketplace.
+        /// This object shows the amount of the fee in the currency used by the listing marketplace.
         /// </summary>
         public IUpdateListing_UpdateListing_ListingFees_FeeAmount? FeeAmount { get; }
         /// <summary>
-        /// The enum value in this field indicates the type of fee incurred by the create/update/relist mutation. See the [`ListingFeeType`] enum type for the full list of fee types.
+        /// The enum value in this field indicates the type of fee incurred by the create/update/relist mutation. See the **ListingFeeType** enum type for the full list of fee types.
         /// </summary>
         public ListingFeeType? ListingFeeType { get; }
         /// <summary>
-        /// This container shows the amount of any discount applied to the fee in the currency used by the listing marketplace.
+        /// This object shows the amount of any discount applied to the fee in the currency used by the listing marketplace.
         /// </summary>
         public IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount? PromotionalDiscount { get; }
     }
@@ -248,22 +248,29 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Pair type of name and values
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial interface IUpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning : IUpdateListing_UpdateListing_Warnings
+    {
+    }
+
+    /// <summary>
+    /// This type provides for pairs of names and values.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects
     {
         /// <summary>
-        /// name of this type.
+        /// The name of this name-value pair.
         /// </summary>
         public string? Name { get; }
         /// <summary>
-        /// values of this type.
+        /// The values of this name-value pair.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Values { get; }
     }
 
     /// <summary>
-    /// Pair type of name and values
+    /// This type provides for pairs of names and values.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects_NameValuesPair : IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects
     {
@@ -283,7 +290,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? ExternalImageUrl { get; }
         /// <summary>
-        /// Seller provided order of the picture in which the image should be displayed
+        /// Seller provided order of the picture in which the image should be displayed.
         /// </summary>
         public int? Order { get; }
     }
@@ -301,7 +308,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_PrimaryCategory
     {
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
     }
@@ -319,7 +326,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_SecondaryCategory
     {
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
     }
@@ -332,22 +339,22 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Container for the category info of the item listed in current listing
+    /// This type provides for the category information of the item listed in current listing.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Categories
     {
         /// <summary>
-        /// Unique identifier of an eBay category. This is always required.
+        /// The unique identifier of the eBay primary category. A primary category is always required.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_PrimaryCategory PrimaryCategory { get; }
         /// <summary>
-        /// Unique identifier of an eBay category. Returned only if it is specified by the seller.
+        /// The unique identifier of the eBay secondary category. This field is only returned if a secondary category is specified by the seller.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_SecondaryCategory? SecondaryCategory { get; }
     }
 
     /// <summary>
-    /// Container for the category info of the item listed in current listing
+    /// This type provides for the category information of the item listed in current listing.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_ListingCategory : IUpdateListing_UpdateListing_Listing_SellerProduct_Categories
     {
@@ -382,12 +389,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? Title { get; }
         /// <summary>
         /// The full description of the product. This is a mandatory field for a listing.
+        ///
         /// **Note**: This field may contain HTML markup and inline CSS, and may be up to 500,000 characters including the HTML and CSS tags and attributes.
         /// </summary>
         public string? Description { get; }
         /// <summary>
-        /// An array of name-value pairs that define the product aspects. For a multiple-variation listing, only the common aspects will be specified in this array, and the pivoting aspects
-        /// (aka traits) will be specified at the item variation level.
+        /// An array of name-value pairs that define the product aspects. For a multiple-variation listing, only the common aspects will be specified in this array, and the pivoting aspects (aka traits) will be specified at the item variation level.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects>? Aspects { get; }
         /// <summary>
@@ -418,7 +425,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
     {
         /// <summary>
         /// The quantity available for an item. For auction listings, this value will always be 1. For a multiple-SKU listing, each item variation can have its own quantity value, allowing sellers to manage inventory for each variation independently.
+        ///
         /// **Note**: For a multiple-SKU listing, the quantity for an item variation may be 0 if the SKU is temporarily out of stock, but a seller wishes to retain the variation and restock inventory at a later time.
+        ///
         /// **Note**: This should not be null unless an error has occurred.
         /// </summary>
         public int? QuantityAvailable { get; }
@@ -432,40 +441,42 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original
     {
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_Amount : IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice
     {
         /// <summary>
-        /// The monetary amount in the listing’s original currency. This value represents the monetary amount of the listing before any conversion is performed.
+        /// This field contains the monetary amount in the listing's original currency, before any conversion was performed.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original? Original { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_ConvertedAmount : IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice
     {
@@ -495,14 +506,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms
     {
         /// <summary>
-        /// This container displays the available quantity for a purchasable item.
+        /// This object displays the available quantity for a purchasable item.
+        ///
         /// **Note**: This will only be null if an error has occurred.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_Availability? Availability { get; }
         /// <summary>
-        /// This container displays price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        /// This object displays price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        ///
         /// **Note**: Each item within a multiple-SKU listing can have its own price, allowing for different pricing based on traits (e.g., larger sizes might cost more than smaller ones).
-        /// **Note**: This will only be null if an error has occurred. Please see the errors array for more details
+        ///
+        /// **Note**: This will only be null if an error has occurred. Please see the errors array for more details.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms? PricingTerms { get; }
     }
@@ -532,7 +546,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? ItemId { get; }
         /// <summary>
-        /// This container is used to display the price and quantity of a purchaseable item, and is also used to provide an eco-participation fee for a product, if applicable.
+        /// This object is used to display the price and quantity of a purchasable item, and is also used to provide an eco-participation fee for a product, if applicable.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms? ItemTerms { get; }
     }
@@ -560,7 +574,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_BusinessPolicy : IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms
     {
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
     }
@@ -578,7 +592,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// The major weight value of the shipping package according to the unit of measurement applicable to the marketplace. The major weight value is the whole number part of the weight. For English measurement system, the supported unit of measurement for **majorUnit** is pounds. For Metric measurement system, the supported unit of measurement for **majorUnit**
         /// is kilograms.
         ///
-        /// Note: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
+        /// **Note**: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
         /// </summary>
         public int? MajorUnit { get; }
     }
@@ -626,7 +640,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public bool? IrregularPackage { get; }
         /// <summary>
-        /// The enumeration value returned in this field indicates the type of package used to ship the item.
+        /// The enumerated value returned in this field indicates the type of package used to ship the item.
         /// </summary>
         public ListingPackageType? ListingPackageType { get; }
         /// <summary>
@@ -634,11 +648,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public MeasurementSystem? ListingUnitOfMeasure { get; }
         /// <summary>
-        /// This container is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
+        /// This object is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_PackageWeight? PackageWeight { get; }
         /// <summary>
-        /// This container is used to specify the dimensions of the shipping package and the unit of measurement used.
+        /// This object is used to specify the dimensions of the shipping package and the unit of measurement used.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_PackageDimensions? PackageDimensions { get; }
     }
@@ -652,7 +666,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type represents the shipping service available for a listing and includes key details such as the service code, display name, estimated delivery time range, and whether the service offers expedited delivery.
-    /// **Note:** Delivery estimates are approximate and may vary based on item weight, origin, and destination.
+    ///
+    /// **Note**: Delivery estimates are approximate and may vary based on item weight, origin, and destination.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService
     {
@@ -663,6 +678,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string ShippingServiceCode { get; }
         /// <summary>
         /// The human-readable display name of this shipping service (e.g. 'USPS Priority Mail').
+        ///
         /// **Format**: Alphanumeric string with spaces allowed
         /// **Maximum length**: 50 characters
         /// </summary>
@@ -671,14 +687,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type represents the shipping service available for a listing and includes key details such as the service code, display name, estimated delivery time range, and whether the service offers expedited delivery.
-    /// **Note:** Delivery estimates are approximate and may vary based on item weight, origin, and destination.
+    ///
+    /// **Note**: Delivery estimates are approximate and may vary based on item weight, origin, and destination.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_ListingShippingService : IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService
     {
     }
 
     /// <summary>
-    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is idenfied through the **shippingServiceOptionCode** field.
+    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceOptionCode** field.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices
     {
@@ -693,7 +710,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is idenfied through the **shippingServiceOptionCode** field.
+    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceOptionCode** field.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingServiceDetails : IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices
     {
@@ -705,22 +722,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms
     {
         /// <summary>
-        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer.
-        /// The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,
-        /// but longer handling times are supported.
+        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer. The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,  but longer handling times are supported.
         /// </summary>
         public ListingTimeDuration? HandlingTimeDuration { get; }
         /// <summary>
-        /// This array provides the list of shipping service options that are available to the
-        /// buyer for shipment of the item, and the costs associated with using each one.
-        ///
-        /// Each available shipping service option is identified through the **shippingServiceCode** field.
-        ///
-        /// **Maximum number of shipping services**: 10, out of which 5 apply for locations within the marketplace and other 5 apply for locations outside of marketplace
-        ///
-        /// This should never by an empty list, there needs to be at least one shipping service available
-        ///
-        /// This is null only if an error has occurred. See the error section of the response for more details
+        /// This array shows the list of shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceCode** field.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices>? ShippingServices { get; }
     }
@@ -733,47 +739,32 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to provide details on how the item will be delivered to the buyer.
-    /// The data in this type includes available shipping services, ship-to and excluded shipping locations,
-    /// shipping costs, package details, and more.
+    /// This type is used to provide details on how the item will be delivered to the buyer. The data in this type includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_FulfillmentTerms : IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms
     {
         /// <summary>
-        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email.
-        /// The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies)
-        /// method can be used to see if a leaf category supports digital delivery.
+        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email. The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see if a leaf category supports digital delivery.
         /// </summary>
         public bool? DigitalDeliverySupported { get; }
         /// <summary>
-        /// Specifies that the seller wants to offer free shipping.
-        ///
-        /// To see if a specific shipping service is free, look at ShippingServiceDetails.shippingCost.
-        /// If it is set to zero, the shipping is free for that service.
+        /// This boolean specifies whether the seller wants to offer free shipping. To see if a specific shipping service is free, look at **ShippingServiceDetails.shippingCost**. If it is set to zero, the shipping is free for that service.
         /// </summary>
         public bool? FreeShippingAvailable { get; }
         /// <summary>
-        /// This field can be included and set to 'true' if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally.
-        /// With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg.
-        /// GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping,
-        /// but there is currently no boolean field associated with this feature.
+        /// This field can be included and set to `true` if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally. With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg. GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping, but there is currently no boolean field associated with this feature.
         /// </summary>
         public bool? GlobalShippingSupported { get; }
         /// <summary>
-        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory.
-        /// This field is included and set to 'true' if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location.
-        /// See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
+        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory. This field is included and set to `true` if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location. See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
         /// </summary>
         public bool? InStorePickupSupported { get; }
         /// <summary>
-        /// This container provides information about the shipping package that will be used to ship the item,
-        /// and includes package type, weight, and dimensions. Package weight is required when calculating shipping
-        /// is used, and shipping services generally have dimension and weight restrictions.
+        /// This object provides information about the shipping package that will be used to ship the item, and includes package type, weight, and dimensions. Package weight is required when calculating shipping is used, and shipping services generally have dimension and weight restrictions.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications? PackageSpecifications { get; }
         /// <summary>
-        /// This container provides information about where the item can be shipped, the shipping cost type, the shipping services offered,
-        /// the handling time, applicable shipping discounts, and more.
+        /// This object provides information about where the item can be shipped, the shipping cost type, the shipping services offered, the handling time, applicable shipping discounts, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms? ShippingTerms { get; }
     }
@@ -792,7 +783,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_BusinessPolicy : IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms
     {
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
     }
@@ -803,7 +794,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_BusinessPolicy_2
     {
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
     }
@@ -816,58 +807,54 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container
-    /// include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit
     {
         /// <summary>
         /// This field is used to set the due date (in days) for the buyer to pay off the full balance of the motor vehicle. The clock starts on the full payment due date as soon as the buyer commits to buying the vehicle by clicking the 'Buy It Now' button, by winning the auction, or by the seller accepting that buyer's Best Offer/counteroffer. The three supported values here are `DAYS_3` `DAYS_7`, `DAYS_10`, `DAYS_14`.
+        ///
         /// **Default**: DAYS_7
         /// </summary>
         public ListingTimeDuration? DaysToMakeFullPayment { get; }
         /// <summary>
-        /// This boolean field is included and set to 'true' if the seller requires a deposit to secure the purchase of a motor vehicle.
+        /// This boolean field is included and set to `true` if the seller requires a deposit to secure the purchase of a motor vehicle.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? DepositRequired { get; }
     }
 
     /// <summary>
-    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container
-    /// include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_MotorVehicleDeposit : IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit
     {
     }
 
     /// <summary>
-    /// Specifies the payment terms defined by seller like payment method, payment instructions, etc
+    /// This type specifies the payment terms defined by seller like payment method, payment instructions, etc.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_PaymentTerms : IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms
     {
         /// <summary>
-        /// Business policy container for specifying policy ID .
+        /// Business policy container for specifying policy ID.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_BusinessPolicy_2? BusinessPolicy { get; }
         /// <summary>
-        /// This field is set to 'true' if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        /// This field is set to `true` if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? ImmediatePay { get; }
         /// <summary>
-        /// This array is used to specify one or more payment methods for listings that support offline transactions.
-        /// Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the
-        /// payment methods supported for a leaf category.
+        /// This array is used to specify one or more payment methods for listings that support offline transactions. Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the payment methods supported for a leaf category. Currently the only payment methods supported are for offline payments.
         ///
-        /// Currently the only payment methods supported are for offline payments
-        ///
-        /// This array will be null if there are no payment methods
+        /// **Note**: This array will be null if there are no payment methods.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingPaymentMethod>? ListingPaymentMethods { get; }
         /// <summary>
-        /// This field is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container include the amount of
-        /// the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+        /// This field is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit? MotorVehicleDeposit { get; }
         /// <summary>
@@ -916,15 +903,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public ListingMarketplace? Marketplace { get; }
         /// <summary>
-        /// This container provides product details for the listing, including listing category, product aspects, title, description, item condition, images, and more.
+        /// This object provides product details for the listing, including listing category, product aspects, title, description, item condition, images, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct? SellerProduct { get; }
         /// <summary>
-        /// An array of one or more purchaseable items. A single-variation listing will only have one item object, while a multiple-variation listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-variation listings will show unique traits that differentiate them from the rest of the variations within the listing.
+        /// An array of one or more purchasable items. A single-variation listing will only have one item object, while a multiple-variation listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-variation listings will show unique traits that differentiate them from the rest of the variations within the listing.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_Items>? Items { get; }
         /// <summary>
-        /// This container provides listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object provides listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms? ListingTerms { get; }
     }
@@ -947,6 +934,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<ListingFeeDiscount>? ListingDiscount { get; }
         /// <summary>
         /// This array shows the list of estimated listing fees that the updated listing will incur.
+        ///
         /// **Note**: Always consider the fee amounts to be estimated only.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_ListingFees>? ListingFees { get; }
@@ -955,7 +943,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings>? Warnings { get; }
         /// <summary>
-        /// This container shows the complete details of the updated listing.
+        /// This object shows the complete details of the updated listing.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing Listing { get; }
     }
@@ -1009,6 +997,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
     /// This type is used to display information about operation validation errors when these errors are triggered.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Violations_StandardListingValidationRuleViolation : IUpdateListing_UpdateListing_Violations
+    {
+    }
+
+    /// <summary>
+    /// This type is used when subsidiary listing violations occur. Each violation identifies a specific input field or rule that must be corrected before the mutation can be retried successfully.
+    /// </summary>
+    public partial interface IUpdateListing_UpdateListing_Violations_SubsidiaryListingViolation : IUpdateListing_UpdateListing_Violations
     {
     }
 
@@ -1068,6 +1063,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial interface IUpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_1 : IUpdateListing_UpdateListing_Warnings_1
+    {
+    }
+
+    /// <summary>
     /// This type is used when the **updateListing** mutation fails due to one or more blocking validation errors. A list of validation rule violations that must be fixed before retrying will be shown, and one or more non-blocking warning messages will also be shown if any were triggered during the processing of the mutation.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_UpdateListingValidationError : IUpdateListing_UpdateListing
@@ -1091,44 +1093,48 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_ListingFees_FeeAmount_1
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_ListingFees_FeeAmount_Amount_1 : IUpdateListing_UpdateListing_ListingFees_FeeAmount_1
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount_1
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount_Amount_1 : IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount_1
     {
@@ -1140,15 +1146,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_ListingFees_1
     {
         /// <summary>
-        /// This container shows the amount of the fee in the currency used by the listing marketplace.
+        /// This object shows the amount of the fee in the currency used by the listing marketplace.
         /// </summary>
         public IUpdateListing_UpdateListing_ListingFees_FeeAmount_1? FeeAmount { get; }
         /// <summary>
-        /// The enum value in this field indicates the type of fee incurred by the create/update/relist mutation. See the [`ListingFeeType`] enum type for the full list of fee types.
+        /// The enum value in this field indicates the type of fee incurred by the create/update/relist mutation. See the **ListingFeeType** enum type for the full list of fee types.
         /// </summary>
         public ListingFeeType? ListingFeeType { get; }
         /// <summary>
-        /// This container shows the amount of any discount applied to the fee in the currency used by the listing marketplace.
+        /// This object shows the amount of any discount applied to the fee in the currency used by the listing marketplace.
         /// </summary>
         public IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount_1? PromotionalDiscount { get; }
     }
@@ -1216,22 +1222,29 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Pair type of name and values
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial interface IUpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_2 : IUpdateListing_UpdateListing_Warnings_2
+    {
+    }
+
+    /// <summary>
+    /// This type provides for pairs of names and values.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects_1
     {
         /// <summary>
-        /// name of this type.
+        /// The name of this name-value pair.
         /// </summary>
         public string? Name { get; }
         /// <summary>
-        /// values of this type.
+        /// The values of this name-value pair.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Values { get; }
     }
 
     /// <summary>
-    /// Pair type of name and values
+    /// This type provides for pairs of names and values.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects_NameValuesPair_1 : IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects_1
     {
@@ -1251,7 +1264,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? ExternalImageUrl { get; }
         /// <summary>
-        /// Seller provided order of the picture in which the image should be displayed
+        /// Seller provided order of the picture in which the image should be displayed.
         /// </summary>
         public int? Order { get; }
     }
@@ -1269,7 +1282,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_PrimaryCategory_1
     {
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
     }
@@ -1287,7 +1300,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_SecondaryCategory_1
     {
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
     }
@@ -1300,22 +1313,22 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Container for the category info of the item listed in current listing
+    /// This type provides for the category information of the item listed in current listing.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_1
     {
         /// <summary>
-        /// Unique identifier of an eBay category. This is always required.
+        /// The unique identifier of the eBay primary category. A primary category is always required.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_PrimaryCategory_1 PrimaryCategory { get; }
         /// <summary>
-        /// Unique identifier of an eBay category. Returned only if it is specified by the seller.
+        /// The unique identifier of the eBay secondary category. This field is only returned if a secondary category is specified by the seller.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_SecondaryCategory_1? SecondaryCategory { get; }
     }
 
     /// <summary>
-    /// Container for the category info of the item listed in current listing
+    /// This type provides for the category information of the item listed in current listing.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_ListingCategory_1 : IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_1
     {
@@ -1350,12 +1363,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? Title { get; }
         /// <summary>
         /// The full description of the product. This is a mandatory field for a listing.
+        ///
         /// **Note**: This field may contain HTML markup and inline CSS, and may be up to 500,000 characters including the HTML and CSS tags and attributes.
         /// </summary>
         public string? Description { get; }
         /// <summary>
-        /// An array of name-value pairs that define the product aspects. For a multiple-variation listing, only the common aspects will be specified in this array, and the pivoting aspects
-        /// (aka traits) will be specified at the item variation level.
+        /// An array of name-value pairs that define the product aspects. For a multiple-variation listing, only the common aspects will be specified in this array, and the pivoting aspects (aka traits) will be specified at the item variation level.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects_1>? Aspects { get; }
         /// <summary>
@@ -1386,7 +1399,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
     {
         /// <summary>
         /// The quantity available for an item. For auction listings, this value will always be 1. For a multiple-SKU listing, each item variation can have its own quantity value, allowing sellers to manage inventory for each variation independently.
+        ///
         /// **Note**: For a multiple-SKU listing, the quantity for an item variation may be 0 if the SKU is temporarily out of stock, but a seller wishes to retain the variation and restock inventory at a later time.
+        ///
         /// **Note**: This should not be null unless an error has occurred.
         /// </summary>
         public int? QuantityAvailable { get; }
@@ -1400,40 +1415,42 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_1
     {
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_Amount_1 : IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_1
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_1
     {
         /// <summary>
-        /// The monetary amount in the listing’s original currency. This value represents the monetary amount of the listing before any conversion is performed.
+        /// This field contains the monetary amount in the listing's original currency, before any conversion was performed.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_1? Original { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_ConvertedAmount_1 : IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_1
     {
@@ -1463,14 +1480,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_Items_ItemTerms_1
     {
         /// <summary>
-        /// This container displays the available quantity for a purchasable item.
+        /// This object displays the available quantity for a purchasable item.
+        ///
         /// **Note**: This will only be null if an error has occurred.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_Availability_1? Availability { get; }
         /// <summary>
-        /// This container displays price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        /// This object displays price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        ///
         /// **Note**: Each item within a multiple-SKU listing can have its own price, allowing for different pricing based on traits (e.g., larger sizes might cost more than smaller ones).
-        /// **Note**: This will only be null if an error has occurred. Please see the errors array for more details
+        ///
+        /// **Note**: This will only be null if an error has occurred. Please see the errors array for more details.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_1? PricingTerms { get; }
     }
@@ -1500,7 +1520,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? ItemId { get; }
         /// <summary>
-        /// This container is used to display the price and quantity of a purchaseable item, and is also used to provide an eco-participation fee for a product, if applicable.
+        /// This object is used to display the price and quantity of a purchasable item, and is also used to provide an eco-participation fee for a product, if applicable.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_1? ItemTerms { get; }
     }
@@ -1528,7 +1548,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_BusinessPolicy_1 : IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_1
     {
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
     }
@@ -1546,7 +1566,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// The major weight value of the shipping package according to the unit of measurement applicable to the marketplace. The major weight value is the whole number part of the weight. For English measurement system, the supported unit of measurement for **majorUnit** is pounds. For Metric measurement system, the supported unit of measurement for **majorUnit**
         /// is kilograms.
         ///
-        /// Note: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
+        /// **Note**: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
         /// </summary>
         public int? MajorUnit { get; }
     }
@@ -1594,7 +1614,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public bool? IrregularPackage { get; }
         /// <summary>
-        /// The enumeration value returned in this field indicates the type of package used to ship the item.
+        /// The enumerated value returned in this field indicates the type of package used to ship the item.
         /// </summary>
         public ListingPackageType? ListingPackageType { get; }
         /// <summary>
@@ -1602,11 +1622,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public MeasurementSystem? ListingUnitOfMeasure { get; }
         /// <summary>
-        /// This container is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
+        /// This object is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_PackageWeight_1? PackageWeight { get; }
         /// <summary>
-        /// This container is used to specify the dimensions of the shipping package and the unit of measurement used.
+        /// This object is used to specify the dimensions of the shipping package and the unit of measurement used.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_PackageDimensions_1? PackageDimensions { get; }
     }
@@ -1620,7 +1640,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type represents the shipping service available for a listing and includes key details such as the service code, display name, estimated delivery time range, and whether the service offers expedited delivery.
-    /// **Note:** Delivery estimates are approximate and may vary based on item weight, origin, and destination.
+    ///
+    /// **Note**: Delivery estimates are approximate and may vary based on item weight, origin, and destination.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_1
     {
@@ -1631,6 +1652,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string ShippingServiceCode { get; }
         /// <summary>
         /// The human-readable display name of this shipping service (e.g. 'USPS Priority Mail').
+        ///
         /// **Format**: Alphanumeric string with spaces allowed
         /// **Maximum length**: 50 characters
         /// </summary>
@@ -1639,14 +1661,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type represents the shipping service available for a listing and includes key details such as the service code, display name, estimated delivery time range, and whether the service offers expedited delivery.
-    /// **Note:** Delivery estimates are approximate and may vary based on item weight, origin, and destination.
+    ///
+    /// **Note**: Delivery estimates are approximate and may vary based on item weight, origin, and destination.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_ListingShippingService_1 : IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_1
     {
     }
 
     /// <summary>
-    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is idenfied through the **shippingServiceOptionCode** field.
+    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceOptionCode** field.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_1
     {
@@ -1661,7 +1684,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is idenfied through the **shippingServiceOptionCode** field.
+    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceOptionCode** field.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingServiceDetails_1 : IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_1
     {
@@ -1673,22 +1696,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_1
     {
         /// <summary>
-        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer.
-        /// The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,
-        /// but longer handling times are supported.
+        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer. The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,  but longer handling times are supported.
         /// </summary>
         public ListingTimeDuration? HandlingTimeDuration { get; }
         /// <summary>
-        /// This array provides the list of shipping service options that are available to the
-        /// buyer for shipment of the item, and the costs associated with using each one.
-        ///
-        /// Each available shipping service option is identified through the **shippingServiceCode** field.
-        ///
-        /// **Maximum number of shipping services**: 10, out of which 5 apply for locations within the marketplace and other 5 apply for locations outside of marketplace
-        ///
-        /// This should never by an empty list, there needs to be at least one shipping service available
-        ///
-        /// This is null only if an error has occurred. See the error section of the response for more details
+        /// This array shows the list of shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceCode** field.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_1>? ShippingServices { get; }
     }
@@ -1701,47 +1713,32 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to provide details on how the item will be delivered to the buyer.
-    /// The data in this type includes available shipping services, ship-to and excluded shipping locations,
-    /// shipping costs, package details, and more.
+    /// This type is used to provide details on how the item will be delivered to the buyer. The data in this type includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_FulfillmentTerms_1 : IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_1
     {
         /// <summary>
-        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email.
-        /// The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies)
-        /// method can be used to see if a leaf category supports digital delivery.
+        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email. The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see if a leaf category supports digital delivery.
         /// </summary>
         public bool? DigitalDeliverySupported { get; }
         /// <summary>
-        /// Specifies that the seller wants to offer free shipping.
-        ///
-        /// To see if a specific shipping service is free, look at ShippingServiceDetails.shippingCost.
-        /// If it is set to zero, the shipping is free for that service.
+        /// This boolean specifies whether the seller wants to offer free shipping. To see if a specific shipping service is free, look at **ShippingServiceDetails.shippingCost**. If it is set to zero, the shipping is free for that service.
         /// </summary>
         public bool? FreeShippingAvailable { get; }
         /// <summary>
-        /// This field can be included and set to 'true' if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally.
-        /// With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg.
-        /// GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping,
-        /// but there is currently no boolean field associated with this feature.
+        /// This field can be included and set to `true` if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally. With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg. GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping, but there is currently no boolean field associated with this feature.
         /// </summary>
         public bool? GlobalShippingSupported { get; }
         /// <summary>
-        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory.
-        /// This field is included and set to 'true' if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location.
-        /// See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
+        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory. This field is included and set to `true` if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location. See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
         /// </summary>
         public bool? InStorePickupSupported { get; }
         /// <summary>
-        /// This container provides information about the shipping package that will be used to ship the item,
-        /// and includes package type, weight, and dimensions. Package weight is required when calculating shipping
-        /// is used, and shipping services generally have dimension and weight restrictions.
+        /// This object provides information about the shipping package that will be used to ship the item, and includes package type, weight, and dimensions. Package weight is required when calculating shipping is used, and shipping services generally have dimension and weight restrictions.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_1? PackageSpecifications { get; }
         /// <summary>
-        /// This container provides information about where the item can be shipped, the shipping cost type, the shipping services offered,
-        /// the handling time, applicable shipping discounts, and more.
+        /// This object provides information about where the item can be shipped, the shipping cost type, the shipping services offered, the handling time, applicable shipping discounts, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_1? ShippingTerms { get; }
     }
@@ -1760,7 +1757,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_BusinessPolicy_1 : IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_1
     {
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
     }
@@ -1771,7 +1768,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_BusinessPolicy_3
     {
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
     }
@@ -1784,58 +1781,54 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container
-    /// include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_1
     {
         /// <summary>
         /// This field is used to set the due date (in days) for the buyer to pay off the full balance of the motor vehicle. The clock starts on the full payment due date as soon as the buyer commits to buying the vehicle by clicking the 'Buy It Now' button, by winning the auction, or by the seller accepting that buyer's Best Offer/counteroffer. The three supported values here are `DAYS_3` `DAYS_7`, `DAYS_10`, `DAYS_14`.
+        ///
         /// **Default**: DAYS_7
         /// </summary>
         public ListingTimeDuration? DaysToMakeFullPayment { get; }
         /// <summary>
-        /// This boolean field is included and set to 'true' if the seller requires a deposit to secure the purchase of a motor vehicle.
+        /// This boolean field is included and set to `true` if the seller requires a deposit to secure the purchase of a motor vehicle.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? DepositRequired { get; }
     }
 
     /// <summary>
-    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container
-    /// include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_MotorVehicleDeposit_1 : IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_1
     {
     }
 
     /// <summary>
-    /// Specifies the payment terms defined by seller like payment method, payment instructions, etc
+    /// This type specifies the payment terms defined by seller like payment method, payment instructions, etc.
     /// </summary>
     public partial interface IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_PaymentTerms_1 : IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_1
     {
         /// <summary>
-        /// Business policy container for specifying policy ID .
+        /// Business policy container for specifying policy ID.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_BusinessPolicy_3? BusinessPolicy { get; }
         /// <summary>
-        /// This field is set to 'true' if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        /// This field is set to `true` if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? ImmediatePay { get; }
         /// <summary>
-        /// This array is used to specify one or more payment methods for listings that support offline transactions.
-        /// Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the
-        /// payment methods supported for a leaf category.
+        /// This array is used to specify one or more payment methods for listings that support offline transactions. Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the payment methods supported for a leaf category. Currently the only payment methods supported are for offline payments.
         ///
-        /// Currently the only payment methods supported are for offline payments
-        ///
-        /// This array will be null if there are no payment methods
+        /// **Note**: This array will be null if there are no payment methods.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingPaymentMethod>? ListingPaymentMethods { get; }
         /// <summary>
-        /// This field is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container include the amount of
-        /// the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+        /// This field is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_1? MotorVehicleDeposit { get; }
         /// <summary>
@@ -1884,15 +1877,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public ListingMarketplace? Marketplace { get; }
         /// <summary>
-        /// This container provides product details for the listing, including listing category, product aspects, title, description, item condition, images, and more.
+        /// This object provides product details for the listing, including listing category, product aspects, title, description, item condition, images, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_1? SellerProduct { get; }
         /// <summary>
-        /// An array of one or more purchaseable items. A single-variation listing will only have one item object, while a multiple-variation listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-variation listings will show unique traits that differentiate them from the rest of the variations within the listing.
+        /// An array of one or more purchasable items. A single-variation listing will only have one item object, while a multiple-variation listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-variation listings will show unique traits that differentiate them from the rest of the variations within the listing.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_Items_1>? Items { get; }
         /// <summary>
-        /// This container provides listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object provides listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_1? ListingTerms { get; }
     }
@@ -1922,13 +1915,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings_2>? Warnings { get; }
         /// <summary>
-        /// This container shows the complete details of the validated listing object.
+        /// This object shows the complete details of the validated listing object.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_1 Listing { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateListing_UpdateListing_ListingFees_FeeAmount_Amount : global::System.IEquatable<UpdateListing_UpdateListing_ListingFees_FeeAmount_Amount>, IUpdateListing_UpdateListing_ListingFees_FeeAmount_Amount
     {
@@ -1939,12 +1932,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -2005,7 +2000,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateListing_UpdateListing_ListingFees_PromotionalDiscount_Amount : global::System.IEquatable<UpdateListing_UpdateListing_ListingFees_PromotionalDiscount_Amount>, IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount_Amount
     {
@@ -2016,12 +2011,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -2094,17 +2091,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the amount of the fee in the currency used by the listing marketplace.
+        /// This object shows the amount of the fee in the currency used by the listing marketplace.
         /// </summary>
         public IUpdateListing_UpdateListing_ListingFees_FeeAmount? FeeAmount { get; }
 
         /// <summary>
-        /// The enum value in this field indicates the type of fee incurred by the create/update/relist mutation. See the [`ListingFeeType`] enum type for the full list of fee types.
+        /// The enum value in this field indicates the type of fee incurred by the create/update/relist mutation. See the **ListingFeeType** enum type for the full list of fee types.
         /// </summary>
         public ListingFeeType? ListingFeeType { get; }
 
         /// <summary>
-        /// This container shows the amount of any discount applied to the fee in the currency used by the listing marketplace.
+        /// This object shows the amount of any discount applied to the fee in the currency used by the listing marketplace.
         /// </summary>
         public IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount? PromotionalDiscount { get; }
 
@@ -2429,7 +2426,95 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Pair type of name and values
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial class UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning : global::System.IEquatable<UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning>, IUpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning
+    {
+        public UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning(global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings_AdditionalInformation>? additionalInformation, string warningMessage, string warningCode)
+        {
+            this.AdditionalInformation = additionalInformation;
+            this.WarningMessage = warningMessage;
+            this.WarningCode = warningCode;
+        }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the warning. Null values in a name-value pair indicates that no additional information is available on the warning.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings_AdditionalInformation>? AdditionalInformation { get; }
+
+        /// <summary>
+        /// A human-readable description of the warning, intended to be displayed to an end user.
+        /// </summary>
+        public string WarningMessage { get; }
+
+        /// <summary>
+        /// A unique identifier of the warning. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string WarningCode { get; }
+
+        public virtual bool Equals(UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation)
+                && global::System.Object.Equals(WarningMessage, other.WarningMessage)
+                && global::System.Object.Equals(WarningCode, other.WarningCode);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                if (WarningMessage is not null)
+                {
+                    hash ^= 397 * WarningMessage.GetHashCode();
+                }
+                if (WarningCode is not null)
+                {
+                    hash ^= 397 * WarningCode.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type provides for pairs of names and values.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_SellerProduct_Aspects_NameValuesPair : global::System.IEquatable<UpdateListing_UpdateListing_Listing_SellerProduct_Aspects_NameValuesPair>, IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects_NameValuesPair
     {
@@ -2440,12 +2525,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// name of this type.
+        /// The name of this name-value pair.
         /// </summary>
         public string? Name { get; }
 
         /// <summary>
-        /// values of this type.
+        /// The values of this name-value pair.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Values { get; }
 
@@ -2528,7 +2613,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? ExternalImageUrl { get; }
 
         /// <summary>
-        /// Seller provided order of the picture in which the image should be displayed
+        /// Seller provided order of the picture in which the image should be displayed.
         /// </summary>
         public int? Order { get; }
 
@@ -2607,7 +2692,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
 
@@ -2676,7 +2761,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
 
@@ -2735,7 +2820,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Container for the category info of the item listed in current listing
+    /// This type provides for the category information of the item listed in current listing.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_SellerProduct_Categories_ListingCategory : global::System.IEquatable<UpdateListing_UpdateListing_Listing_SellerProduct_Categories_ListingCategory>, IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_ListingCategory
     {
@@ -2746,12 +2831,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Unique identifier of an eBay category. This is always required.
+        /// The unique identifier of the eBay primary category. A primary category is always required.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_PrimaryCategory PrimaryCategory { get; }
 
         /// <summary>
-        /// Unique identifier of an eBay category. Returned only if it is specified by the seller.
+        /// The unique identifier of the eBay secondary category. This field is only returned if a secondary category is specified by the seller.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_SecondaryCategory? SecondaryCategory { get; }
 
@@ -2905,13 +2990,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The full description of the product. This is a mandatory field for a listing.
+        ///
         /// **Note**: This field may contain HTML markup and inline CSS, and may be up to 500,000 characters including the HTML and CSS tags and attributes.
         /// </summary>
         public string? Description { get; }
 
         /// <summary>
-        /// An array of name-value pairs that define the product aspects. For a multiple-variation listing, only the common aspects will be specified in this array, and the pivoting aspects
-        /// (aka traits) will be specified at the item variation level.
+        /// An array of name-value pairs that define the product aspects. For a multiple-variation listing, only the common aspects will be specified in this array, and the pivoting aspects (aka traits) will be specified at the item variation level.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects>? Aspects { get; }
 
@@ -3015,7 +3100,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The quantity available for an item. For auction listings, this value will always be 1. For a multiple-SKU listing, each item variation can have its own quantity value, allowing sellers to manage inventory for each variation independently.
+        ///
         /// **Note**: For a multiple-SKU listing, the quantity for an item variation may be 0 if the SKU is temporarily out of stock, but a seller wishes to retain the variation and restock inventory at a later time.
+        ///
         /// **Note**: This should not be null unless an error has occurred.
         /// </summary>
         public int? QuantityAvailable { get; }
@@ -3075,7 +3162,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_Amount : global::System.IEquatable<UpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_Amount>, IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_Amount
     {
@@ -3086,12 +3173,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
@@ -3152,7 +3241,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_ConvertedAmount : global::System.IEquatable<UpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_ConvertedAmount>, IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_ConvertedAmount
     {
@@ -3162,7 +3251,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount in the listing’s original currency. This value represents the monetary amount of the listing before any conversion is performed.
+        /// This field contains the monetary amount in the listing's original currency, before any conversion was performed.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original? Original { get; }
 
@@ -3301,15 +3390,18 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container displays the available quantity for a purchasable item.
+        /// This object displays the available quantity for a purchasable item.
+        ///
         /// **Note**: This will only be null if an error has occurred.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_Availability? Availability { get; }
 
         /// <summary>
-        /// This container displays price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        /// This object displays price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        ///
         /// **Note**: Each item within a multiple-SKU listing can have its own price, allowing for different pricing based on traits (e.g., larger sizes might cost more than smaller ones).
-        /// **Note**: This will only be null if an error has occurred. Please see the errors array for more details
+        ///
+        /// **Note**: This will only be null if an error has occurred. Please see the errors array for more details.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms? PricingTerms { get; }
 
@@ -3399,7 +3491,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? ItemId { get; }
 
         /// <summary>
-        /// This container is used to display the price and quantity of a purchaseable item, and is also used to provide an eco-participation fee for a product, if applicable.
+        /// This object is used to display the price and quantity of a purchasable item, and is also used to provide an eco-participation fee for a product, if applicable.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms? ItemTerms { get; }
 
@@ -3481,7 +3573,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
 
@@ -3564,7 +3656,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// The major weight value of the shipping package according to the unit of measurement applicable to the marketplace. The major weight value is the whole number part of the weight. For English measurement system, the supported unit of measurement for **majorUnit** is pounds. For Metric measurement system, the supported unit of measurement for **majorUnit**
         /// is kilograms.
         ///
-        /// Note: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
+        /// **Note**: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
         /// </summary>
         public int? MajorUnit { get; }
 
@@ -3738,7 +3830,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public bool? IrregularPackage { get; }
 
         /// <summary>
-        /// The enumeration value returned in this field indicates the type of package used to ship the item.
+        /// The enumerated value returned in this field indicates the type of package used to ship the item.
         /// </summary>
         public ListingPackageType? ListingPackageType { get; }
 
@@ -3748,12 +3840,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public MeasurementSystem? ListingUnitOfMeasure { get; }
 
         /// <summary>
-        /// This container is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
+        /// This object is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_PackageWeight? PackageWeight { get; }
 
         /// <summary>
-        /// This container is used to specify the dimensions of the shipping package and the unit of measurement used.
+        /// This object is used to specify the dimensions of the shipping package and the unit of measurement used.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_PackageDimensions? PackageDimensions { get; }
 
@@ -3833,7 +3925,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type represents the shipping service available for a listing and includes key details such as the service code, display name, estimated delivery time range, and whether the service offers expedited delivery.
-    /// **Note:** Delivery estimates are approximate and may vary based on item weight, origin, and destination.
+    ///
+    /// **Note**: Delivery estimates are approximate and may vary based on item weight, origin, and destination.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_ListingShippingService : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_ListingShippingService>, IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_ListingShippingService
     {
@@ -3851,6 +3944,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable display name of this shipping service (e.g. 'USPS Priority Mail').
+        ///
         /// **Format**: Alphanumeric string with spaces allowed
         /// **Maximum length**: 50 characters
         /// </summary>
@@ -3916,7 +4010,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is idenfied through the **shippingServiceOptionCode** field.
+    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceOptionCode** field.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingServiceDetails : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingServiceDetails>, IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingServiceDetails
     {
@@ -4007,23 +4101,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer.
-        /// The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,
-        /// but longer handling times are supported.
+        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer. The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,  but longer handling times are supported.
         /// </summary>
         public ListingTimeDuration? HandlingTimeDuration { get; }
 
         /// <summary>
-        /// This array provides the list of shipping service options that are available to the
-        /// buyer for shipment of the item, and the costs associated with using each one.
-        ///
-        /// Each available shipping service option is identified through the **shippingServiceCode** field.
-        ///
-        /// **Maximum number of shipping services**: 10, out of which 5 apply for locations within the marketplace and other 5 apply for locations outside of marketplace
-        ///
-        /// This should never by an empty list, there needs to be at least one shipping service available
-        ///
-        /// This is null only if an error has occurred. See the error section of the response for more details
+        /// This array shows the list of shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceCode** field.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices>? ShippingServices { get; }
 
@@ -4084,9 +4167,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to provide details on how the item will be delivered to the buyer.
-    /// The data in this type includes available shipping services, ship-to and excluded shipping locations,
-    /// shipping costs, package details, and more.
+    /// This type is used to provide details on how the item will be delivered to the buyer. The data in this type includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_FulfillmentTerms : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_FulfillmentTerms>, IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_FulfillmentTerms
     {
@@ -4104,45 +4185,32 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email.
-        /// The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies)
-        /// method can be used to see if a leaf category supports digital delivery.
+        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email. The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see if a leaf category supports digital delivery.
         /// </summary>
         public bool? DigitalDeliverySupported { get; }
 
         /// <summary>
-        /// Specifies that the seller wants to offer free shipping.
-        ///
-        /// To see if a specific shipping service is free, look at ShippingServiceDetails.shippingCost.
-        /// If it is set to zero, the shipping is free for that service.
+        /// This boolean specifies whether the seller wants to offer free shipping. To see if a specific shipping service is free, look at **ShippingServiceDetails.shippingCost**. If it is set to zero, the shipping is free for that service.
         /// </summary>
         public bool? FreeShippingAvailable { get; }
 
         /// <summary>
-        /// This field can be included and set to 'true' if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally.
-        /// With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg.
-        /// GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping,
-        /// but there is currently no boolean field associated with this feature.
+        /// This field can be included and set to `true` if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally. With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg. GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping, but there is currently no boolean field associated with this feature.
         /// </summary>
         public bool? GlobalShippingSupported { get; }
 
         /// <summary>
-        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory.
-        /// This field is included and set to 'true' if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location.
-        /// See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
+        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory. This field is included and set to `true` if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location. See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
         /// </summary>
         public bool? InStorePickupSupported { get; }
 
         /// <summary>
-        /// This container provides information about the shipping package that will be used to ship the item,
-        /// and includes package type, weight, and dimensions. Package weight is required when calculating shipping
-        /// is used, and shipping services generally have dimension and weight restrictions.
+        /// This object provides information about the shipping package that will be used to ship the item, and includes package type, weight, and dimensions. Package weight is required when calculating shipping is used, and shipping services generally have dimension and weight restrictions.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications? PackageSpecifications { get; }
 
         /// <summary>
-        /// This container provides information about where the item can be shipped, the shipping cost type, the shipping services offered,
-        /// the handling time, applicable shipping discounts, and more.
+        /// This object provides information about where the item can be shipped, the shipping cost type, the shipping services offered, the handling time, applicable shipping discounts, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms? ShippingTerms { get; }
 
@@ -4244,7 +4312,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
 
@@ -4318,7 +4386,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
 
@@ -4377,8 +4445,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container
-    /// include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_MotorVehicleDeposit : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_MotorVehicleDeposit>, IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_MotorVehicleDeposit
     {
@@ -4390,12 +4457,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to set the due date (in days) for the buyer to pay off the full balance of the motor vehicle. The clock starts on the full payment due date as soon as the buyer commits to buying the vehicle by clicking the 'Buy It Now' button, by winning the auction, or by the seller accepting that buyer's Best Offer/counteroffer. The three supported values here are `DAYS_3` `DAYS_7`, `DAYS_10`, `DAYS_14`.
+        ///
         /// **Default**: DAYS_7
         /// </summary>
         public ListingTimeDuration? DaysToMakeFullPayment { get; }
 
         /// <summary>
-        /// This boolean field is included and set to 'true' if the seller requires a deposit to secure the purchase of a motor vehicle.
+        /// This boolean field is included and set to `true` if the seller requires a deposit to secure the purchase of a motor vehicle.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? DepositRequired { get; }
@@ -4460,7 +4529,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Specifies the payment terms defined by seller like payment method, payment instructions, etc
+    /// This type specifies the payment terms defined by seller like payment method, payment instructions, etc.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_PaymentTerms : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_PaymentTerms>, IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_PaymentTerms
     {
@@ -4477,30 +4546,26 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Business policy container for specifying policy ID .
+        /// Business policy container for specifying policy ID.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_BusinessPolicy_2? BusinessPolicy { get; }
 
         /// <summary>
-        /// This field is set to 'true' if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        /// This field is set to `true` if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? ImmediatePay { get; }
 
         /// <summary>
-        /// This array is used to specify one or more payment methods for listings that support offline transactions.
-        /// Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the
-        /// payment methods supported for a leaf category.
+        /// This array is used to specify one or more payment methods for listings that support offline transactions. Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the payment methods supported for a leaf category. Currently the only payment methods supported are for offline payments.
         ///
-        /// Currently the only payment methods supported are for offline payments
-        ///
-        /// This array will be null if there are no payment methods
+        /// **Note**: This array will be null if there are no payment methods.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingPaymentMethod>? ListingPaymentMethods { get; }
 
         /// <summary>
-        /// This field is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container include the amount of
-        /// the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+        /// This field is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit? MotorVehicleDeposit { get; }
 
@@ -4696,17 +4761,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public ListingMarketplace? Marketplace { get; }
 
         /// <summary>
-        /// This container provides product details for the listing, including listing category, product aspects, title, description, item condition, images, and more.
+        /// This object provides product details for the listing, including listing category, product aspects, title, description, item condition, images, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct? SellerProduct { get; }
 
         /// <summary>
-        /// An array of one or more purchaseable items. A single-variation listing will only have one item object, while a multiple-variation listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-variation listings will show unique traits that differentiate them from the rest of the variations within the listing.
+        /// An array of one or more purchasable items. A single-variation listing will only have one item object, while a multiple-variation listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-variation listings will show unique traits that differentiate them from the rest of the variations within the listing.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_Items>? Items { get; }
 
         /// <summary>
-        /// This container provides listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object provides listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms? ListingTerms { get; }
 
@@ -4809,6 +4874,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array shows the list of estimated listing fees that the updated listing will incur.
+        ///
         /// **Note**: Always consider the fee amounts to be estimated only.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_ListingFees>? ListingFees { get; }
@@ -4819,7 +4885,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings>? Warnings { get; }
 
         /// <summary>
-        /// This container shows the complete details of the updated listing.
+        /// This object shows the complete details of the updated listing.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing Listing { get; }
 
@@ -5042,6 +5108,102 @@ namespace EBay.ListingManagement.Generated.GraphQL
             }
 
             return Equals((UpdateListing_UpdateListing_Violations_StandardListingValidationRuleViolation)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * GraphQLJson.SequenceHash(InputPath);
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                if (ViolationCode is not null)
+                {
+                    hash ^= 397 * ViolationCode.GetHashCode();
+                }
+                if (ViolationDescription is not null)
+                {
+                    hash ^= 397 * ViolationDescription.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type is used when subsidiary listing violations occur. Each violation identifies a specific input field or rule that must be corrected before the mutation can be retried successfully.
+    /// </summary>
+    public partial class UpdateListing_UpdateListing_Violations_SubsidiaryListingViolation : global::System.IEquatable<UpdateListing_UpdateListing_Violations_SubsidiaryListingViolation>, IUpdateListing_UpdateListing_Violations_SubsidiaryListingViolation
+    {
+        public UpdateListing_UpdateListing_Violations_SubsidiaryListingViolation(global::System.Collections.Generic.IReadOnlyList<string> inputPath, global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Violations_AdditionalInformation>? additionalInformation, string violationCode, string violationDescription)
+        {
+            this.InputPath = inputPath;
+            this.AdditionalInformation = additionalInformation;
+            this.ViolationCode = violationCode;
+            this.ViolationDescription = violationDescription;
+        }
+
+        /// <summary>
+        /// This array will show one or more string values that show the full path(s) to the input field(s) that caused the violation.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<string> InputPath { get; }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the violation. For example, for a maximum length exceeded violation, this might contain {name: "maxLength", value: "80"}. Null values in a name-value pair indicates that no additional information is available on the violation.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Violations_AdditionalInformation>? AdditionalInformation { get; }
+
+        /// <summary>
+        /// A unique identifier of the violation. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string ViolationCode { get; }
+
+        /// <summary>
+        /// A human-readable description of the violation, intended to be displayed to an end user.
+        /// </summary>
+        public string ViolationDescription { get; }
+
+        public virtual bool Equals(UpdateListing_UpdateListing_Violations_SubsidiaryListingViolation? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return GraphQLJson.SequenceEqual(InputPath, other.InputPath)
+                && GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation)
+                && global::System.Object.Equals(ViolationCode, other.ViolationCode)
+                && global::System.Object.Equals(ViolationDescription, other.ViolationDescription);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((UpdateListing_UpdateListing_Violations_SubsidiaryListingViolation)obj);
         }
 
         public override int GetHashCode()
@@ -5321,6 +5483,94 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial class UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_1 : global::System.IEquatable<UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_1>, IUpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_1
+    {
+        public UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_1(global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings_AdditionalInformation_1>? additionalInformation, string warningCode, string warningMessage)
+        {
+            this.AdditionalInformation = additionalInformation;
+            this.WarningCode = warningCode;
+            this.WarningMessage = warningMessage;
+        }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the warning. Null values in a name-value pair indicates that no additional information is available on the warning.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings_AdditionalInformation_1>? AdditionalInformation { get; }
+
+        /// <summary>
+        /// A unique identifier of the warning. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string WarningCode { get; }
+
+        /// <summary>
+        /// A human-readable description of the warning, intended to be displayed to an end user.
+        /// </summary>
+        public string WarningMessage { get; }
+
+        public virtual bool Equals(UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_1? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation)
+                && global::System.Object.Equals(WarningCode, other.WarningCode)
+                && global::System.Object.Equals(WarningMessage, other.WarningMessage);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_1)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                if (WarningCode is not null)
+                {
+                    hash ^= 397 * WarningCode.GetHashCode();
+                }
+                if (WarningMessage is not null)
+                {
+                    hash ^= 397 * WarningMessage.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
     /// This type is used when the **updateListing** mutation fails due to one or more blocking validation errors. A list of validation rule violations that must be fixed before retrying will be shown, and one or more non-blocking warning messages will also be shown if any were triggered during the processing of the mutation.
     /// </summary>
     public partial class UpdateListing_UpdateListing_UpdateListingValidationError : global::System.IEquatable<UpdateListing_UpdateListing_UpdateListingValidationError>, IUpdateListing_UpdateListing_UpdateListingValidationError
@@ -5425,7 +5675,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateListing_UpdateListing_ListingFees_FeeAmount_Amount_1 : global::System.IEquatable<UpdateListing_UpdateListing_ListingFees_FeeAmount_Amount_1>, IUpdateListing_UpdateListing_ListingFees_FeeAmount_Amount_1
     {
@@ -5436,12 +5686,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -5502,7 +5754,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateListing_UpdateListing_ListingFees_PromotionalDiscount_Amount_1 : global::System.IEquatable<UpdateListing_UpdateListing_ListingFees_PromotionalDiscount_Amount_1>, IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount_Amount_1
     {
@@ -5513,12 +5765,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -5591,17 +5845,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the amount of the fee in the currency used by the listing marketplace.
+        /// This object shows the amount of the fee in the currency used by the listing marketplace.
         /// </summary>
         public IUpdateListing_UpdateListing_ListingFees_FeeAmount_1? FeeAmount { get; }
 
         /// <summary>
-        /// The enum value in this field indicates the type of fee incurred by the create/update/relist mutation. See the [`ListingFeeType`] enum type for the full list of fee types.
+        /// The enum value in this field indicates the type of fee incurred by the create/update/relist mutation. See the **ListingFeeType** enum type for the full list of fee types.
         /// </summary>
         public ListingFeeType? ListingFeeType { get; }
 
         /// <summary>
-        /// This container shows the amount of any discount applied to the fee in the currency used by the listing marketplace.
+        /// This object shows the amount of any discount applied to the fee in the currency used by the listing marketplace.
         /// </summary>
         public IUpdateListing_UpdateListing_ListingFees_PromotionalDiscount_1? PromotionalDiscount { get; }
 
@@ -5926,7 +6180,95 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Pair type of name and values
+    /// This type is used when warnings occur for the mutation. When warnings occur, the operation will still succeed, but the caller should review these warnings as they may indicate data quality issues or configuration mismatches that could affect how the listing appears on eBay.
+    /// </summary>
+    public partial class UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_2 : global::System.IEquatable<UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_2>, IUpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_2
+    {
+        public UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_2(global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings_AdditionalInformation_2>? additionalInformation, string warningMessage, string warningCode)
+        {
+            this.AdditionalInformation = additionalInformation;
+            this.WarningMessage = warningMessage;
+            this.WarningCode = warningCode;
+        }
+
+        /// <summary>
+        /// This array will show a list of one or more key-value pairs providing additional, structured context for the warning. Null values in a name-value pair indicates that no additional information is available on the warning.
+        /// </summary>
+        public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings_AdditionalInformation_2>? AdditionalInformation { get; }
+
+        /// <summary>
+        /// A human-readable description of the warning, intended to be displayed to an end user.
+        /// </summary>
+        public string WarningMessage { get; }
+
+        /// <summary>
+        /// A unique identifier of the warning. Clients can use this code to implement custom logic.
+        /// </summary>
+        public string WarningCode { get; }
+
+        public virtual bool Equals(UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_2? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return GraphQLJson.SequenceEqual(AdditionalInformation, other.AdditionalInformation)
+                && global::System.Object.Equals(WarningMessage, other.WarningMessage)
+                && global::System.Object.Equals(WarningCode, other.WarningCode);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_2)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * GraphQLJson.SequenceHash(AdditionalInformation);
+                if (WarningMessage is not null)
+                {
+                    hash ^= 397 * WarningMessage.GetHashCode();
+                }
+                if (WarningCode is not null)
+                {
+                    hash ^= 397 * WarningCode.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type provides for pairs of names and values.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_SellerProduct_Aspects_NameValuesPair_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_SellerProduct_Aspects_NameValuesPair_1>, IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects_NameValuesPair_1
     {
@@ -5937,12 +6279,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// name of this type.
+        /// The name of this name-value pair.
         /// </summary>
         public string? Name { get; }
 
         /// <summary>
-        /// values of this type.
+        /// The values of this name-value pair.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Values { get; }
 
@@ -6025,7 +6367,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? ExternalImageUrl { get; }
 
         /// <summary>
-        /// Seller provided order of the picture in which the image should be displayed
+        /// Seller provided order of the picture in which the image should be displayed.
         /// </summary>
         public int? Order { get; }
 
@@ -6104,7 +6446,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
 
@@ -6173,7 +6515,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
 
@@ -6232,7 +6574,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Container for the category info of the item listed in current listing
+    /// This type provides for the category information of the item listed in current listing.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_SellerProduct_Categories_ListingCategory_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_SellerProduct_Categories_ListingCategory_1>, IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_ListingCategory_1
     {
@@ -6243,12 +6585,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Unique identifier of an eBay category. This is always required.
+        /// The unique identifier of the eBay primary category. A primary category is always required.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_PrimaryCategory_1 PrimaryCategory { get; }
 
         /// <summary>
-        /// Unique identifier of an eBay category. Returned only if it is specified by the seller.
+        /// The unique identifier of the eBay secondary category. This field is only returned if a secondary category is specified by the seller.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_Categories_SecondaryCategory_1? SecondaryCategory { get; }
 
@@ -6402,13 +6744,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The full description of the product. This is a mandatory field for a listing.
+        ///
         /// **Note**: This field may contain HTML markup and inline CSS, and may be up to 500,000 characters including the HTML and CSS tags and attributes.
         /// </summary>
         public string? Description { get; }
 
         /// <summary>
-        /// An array of name-value pairs that define the product aspects. For a multiple-variation listing, only the common aspects will be specified in this array, and the pivoting aspects
-        /// (aka traits) will be specified at the item variation level.
+        /// An array of name-value pairs that define the product aspects. For a multiple-variation listing, only the common aspects will be specified in this array, and the pivoting aspects (aka traits) will be specified at the item variation level.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_SellerProduct_Aspects_1>? Aspects { get; }
 
@@ -6512,7 +6854,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The quantity available for an item. For auction listings, this value will always be 1. For a multiple-SKU listing, each item variation can have its own quantity value, allowing sellers to manage inventory for each variation independently.
+        ///
         /// **Note**: For a multiple-SKU listing, the quantity for an item variation may be 0 if the SKU is temporarily out of stock, but a seller wishes to retain the variation and restock inventory at a later time.
+        ///
         /// **Note**: This should not be null unless an error has occurred.
         /// </summary>
         public int? QuantityAvailable { get; }
@@ -6572,7 +6916,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_Amount_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_Amount_1>, IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_Amount_1
     {
@@ -6583,12 +6927,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
@@ -6649,7 +6995,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_ConvertedAmount_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_ConvertedAmount_1>, IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_ConvertedAmount_1
     {
@@ -6659,7 +7005,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount in the listing’s original currency. This value represents the monetary amount of the listing before any conversion is performed.
+        /// This field contains the monetary amount in the listing's original currency, before any conversion was performed.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_FixedPrice_Original_1? Original { get; }
 
@@ -6798,15 +7144,18 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container displays the available quantity for a purchasable item.
+        /// This object displays the available quantity for a purchasable item.
+        ///
         /// **Note**: This will only be null if an error has occurred.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_Availability_1? Availability { get; }
 
         /// <summary>
-        /// This container displays price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        /// This object displays price data for the item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction starting bid price, auction reserve price, and other settings related to discount pricing features.
+        ///
         /// **Note**: Each item within a multiple-SKU listing can have its own price, allowing for different pricing based on traits (e.g., larger sizes might cost more than smaller ones).
-        /// **Note**: This will only be null if an error has occurred. Please see the errors array for more details
+        ///
+        /// **Note**: This will only be null if an error has occurred. Please see the errors array for more details.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_PricingTerms_1? PricingTerms { get; }
 
@@ -6896,7 +7245,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? ItemId { get; }
 
         /// <summary>
-        /// This container is used to display the price and quantity of a purchaseable item, and is also used to provide an eco-participation fee for a product, if applicable.
+        /// This object is used to display the price and quantity of a purchasable item, and is also used to provide an eco-participation fee for a product, if applicable.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_Items_ItemTerms_1? ItemTerms { get; }
 
@@ -6978,7 +7327,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
 
@@ -7061,7 +7410,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// The major weight value of the shipping package according to the unit of measurement applicable to the marketplace. The major weight value is the whole number part of the weight. For English measurement system, the supported unit of measurement for **majorUnit** is pounds. For Metric measurement system, the supported unit of measurement for **majorUnit**
         /// is kilograms.
         ///
-        /// Note: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
+        /// **Note**: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
         /// </summary>
         public int? MajorUnit { get; }
 
@@ -7235,7 +7584,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public bool? IrregularPackage { get; }
 
         /// <summary>
-        /// The enumeration value returned in this field indicates the type of package used to ship the item.
+        /// The enumerated value returned in this field indicates the type of package used to ship the item.
         /// </summary>
         public ListingPackageType? ListingPackageType { get; }
 
@@ -7245,12 +7594,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public MeasurementSystem? ListingUnitOfMeasure { get; }
 
         /// <summary>
-        /// This container is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
+        /// This object is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_PackageWeight_1? PackageWeight { get; }
 
         /// <summary>
-        /// This container is used to specify the dimensions of the shipping package and the unit of measurement used.
+        /// This object is used to specify the dimensions of the shipping package and the unit of measurement used.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_PackageDimensions_1? PackageDimensions { get; }
 
@@ -7330,7 +7679,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type represents the shipping service available for a listing and includes key details such as the service code, display name, estimated delivery time range, and whether the service offers expedited delivery.
-    /// **Note:** Delivery estimates are approximate and may vary based on item weight, origin, and destination.
+    ///
+    /// **Note**: Delivery estimates are approximate and may vary based on item weight, origin, and destination.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_ListingShippingService_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_ListingShippingService_1>, IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingService_ListingShippingService_1
     {
@@ -7348,6 +7698,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable display name of this shipping service (e.g. 'USPS Priority Mail').
+        ///
         /// **Format**: Alphanumeric string with spaces allowed
         /// **Maximum length**: 50 characters
         /// </summary>
@@ -7413,7 +7764,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is idenfied through the **shippingServiceOptionCode** field.
+    /// This type shows the list of domestic or international shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceOptionCode** field.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingServiceDetails_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingServiceDetails_1>, IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_ShippingServiceDetails_1
     {
@@ -7504,23 +7855,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer.
-        /// The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,
-        /// but longer handling times are supported.
+        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer. The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,  but longer handling times are supported.
         /// </summary>
         public ListingTimeDuration? HandlingTimeDuration { get; }
 
         /// <summary>
-        /// This array provides the list of shipping service options that are available to the
-        /// buyer for shipment of the item, and the costs associated with using each one.
-        ///
-        /// Each available shipping service option is identified through the **shippingServiceCode** field.
-        ///
-        /// **Maximum number of shipping services**: 10, out of which 5 apply for locations within the marketplace and other 5 apply for locations outside of marketplace
-        ///
-        /// This should never by an empty list, there needs to be at least one shipping service available
-        ///
-        /// This is null only if an error has occurred. See the error section of the response for more details
+        /// This array shows the list of shipping service options that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceCode** field.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_ShippingServices_1>? ShippingServices { get; }
 
@@ -7581,9 +7921,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to provide details on how the item will be delivered to the buyer.
-    /// The data in this type includes available shipping services, ship-to and excluded shipping locations,
-    /// shipping costs, package details, and more.
+    /// This type is used to provide details on how the item will be delivered to the buyer. The data in this type includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_FulfillmentTerms_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_FulfillmentTerms_1>, IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_FulfillmentTerms_1
     {
@@ -7601,45 +7939,32 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email.
-        /// The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies)
-        /// method can be used to see if a leaf category supports digital delivery.
+        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email. The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see if a leaf category supports digital delivery.
         /// </summary>
         public bool? DigitalDeliverySupported { get; }
 
         /// <summary>
-        /// Specifies that the seller wants to offer free shipping.
-        ///
-        /// To see if a specific shipping service is free, look at ShippingServiceDetails.shippingCost.
-        /// If it is set to zero, the shipping is free for that service.
+        /// This boolean specifies whether the seller wants to offer free shipping. To see if a specific shipping service is free, look at **ShippingServiceDetails.shippingCost**. If it is set to zero, the shipping is free for that service.
         /// </summary>
         public bool? FreeShippingAvailable { get; }
 
         /// <summary>
-        /// This field can be included and set to 'true' if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally.
-        /// With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg.
-        /// GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping,
-        /// but there is currently no boolean field associated with this feature.
+        /// This field can be included and set to `true` if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally. With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg. GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping, but there is currently no boolean field associated with this feature.
         /// </summary>
         public bool? GlobalShippingSupported { get; }
 
         /// <summary>
-        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory.
-        /// This field is included and set to 'true' if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location.
-        /// See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
+        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory. This field is included and set to `true` if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location. See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
         /// </summary>
         public bool? InStorePickupSupported { get; }
 
         /// <summary>
-        /// This container provides information about the shipping package that will be used to ship the item,
-        /// and includes package type, weight, and dimensions. Package weight is required when calculating shipping
-        /// is used, and shipping services generally have dimension and weight restrictions.
+        /// This object provides information about the shipping package that will be used to ship the item, and includes package type, weight, and dimensions. Package weight is required when calculating shipping is used, and shipping services generally have dimension and weight restrictions.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_PackageSpecifications_1? PackageSpecifications { get; }
 
         /// <summary>
-        /// This container provides information about where the item can be shipped, the shipping cost type, the shipping services offered,
-        /// the handling time, applicable shipping discounts, and more.
+        /// This object provides information about where the item can be shipped, the shipping cost type, the shipping services offered, the handling time, applicable shipping discounts, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_FulfillmentTerms_ShippingTerms_1? ShippingTerms { get; }
 
@@ -7741,7 +8066,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
 
@@ -7815,7 +8140,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
 
@@ -7874,8 +8199,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container
-    /// include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+    /// This type is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_MotorVehicleDeposit_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_MotorVehicleDeposit_1>, IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_MotorVehicleDeposit_1
     {
@@ -7887,12 +8211,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to set the due date (in days) for the buyer to pay off the full balance of the motor vehicle. The clock starts on the full payment due date as soon as the buyer commits to buying the vehicle by clicking the 'Buy It Now' button, by winning the auction, or by the seller accepting that buyer's Best Offer/counteroffer. The three supported values here are `DAYS_3` `DAYS_7`, `DAYS_10`, `DAYS_14`.
+        ///
         /// **Default**: DAYS_7
         /// </summary>
         public ListingTimeDuration? DaysToMakeFullPayment { get; }
 
         /// <summary>
-        /// This boolean field is included and set to 'true' if the seller requires a deposit to secure the purchase of a motor vehicle.
+        /// This boolean field is included and set to `true` if the seller requires a deposit to secure the purchase of a motor vehicle.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? DepositRequired { get; }
@@ -7957,7 +8283,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Specifies the payment terms defined by seller like payment method, payment instructions, etc
+    /// This type specifies the payment terms defined by seller like payment method, payment instructions, etc.
     /// </summary>
     public partial class UpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_PaymentTerms_1 : global::System.IEquatable<UpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_PaymentTerms_1>, IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_PaymentTerms_1
     {
@@ -7974,30 +8300,26 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Business policy container for specifying policy ID .
+        /// Business policy container for specifying policy ID.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_BusinessPolicy_3? BusinessPolicy { get; }
 
         /// <summary>
-        /// This field is set to 'true' if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        /// This field is set to `true` if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? ImmediatePay { get; }
 
         /// <summary>
-        /// This array is used to specify one or more payment methods for listings that support offline transactions.
-        /// Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the
-        /// payment methods supported for a leaf category.
+        /// This array is used to specify one or more payment methods for listings that support offline transactions. Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the payment methods supported for a leaf category. Currently the only payment methods supported are for offline payments.
         ///
-        /// Currently the only payment methods supported are for offline payments
-        ///
-        /// This array will be null if there are no payment methods
+        /// **Note**: This array will be null if there are no payment methods.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingPaymentMethod>? ListingPaymentMethods { get; }
 
         /// <summary>
-        /// This field is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container include the amount of
-        /// the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+        /// This field is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_PaymentTerms_MotorVehicleDeposit_1? MotorVehicleDeposit { get; }
 
@@ -8193,17 +8515,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public ListingMarketplace? Marketplace { get; }
 
         /// <summary>
-        /// This container provides product details for the listing, including listing category, product aspects, title, description, item condition, images, and more.
+        /// This object provides product details for the listing, including listing category, product aspects, title, description, item condition, images, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_SellerProduct_1? SellerProduct { get; }
 
         /// <summary>
-        /// An array of one or more purchaseable items. A single-variation listing will only have one item object, while a multiple-variation listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-variation listings will show unique traits that differentiate them from the rest of the variations within the listing.
+        /// An array of one or more purchasable items. A single-variation listing will only have one item object, while a multiple-variation listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-variation listings will show unique traits that differentiate them from the rest of the variations within the listing.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Listing_Items_1>? Items { get; }
 
         /// <summary>
-        /// This container provides listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object provides listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_ListingTerms_1? ListingTerms { get; }
 
@@ -8315,7 +8637,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IUpdateListing_UpdateListing_Warnings_2>? Warnings { get; }
 
         /// <summary>
-        /// This container shows the complete details of the validated listing object.
+        /// This object shows the complete details of the validated listing object.
         /// </summary>
         public IUpdateListing_UpdateListing_Listing_1 Listing { get; }
 
@@ -8788,6 +9110,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_UpdateListing_UpdateListing_Warnings_AdditionalInformation(i1))),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")));
+            case "SubsidiaryListingWarning":
+                return new UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning(
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_UpdateListing_UpdateListing_Warnings_AdditionalInformation(i1))),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")));
             default:
                 throw new GraphQLResultException($"Unknown __typename '{typename}' for IUpdateListing_UpdateListing_Warnings.");
             }
@@ -9039,12 +9366,24 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         private static IUpdateListing_UpdateListing_Violations Parse_UpdateListing_UpdateListing_Violations(global::System.Text.Json.JsonElement element)
         {
-            GraphQLJson.EnsureTypename(element, "StandardListingValidationRuleViolation", "IUpdateListing_UpdateListing_Violations");
-            return new UpdateListing_UpdateListing_Violations_StandardListingValidationRuleViolation(
+            var typename = GraphQLJson.ReadTypename(element);
+            switch (typename)
+            {
+            case "StandardListingValidationRuleViolation":
+                return new UpdateListing_UpdateListing_Violations_StandardListingValidationRuleViolation(
                     GraphQLJson.ReadList(GraphQLJson.Required(element, "inputPath"), i0 => GraphQLJson.ReadString(i0)),
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_UpdateListing_UpdateListing_Violations_AdditionalInformation(i1))),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "violationCode")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "violationDescription")));
+            case "SubsidiaryListingViolation":
+                return new UpdateListing_UpdateListing_Violations_SubsidiaryListingViolation(
+                    GraphQLJson.ReadList(GraphQLJson.Required(element, "inputPath"), i0 => GraphQLJson.ReadString(i0)),
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_UpdateListing_UpdateListing_Violations_AdditionalInformation(i1))),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "violationCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "violationDescription")));
+            default:
+                throw new GraphQLResultException($"Unknown __typename '{typename}' for IUpdateListing_UpdateListing_Violations.");
+            }
         }
 
         private static IUpdateListing_UpdateListing_Warnings_AdditionalInformation_1 Parse_UpdateListing_UpdateListing_Warnings_AdditionalInformation_1(global::System.Text.Json.JsonElement element)
@@ -9067,6 +9406,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")));
             case "StandardListingWarning":
                 return new UpdateListing_UpdateListing_Warnings_StandardListingWarning_1(
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_UpdateListing_UpdateListing_Warnings_AdditionalInformation_1(i1))),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")));
+            case "SubsidiaryListingWarning":
+                return new UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_1(
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_UpdateListing_UpdateListing_Warnings_AdditionalInformation_1(i1))),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")));
@@ -9120,6 +9464,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")));
             case "StandardListingWarning":
                 return new UpdateListing_UpdateListing_Warnings_StandardListingWarning_2(
+                    GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_UpdateListing_UpdateListing_Warnings_AdditionalInformation_2(i1))),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")));
+            case "SubsidiaryListingWarning":
+                return new UpdateListing_UpdateListing_Warnings_SubsidiaryListingWarning_2(
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "additionalInformation"), v0 => GraphQLJson.ReadList(v0, i1 => Parse_UpdateListing_UpdateListing_Warnings_AdditionalInformation_2(i1))),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningMessage")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "warningCode")));

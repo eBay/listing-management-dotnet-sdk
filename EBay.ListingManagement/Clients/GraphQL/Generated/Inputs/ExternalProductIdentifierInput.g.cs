@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    ///  This type is used to provide a Global Trade Identifier Number (GTIN) for an external product.
+    /// This type is used to provide a Global Trade Identifier Number (GTIN) for an external product.
     /// </summary>
     public partial class ExternalProductIdentifierInput : global::System.IEquatable<ExternalProductIdentifierInput>
     {
@@ -58,13 +58,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_productId || _set_productType))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_productId)
             {

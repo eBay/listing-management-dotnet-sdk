@@ -34,13 +34,25 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         EbayAu,
         /// <summary>
-        /// This enumeration value indicates the applicable marketplace is Dutch language version of eBay Belgium.
+        /// This enumeration value indicates the applicable marketplace is Dutch language version of eBay Belgium. Deprecated value. Do not use.
         /// </summary>
         EbayBe,
+        /// <summary>
+        /// This enumeration value indicates the applicable marketplace is French language version of eBay Belgium.
+        /// </summary>
+        EbayBefr,
+        /// <summary>
+        /// This enumeration value indicates the applicable marketplace is Dutch language version of eBay Belgium.
+        /// </summary>
+        EbayBenl,
         /// <summary>
         /// This enumeration value indicates the applicable marketplace is English language version of eBay Canada.
         /// </summary>
         EbayCa,
+        /// <summary>
+        /// This enumeration value indicates the applicable marketplace is French language version of eBay Canada.
+        /// </summary>
+        EbayCafr,
         /// <summary>
         /// This enumeration value indicates the applicable marketplace is eBay Switzerland.
         /// </summary>
@@ -73,6 +85,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// This enumeration value indicates the applicable marketplace is eBay Italy.
         /// </summary>
         EbayIt,
+        /// <summary>
+        /// This enumeration value indicates the applicable marketplace is eBay US Motors.
+        /// </summary>
+        EbayMotorsUs,
         /// <summary>
         /// This enumeration value indicates the applicable marketplace is eBay Malaysia.
         /// </summary>
@@ -108,7 +124,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 "EBAY_AT" => ListingMarketplace.EbayAt,
                 "EBAY_AU" => ListingMarketplace.EbayAu,
                 "EBAY_BE" => ListingMarketplace.EbayBe,
+                "EBAY_BEFR" => ListingMarketplace.EbayBefr,
+                "EBAY_BENL" => ListingMarketplace.EbayBenl,
                 "EBAY_CA" => ListingMarketplace.EbayCa,
+                "EBAY_CAFR" => ListingMarketplace.EbayCafr,
                 "EBAY_CH" => ListingMarketplace.EbayCh,
                 "EBAY_DE" => ListingMarketplace.EbayDe,
                 "EBAY_ES" => ListingMarketplace.EbayEs,
@@ -117,6 +136,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 "EBAY_HK" => ListingMarketplace.EbayHk,
                 "EBAY_IE" => ListingMarketplace.EbayIe,
                 "EBAY_IT" => ListingMarketplace.EbayIt,
+                "EBAY_MOTORS_US" => ListingMarketplace.EbayMotorsUs,
                 "EBAY_MY" => ListingMarketplace.EbayMy,
                 "EBAY_NL" => ListingMarketplace.EbayNl,
                 "EBAY_PH" => ListingMarketplace.EbayPh,
@@ -134,7 +154,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 ListingMarketplace.EbayAt => "EBAY_AT",
                 ListingMarketplace.EbayAu => "EBAY_AU",
                 ListingMarketplace.EbayBe => "EBAY_BE",
+                ListingMarketplace.EbayBefr => "EBAY_BEFR",
+                ListingMarketplace.EbayBenl => "EBAY_BENL",
                 ListingMarketplace.EbayCa => "EBAY_CA",
+                ListingMarketplace.EbayCafr => "EBAY_CAFR",
                 ListingMarketplace.EbayCh => "EBAY_CH",
                 ListingMarketplace.EbayDe => "EBAY_DE",
                 ListingMarketplace.EbayEs => "EBAY_ES",
@@ -143,6 +166,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 ListingMarketplace.EbayHk => "EBAY_HK",
                 ListingMarketplace.EbayIe => "EBAY_IE",
                 ListingMarketplace.EbayIt => "EBAY_IT",
+                ListingMarketplace.EbayMotorsUs => "EBAY_MOTORS_US",
                 ListingMarketplace.EbayMy => "EBAY_MY",
                 ListingMarketplace.EbayNl => "EBAY_NL",
                 ListingMarketplace.EbayPh => "EBAY_PH",

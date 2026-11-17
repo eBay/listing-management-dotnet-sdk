@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to specify the days and times when a seller may be contacted regarding a classified ad listing. This container is used by the **primarySellerContactHours** and **secondarySellerContactHours** containers and the days specified here should not overlap between the two.
+    /// This type is used to specify the days and times when a seller may be contacted regarding a classified ad listing. This type is used by the **primarySellerContactHours** and **secondarySellerContactHours** objects and the days specified here should not overlap between the two.
     /// </summary>
     public partial class CreateListingSellerContactHoursInput : global::System.IEquatable<CreateListingSellerContactHoursInput>
     {
@@ -35,8 +35,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_supportOnDays;
 
         /// <summary>
-        /// This field can be included and set to 'true' if the seller is available the full 24 hours on the days specified through the **supportOnDays** field. If this field is set to 'true', the **supportHoursStartAt** and **supportHoursEndAt** fields should not be used.
-        /// **Default value**: false
+        /// This field can be included and set to `true` if the seller is available the full 24 hours on the days specified through the **supportOnDays** field. If this field is set to `true`, the **supportHoursStartAt** and **supportHoursEndAt** fields should not be used.
+        ///
+        /// **Default**: false
         /// </summary>
         public bool? AnyTime
         {
@@ -50,7 +51,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to indicate the end time of support hours for the days specified through the **supportOnDays** field. Military time should be used here and times should be on the hour or half hour (e.g. 9:00, 9:30, etc.). The **supportHoursStartAt** and **supportHoursEndAt** fields are always used together and the **supportHoursEndAt** value should always be later than the **supportHoursStartAt** value.
-        /// **Note**: If the **anyTime** is set to 'true', the **supportHoursStartAt** and **supportHoursEndAt** fields should not be used.
+        ///
+        /// **Note**: If the **anyTime** is set to `true`, the **supportHoursStartAt** and **supportHoursEndAt** fields should not be used.
         /// </summary>
         public string? SupportHoursEndAt
         {
@@ -64,7 +66,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to indicate the start time of support hours for the days specified through the **supportOnDays** field. Military time should be used here and times should be on the hour or half hour (e.g. 9:00, 9:30, etc.). The **supportHoursStartAt** and **supportHoursEndAt** fields are always used together and the **supportHoursStartAt** value should always be earlier than the **supportHoursEndAt** value.
-        /// **Note**: If the **anyTime** is set to 'true', the **supportHoursStartAt** and **supportHoursEndAt** fields should not be used.
+        ///
+        /// **Note**: If the **anyTime** is set to `true`, the **supportHoursStartAt** and **supportHoursEndAt** fields should not be used.
         /// </summary>
         public string? SupportHoursStartAt
         {
@@ -92,13 +95,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_anyTime || _set_supportHoursEndAt || _set_supportHoursStartAt || _set_supportOnDays))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_anyTime)
             {

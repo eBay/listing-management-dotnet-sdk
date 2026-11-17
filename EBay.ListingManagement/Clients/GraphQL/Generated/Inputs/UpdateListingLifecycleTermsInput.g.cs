@@ -32,6 +32,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to change the duration of an active or scheduled listing. All fixed price listings must be set to `GTC`(Good 'til Cancelled), but the listing duration days of auction and ad listings may vary based on marketplace and category. The [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see supported durations for each leaf category.
+        ///
         /// **Note**: A change to the duration of an active auction listing must be made within two hours of the listing going live, and once an auction has one or more qualifying bids, the duration can't be changed.
         /// </summary>
         public ListingDurationInDays? ListingDurationInDays
@@ -59,13 +60,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_listingDurationInDays || _set_scheduledToStartAt))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_listingDurationInDays)
             {

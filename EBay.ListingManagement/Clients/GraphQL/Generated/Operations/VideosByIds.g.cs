@@ -26,11 +26,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IVideosByIdsResult
     {
         /// <summary>
-        ///    This query can be used to retrieve the metadata for one or more videos, specified by their **videoId** value. This query returns the title, size, description, ID, playlist, status, expiration date, and thumbnail image of the retrieved video(s). Up to 100 video IDs can be input in this query.
-        /// **PossibleErrors**:
-        ///    | Code                                       | Message                                                          |
-        ///    |--------------------------------------------|------------------------------------------------------------------|
-        ///    | REFERENCE_ARGUMENTS_NOT_FOUND              | The resources referenced by the input arguments were not found.  |
+        /// This query can be used to retrieve the metadata for one or more videos, specified by their **videoId** value. This query returns the title, size, description, ID, playlist, status, expiration date, and thumbnail image of the retrieved video(s). Up to 100 video IDs can be input in this query.
         /// </summary>
         public IVideosByIds_VideosByIds? VideosByIds { get; }
     }
@@ -46,11 +42,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    This query can be used to retrieve the metadata for one or more videos, specified by their **videoId** value. This query returns the title, size, description, ID, playlist, status, expiration date, and thumbnail image of the retrieved video(s). Up to 100 video IDs can be input in this query.
-        /// **PossibleErrors**:
-        ///    | Code                                       | Message                                                          |
-        ///    |--------------------------------------------|------------------------------------------------------------------|
-        ///    | REFERENCE_ARGUMENTS_NOT_FOUND              | The resources referenced by the input arguments were not found.  |
+        /// This query can be used to retrieve the metadata for one or more videos, specified by their **videoId** value. This query returns the title, size, description, ID, playlist, status, expiration date, and thumbnail image of the retrieved video(s). Up to 100 video IDs can be input in this query.
         /// </summary>
         public IVideosByIds_VideosByIds? VideosByIds { get; }
 
@@ -141,19 +133,23 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IVideosByIds_VideosByIds_VideoList_ReferenceArgumentsNotFound : IVideosByIds_VideosByIds_VideoList_1
     {
         /// <summary>
-        /// The names of the input arguments that contain references to data that could not be found. These correspond to the field names in the input type.
+        /// The names of the input fields that contain references to data that could not be found.
+        ///
         /// **Maximum length per item**: 100 characters
+        ///
         /// **Format**: Alphanumeric characters and underscores, matching GraphQL field names
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> ArgumentNames { get; }
         /// <summary>
-        /// The globally unique error code for this business error type. This field always returns: 'REFERENCE_ARGUMENTS_NOT_FOUND'.
+        /// A unique identifier for this specific error type. This code can be used by clients to programmatically identify and handle different types of errors without relying on error messages, which may change over time. Each error type will always return the same **errorCode** value.
+        ///
+        /// **Maximum length**: 40 characters
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
-        /// The developer-friendly message explaining the error.
+        /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
+        ///
         /// **Maximum length**: 500 characters
-        /// **Format**: Alphanumeric characters, spaces, and common punctuation
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -178,24 +174,27 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type represents a streaming endpoint for a video, providing the URL to access the content.
-    /// **Note:** This type is only available when a video has been successfully processed and has a status of 'LIVE'.
+    ///
+    /// **Note**: This type is only applicable when a video has been successfully processed and has a status of `LIVE`.
     /// </summary>
     public partial interface IVideosByIds_VideosByIds_VideoList_Video_Playlists
     {
         /// <summary>
         /// The playable URL for this video.
+        ///
         /// **Maximum length**: 120 characters
         /// </summary>
         public string PlayUrl { get; }
         /// <summary>
-        /// The streaming protocol for the video playlist. Supported protocols include 'DASH' and 'HLS'.
+        /// The streaming protocol for the video playlist. Supported protocols include `DASH` and `HLS`.
         /// </summary>
         public VideoPlaylistProtocolEnum Protocol { get; }
     }
 
     /// <summary>
     /// This type represents a streaming endpoint for a video, providing the URL to access the content.
-    /// **Note:** This type is only available when a video has been successfully processed and has a status of 'LIVE'.
+    ///
+    /// **Note**: This type is only applicable when a video has been successfully processed and has a status of `LIVE`.
     /// </summary>
     public partial interface IVideosByIds_VideosByIds_VideoList_Video_Playlists_VideoPlaylist : IVideosByIds_VideosByIds_VideoList_Video_Playlists
     {
@@ -220,6 +219,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public VideoProcessingFailureCategoryEnum Category { get; }
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -236,6 +236,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public VideoProcessingFailureCategoryEnum Category { get; }
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -248,6 +249,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     {
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -268,6 +270,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public VideoProcessingFailureCategoryEnum Category { get; }
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -280,6 +283,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     {
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -300,6 +304,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public VideoProcessingFailureCategoryEnum Category { get; }
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -312,6 +317,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     {
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -332,6 +338,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public VideoProcessingFailureCategoryEnum Category { get; }
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -348,6 +355,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public VideoProcessingFailureCategoryEnum Category { get; }
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -359,7 +367,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IVideosByIds_VideosByIds_VideoList_Video_Thumbnail
     {
         /// <summary>
-        /// The URL of the thumbnail image of the video. The URL must match the pattern '(?i)http(s)?://i.ebayimg.com/.*' and be a valid eBay Picture URL.
+        /// The URL of the thumbnail image of the video. The URL must match the pattern `(?i)http(s)?://i.ebayimg.com/.*` and be a valid eBay Picture URL.
         /// </summary>
         public string ImageUrl { get; }
     }
@@ -372,7 +380,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Container for videos and its associated metadata
+    /// This type defines the fields that represent a video and its associated metadata.
     /// </summary>
     public partial interface IVideosByIds_VideosByIds_VideoList_Video
     {
@@ -382,32 +390,38 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string VideoId { get; }
         /// <summary>
         /// The description of the video.
+        ///
+        /// **Note**: This field returns `null` if the video was uploaded without a description.
+        ///
         /// **Maximum length**: 4096 characters
-        /// **Note:** This field returns 'null' if the video was uploaded without a description.
         /// </summary>
         public string? Description { get; }
         /// <summary>
-        /// The date and time when an unused video will expire, in ISO-8601 format (for example, '2026-01-01T12:00:00Z'). As long as a video is being used in an active listing, that video will remain on the server and be accessible. If a video is not being used on an active listing, its expiration date is automatically set to 30 days after the video's initial upload.
+        /// The date and time when an unused video will expire, in ISO-8601 format (for example, `2026-01-01T12:00:00Z`). As long as a video is being used in an active listing, that video will remain on the server and be accessible. If a video is not being used on an active listing, its expiration date is automatically set to 30 days after the video's initial upload.
         /// </summary>
         public global::System.DateTimeOffset ExpiresAt { get; }
         /// <summary>
         /// The height of the video in pixels.
-        ///    **Note:** This field returns '0' if video status is 'PROCESSING_FAILED'.
+        ///
+        /// **Note**: This field returns '0' if video status is `PROCESSING_FAILED`.
         /// </summary>
         public int? Height { get; }
         /// <summary>
         /// If applicable, this object returns the reason why the video is blocked by moderators.
-        /// **Note**: This object returns 'null' if the video is not blocked by eBay moderation policies.
+        ///
+        /// **Note**: This object returns `null` if the video is not blocked by eBay moderation policies.
         /// </summary>
         public IVideosByIds_VideosByIds_VideoList_Video_Moderation? Moderation { get; }
         /// <summary>
         /// This array returns the playlist created for the uploaded video, which provides the streaming video URLs to play the video.
-        /// **Note:** This array is only returned when the video status is 'LIVE'.
+        ///
+        /// **Note**: This array is only returned when the video status is `LIVE`.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IVideosByIds_VideosByIds_VideoList_Video_Playlists>? Playlists { get; }
         /// <summary>
         /// This object returns error details if video processing has failed.
-        /// **Note:** This object is only returned when the video status is 'PROCESSING_FAILED'.
+        ///
+        /// **Note**: This object is only returned when the video status is `PROCESSING_FAILED`.
         /// </summary>
         public IVideosByIds_VideosByIds_VideoList_Video_ProcessingFailure? ProcessingFailure { get; }
         /// <summary>
@@ -420,29 +434,34 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public VideoStatusEnum Status { get; }
         /// <summary>
         /// The URL of the thumbnail image of the video.
-        /// **Note:** This object returns 'null' if no thumbnail was provided during video upload, and video status is not 'LIVE'.
+        ///
+        /// **Note**: This object returns `null` if no thumbnail was provided during video upload, and video status is not `LIVE`.
         /// </summary>
         public IVideosByIds_VideosByIds_VideoList_Video_Thumbnail? Thumbnail { get; }
         /// <summary>
         /// The title of the video.
-        ///    **Maximum length**: 1024 characters
-        /// **Note:** This field returns 'null' if the video was uploaded without a title.
+        ///
+        /// **Note**: This field returns `null` if the video was uploaded without a title.
+        ///
+        /// **Maximum length**: 1024 characters
         /// </summary>
         public string? Title { get; }
         /// <summary>
-        /// The duration of the video in ISO-8601 format (for example, 'PT15S' for 15 seconds).
-        /// **Note:** This object returns 'null' if the status of the video is not 'LIVE'.
+        /// The duration of the video in ISO-8601 format (for example, `PT15S` for 15 seconds).
+        ///
+        /// **Note**: This object returns `null` if the status of the video is not `LIVE`.
         /// </summary>
         public global::System.TimeSpan? VideoDuration { get; }
         /// <summary>
         /// The width of the video in pixels.
-        /// **Note:** This field returns '0' if video status is 'PROCESSING_FAILED'.
+        ///
+        /// **Note**: This field returns `0` if video status is `PROCESSING_FAILED`.
         /// </summary>
         public int? Width { get; }
     }
 
     /// <summary>
-    /// Container for videos and its associated metadata
+    /// This type defines the fields that represent a video and its associated metadata.
     /// </summary>
     public partial interface IVideosByIds_VideosByIds_VideoList_Video_Video : IVideosByIds_VideosByIds_VideoList_Video
     {
@@ -560,21 +579,25 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The names of the input arguments that contain references to data that could not be found. These correspond to the field names in the input type.
+        /// The names of the input fields that contain references to data that could not be found.
+        ///
         /// **Maximum length per item**: 100 characters
+        ///
         /// **Format**: Alphanumeric characters and underscores, matching GraphQL field names
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> ArgumentNames { get; }
 
         /// <summary>
-        /// The globally unique error code for this business error type. This field always returns: 'REFERENCE_ARGUMENTS_NOT_FOUND'.
+        /// A unique identifier for this specific error type. This code can be used by clients to programmatically identify and handle different types of errors without relying on error messages, which may change over time. Each error type will always return the same **errorCode** value.
+        ///
+        /// **Maximum length**: 40 characters
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
-        /// The developer-friendly message explaining the error.
+        /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
+        ///
         /// **Maximum length**: 500 characters
-        /// **Format**: Alphanumeric characters, spaces, and common punctuation
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -712,7 +735,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type represents a streaming endpoint for a video, providing the URL to access the content.
-    /// **Note:** This type is only available when a video has been successfully processed and has a status of 'LIVE'.
+    ///
+    /// **Note**: This type is only applicable when a video has been successfully processed and has a status of `LIVE`.
     /// </summary>
     public partial class VideosByIds_VideosByIds_VideoList_Video_Playlists_VideoPlaylist : global::System.IEquatable<VideosByIds_VideosByIds_VideoList_Video_Playlists_VideoPlaylist>, IVideosByIds_VideosByIds_VideoList_Video_Playlists_VideoPlaylist
     {
@@ -724,12 +748,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The playable URL for this video.
+        ///
         /// **Maximum length**: 120 characters
         /// </summary>
         public string PlayUrl { get; }
 
         /// <summary>
-        /// The streaming protocol for the video playlist. Supported protocols include 'DASH' and 'HLS'.
+        /// The streaming protocol for the video playlist. Supported protocols include `DASH` and `HLS`.
         /// </summary>
         public VideoPlaylistProtocolEnum Protocol { get; }
 
@@ -810,6 +835,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -896,6 +922,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -977,6 +1004,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -1068,6 +1096,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -1149,6 +1178,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -1240,6 +1270,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -1321,6 +1352,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -1412,6 +1444,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -1498,6 +1531,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// A non-localized error message describing the processing failure.
+        ///
         /// **Maximum length**: 150 characters
         /// </summary>
         public string Message { get; }
@@ -1574,7 +1608,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The URL of the thumbnail image of the video. The URL must match the pattern '(?i)http(s)?://i.ebayimg.com/.*' and be a valid eBay Picture URL.
+        /// The URL of the thumbnail image of the video. The URL must match the pattern `(?i)http(s)?://i.ebayimg.com/.*` and be a valid eBay Picture URL.
         /// </summary>
         public string ImageUrl { get; }
 
@@ -1633,7 +1667,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Container for videos and its associated metadata
+    /// This type defines the fields that represent a video and its associated metadata.
     /// </summary>
     public partial class VideosByIds_VideosByIds_VideoList_Video_Video : global::System.IEquatable<VideosByIds_VideosByIds_VideoList_Video_Video>, IVideosByIds_VideosByIds_VideoList_Video_Video
     {
@@ -1661,37 +1695,43 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The description of the video.
+        ///
+        /// **Note**: This field returns `null` if the video was uploaded without a description.
+        ///
         /// **Maximum length**: 4096 characters
-        /// **Note:** This field returns 'null' if the video was uploaded without a description.
         /// </summary>
         public string? Description { get; }
 
         /// <summary>
-        /// The date and time when an unused video will expire, in ISO-8601 format (for example, '2026-01-01T12:00:00Z'). As long as a video is being used in an active listing, that video will remain on the server and be accessible. If a video is not being used on an active listing, its expiration date is automatically set to 30 days after the video's initial upload.
+        /// The date and time when an unused video will expire, in ISO-8601 format (for example, `2026-01-01T12:00:00Z`). As long as a video is being used in an active listing, that video will remain on the server and be accessible. If a video is not being used on an active listing, its expiration date is automatically set to 30 days after the video's initial upload.
         /// </summary>
         public global::System.DateTimeOffset ExpiresAt { get; }
 
         /// <summary>
         /// The height of the video in pixels.
-        ///    **Note:** This field returns '0' if video status is 'PROCESSING_FAILED'.
+        ///
+        /// **Note**: This field returns '0' if video status is `PROCESSING_FAILED`.
         /// </summary>
         public int? Height { get; }
 
         /// <summary>
         /// If applicable, this object returns the reason why the video is blocked by moderators.
-        /// **Note**: This object returns 'null' if the video is not blocked by eBay moderation policies.
+        ///
+        /// **Note**: This object returns `null` if the video is not blocked by eBay moderation policies.
         /// </summary>
         public IVideosByIds_VideosByIds_VideoList_Video_Moderation? Moderation { get; }
 
         /// <summary>
         /// This array returns the playlist created for the uploaded video, which provides the streaming video URLs to play the video.
-        /// **Note:** This array is only returned when the video status is 'LIVE'.
+        ///
+        /// **Note**: This array is only returned when the video status is `LIVE`.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IVideosByIds_VideosByIds_VideoList_Video_Playlists>? Playlists { get; }
 
         /// <summary>
         /// This object returns error details if video processing has failed.
-        /// **Note:** This object is only returned when the video status is 'PROCESSING_FAILED'.
+        ///
+        /// **Note**: This object is only returned when the video status is `PROCESSING_FAILED`.
         /// </summary>
         public IVideosByIds_VideosByIds_VideoList_Video_ProcessingFailure? ProcessingFailure { get; }
 
@@ -1707,26 +1747,31 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The URL of the thumbnail image of the video.
-        /// **Note:** This object returns 'null' if no thumbnail was provided during video upload, and video status is not 'LIVE'.
+        ///
+        /// **Note**: This object returns `null` if no thumbnail was provided during video upload, and video status is not `LIVE`.
         /// </summary>
         public IVideosByIds_VideosByIds_VideoList_Video_Thumbnail? Thumbnail { get; }
 
         /// <summary>
         /// The title of the video.
-        ///    **Maximum length**: 1024 characters
-        /// **Note:** This field returns 'null' if the video was uploaded without a title.
+        ///
+        /// **Note**: This field returns `null` if the video was uploaded without a title.
+        ///
+        /// **Maximum length**: 1024 characters
         /// </summary>
         public string? Title { get; }
 
         /// <summary>
-        /// The duration of the video in ISO-8601 format (for example, 'PT15S' for 15 seconds).
-        /// **Note:** This object returns 'null' if the status of the video is not 'LIVE'.
+        /// The duration of the video in ISO-8601 format (for example, `PT15S` for 15 seconds).
+        ///
+        /// **Note**: This object returns `null` if the status of the video is not `LIVE`.
         /// </summary>
         public global::System.TimeSpan? VideoDuration { get; }
 
         /// <summary>
         /// The width of the video in pixels.
-        /// **Note:** This field returns '0' if video status is 'PROCESSING_FAILED'.
+        ///
+        /// **Note**: This field returns `0` if video status is `PROCESSING_FAILED`.
         /// </summary>
         public int? Width { get; }
 

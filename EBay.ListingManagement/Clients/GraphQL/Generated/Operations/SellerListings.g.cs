@@ -26,7 +26,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListingsResult
     {
         /// <summary>
-        /// Get the listing details using the listing input details. The caller must be the Seller.
+        /// This query can be used by a seller to retrieve the details of a listing specified by its **listingId** value. The user using the query **must** be the seller associated with the listing.
         /// </summary>
         public ISellerListings_SellerListings? SellerListings { get; }
     }
@@ -42,7 +42,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Get the listing details using the listing input details. The caller must be the Seller.
+        /// This query can be used by a seller to retrieve the details of a listing specified by its **listingId** value. The user using the query **must** be the seller associated with the listing.
         /// </summary>
         public ISellerListings_SellerListings? SellerListings { get; }
 
@@ -101,11 +101,45 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This union type is used when the **sellerListings** query successfully returns listing details or returns an input/business error for the listing.
+    /// </summary>
+    public partial interface ISellerListings_SellerListings
+    {
+        public string __typename { get; }
+    }
+
+    /// <summary>
+    /// This error type is returned when the number of listing IDs provided for the **sellerListings** query exceeds the maximum allowed limit.
+    /// </summary>
+    public partial interface ISellerListings_SellerListings_ListingIdsMaxLimitError : ISellerListings_SellerListings
+    {
+        /// <summary>
+        /// Technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorCode { get; }
+        /// <summary>
+        /// Technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorMessage { get; }
+        /// <summary>
+        /// The maximum number of listing IDs allowed.
+        /// </summary>
+        public int MaxAllowed { get; }
+    }
+
+    /// <summary>
     /// This union type is used if the **sellerListings** query successfully retrieve details on a listing or if the listing is on-hold.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings
     {
         public string __typename { get; }
+    }
+
+    /// <summary>
+    /// This type is used to display details for an active MSKU listing under SKU filters, where some SKUs are available and others are unavailable.
+    /// </summary>
+    public partial interface ISellerListings_SellerListings_Listings_ListingPartialSuccess : ISellerListings_SellerListings_Listings
+    {
     }
 
     /// <summary>
@@ -122,7 +156,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? ExternalImageUrl { get; }
         /// <summary>
-        /// Seller provided order of the picture in which the image should be displayed
+        /// Seller provided order of the picture in which the image should be displayed.
         /// </summary>
         public int? Order { get; }
     }
@@ -144,11 +178,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? Title { get; }
         /// <summary>
-        /// For US or CA eBay Motors vehicle listing. Including Make Model and sub-model.
+        /// The eBay-generated title of a motor vehicle listing, which will consist of the Make, Model, Year, etc. of the vehicle. This title will be shown in search results and on the View Item page. For all other listings, the seller-defined title will appear in the **title** field instead.
         /// </summary>
         public string? EbayGeneratedTitle { get; }
         /// <summary>
         /// The full description of the product. This is a mandatory field for a listing.
+        ///
         /// **Note**: This field may contain HTML markup and inline CSS, and may be up to 500,000 characters including the HTML and CSS tags and attributes.
         /// </summary>
         public string? Description { get; }
@@ -166,25 +201,22 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Specifies the lifecycle details for the listing like stateDate, EndDate, Duration, etc.
+    /// This type specifies the lifecycle details for the listing like the start date, end date, duration, etc.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_LifecycleTerms
     {
         /// <summary>
-        /// This field indicates the time duration of the listing. All fixed price listings must be set to
-        /// `GTC`(Good 'til Cancelled), but the listing duration days of auction and ad listings may vary based on
-        /// marketplace and category.
+        /// This field indicates the time duration of the listing. All fixed price listings must be set to `GTC`(Good 'til Cancelled), but the listing duration days of auction and ad listings may vary based on  marketplace and category.
         ///
-        /// The [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies)
-        /// method can be used to see supported durations for each leaf category.
+        /// The [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see supported durations for each leaf category.
         /// </summary>
         public ListingDurationInDays? ListingDurationInDays { get; }
         /// <summary>
-        /// Date and time the listing was created.
+        /// The date and time the listing was created.
         /// </summary>
         public global::System.DateTimeOffset? CreatedAt { get; }
         /// <summary>
-        /// The time that the listing actually becomes ended on eBay
+        /// The time that the listing actually becomes ended on eBay.
         /// </summary>
         public global::System.DateTimeOffset? ActualEndAt { get; }
         /// <summary>
@@ -193,25 +225,23 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public EndListingReason? EndListingReason { get; }
         /// <summary>
-        /// Allowed values:SCHEDULED, ACTIVE, ENDED
+        /// The status of the listing. Valid values: `SCHEDULED`, `ACTIVE`, `ENDED`
         /// </summary>
         public ListingStatusEnum? ListingStatus { get; }
         /// <summary>
-        /// The time that the listing is supposed to be ended on eBay. This will be null if the end date has not been scueduled
+        /// The time that the listing is supposed to be ended on eBay. This will be null if the end date has not been scheduled.
         /// </summary>
         public global::System.DateTimeOffset? ScheduledEndAt { get; }
         /// <summary>
-        /// A time in the future that the listing becomes active on eBay. To schedule the listing start time, specify a time in the future in GMT format.
-        /// When you schedule a start time, the start time is randomized within 15-minute intervals. Randomized start times applies to the following sites:
-        /// AT, BEFR, BENL, CH, DE, ES, FR, IE, IT, NL, PL, UK
+        /// A time in the future that the listing becomes active on eBay. To schedule the listing start time, specify a time in the future in GMT format. When you schedule a start time, the start time is randomized within 15-minute intervals. Randomized start times applies to the following sites: AT, BEFR, BENL, CH, DE, ES, FR, IE, IT, NL, PL, UK
         ///
-        /// This will be null if the startDate was not specified.
+        /// This will be null if the start date was not specified.
         /// </summary>
         public global::System.DateTimeOffset? StartAt { get; }
     }
 
     /// <summary>
-    /// Specifies the lifecycle details for the listing like stateDate, EndDate, Duration, etc.
+    /// This type specifies the lifecycle details for the listing like the start date, end date, duration, etc.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_LifecycleTerms_ListingLifecycle : ISellerListings_SellerListings_Listings_Listing_ListingTerms_LifecycleTerms
     {
@@ -256,7 +286,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// The major weight value of the shipping package according to the unit of measurement applicable to the marketplace. The major weight value is the whole number part of the weight. For English measurement system, the supported unit of measurement for **majorUnit** is pounds. For Metric measurement system, the supported unit of measurement for **majorUnit**
         /// is kilograms.
         ///
-        /// Note: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
+        /// **Note**: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
         /// </summary>
         public int? MajorUnit { get; }
         /// <summary>
@@ -286,7 +316,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public bool? IrregularPackage { get; }
         /// <summary>
-        /// The enumeration value returned in this field indicates the type of package used to ship the item.
+        /// The enumerated value returned in this field indicates the type of package used to ship the item.
         /// </summary>
         public ListingPackageType? ListingPackageType { get; }
         /// <summary>
@@ -294,11 +324,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public MeasurementSystem? ListingUnitOfMeasure { get; }
         /// <summary>
-        /// This container is used to specify the dimensions of the shipping package and the unit of measurement used.
+        /// This object is used to specify the dimensions of the shipping package and the unit of measurement used.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_PackageSpecifications_PackageDimensions? PackageDimensions { get; }
         /// <summary>
-        /// This container is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
+        /// This object is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_PackageSpecifications_PackageWeight? PackageWeight { get; }
     }
@@ -311,54 +341,52 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type specifies the geographic locations and identifies a country or continent and regions, for various listing purposes such as shipping exclusions and inclusions.
+    /// This type is used to indicate a continent, a geographical region, a country, or a special domestic location as a shipping location or excluded shipping location.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_IncludedShipToLocations
     {
         /// <summary>
-        /// Identify by country using the ISO 3166-1 alpha-2 country code standard.
-        /// See the [`ISOAlpha2CountryCode`] enum for the full list of supported country codes.
+        /// The enum value returned in this field indicates the country that is a shipping or excluded shipping location.
         /// </summary>
         public CountryAlpha2Code? Country { get; }
         /// <summary>
-        /// Identify by continent using a predefined set of continent codes. See the **ContinentCode** enum for the full list of supported continent codes.
+        /// The enum value returned in this field indicates the continent that is a shipping or excluded shipping location.
         /// </summary>
         public ContinentCode? Continent { get; }
         /// <summary>
-        /// Identify by a specify a geographic region not covered by country or continent codes.
+        /// The enum value returned in this field indicates the large geographical region that is a shipping or excluded shipping location, or a special domestic location that is an excluded shipping location.
         /// </summary>
         public SellerShippingRegionCode? SellerShippingRegion { get; }
     }
 
     /// <summary>
-    /// This type specifies the geographic locations and identifies a country or continent and regions, for various listing purposes such as shipping exclusions and inclusions.
+    /// This type is used to indicate a continent, a geographical region, a country, or a special domestic location as a shipping location or excluded shipping location.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_IncludedShipToLocations_ShippingLocation : ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_IncludedShipToLocations
     {
     }
 
     /// <summary>
-    /// This type specifies the geographic locations and identifies a country or continent and regions, for various listing purposes such as shipping exclusions and inclusions.
+    /// This type is used to indicate a continent, a geographical region, a country, or a special domestic location as a shipping location or excluded shipping location.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_ExcludedShipToLocations
     {
         /// <summary>
-        /// Identify by continent using a predefined set of continent codes. See the **ContinentCode** enum for the full list of supported continent codes.
+        /// The enum value returned in this field indicates the continent that is a shipping or excluded shipping location.
         /// </summary>
         public ContinentCode? Continent { get; }
         /// <summary>
-        /// Identify by country using the ISO 3166-1 alpha-2 country code standard.
-        /// See the [`ISOAlpha2CountryCode`] enum for the full list of supported country codes.
+        /// The enum value returned in this field indicates the country that is a shipping or excluded shipping location.
         /// </summary>
         public CountryAlpha2Code? Country { get; }
         /// <summary>
-        /// Identify by a specify a geographic region not covered by country or continent codes.
+        /// The enum value returned in this field indicates the large geographical region that is a shipping or excluded shipping location, or a special domestic location that is an excluded shipping location.
         /// </summary>
         public SellerShippingRegionCode? SellerShippingRegion { get; }
     }
 
     /// <summary>
-    /// This type specifies the geographic locations and identifies a country or continent and regions, for various listing purposes such as shipping exclusions and inclusions.
+    /// This type is used to indicate a continent, a geographical region, a country, or a special domestic location as a shipping location or excluded shipping location.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_ExcludedShipToLocations_ShippingLocation : ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_ExcludedShipToLocations
     {
@@ -370,22 +398,20 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms
     {
         /// <summary>
-        /// Indicates whether the buyer is responsible for vehicle shipping/pickup.
+        /// This boolean field indicates whether the buyer is responsible for vehicle shipping/pickup.
         /// </summary>
         public bool? BuyerResponsibleForShipping { get; }
         /// <summary>
-        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer.
-        /// The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,
-        /// but longer handling times are supported.
+        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer. The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,  but longer handling times are supported.
         /// </summary>
         public ListingTimeDuration? HandlingTimeDuration { get; }
         /// <summary>
-        /// This array shows the list of locations where the seller will ship the item. The values in this array can be continents, large geographical regions, or countries. The **excludedShipToLocations** and **includedShipToLocations**vvvvcbefueuvdddftkvvjkhgfkndhjrdhgvbdvvdgbnh
+        /// This array shows the list of locations where the seller will ship the item. The values in this array can be continents, large geographical regions, or countries. The **excludedShipToLocations** and **includedShipToLocations**
         /// lists should not contradict one another. If there is a contradiction between the shipping exclusions and inclusions, the exclusion usually takes precedence. This means if a location is both included and excluded, it will be treated as excluded.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_IncludedShipToLocations>? IncludedShipToLocations { get; }
         /// <summary>
-        /// This array is used to indicate the locations where the seller will not ship the item. The values in this array can be contients, large geographical regions, countries, or special domestic locations. The **excludedShipToLocations** and **includedShipToLocations** lists should not contradict one another. If there is a contradiction between the shipping exclusions and inclusions, the exclusion usually takes precedence. This means if a location is both included and excluded, it will be treated as excluded.
+        /// This array is used to indicate the locations where the seller will not ship the item. The values in this array can be continents, large geographical regions, countries, or special domestic locations. The **excludedShipToLocations** and **includedShipToLocations** lists should not contradict one another. If there is a contradiction between the shipping exclusions and inclusions, the exclusion usually takes precedence. This means if a location is both included and excluded, it will be treated as excluded.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_ExcludedShipToLocations>? ExcludedShipToLocations { get; }
     }
@@ -398,55 +424,38 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to provide details on how the item will be delivered to the buyer.
-    /// The data in this type includes available shipping services, ship-to and excluded shipping locations,
-    /// shipping costs, package details, and more.
+    /// This type is used to provide details on how the item will be delivered to the buyer. The data in this type includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms
     {
         /// <summary>
-        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory.
-        /// This field is included and set to 'true' if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location.
-        /// See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
+        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory. This field is included and set to `true` if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location. See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
         /// </summary>
         public bool? InStorePickupSupported { get; }
         /// <summary>
-        /// This field can be included and set to 'true' if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally.
-        /// With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg.
-        /// GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping,
-        /// but there is currently no boolean field associated with this feature.
+        /// This field can be included and set to `true` if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally. With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg. GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping, but there is currently no boolean field associated with this feature.
         /// </summary>
         public bool? GlobalShippingSupported { get; }
         /// <summary>
-        /// Specifies that the seller wants to offer free shipping.
-        ///
-        /// To see if a specific shipping service is free, look at ShippingServiceDetails.shippingCost.
-        /// If it is set to zero, the shipping is free for that service.
+        /// This boolean specifies whether the seller wants to offer free shipping. To see if a specific shipping service is free, look at **ShippingServiceDetails.shippingCost**. If it is set to zero, the shipping is free for that service.
         /// </summary>
         public bool? FreeShippingAvailable { get; }
         /// <summary>
-        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email.
-        /// The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies)
-        /// method can be used to see if a leaf category supports digital delivery.
+        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email. The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see if a leaf category supports digital delivery.
         /// </summary>
         public bool? DigitalDeliverySupported { get; }
         /// <summary>
-        /// This container provides information about the shipping package that will be used to ship the item,
-        /// and includes package type, weight, and dimensions. Package weight is required when calculating shipping
-        /// is used, and shipping services generally have dimension and weight restrictions.
+        /// This object provides information about the shipping package that will be used to ship the item, and includes package type, weight, and dimensions. Package weight is required when calculating shipping is used, and shipping services generally have dimension and weight restrictions.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_PackageSpecifications? PackageSpecifications { get; }
         /// <summary>
-        /// This container provides information about where the item can be shipped, the shipping cost type, the shipping services offered,
-        /// the handling time, applicable shipping discounts, and more.
+        /// This object provides information about where the item can be shipped, the shipping cost type, the shipping services offered, the handling time, applicable shipping discounts, and more.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms? ShippingTerms { get; }
     }
 
     /// <summary>
-    /// This type is used to provide details on how the item will be delivered to the buyer.
-    /// The data in this type includes available shipping services, ship-to and excluded shipping locations,
-    /// shipping costs, package details, and more.
+    /// This type is used to provide details on how the item will be delivered to the buyer. The data in this type includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_FulfillmentTerms : ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms
     {
@@ -458,14 +467,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingReturnTerms_BusinessPolicy
     {
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
         /// <summary>
         /// A seller-defined description of the return business policy. This description is only for the seller's use, and is not exposed on any eBay pages. This can be null when no description was provided during policy creation.
         ///
-        /// **Maximum length:** 250 characters
-        /// **Occurrence:** Conditional
+        /// **Maximum length**: 250 characters
         /// </summary>
         public string? Description { get; }
         /// <summary>
@@ -475,7 +483,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// A seller-defined name for this return business policy. Names must be unique per site and per type.
         ///
-        /// **Maximum length:** 64 characters
+        /// **Maximum length**: 64 characters
         /// **Occurrence:** Always
         /// </summary>
         public string? Name { get; }
@@ -494,19 +502,20 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingReturnTerms_DomesticReturnTerms
     {
         /// <summary>
-        /// The enumeration value returned here indicates how a buyer will be refunded if an item is returned. This is a mandatory field if the seller accepts returns for the item.
+        /// The enumerated value returned here indicates how a buyer will be refunded if an item is returned. This is a mandatory field if the seller accepts returns for the item.
         /// </summary>
         public ListingRefundMethod? ListingRefundMethod { get; }
         /// <summary>
-        /// This boolean field indicates whether or not the seller allows the buyer to return the item. This field is mandatory for return policies and returned as 'true' if the seller accepts returns for the item or 'false' if the seller does not accept returns for the item.
+        /// This boolean field indicates whether or not the seller allows the buyer to return the item. This field is mandatory for return policies and returned as `true` if the seller accepts returns for the item or `false` if the seller does not accept returns for the item.
         /// </summary>
         public bool? ReturnAccepted { get; }
         /// <summary>
-        /// The enumeration value returned in this field indicates the amount of time that the buyer has to return an item. The return period begins when the item is marked 'delivered' at the buyer's specified ship-to location. This field is mandatory if the seller accepts returns for the item.
+        /// The enumerated value returned in this field indicates the amount of time that the buyer has to return an item. The return period begins when the item is marked 'delivered' at the buyer's specified ship-to location. This field is mandatory if the seller accepts returns for the item.
         /// </summary>
         public ListingTimeDuration? ReturnDuration { get; }
         /// <summary>
-        /// The enumeration value returned here indicates either the buyer or the seller as the party who pays for return shipping charges. This is a mandatory field if the seller accepts returns for the item.
+        /// The enumerated value returned here indicates either the buyer or the seller as the party who pays for return shipping charges. This is a mandatory field if the seller accepts returns for the item.
+        ///
         /// **Note**: The seller is always responsible for return shipping costs when an item is being returned due to a Significantly not as described (SNAD) issue.
         /// </summary>
         public string? ReturnShipmentInvoicee { get; }
@@ -525,19 +534,20 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingReturnTerms_InternationalReturnTerms
     {
         /// <summary>
-        /// The enumeration value returned here indicates how a buyer will be refunded if an item is returned. This is a mandatory field if the seller accepts returns for the item.
+        /// The enumerated value returned here indicates how a buyer will be refunded if an item is returned. This is a mandatory field if the seller accepts returns for the item.
         /// </summary>
         public ListingRefundMethod? ListingRefundMethod { get; }
         /// <summary>
-        /// This boolean field indicates whether or not the seller allows the buyer to return the item. This field is mandatory for return policies and returned as 'true' if the seller accepts returns for the item or 'false' if the seller does not accept returns for the item.
+        /// This boolean field indicates whether or not the seller allows the buyer to return the item. This field is mandatory for return policies and returned as `true` if the seller accepts returns for the item or `false` if the seller does not accept returns for the item.
         /// </summary>
         public bool? ReturnAccepted { get; }
         /// <summary>
-        /// The enumeration value returned in this field indicates the amount of time that the buyer has to return an item. The return period begins when the item is marked 'delivered' at the buyer's specified ship-to location. This field is mandatory if the seller accepts returns for the item.
+        /// The enumerated value returned in this field indicates the amount of time that the buyer has to return an item. The return period begins when the item is marked 'delivered' at the buyer's specified ship-to location. This field is mandatory if the seller accepts returns for the item.
         /// </summary>
         public ListingTimeDuration? ReturnDuration { get; }
         /// <summary>
-        /// The enumeration value returned here indicates either the buyer or the seller as the party who pays for return shipping charges. This is a mandatory field if the seller accepts returns for the item.
+        /// The enumerated value returned here indicates either the buyer or the seller as the party who pays for return shipping charges. This is a mandatory field if the seller accepts returns for the item.
+        ///
         /// **Note**: The seller is always responsible for return shipping costs when an item is being returned due to a Significantly not as described (SNAD) issue.
         /// </summary>
         public string? ReturnShipmentInvoicee { get; }
@@ -556,14 +566,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingReturnTerms
     {
         /// <summary>
-        /// This field is used to specify a return business policy to use for the listing. If this field is used, none of the other fields in this container should be
+        /// This field is used to specify a return business policy to use for the listing. If this field is used, none of the other fields in This object should be
         /// used since all return policy settings are configured in the business policy instead. The
         /// [getReturnPolicies](https://developer.ebay.com/api-docs/sell/account/resources/return_policy/methods/getReturnPolicies) method can be used to retrieve
         /// all return business policies defined for a seller on an eBay marketplace.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingReturnTerms_BusinessPolicy? BusinessPolicy { get; }
         /// <summary>
-        /// This object shows the seller's domestic return policy for a listing, which includes whether or not the seller accepts returns for the item and the duration of the return period. Note that if the listing only has a domestic return policy set up, but the item is shipped internationally, the settings in this container will also apply to international returns.
+        /// This object shows the seller's domestic return policy for a listing, which includes whether or not the seller accepts returns for the item and the duration of the return period. Note that if the listing only has a domestic return policy set up, but the item is shipped internationally, the settings in this object will also apply to international returns.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingReturnTerms_DomesticReturnTerms? DomesticReturnTerms { get; }
         /// <summary>
@@ -589,7 +599,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms_BusinessPolicy
     {
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
     }
@@ -602,16 +612,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Specifies the payment terms defined by seller like payment method, payment instructions, etc
+    /// This type specifies the payment terms defined by seller like payment method, payment instructions, etc.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms
     {
         /// <summary>
-        /// Business policy container for specifying policy ID .
+        /// Business policy container for specifying policy ID.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms_BusinessPolicy? BusinessPolicy { get; }
         /// <summary>
-        /// This field is set to 'true' if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        /// This field is set to `true` if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? ImmediatePay { get; }
@@ -622,24 +633,26 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Specifies the payment terms defined by seller like payment method, payment instructions, etc
+    /// This type specifies the payment terms defined by seller like payment method, payment instructions, etc.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms_PaymentTerms : ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms
     {
     }
 
     /// <summary>
-    /// This type is used to indicate listing upgrades enabled by the seller such as bold titles in search results, Gallery Plus, or an added subtitle.
+    /// This type is used to indicate listing upgrades enabled by the seller such as bold titles in search results, **Gallery Plus**, or an added subtitle.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_VisualEnhancements
     {
         /// <summary>
-        /// This boolean field indicates whether or not the seller is useing boldface type for the listing title. If returned as 'true', the listing title will appear in boldtype in search results for greater visibility. This feature cannot be enabled for a motor vehicle listing.
+        /// This boolean field indicates whether or not the seller is using boldface type for the listing title. If returned as `true`, the listing title will appear in boldtype in search results for greater visibility. This feature cannot be enabled for a motor vehicle listing.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? BoldTitle { get; }
         /// <summary>
-        /// This boolean field indicates whether or not the seller using the Gallery Plus feature for the listing. With Gallery Plus, a larger gallery image of the item is displayed in search results. This feature cannot be enabled for a motor vehicle listing.
+        /// This boolean field indicates whether or not the seller using the **Gallery Plus** feature for the listing. With **Gallery Plus**, a larger gallery image of the item is displayed in search results. This feature cannot be enabled for a motor vehicle listing.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? GalleryPlus { get; }
@@ -650,87 +663,91 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to indicate listing upgrades enabled by the seller such as bold titles in search results, Gallery Plus, or an added subtitle.
+    /// This type is used to indicate listing upgrades enabled by the seller such as bold titles in search results, **Gallery Plus**, or an added subtitle.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_VisualEnhancements_ListingVisualEnhancements : ISellerListings_SellerListings_Listings_Listing_ListingTerms_VisualEnhancements
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_Original
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_Original_Amount : ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_Original
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount
     {
         /// <summary>
-        /// The monetary amount in the listing’s original currency. This value represents the monetary amount of the listing before any conversion is performed.
+        /// This field contains the monetary amount in the listing's original currency, before any conversion was performed.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_Original? Original { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_ConvertedAmount : ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_Original
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_Original_Amount : ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_Original
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount
     {
         /// <summary>
-        /// The monetary amount in the listing’s original currency. This value represents the monetary amount of the listing before any conversion is performed.
+        /// This field contains the monetary amount in the listing's original currency, before any conversion was performed.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_Original? Original { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_ConvertedAmount : ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount
     {
@@ -747,12 +764,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public bool? AcceptBestOffer { get; }
         /// <summary>
         /// The price at which Best Offers will be automatically accepted by the seller if they meet or exceed the price. Auto-accept is an optional feature for the seller.
-        /// **Note**: This container is only accessible to the seller of this listing
+        ///
+        /// **Note**: This object is only accessible to the seller of this listing
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount? AutoAcceptThresholdAmount { get; }
         /// <summary>
         /// The price at which Best Offers will be automatically declined by the seller if they are equal to or below the price. Auto-decline is an optional feature for the seller.
-        /// **Note**: This container is only accessible to the seller of this listing
+        ///
+        /// **Note**: This object is only accessible to the seller of this listing
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount? AutoDeclineThresholdAmount { get; }
     }
@@ -765,90 +784,64 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container shows sales tax information for an item in a specific tax jurisdiction
+    /// This type shows sales tax information for an item in a specific tax jurisdiction
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_TaxTerms
     {
         /// <summary>
-        /// This field is included and set to 'true' if the seller wants the sales tax rate for the jurisdiction to apply to the cumulative
-        /// amount of item cost and shipping charges. This field is only applicable if the **salesTaxPercentage** and **salesTaxJurisdictionId**
-        /// fields are also set.
-        /// **Default**: false
+        /// This boolean field indicates whether or not the seller wants the sales tax rate for the jurisdiction to apply to the cumulative amount of item cost and shipping charges. This field is only applicable if the **salesTaxPercentage** and **salesTaxJurisdictionId** fields are also set.
         /// </summary>
         public bool? SalesTaxApplicableToShipping { get; }
         /// <summary>
-        /// This field is used to specify a US territory or a Canadian province that will be charged the sales tax rate specified in the
-        /// **salesTaxPercentage** field. The supported US territories are `AS` (America Samoa), `GU` (Guam),
-        /// `MP` (Northern Mariana Islands), `PW` (Palau), and `VI` (US Virgin Islands).
+        /// The unique identifier of the US territory or a Canadian province that will be charged the sales tax rate specified in the **salesTaxPercentage** field. The supported US territories are `AS` (America Samoa), `GU` (Guam),   `MP` (Northern Mariana Islands), `PW` (Palau), and `VI` (US Virgin Islands).
         ///
-        /// The two-letter codes for Canadian provinces can be found here on the
-        /// [Government of Canada](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/completing-slips-summaries/financial-slips-summaries/return-investment-income-t5/provincial-territorial-codes.html)
-        /// website. This field can only be used on the US and Canadian marketplaces.
+        /// The two-letter codes for Canadian provinces can be found here on the [Government of Canada](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/completing-slips-summaries/financial-slips-summaries/return-investment-income-t5/provincial-territorial-codes.html) website.
         /// </summary>
         public string? SalesTaxJurisdictionId { get; }
         /// <summary>
-        /// This field is used along with **salesTaxJurisdictionId** field to set the sales tax rate for a specific US territory or a Canadian province.
-        /// The percentage set here will be applied to sale price as the sales tax for the order line item. The value passed in is stored with a precision of 1 digits after the decimal point.
-        /// This field can only be used on the US and Canadian marketplaces.
+        /// This field indicates the sales tax rate for the corresponding US territory or a Canadian province. The percentage set here will be applied to sale price as the sales tax for the order line item. This field is only applicable on the US and Canadian marketplaces.
         /// </summary>
         public decimal? SalesTaxPercentage { get; }
         /// <summary>
-        /// This field is included and set to 'true' if the seller has an account level sales tax table set up and wishes to use the
-        /// sales tax rates set up in that table. If this field is set to 'true', the values contained in the other sales tax fields
-        /// (if set) in this container will be overridden by the values set in the sales tax table.
+        /// This field indicates whether or not the seller has an account level sales tax table set up and wishes to use the sales tax rates set up in that table. If this field is returned as `true`, the values contained in the other sales tax fields (if returned) in this object will be overridden by the values set in the sales tax table.
+        ///
         /// **Default value**: false
         /// </summary>
         public bool? SalesTaxTableUsed { get; }
         /// <summary>
-        /// Tax exception category code.  This field is used to provide a special category of tax such as a recycling fee or disposal tax.
-        /// This is to be used only by sellers who have opted into sales tax being calculated by a sales tax calculation vendor.
+        /// A tax exception category code. This field indicates a special category of tax such as a recycling fee or disposal tax. These special tax category codes can only be used by sellers who have opted into sales tax being calculated by a sales tax calculation vendor.
         /// </summary>
         public string? ThirdPartyTaxCategoryCode { get; }
         /// <summary>
-        /// The VAT (Value-added Tax) percentage rate that will be charged to buyers when an item is purchased from the listing.
-        /// VAT is not applicable to all countries, including the US. Allowed VAT percentage rates can vary by region/country,
-        /// so sellers should be aware of the rates they are legally required/allowed to charge, and they are responsible for charging
-        /// the correct VAT rate. Only one digit is allowed to the right of the decimal point.
+        /// The VAT (Value-added Tax) percentage rate that will be charged to buyers when an item is purchased from the listing. VAT is not applicable to all countries, including the US. Allowed VAT percentage rates can vary by region/country, so sellers should be aware of the rates they are legally required/allowed to charge, and they are responsible for charging   the correct VAT rate. Only one digit is allowed to the right of the decimal point.
         /// </summary>
         public decimal? VatPercentage { get; }
         /// <summary>
-        /// This field is set to 'true' if the seller is registered on the listing site as a Business Seller and intends to use
-        /// listing features that are offered to business users only. This field will always be 'true' if the
-        /// **vatRestrictedToBusinessUser** field is set to 'true'.
-        ///
-        /// **Default**: false
+        /// This field is returned as `true` if the seller is registered on the listing site as a Business Seller and intends to use listing features that are offered to business users only. This field will always be `true` if the   **vatRestrictedToBusinessUser** field is set to `true`.
         /// </summary>
         public bool? VatRecognizedBusinessSeller { get; }
         /// <summary>
-        /// This field is included and set to 'true' if a business seller wishes to make the listing exclusively available to potential buyers
-        /// registered on eBay as business users. If false (or not returned), this indicates that the seller elects to offer the item to all
-        /// users.
+        /// This field is returned as `true` if a business seller wishes to make the listing exclusively available to potential buyers registered on eBay as business users. If false (or not returned), this indicates that the seller elects to offer the item to all users.
         ///
-        /// This feature is only applicable to business sellers residing in Germany, Austria, or
-        /// Switzerland who are listing in a B2B VAT-enabled category on the eBay Germany (DE), Austria (AT), or Switzerland (CH) sites.
-        ///
-        /// If this is set true, the seller must be a business seller and have a valid VAT-ID registered with eBay
-        /// **Default value**: false
+        /// This feature is only applicable to business sellers residing in Germany, Austria, or Switzerland who are listing in a B2B VAT-enabled category on the eBay Germany (DE), Austria (AT), or Switzerland (CH) sites.
         /// </summary>
         public bool? VatRestrictedToBusinessUser { get; }
     }
 
     /// <summary>
-    /// This container shows sales tax information for an item in a specific tax jurisdiction
+    /// This type shows sales tax information for an item in a specific tax jurisdiction
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_TaxTerms_TaxInfo : ISellerListings_SellerListings_Listings_Listing_ListingTerms_TaxTerms
     {
     }
 
     /// <summary>
-    /// Indicates the geographical location of the item
+    /// This type indicate the geographical location of the item.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ItemLocation
     {
         /// <summary>
-        /// The two-letter country code, as defined in the ISO-3166 standard, must be specified in this field to
-        /// indicate the country where the item is located. Please keep in mind that the item is often located in
-        /// the same country as the listing marketplace, but this is not a requirement.
+        /// The two-letter country code, as defined in the ISO-3166 standard, must be specified in this field to indicate the country where the item is located. Please keep in mind that the item is often located in the same country as the listing marketplace, but this is not a requirement.
         ///
         /// This field will be null if there was an error. You can find more details in the errors section of the response
         /// </summary>
@@ -862,15 +855,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? Location { get; }
         /// <summary>
-        /// The postal code (ZIP code) where the listing is physically located.  This may be empty if location is provided instead.
-        /// Either the postal code or location will be available.
+        /// The postal code (ZIP code) where the listing is physically located.  This may be empty if location is provided instead. Either the postal code or location will be available.
         ///
         /// This will be null if there was an error
         ///
-        /// The postal/zip code format varies by region.
-        /// US: 5-digit numeric codes (e.g., 12345).
-        /// Australia: 4-digit numeric codes (e.g., 2000).
-        /// UK: Variable-length alphanumeric codes with letters and numbers (e.g., SW1A 1AA).
+        /// The postal/zip code format varies by region:
+        /// - **US**: 5-digit numeric codes (e.g., 12345).
+        /// - **Australia**: 4-digit numeric codes (e.g., 2000).
+        /// - **UK**: Variable-length alphanumeric codes with letters and numbers (e.g., SW1A 1AA).
         ///
         /// Other regions follow local postal service standards.
         /// </summary>
@@ -878,7 +870,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Indicates the geographical location of the item
+    /// This type indicate the geographical location of the item.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms_ItemLocation_ItemLocation : ISellerListings_SellerListings_Listings_Listing_ListingTerms_ItemLocation
     {
@@ -890,7 +882,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListings_SellerListings_Listings_Listing_ListingTerms
     {
         /// <summary>
-        /// The enumeration value in this mandatory field indicates the format of the listing such as auction or fixed price listing. required field sets the listing format. See [ListingFormatTypeMock] for supported enumeration values.
+        /// The enumeration value in this mandatory field indicates the format of the listing such as auction or fixed price listing. required field sets the listing format. See **ListingFormatTypeMock** for supported enumeration values.
         /// </summary>
         public ListingFormatType? ListingFormat { get; }
         /// <summary>
@@ -947,22 +939,21 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Extend ListingV2 to add dealItem boolean field from this application.
-    /// @key indicates that ListingV2 can be uniquely identified via listingId
+    /// This interface is used to provide details about a listing.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing : IListingFields
     {
     }
 
     /// <summary>
-    /// Entity representing a single SKU Listing.
+    /// This type represents a single SKU listing.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_SingleSkuListing : ISellerListings_SellerListings_Listings_Listing
     {
     }
 
     /// <summary>
-    /// This type is used for an **purchaseQuotes** query when a **listingId** field is used as a filter.
+    /// This type is used to provide details about a multiple-variation listing.
     /// </summary>
     public partial interface ISellerListings_SellerListings_Listings_Listing_VariationListing : ISellerListings_SellerListings_Listings_Listing
     {
@@ -974,12 +965,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListings_SellerListings_Listings_ListingSuccess : ISellerListings_SellerListings_Listings
     {
         /// <summary>
-        /// Returns the listingId provided in the input which is used for the correlation
+        /// Returns the **listingId** provided in the input, which is used for the correlation.
         /// </summary>
         public string ListingId { get; }
         /// <summary>
-        /// Provides listing details. `listing` will be null when the listingId is invalid or
-        /// the listing is not available in the system for a given listingId.
+        /// Provides listing details. `listing` will be null when the **listingId** is invalid or the listing is not available in the system for a given **listingId**.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing? Listing { get; }
     }
@@ -987,44 +977,199 @@ namespace EBay.ListingManagement.Generated.GraphQL
     /// <summary>
     /// This type is used to show the current state of active eBay listings in the **sellerListings** query response. If a listing is found, but is on hold, only the **listingId** and **onHoldReason** fields are returned.
     /// </summary>
-    public partial interface ISellerListings_SellerListings
+    public partial interface ISellerListings_SellerListings_ListingsSuccess : ISellerListings_SellerListings
     {
         /// <summary>
         /// This array will show the list of eBay listings retrieved with the **sellerListings** query.
+        ///
         /// **Note**: With the initial release, only one eBay listing may be retrieved with this query.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListings_SellerListings_Listings> Listings { get; }
     }
 
     /// <summary>
-    /// This type is used to show the current state of active eBay listings in the **sellerListings** query response. If a listing is found, but is on hold, only the **listingId** and **onHoldReason** fields are returned.
-    /// </summary>
-    public partial interface ISellerListings_SellerListings_SellerListingsOutput : ISellerListings_SellerListings
-    {
-    }
-
-    /// <summary>
-    /// Extend ListingV2 to add dealItem boolean field from this application.
-    /// @key indicates that ListingV2 can be uniquely identified via listingId
+    /// This interface is used to provide details about a listing.
     /// </summary>
     public partial interface IListingFields
     {
         /// <summary>
-        /// This container provides key information about the listing and product, and includes listing title, listing description, listing category, images, aspects, and other information.
+        /// This object provides key information about the listing and product, and includes listing title, listing description, listing category, images, aspects, and other information.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_SellerProduct? SellerProduct { get; }
         /// <summary>
-        /// listingId is key to ListingV2 and it needs to be included here
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
         /// <summary>
-        /// The unique identifier of the eBay listing marketplace.
+        /// The unique identifier of the eBay marketplace.
         /// </summary>
         public ListingMarketplace? Marketplace { get; }
         /// <summary>
-        /// This container provides key listing term details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object provides key listing term details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms? ListingTerms { get; }
+    }
+
+    /// <summary>
+    /// This error type is returned when the number of listing IDs provided for the **sellerListings** query exceeds the maximum allowed limit.
+    /// </summary>
+    public partial class SellerListings_SellerListings_ListingIdsMaxLimitError : global::System.IEquatable<SellerListings_SellerListings_ListingIdsMaxLimitError>, ISellerListings_SellerListings_ListingIdsMaxLimitError
+    {
+        public SellerListings_SellerListings_ListingIdsMaxLimitError(string __typename, string errorCode, string errorMessage, int maxAllowed)
+        {
+            this.__typename = __typename;
+            this.ErrorCode = errorCode;
+            this.ErrorMessage = errorMessage;
+            this.MaxAllowed = maxAllowed;
+        }
+
+        public string __typename { get; }
+
+        /// <summary>
+        /// Technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorCode { get; }
+
+        /// <summary>
+        /// Technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorMessage { get; }
+
+        /// <summary>
+        /// The maximum number of listing IDs allowed.
+        /// </summary>
+        public int MaxAllowed { get; }
+
+        public virtual bool Equals(SellerListings_SellerListings_ListingIdsMaxLimitError? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(__typename, other.__typename)
+                && global::System.Object.Equals(ErrorCode, other.ErrorCode)
+                && global::System.Object.Equals(ErrorMessage, other.ErrorMessage)
+                && global::System.Object.Equals(MaxAllowed, other.MaxAllowed);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SellerListings_SellerListings_ListingIdsMaxLimitError)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (__typename is not null)
+                {
+                    hash ^= 397 * __typename.GetHashCode();
+                }
+                if (ErrorCode is not null)
+                {
+                    hash ^= 397 * ErrorCode.GetHashCode();
+                }
+                if (ErrorMessage is not null)
+                {
+                    hash ^= 397 * ErrorMessage.GetHashCode();
+                }
+                hash ^= 397 * MaxAllowed.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type is used to display details for an active MSKU listing under SKU filters, where some SKUs are available and others are unavailable.
+    /// </summary>
+    public partial class SellerListings_SellerListings_Listings_ListingPartialSuccess : global::System.IEquatable<SellerListings_SellerListings_Listings_ListingPartialSuccess>, ISellerListings_SellerListings_Listings_ListingPartialSuccess
+    {
+        public SellerListings_SellerListings_Listings_ListingPartialSuccess(string __typename)
+        {
+            this.__typename = __typename;
+        }
+
+        public string __typename { get; }
+
+        public virtual bool Equals(SellerListings_SellerListings_Listings_ListingPartialSuccess? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(__typename, other.__typename);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SellerListings_SellerListings_Listings_ListingPartialSuccess)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (__typename is not null)
+                {
+                    hash ^= 397 * __typename.GetHashCode();
+                }
+                return hash;
+            }
+        }
     }
 
     /// <summary>
@@ -1050,7 +1195,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? ExternalImageUrl { get; }
 
         /// <summary>
-        /// Seller provided order of the picture in which the image should be displayed
+        /// Seller provided order of the picture in which the image should be displayed.
         /// </summary>
         public int? Order { get; }
 
@@ -1137,12 +1282,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? Title { get; }
 
         /// <summary>
-        /// For US or CA eBay Motors vehicle listing. Including Make Model and sub-model.
+        /// The eBay-generated title of a motor vehicle listing, which will consist of the Make, Model, Year, etc. of the vehicle. This title will be shown in search results and on the View Item page. For all other listings, the seller-defined title will appear in the **title** field instead.
         /// </summary>
         public string? EbayGeneratedTitle { get; }
 
         /// <summary>
         /// The full description of the product. This is a mandatory field for a listing.
+        ///
         /// **Note**: This field may contain HTML markup and inline CSS, and may be up to 500,000 characters including the HTML and CSS tags and attributes.
         /// </summary>
         public string? Description { get; }
@@ -1219,7 +1365,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Specifies the lifecycle details for the listing like stateDate, EndDate, Duration, etc.
+    /// This type specifies the lifecycle details for the listing like the start date, end date, duration, etc.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_LifecycleTerms_ListingLifecycle : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_LifecycleTerms_ListingLifecycle>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_LifecycleTerms_ListingLifecycle
     {
@@ -1235,22 +1381,19 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field indicates the time duration of the listing. All fixed price listings must be set to
-        /// `GTC`(Good 'til Cancelled), but the listing duration days of auction and ad listings may vary based on
-        /// marketplace and category.
+        /// This field indicates the time duration of the listing. All fixed price listings must be set to `GTC`(Good 'til Cancelled), but the listing duration days of auction and ad listings may vary based on  marketplace and category.
         ///
-        /// The [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies)
-        /// method can be used to see supported durations for each leaf category.
+        /// The [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see supported durations for each leaf category.
         /// </summary>
         public ListingDurationInDays? ListingDurationInDays { get; }
 
         /// <summary>
-        /// Date and time the listing was created.
+        /// The date and time the listing was created.
         /// </summary>
         public global::System.DateTimeOffset? CreatedAt { get; }
 
         /// <summary>
-        /// The time that the listing actually becomes ended on eBay
+        /// The time that the listing actually becomes ended on eBay.
         /// </summary>
         public global::System.DateTimeOffset? ActualEndAt { get; }
 
@@ -1261,21 +1404,19 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public EndListingReason? EndListingReason { get; }
 
         /// <summary>
-        /// Allowed values:SCHEDULED, ACTIVE, ENDED
+        /// The status of the listing. Valid values: `SCHEDULED`, `ACTIVE`, `ENDED`
         /// </summary>
         public ListingStatusEnum? ListingStatus { get; }
 
         /// <summary>
-        /// The time that the listing is supposed to be ended on eBay. This will be null if the end date has not been scueduled
+        /// The time that the listing is supposed to be ended on eBay. This will be null if the end date has not been scheduled.
         /// </summary>
         public global::System.DateTimeOffset? ScheduledEndAt { get; }
 
         /// <summary>
-        /// A time in the future that the listing becomes active on eBay. To schedule the listing start time, specify a time in the future in GMT format.
-        /// When you schedule a start time, the start time is randomized within 15-minute intervals. Randomized start times applies to the following sites:
-        /// AT, BEFR, BENL, CH, DE, ES, FR, IE, IT, NL, PL, UK
+        /// A time in the future that the listing becomes active on eBay. To schedule the listing start time, specify a time in the future in GMT format. When you schedule a start time, the start time is randomized within 15-minute intervals. Randomized start times applies to the following sites: AT, BEFR, BENL, CH, DE, ES, FR, IE, IT, NL, PL, UK
         ///
-        /// This will be null if the startDate was not specified.
+        /// This will be null if the start date was not specified.
         /// </summary>
         public global::System.DateTimeOffset? StartAt { get; }
 
@@ -1481,7 +1622,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// The major weight value of the shipping package according to the unit of measurement applicable to the marketplace. The major weight value is the whole number part of the weight. For English measurement system, the supported unit of measurement for **majorUnit** is pounds. For Metric measurement system, the supported unit of measurement for **majorUnit**
         /// is kilograms.
         ///
-        /// Note: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
+        /// **Note**: If the package weighs less than one pound or one kilogram, 0 may be returned as the value for this field.
         /// </summary>
         public int? MajorUnit { get; }
 
@@ -1579,7 +1720,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public bool? IrregularPackage { get; }
 
         /// <summary>
-        /// The enumeration value returned in this field indicates the type of package used to ship the item.
+        /// The enumerated value returned in this field indicates the type of package used to ship the item.
         /// </summary>
         public ListingPackageType? ListingPackageType { get; }
 
@@ -1589,12 +1730,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public MeasurementSystem? ListingUnitOfMeasure { get; }
 
         /// <summary>
-        /// This container is used to specify the dimensions of the shipping package and the unit of measurement used.
+        /// This object is used to specify the dimensions of the shipping package and the unit of measurement used.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_PackageSpecifications_PackageDimensions? PackageDimensions { get; }
 
         /// <summary>
-        /// This container is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
+        /// This object is used to specify the weight of the shipping package and the unit of measurement used to measure weight.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_PackageSpecifications_PackageWeight? PackageWeight { get; }
 
@@ -1673,7 +1814,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type specifies the geographic locations and identifies a country or continent and regions, for various listing purposes such as shipping exclusions and inclusions.
+    /// This type is used to indicate a continent, a geographical region, a country, or a special domestic location as a shipping location or excluded shipping location.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_IncludedShipToLocations_ShippingLocation : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_IncludedShipToLocations_ShippingLocation>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_IncludedShipToLocations_ShippingLocation
     {
@@ -1685,18 +1826,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Identify by country using the ISO 3166-1 alpha-2 country code standard.
-        /// See the [`ISOAlpha2CountryCode`] enum for the full list of supported country codes.
+        /// The enum value returned in this field indicates the country that is a shipping or excluded shipping location.
         /// </summary>
         public CountryAlpha2Code? Country { get; }
 
         /// <summary>
-        /// Identify by continent using a predefined set of continent codes. See the **ContinentCode** enum for the full list of supported continent codes.
+        /// The enum value returned in this field indicates the continent that is a shipping or excluded shipping location.
         /// </summary>
         public ContinentCode? Continent { get; }
 
         /// <summary>
-        /// Identify by a specify a geographic region not covered by country or continent codes.
+        /// The enum value returned in this field indicates the large geographical region that is a shipping or excluded shipping location, or a special domestic location that is an excluded shipping location.
         /// </summary>
         public SellerShippingRegionCode? SellerShippingRegion { get; }
 
@@ -1765,7 +1905,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type specifies the geographic locations and identifies a country or continent and regions, for various listing purposes such as shipping exclusions and inclusions.
+    /// This type is used to indicate a continent, a geographical region, a country, or a special domestic location as a shipping location or excluded shipping location.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_ExcludedShipToLocations_ShippingLocation : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_ExcludedShipToLocations_ShippingLocation>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_ExcludedShipToLocations_ShippingLocation
     {
@@ -1777,18 +1917,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Identify by continent using a predefined set of continent codes. See the **ContinentCode** enum for the full list of supported continent codes.
+        /// The enum value returned in this field indicates the continent that is a shipping or excluded shipping location.
         /// </summary>
         public ContinentCode? Continent { get; }
 
         /// <summary>
-        /// Identify by country using the ISO 3166-1 alpha-2 country code standard.
-        /// See the [`ISOAlpha2CountryCode`] enum for the full list of supported country codes.
+        /// The enum value returned in this field indicates the country that is a shipping or excluded shipping location.
         /// </summary>
         public CountryAlpha2Code? Country { get; }
 
         /// <summary>
-        /// Identify by a specify a geographic region not covered by country or continent codes.
+        /// The enum value returned in this field indicates the large geographical region that is a shipping or excluded shipping location, or a special domestic location that is an excluded shipping location.
         /// </summary>
         public SellerShippingRegionCode? SellerShippingRegion { get; }
 
@@ -1870,25 +2009,23 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Indicates whether the buyer is responsible for vehicle shipping/pickup.
+        /// This boolean field indicates whether the buyer is responsible for vehicle shipping/pickup.
         /// </summary>
         public bool? BuyerResponsibleForShipping { get; }
 
         /// <summary>
-        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer.
-        /// The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,
-        /// but longer handling times are supported.
+        /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer. The handling time is required for most categories. Top-rated sellers typically set the handling time to 0 or 1 day,  but longer handling times are supported.
         /// </summary>
         public ListingTimeDuration? HandlingTimeDuration { get; }
 
         /// <summary>
-        /// This array shows the list of locations where the seller will ship the item. The values in this array can be continents, large geographical regions, or countries. The **excludedShipToLocations** and **includedShipToLocations**vvvvcbefueuvdddftkvvjkhgfkndhjrdhgvbdvvdgbnh
+        /// This array shows the list of locations where the seller will ship the item. The values in this array can be continents, large geographical regions, or countries. The **excludedShipToLocations** and **includedShipToLocations**
         /// lists should not contradict one another. If there is a contradiction between the shipping exclusions and inclusions, the exclusion usually takes precedence. This means if a location is both included and excluded, it will be treated as excluded.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_IncludedShipToLocations>? IncludedShipToLocations { get; }
 
         /// <summary>
-        /// This array is used to indicate the locations where the seller will not ship the item. The values in this array can be contients, large geographical regions, countries, or special domestic locations. The **excludedShipToLocations** and **includedShipToLocations** lists should not contradict one another. If there is a contradiction between the shipping exclusions and inclusions, the exclusion usually takes precedence. This means if a location is both included and excluded, it will be treated as excluded.
+        /// This array is used to indicate the locations where the seller will not ship the item. The values in this array can be continents, large geographical regions, countries, or special domestic locations. The **excludedShipToLocations** and **includedShipToLocations** lists should not contradict one another. If there is a contradiction between the shipping exclusions and inclusions, the exclusion usually takes precedence. This means if a location is both included and excluded, it will be treated as excluded.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms_ExcludedShipToLocations>? ExcludedShipToLocations { get; }
 
@@ -1956,9 +2093,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to provide details on how the item will be delivered to the buyer.
-    /// The data in this type includes available shipping services, ship-to and excluded shipping locations,
-    /// shipping costs, package details, and more.
+    /// This type is used to provide details on how the item will be delivered to the buyer. The data in this type includes available shipping services, ship-to and excluded shipping locations, shipping costs, package details, and more.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_FulfillmentTerms : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_FulfillmentTerms>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_FulfillmentTerms
     {
@@ -1973,45 +2108,32 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory.
-        /// This field is included and set to 'true' if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location.
-        /// See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
+        /// This field is only applicable to sellers enabled to sell 'Buy online, pick up in store' (BOPIS) inventory. This field is included and set to `true` if the seller wishes to make the item available for pickup at a store location within close proximity to the buyer's location. See the [In-store pickup ](https://developer.ebay.com/api-docs/sell/static/inventory/in-store-pickup.html) topic for information on setting up BOPIS, including how to create store locations and load inventory to those stores.
         /// </summary>
         public bool? InStorePickupSupported { get; }
 
         /// <summary>
-        /// This field can be included and set to 'true' if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally.
-        /// With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg.
-        /// GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping,
-        /// but there is currently no boolean field associated with this feature.
+        /// This field can be included and set to `true` if the seller wishes to use eBay's Global Shipping Program (GSP) to ship items internationally. With GSP, the seller ships the item to eBay's shipping partner, and that shipping partner handles all logistics of the international shipping leg. GSP is only available for listings on the eBay UK marketplace. eBay US has a similar program called eBay International Shipping, but there is currently no boolean field associated with this feature.
         /// </summary>
         public bool? GlobalShippingSupported { get; }
 
         /// <summary>
-        /// Specifies that the seller wants to offer free shipping.
-        ///
-        /// To see if a specific shipping service is free, look at ShippingServiceDetails.shippingCost.
-        /// If it is set to zero, the shipping is free for that service.
+        /// This boolean specifies whether the seller wants to offer free shipping. To see if a specific shipping service is free, look at **ShippingServiceDetails.shippingCost**. If it is set to zero, the shipping is free for that service.
         /// </summary>
         public bool? FreeShippingAvailable { get; }
 
         /// <summary>
-        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email.
-        /// The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies)
-        /// method can be used to see if a leaf category supports digital delivery.
+        /// This field should be included and set to true if the item is a digital item that can be downloaded via a link or delivered to the buyer via email. The  [getListingTypePolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getListingTypePolicies) method can be used to see if a leaf category supports digital delivery.
         /// </summary>
         public bool? DigitalDeliverySupported { get; }
 
         /// <summary>
-        /// This container provides information about the shipping package that will be used to ship the item,
-        /// and includes package type, weight, and dimensions. Package weight is required when calculating shipping
-        /// is used, and shipping services generally have dimension and weight restrictions.
+        /// This object provides information about the shipping package that will be used to ship the item, and includes package type, weight, and dimensions. Package weight is required when calculating shipping is used, and shipping services generally have dimension and weight restrictions.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_PackageSpecifications? PackageSpecifications { get; }
 
         /// <summary>
-        /// This container provides information about where the item can be shipped, the shipping cost type, the shipping services offered,
-        /// the handling time, applicable shipping discounts, and more.
+        /// This object provides information about where the item can be shipped, the shipping cost type, the shipping services offered, the handling time, applicable shipping discounts, and more.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingFulfillmentTerms_ShippingTerms? ShippingTerms { get; }
 
@@ -2108,15 +2230,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
 
         /// <summary>
         /// A seller-defined description of the return business policy. This description is only for the seller's use, and is not exposed on any eBay pages. This can be null when no description was provided during policy creation.
         ///
-        /// **Maximum length:** 250 characters
-        /// **Occurrence:** Conditional
+        /// **Maximum length**: 250 characters
         /// </summary>
         public string? Description { get; }
 
@@ -2128,7 +2249,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// A seller-defined name for this return business policy. Names must be unique per site and per type.
         ///
-        /// **Maximum length:** 64 characters
+        /// **Maximum length**: 64 characters
         /// **Occurrence:** Always
         /// </summary>
         public string? Name { get; }
@@ -2216,22 +2337,23 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The enumeration value returned here indicates how a buyer will be refunded if an item is returned. This is a mandatory field if the seller accepts returns for the item.
+        /// The enumerated value returned here indicates how a buyer will be refunded if an item is returned. This is a mandatory field if the seller accepts returns for the item.
         /// </summary>
         public ListingRefundMethod? ListingRefundMethod { get; }
 
         /// <summary>
-        /// This boolean field indicates whether or not the seller allows the buyer to return the item. This field is mandatory for return policies and returned as 'true' if the seller accepts returns for the item or 'false' if the seller does not accept returns for the item.
+        /// This boolean field indicates whether or not the seller allows the buyer to return the item. This field is mandatory for return policies and returned as `true` if the seller accepts returns for the item or `false` if the seller does not accept returns for the item.
         /// </summary>
         public bool? ReturnAccepted { get; }
 
         /// <summary>
-        /// The enumeration value returned in this field indicates the amount of time that the buyer has to return an item. The return period begins when the item is marked 'delivered' at the buyer's specified ship-to location. This field is mandatory if the seller accepts returns for the item.
+        /// The enumerated value returned in this field indicates the amount of time that the buyer has to return an item. The return period begins when the item is marked 'delivered' at the buyer's specified ship-to location. This field is mandatory if the seller accepts returns for the item.
         /// </summary>
         public ListingTimeDuration? ReturnDuration { get; }
 
         /// <summary>
-        /// The enumeration value returned here indicates either the buyer or the seller as the party who pays for return shipping charges. This is a mandatory field if the seller accepts returns for the item.
+        /// The enumerated value returned here indicates either the buyer or the seller as the party who pays for return shipping charges. This is a mandatory field if the seller accepts returns for the item.
+        ///
         /// **Note**: The seller is always responsible for return shipping costs when an item is being returned due to a Significantly not as described (SNAD) issue.
         /// </summary>
         public string? ReturnShipmentInvoicee { get; }
@@ -2319,22 +2441,23 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The enumeration value returned here indicates how a buyer will be refunded if an item is returned. This is a mandatory field if the seller accepts returns for the item.
+        /// The enumerated value returned here indicates how a buyer will be refunded if an item is returned. This is a mandatory field if the seller accepts returns for the item.
         /// </summary>
         public ListingRefundMethod? ListingRefundMethod { get; }
 
         /// <summary>
-        /// This boolean field indicates whether or not the seller allows the buyer to return the item. This field is mandatory for return policies and returned as 'true' if the seller accepts returns for the item or 'false' if the seller does not accept returns for the item.
+        /// This boolean field indicates whether or not the seller allows the buyer to return the item. This field is mandatory for return policies and returned as `true` if the seller accepts returns for the item or `false` if the seller does not accept returns for the item.
         /// </summary>
         public bool? ReturnAccepted { get; }
 
         /// <summary>
-        /// The enumeration value returned in this field indicates the amount of time that the buyer has to return an item. The return period begins when the item is marked 'delivered' at the buyer's specified ship-to location. This field is mandatory if the seller accepts returns for the item.
+        /// The enumerated value returned in this field indicates the amount of time that the buyer has to return an item. The return period begins when the item is marked 'delivered' at the buyer's specified ship-to location. This field is mandatory if the seller accepts returns for the item.
         /// </summary>
         public ListingTimeDuration? ReturnDuration { get; }
 
         /// <summary>
-        /// The enumeration value returned here indicates either the buyer or the seller as the party who pays for return shipping charges. This is a mandatory field if the seller accepts returns for the item.
+        /// The enumerated value returned here indicates either the buyer or the seller as the party who pays for return shipping charges. This is a mandatory field if the seller accepts returns for the item.
+        ///
         /// **Note**: The seller is always responsible for return shipping costs when an item is being returned due to a Significantly not as described (SNAD) issue.
         /// </summary>
         public string? ReturnShipmentInvoicee { get; }
@@ -2422,7 +2545,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to specify a return business policy to use for the listing. If this field is used, none of the other fields in this container should be
+        /// This field is used to specify a return business policy to use for the listing. If this field is used, none of the other fields in This object should be
         /// used since all return policy settings are configured in the business policy instead. The
         /// [getReturnPolicies](https://developer.ebay.com/api-docs/sell/account/resources/return_policy/methods/getReturnPolicies) method can be used to retrieve
         /// all return business policies defined for a seller on an eBay marketplace.
@@ -2430,7 +2553,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingReturnTerms_BusinessPolicy? BusinessPolicy { get; }
 
         /// <summary>
-        /// This object shows the seller's domestic return policy for a listing, which includes whether or not the seller accepts returns for the item and the duration of the return period. Note that if the listing only has a domestic return policy set up, but the item is shipped internationally, the settings in this container will also apply to international returns.
+        /// This object shows the seller's domestic return policy for a listing, which includes whether or not the seller accepts returns for the item and the duration of the return period. Note that if the listing only has a domestic return policy set up, but the item is shipped internationally, the settings in this object will also apply to international returns.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingReturnTerms_DomesticReturnTerms? DomesticReturnTerms { get; }
 
@@ -2524,7 +2647,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique ID of the business policy.
+        /// The unique identifier of the business policy.
         /// </summary>
         public string BusinessPolicyId { get; }
 
@@ -2583,7 +2706,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Specifies the payment terms defined by seller like payment method, payment instructions, etc
+    /// This type specifies the payment terms defined by seller like payment method, payment instructions, etc.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms_PaymentTerms : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms_PaymentTerms>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms_PaymentTerms
     {
@@ -2595,12 +2718,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Business policy container for specifying policy ID .
+        /// Business policy container for specifying policy ID.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_ListingPaymentTerms_BusinessPolicy? BusinessPolicy { get; }
 
         /// <summary>
-        /// This field is set to 'true' if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        /// This field is set to `true` if the seller requires immediate payment for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? ImmediatePay { get; }
@@ -2675,7 +2799,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to indicate listing upgrades enabled by the seller such as bold titles in search results, Gallery Plus, or an added subtitle.
+    /// This type is used to indicate listing upgrades enabled by the seller such as bold titles in search results, **Gallery Plus**, or an added subtitle.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_VisualEnhancements_ListingVisualEnhancements : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_VisualEnhancements_ListingVisualEnhancements>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_VisualEnhancements_ListingVisualEnhancements
     {
@@ -2687,13 +2811,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This boolean field indicates whether or not the seller is useing boldface type for the listing title. If returned as 'true', the listing title will appear in boldtype in search results for greater visibility. This feature cannot be enabled for a motor vehicle listing.
+        /// This boolean field indicates whether or not the seller is using boldface type for the listing title. If returned as `true`, the listing title will appear in boldtype in search results for greater visibility. This feature cannot be enabled for a motor vehicle listing.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? BoldTitle { get; }
 
         /// <summary>
-        /// This boolean field indicates whether or not the seller using the Gallery Plus feature for the listing. With Gallery Plus, a larger gallery image of the item is displayed in search results. This feature cannot be enabled for a motor vehicle listing.
+        /// This boolean field indicates whether or not the seller using the **Gallery Plus** feature for the listing. With **Gallery Plus**, a larger gallery image of the item is displayed in search results. This feature cannot be enabled for a motor vehicle listing.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? GalleryPlus { get; }
@@ -2768,7 +2894,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_Original_Amount : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_Original_Amount>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_Original_Amount
     {
@@ -2779,12 +2905,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -2845,7 +2973,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_ConvertedAmount : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_ConvertedAmount>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_ConvertedAmount
     {
@@ -2855,7 +2983,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount in the listing’s original currency. This value represents the monetary amount of the listing before any conversion is performed.
+        /// This field contains the monetary amount in the listing's original currency, before any conversion was performed.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount_Original? Original { get; }
 
@@ -2914,7 +3042,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_Original_Amount : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_Original_Amount>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_Original_Amount
     {
@@ -2925,12 +3053,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -2991,7 +3121,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount shown in both the listing currency and the viewer’s currency.
+    /// This type represents a monetary amount that may include both original and converted currency values. This type is used when displaying prices that have been converted from one currency to another.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_ConvertedAmount : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_ConvertedAmount>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_ConvertedAmount
     {
@@ -3001,7 +3131,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount in the listing’s original currency. This value represents the monetary amount of the listing before any conversion is performed.
+        /// This field contains the monetary amount in the listing's original currency, before any conversion was performed.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount_Original? Original { get; }
 
@@ -3078,13 +3208,15 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The price at which Best Offers will be automatically accepted by the seller if they meet or exceed the price. Auto-accept is an optional feature for the seller.
-        /// **Note**: This container is only accessible to the seller of this listing
+        ///
+        /// **Note**: This object is only accessible to the seller of this listing
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoAcceptThresholdAmount? AutoAcceptThresholdAmount { get; }
 
         /// <summary>
         /// The price at which Best Offers will be automatically declined by the seller if they are equal to or below the price. Auto-decline is an optional feature for the seller.
-        /// **Note**: This container is only accessible to the seller of this listing
+        ///
+        /// **Note**: This object is only accessible to the seller of this listing
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms_BestOfferTerms_AutoDeclineThresholdAmount? AutoDeclineThresholdAmount { get; }
 
@@ -3153,7 +3285,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container shows sales tax information for an item in a specific tax jurisdiction
+    /// This type shows sales tax information for an item in a specific tax jurisdiction
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_TaxTerms_TaxInfo : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_TaxTerms_TaxInfo>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_TaxTerms_TaxInfo
     {
@@ -3170,72 +3302,48 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is included and set to 'true' if the seller wants the sales tax rate for the jurisdiction to apply to the cumulative
-        /// amount of item cost and shipping charges. This field is only applicable if the **salesTaxPercentage** and **salesTaxJurisdictionId**
-        /// fields are also set.
-        /// **Default**: false
+        /// This boolean field indicates whether or not the seller wants the sales tax rate for the jurisdiction to apply to the cumulative amount of item cost and shipping charges. This field is only applicable if the **salesTaxPercentage** and **salesTaxJurisdictionId** fields are also set.
         /// </summary>
         public bool? SalesTaxApplicableToShipping { get; }
 
         /// <summary>
-        /// This field is used to specify a US territory or a Canadian province that will be charged the sales tax rate specified in the
-        /// **salesTaxPercentage** field. The supported US territories are `AS` (America Samoa), `GU` (Guam),
-        /// `MP` (Northern Mariana Islands), `PW` (Palau), and `VI` (US Virgin Islands).
+        /// The unique identifier of the US territory or a Canadian province that will be charged the sales tax rate specified in the **salesTaxPercentage** field. The supported US territories are `AS` (America Samoa), `GU` (Guam),   `MP` (Northern Mariana Islands), `PW` (Palau), and `VI` (US Virgin Islands).
         ///
-        /// The two-letter codes for Canadian provinces can be found here on the
-        /// [Government of Canada](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/completing-slips-summaries/financial-slips-summaries/return-investment-income-t5/provincial-territorial-codes.html)
-        /// website. This field can only be used on the US and Canadian marketplaces.
+        /// The two-letter codes for Canadian provinces can be found here on the [Government of Canada](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/completing-slips-summaries/financial-slips-summaries/return-investment-income-t5/provincial-territorial-codes.html) website.
         /// </summary>
         public string? SalesTaxJurisdictionId { get; }
 
         /// <summary>
-        /// This field is used along with **salesTaxJurisdictionId** field to set the sales tax rate for a specific US territory or a Canadian province.
-        /// The percentage set here will be applied to sale price as the sales tax for the order line item. The value passed in is stored with a precision of 1 digits after the decimal point.
-        /// This field can only be used on the US and Canadian marketplaces.
+        /// This field indicates the sales tax rate for the corresponding US territory or a Canadian province. The percentage set here will be applied to sale price as the sales tax for the order line item. This field is only applicable on the US and Canadian marketplaces.
         /// </summary>
         public decimal? SalesTaxPercentage { get; }
 
         /// <summary>
-        /// This field is included and set to 'true' if the seller has an account level sales tax table set up and wishes to use the
-        /// sales tax rates set up in that table. If this field is set to 'true', the values contained in the other sales tax fields
-        /// (if set) in this container will be overridden by the values set in the sales tax table.
+        /// This field indicates whether or not the seller has an account level sales tax table set up and wishes to use the sales tax rates set up in that table. If this field is returned as `true`, the values contained in the other sales tax fields (if returned) in this object will be overridden by the values set in the sales tax table.
+        ///
         /// **Default value**: false
         /// </summary>
         public bool? SalesTaxTableUsed { get; }
 
         /// <summary>
-        /// Tax exception category code.  This field is used to provide a special category of tax such as a recycling fee or disposal tax.
-        /// This is to be used only by sellers who have opted into sales tax being calculated by a sales tax calculation vendor.
+        /// A tax exception category code. This field indicates a special category of tax such as a recycling fee or disposal tax. These special tax category codes can only be used by sellers who have opted into sales tax being calculated by a sales tax calculation vendor.
         /// </summary>
         public string? ThirdPartyTaxCategoryCode { get; }
 
         /// <summary>
-        /// The VAT (Value-added Tax) percentage rate that will be charged to buyers when an item is purchased from the listing.
-        /// VAT is not applicable to all countries, including the US. Allowed VAT percentage rates can vary by region/country,
-        /// so sellers should be aware of the rates they are legally required/allowed to charge, and they are responsible for charging
-        /// the correct VAT rate. Only one digit is allowed to the right of the decimal point.
+        /// The VAT (Value-added Tax) percentage rate that will be charged to buyers when an item is purchased from the listing. VAT is not applicable to all countries, including the US. Allowed VAT percentage rates can vary by region/country, so sellers should be aware of the rates they are legally required/allowed to charge, and they are responsible for charging   the correct VAT rate. Only one digit is allowed to the right of the decimal point.
         /// </summary>
         public decimal? VatPercentage { get; }
 
         /// <summary>
-        /// This field is set to 'true' if the seller is registered on the listing site as a Business Seller and intends to use
-        /// listing features that are offered to business users only. This field will always be 'true' if the
-        /// **vatRestrictedToBusinessUser** field is set to 'true'.
-        ///
-        /// **Default**: false
+        /// This field is returned as `true` if the seller is registered on the listing site as a Business Seller and intends to use listing features that are offered to business users only. This field will always be `true` if the   **vatRestrictedToBusinessUser** field is set to `true`.
         /// </summary>
         public bool? VatRecognizedBusinessSeller { get; }
 
         /// <summary>
-        /// This field is included and set to 'true' if a business seller wishes to make the listing exclusively available to potential buyers
-        /// registered on eBay as business users. If false (or not returned), this indicates that the seller elects to offer the item to all
-        /// users.
+        /// This field is returned as `true` if a business seller wishes to make the listing exclusively available to potential buyers registered on eBay as business users. If false (or not returned), this indicates that the seller elects to offer the item to all users.
         ///
-        /// This feature is only applicable to business sellers residing in Germany, Austria, or
-        /// Switzerland who are listing in a B2B VAT-enabled category on the eBay Germany (DE), Austria (AT), or Switzerland (CH) sites.
-        ///
-        /// If this is set true, the seller must be a business seller and have a valid VAT-ID registered with eBay
-        /// **Default value**: false
+        /// This feature is only applicable to business sellers residing in Germany, Austria, or Switzerland who are listing in a B2B VAT-enabled category on the eBay Germany (DE), Austria (AT), or Switzerland (CH) sites.
         /// </summary>
         public bool? VatRestrictedToBusinessUser { get; }
 
@@ -3329,7 +3437,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Indicates the geographical location of the item
+    /// This type indicate the geographical location of the item.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_ListingTerms_ItemLocation_ItemLocation : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_ListingTerms_ItemLocation_ItemLocation>, ISellerListings_SellerListings_Listings_Listing_ListingTerms_ItemLocation_ItemLocation
     {
@@ -3341,9 +3449,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The two-letter country code, as defined in the ISO-3166 standard, must be specified in this field to
-        /// indicate the country where the item is located. Please keep in mind that the item is often located in
-        /// the same country as the listing marketplace, but this is not a requirement.
+        /// The two-letter country code, as defined in the ISO-3166 standard, must be specified in this field to indicate the country where the item is located. Please keep in mind that the item is often located in the same country as the listing marketplace, but this is not a requirement.
         ///
         /// This field will be null if there was an error. You can find more details in the errors section of the response
         /// </summary>
@@ -3359,15 +3465,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? Location { get; }
 
         /// <summary>
-        /// The postal code (ZIP code) where the listing is physically located.  This may be empty if location is provided instead.
-        /// Either the postal code or location will be available.
+        /// The postal code (ZIP code) where the listing is physically located.  This may be empty if location is provided instead. Either the postal code or location will be available.
         ///
         /// This will be null if there was an error
         ///
-        /// The postal/zip code format varies by region.
-        /// US: 5-digit numeric codes (e.g., 12345).
-        /// Australia: 4-digit numeric codes (e.g., 2000).
-        /// UK: Variable-length alphanumeric codes with letters and numbers (e.g., SW1A 1AA).
+        /// The postal/zip code format varies by region:
+        /// - **US**: 5-digit numeric codes (e.g., 12345).
+        /// - **Australia**: 4-digit numeric codes (e.g., 2000).
+        /// - **UK**: Variable-length alphanumeric codes with letters and numbers (e.g., SW1A 1AA).
         ///
         /// Other regions follow local postal service standards.
         /// </summary>
@@ -3459,7 +3564,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The enumeration value in this mandatory field indicates the format of the listing such as auction or fixed price listing. required field sets the listing format. See [ListingFormatTypeMock] for supported enumeration values.
+        /// The enumeration value in this mandatory field indicates the format of the listing such as auction or fixed price listing. required field sets the listing format. See **ListingFormatTypeMock** for supported enumeration values.
         /// </summary>
         public ListingFormatType? ListingFormat { get; }
 
@@ -3625,7 +3730,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Entity representing a single SKU Listing.
+    /// This type represents a single SKU listing.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_SingleSkuListing : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_SingleSkuListing>, ISellerListings_SellerListings_Listings_Listing_SingleSkuListing
     {
@@ -3638,22 +3743,22 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container provides key information about the listing and product, and includes listing title, listing description, listing category, images, aspects, and other information.
+        /// This object provides key information about the listing and product, and includes listing title, listing description, listing category, images, aspects, and other information.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_SellerProduct? SellerProduct { get; }
 
         /// <summary>
-        /// listingId is key to ListingV2 and it needs to be included here
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
 
         /// <summary>
-        /// The unique identifier of the eBay listing marketplace.
+        /// The unique identifier of the eBay marketplace.
         /// </summary>
         public ListingMarketplace? Marketplace { get; }
 
         /// <summary>
-        /// This container provides key listing term details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object provides key listing term details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms? ListingTerms { get; }
 
@@ -3727,7 +3832,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used for an **purchaseQuotes** query when a **listingId** field is used as a filter.
+    /// This type is used to provide details about a multiple-variation listing.
     /// </summary>
     public partial class SellerListings_SellerListings_Listings_Listing_VariationListing : global::System.IEquatable<SellerListings_SellerListings_Listings_Listing_VariationListing>, ISellerListings_SellerListings_Listings_Listing_VariationListing
     {
@@ -3740,22 +3845,22 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container provides key information about the listing and product, and includes listing title, listing description, listing category, images, aspects, and other information.
+        /// This object provides key information about the listing and product, and includes listing title, listing description, listing category, images, aspects, and other information.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_SellerProduct? SellerProduct { get; }
 
         /// <summary>
-        /// listingId is key to ListingV2 and it needs to be included here
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
 
         /// <summary>
-        /// The unique identifier of the eBay listing marketplace.
+        /// The unique identifier of the eBay marketplace.
         /// </summary>
         public ListingMarketplace? Marketplace { get; }
 
         /// <summary>
-        /// This container provides key listing term details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object provides key listing term details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing_ListingTerms? ListingTerms { get; }
 
@@ -3843,13 +3948,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Returns the listingId provided in the input which is used for the correlation
+        /// Returns the **listingId** provided in the input, which is used for the correlation.
         /// </summary>
         public string ListingId { get; }
 
         /// <summary>
-        /// Provides listing details. `listing` will be null when the listingId is invalid or
-        /// the listing is not available in the system for a given listingId.
+        /// Provides listing details. `listing` will be null when the **listingId** is invalid or the listing is not available in the system for a given **listingId**.
         /// </summary>
         public ISellerListings_SellerListings_Listings_Listing? Listing { get; }
 
@@ -3920,20 +4024,24 @@ namespace EBay.ListingManagement.Generated.GraphQL
     /// <summary>
     /// This type is used to show the current state of active eBay listings in the **sellerListings** query response. If a listing is found, but is on hold, only the **listingId** and **onHoldReason** fields are returned.
     /// </summary>
-    public partial class SellerListings_SellerListings_SellerListingsOutput : global::System.IEquatable<SellerListings_SellerListings_SellerListingsOutput>, ISellerListings_SellerListings_SellerListingsOutput
+    public partial class SellerListings_SellerListings_ListingsSuccess : global::System.IEquatable<SellerListings_SellerListings_ListingsSuccess>, ISellerListings_SellerListings_ListingsSuccess
     {
-        public SellerListings_SellerListings_SellerListingsOutput(global::System.Collections.Generic.IReadOnlyList<ISellerListings_SellerListings_Listings> listings)
+        public SellerListings_SellerListings_ListingsSuccess(string __typename, global::System.Collections.Generic.IReadOnlyList<ISellerListings_SellerListings_Listings> listings)
         {
+            this.__typename = __typename;
             this.Listings = listings;
         }
 
+        public string __typename { get; }
+
         /// <summary>
         /// This array will show the list of eBay listings retrieved with the **sellerListings** query.
+        ///
         /// **Note**: With the initial release, only one eBay listing may be retrieved with this query.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListings_SellerListings_Listings> Listings { get; }
 
-        public virtual bool Equals(SellerListings_SellerListings_SellerListingsOutput? other)
+        public virtual bool Equals(SellerListings_SellerListings_ListingsSuccess? other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -3950,7 +4058,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 return false;
             }
 
-            return GraphQLJson.SequenceEqual(Listings, other.Listings);
+            return global::System.Object.Equals(__typename, other.__typename)
+                && GraphQLJson.SequenceEqual(Listings, other.Listings);
         }
 
         public override bool Equals(object? obj)
@@ -3970,7 +4079,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 return false;
             }
 
-            return Equals((SellerListings_SellerListings_SellerListingsOutput)obj);
+            return Equals((SellerListings_SellerListings_ListingsSuccess)obj);
         }
 
         public override int GetHashCode()
@@ -3978,6 +4087,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
             unchecked
             {
                 int hash = 5;
+                if (__typename is not null)
+                {
+                    hash ^= 397 * __typename.GetHashCode();
+                }
                 hash ^= 397 * GraphQLJson.SequenceHash(Listings);
                 return hash;
             }
@@ -3991,15 +4104,22 @@ namespace EBay.ListingManagement.Generated.GraphQL
         internal const string Document = @"query SellerListings($input: SellerListingsInput!) {
   sellerListings(input: $input) {
     __typename
-    listings {
-      __typename
-      ... on ListingSuccess {
-        listingId
-        listing {
-          __typename
-          ...ListingFields
+    ... on ListingsSuccess {
+      listings {
+        __typename
+        ... on ListingSuccess {
+          listingId
+          listing {
+            __typename
+            ...ListingFields
+          }
         }
       }
+    }
+    ... on ListingIdsMaxLimitError {
+      errorCode
+      errorMessage
+      maxAllowed
     }
   }
 }
@@ -4446,18 +4566,40 @@ fragment ListingFields on ListingV2 {
 
         private static ISellerListings_SellerListings_Listings Parse_SellerListings_SellerListings_Listings(global::System.Text.Json.JsonElement element)
         {
-            GraphQLJson.EnsureTypename(element, "ListingSuccess", "ISellerListings_SellerListings_Listings");
-            return new SellerListings_SellerListings_Listings_ListingSuccess(
+            var typename = GraphQLJson.ReadTypename(element);
+            switch (typename)
+            {
+            case "ListingPartialSuccess":
+                return new SellerListings_SellerListings_Listings_ListingPartialSuccess(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "__typename")));
+            case "ListingSuccess":
+                return new SellerListings_SellerListings_Listings_ListingSuccess(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "__typename")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "listingId")),
                     GraphQLJson.MapRef(GraphQLJson.Optional(element, "listing"), v0 => Parse_SellerListings_SellerListings_Listings_Listing(v0)));
+            default:
+                throw new GraphQLResultException($"Unknown __typename '{typename}' for ISellerListings_SellerListings_Listings.");
+            }
         }
 
         private static ISellerListings_SellerListings Parse_SellerListings_SellerListings(global::System.Text.Json.JsonElement element)
         {
-            GraphQLJson.EnsureTypename(element, "SellerListingsOutput", "ISellerListings_SellerListings");
-            return new SellerListings_SellerListings_SellerListingsOutput(
+            var typename = GraphQLJson.ReadTypename(element);
+            switch (typename)
+            {
+            case "ListingIdsMaxLimitError":
+                return new SellerListings_SellerListings_ListingIdsMaxLimitError(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "__typename")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "errorCode")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "errorMessage")),
+                    GraphQLJson.ReadInt32(GraphQLJson.Required(element, "maxAllowed")));
+            case "ListingsSuccess":
+                return new SellerListings_SellerListings_ListingsSuccess(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "__typename")),
                     GraphQLJson.ReadList(GraphQLJson.Required(element, "listings"), i0 => Parse_SellerListings_SellerListings_Listings(i0)));
+            default:
+                throw new GraphQLResultException($"Unknown __typename '{typename}' for ISellerListings_SellerListings.");
+            }
         }
     }
 }

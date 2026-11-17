@@ -83,7 +83,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// Filter seller listings by their listing IDs. When multiple listing ID values are provided, they are combined using a logical `OR` operation.
         ///
-        /// **Note:** The maximum number of returned listings is 200. If more than 200 listings are identified `BAD_INPUT_VALUE` is returned.
+        /// **Note**: The maximum number of returned listings is 200. If more than 200 listings are identified `BAD_INPUT_VALUE` is returned.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? ListingIds
         {
@@ -128,7 +128,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// Filter seller listings by their primary category ID. When multiple category ids are provided, they are combined using a logical `OR` operation.
         ///
-        /// **Note:** The maximum number of returned listings is 50. If more than 50 listings are identified `BAD_INPUT_VALUE` is returned.
+        /// **Note**: The maximum number of returned listings is 50. If more than 50 listings are identified `BAD_INPUT_VALUE` is returned.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? PrimaryCategoryIds
         {
@@ -145,8 +145,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         ///
         /// When multiple SKU values are provided, they are combined using a logical `OR` operation. For example, filtering seller listings using `skus ["SKU-1", "SKU-2"]` returns listings that exactly match SKU-1 **OR** SKU-2.
         ///
-        /// **Notes:**
-        /// - SKU filter values are case-senstive and must match an item's SKU exactly.
+        /// **Notes**:
+        /// - SKU filter values are case-sensitive and must match an item's SKU exactly.
         /// - A single SKU may match multiple listings; SKUs are not required to be unique.
         /// - This filter returns all listings where the SKU exactly matches any value in the array.
         /// - The maximum number of returned listings is 200. If more than 200 listings are identified `BAD_INPUT_VALUE` is returned.
@@ -180,13 +180,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_endAtRange || _set_formatType || _set_listingIds || _set_marketplaces || _set_modifiedAtRange || _set_primaryCategoryIds || _set_skus || _set_startAtRange))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_endAtRange)
             {

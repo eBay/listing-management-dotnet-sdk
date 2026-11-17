@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to modify various payment terms and information for the listing, including immediate payment requirement, offline payment methods, and motor vehicle deposit information. This container also has a **businessPolicyId** field that is used to associate a payment business policy with the listing.
+    /// This type is used to modify various payment terms and information for the listing, including immediate payment requirement, offline payment methods, and motor vehicle deposit information. This object also has a **businessPolicyId** field that is used to associate a payment business policy with the listing.
     /// </summary>
     public partial class UpdateListingPaymentTermsInput : global::System.IEquatable<UpdateListingPaymentTermsInput>
     {
@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_paymentMethods;
 
         /// <summary>
-        /// This field is used to add or change a payment business policy to use for the listing. If this field is used, none of the other fields in this container should be used since all payment settings are configured in the business policy instead. The [getPaymentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/payment_policy/methods/getPaymentPolicies) method can be used to retrieve all payment business policies defined for a seller on an eBay marketplace.
+        /// This field is used to add or change a payment business policy to use for the listing. If this field is used, none of the other fields in this object should be used since all payment settings are configured in the business policy instead. The [getPaymentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/payment_policy/methods/getPaymentPolicies) method can be used to retrieve all payment business policies defined for a seller on an eBay marketplace.
         /// </summary>
         public string? BusinessPolicyId
         {
@@ -51,6 +51,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is included to enable or disable the immediate payment requirement for fixed price listings and auction listings where the 'Buy it Now' option is used.
+        ///
         /// **Note**: This field is not applicable if the seller is using business policies.
         /// </summary>
         public bool? ImmediatePay
@@ -64,8 +65,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this container include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
-        /// **Note**: This container is not applicable if the seller is using business policies.
+        /// This object is used when the seller requires a deposit to secure the purchase of a motor vehicle. The settings under this object include the amount of the deposit, when the deposit is due, and when the full payment of the motor vehicle is due.
+        ///
+        /// **Note**: This object is not applicable if the seller is using business policies.
         /// </summary>
         public UpdateListingMotorVehicleDepositInput? MotorVehicleDeposit
         {
@@ -79,9 +81,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used if the seller wants to add or modify instructions related to payment.
-        /// **Note**: If this field is included, the text provided will overwrite existing payment instructions if defined in the listing.
-        /// **Note**: This field is not applicable if the seller is using business policies.
-        /// **Max length**: 500 characters.
+        ///
+        /// **Notes**:
+        /// - If this field is included, the text provided will overwrite existing payment instructions if defined in the listing.
+        /// - This field is not applicable if the seller is using business policies.
+        ///
+        /// **Maximum length**: 500 characters.
         /// </summary>
         public string? PaymentInstructions
         {
@@ -95,8 +100,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to modify the list of offline payment methods for listings that support offline transactions. Use the [getCategoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCategoryPolicies) method to see the payment methods supported for a leaf category.
-        /// **Note**: The full list of payment methods must be included in the array, and not just the new ones that are being added.
-        /// **Note**: This array is not applicable if the seller is using business policies.
+        ///
+        /// **Notes**:
+        /// - The full list of payment methods must be included in the array, and not just the new ones that are being added.
+        /// - This array is not applicable if the seller is using business policies.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingPaymentMethod>? PaymentMethods
         {
@@ -110,13 +117,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_businessPolicyId || _set_immediatePay || _set_motorVehicleDeposit || _set_paymentInstructions || _set_paymentMethods))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_businessPolicyId)
             {

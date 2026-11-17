@@ -35,7 +35,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_sku;
 
         /// <summary>
-        /// This container is used to modify the pricing information or available quantity, and can also be used to add or modify the eco-participation fee (if applicable) for a purchasable item.
+        /// This object is used to modify the pricing information or available quantity, and can also be used to add or modify the eco-participation fee (if applicable) for a purchasable item.
         /// </summary>
         public UpdateListingItemTermsInput? ItemTerms
         {
@@ -48,7 +48,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// For either a single-SKU or a multiple-SKU listing, this container can be used to add or modify a Global Trade Item Number (GTIN) for a product or an eBay product ID (ePID). If the ePID is found or if a provided GTIN value is matched to an eBay catalog product, the product details of that product definition will overwrite conflicting product details for the active or scheduled listing. For a multiple-SKU listing, the **traits** array will be required if the seller is adding a new variation to the listing. The **traits** array identifies the unique traits of a variation within that multiple-SKU listing. Common unique traits within a multiple-SKU listing are 'Color' and 'Size'. For example, a 'Blue, Large' shirt. Each item in a multiple-SKU listing must have a unique combination of trait values.
+        /// For either a single-SKU or a multiple-SKU listing, this object can be used to add or modify a Global Trade Item Number (GTIN) for a product or an eBay product ID (ePID). If the ePID is found or if a provided GTIN value is matched to an eBay catalog product, the product details of that product definition will overwrite conflicting product details for the active or scheduled listing. For a multiple-SKU listing, the **traits** array will be required if the seller is adding a new variation to the listing. The **traits** array identifies the unique traits of a variation within that multiple-SKU listing. Common unique traits within a multiple-SKU listing are `Color` and `Size`. For example, a `Blue, Large` shirt. Each item in a multiple-SKU listing must have a unique combination of trait values.
         /// </summary>
         public UpdateListingItemProductInput? Product
         {
@@ -62,6 +62,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The field indicates whether to delete this variation. If set to true, the variation is removed from the listing. Note that this is only applicable for multiple-SKU listings; for single-SKU listings, the field value is ignored if included.
+        ///
         /// **Default value**: false
         /// </summary>
         public bool? RemoveItemFromListing
@@ -76,8 +77,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The seller-defined Stock-Keeping Unit (SKU) that uniquely identifies a purchasable item in the listing. When updating a SKU-managed listing, the behavior of this field is conditional. For single-SKU listings, this field is ignored, as the listing is already identified by its SKU. For multiple-SKU listings, you must provide a variation's existing SKU to identify it for modification (e.g. changing its price). To add a new variation, you must assign it a new SKU, and this value must be unique for each variation in the listing.
-        /// **Important**: For update operations, the presence of a SKU in the item container will cause the listing to be treated as a multiple-SKU (MSKU) listing.
-        /// **Max length**: 50 characters.
+        ///
+        /// **Important**: For update operations, the presence of a SKU in the item object will cause the listing to be treated as a multiple-SKU (MSKU) listing.
+        ///
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string? Sku
         {
@@ -91,13 +94,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_itemTerms || _set_product || _set_removeItemFromListing || _set_sku))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_itemTerms)
             {

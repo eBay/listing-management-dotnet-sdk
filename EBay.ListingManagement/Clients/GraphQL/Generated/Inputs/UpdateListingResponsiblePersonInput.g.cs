@@ -35,7 +35,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_personTypes;
 
         /// <summary>
-        /// This container is used to add or modify a street address for a responsible person.
+        /// This object is used to add or modify a street address for a responsible person.
         /// </summary>
         public UpdateListingBusinessEntityAddressInput? Address
         {
@@ -49,7 +49,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to add or modify the company name associated with the responsible person.
-        /// **Max length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string CompanyName
         {
@@ -62,7 +63,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify the phone number, email address, and/or the Contact/Support page URL for the responsible person. At least one of the three is required if a responsible person is supplied.
+        /// This object is used to add or modify the phone number, email address, and/or the Contact/Support page URL for the responsible person. At least one of the three is required if a responsible person is supplied.
         /// </summary>
         public UpdateListingBusinessEntityContactInput? Contact
         {
@@ -90,13 +91,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_address || _set_companyName || _set_contact || _set_personTypes))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_address)
             {

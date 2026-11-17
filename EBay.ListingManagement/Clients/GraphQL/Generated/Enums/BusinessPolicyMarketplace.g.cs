@@ -38,9 +38,17 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         EbayBe,
         /// <summary>
+        /// This value indicates the applicable marketplace is French language version of eBay Belgium.
+        /// </summary>
+        EbayBefr,
+        /// <summary>
         /// This value indicates the applicable marketplace is English language version of eBay Canada.
         /// </summary>
         EbayCa,
+        /// <summary>
+        /// This value indicates the applicable marketplace is French language version of eBay Canada.
+        /// </summary>
+        EbayCafr,
         /// <summary>
         /// This value indicates the applicable marketplace is eBay Switzerland.
         /// </summary>
@@ -96,7 +104,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// This value indicates the applicable marketplace is eBay US.
         /// </summary>
-        EbayUs
+        EbayUs,
+        /// <summary>
+        /// This value indicates the applicable marketplace is eBay US Motors.
+        /// </summary>
+        EbayUsMotors
     }
 
     internal static class BusinessPolicyMarketplaceSerializer
@@ -108,7 +120,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 "EBAY_AT" => BusinessPolicyMarketplace.EbayAt,
                 "EBAY_AU" => BusinessPolicyMarketplace.EbayAu,
                 "EBAY_BE" => BusinessPolicyMarketplace.EbayBe,
+                "EBAY_BEFR" => BusinessPolicyMarketplace.EbayBefr,
                 "EBAY_CA" => BusinessPolicyMarketplace.EbayCa,
+                "EBAY_CAFR" => BusinessPolicyMarketplace.EbayCafr,
                 "EBAY_CH" => BusinessPolicyMarketplace.EbayCh,
                 "EBAY_DE" => BusinessPolicyMarketplace.EbayDe,
                 "EBAY_ES" => BusinessPolicyMarketplace.EbayEs,
@@ -123,6 +137,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 "EBAY_PL" => BusinessPolicyMarketplace.EbayPl,
                 "EBAY_SG" => BusinessPolicyMarketplace.EbaySg,
                 "EBAY_US" => BusinessPolicyMarketplace.EbayUs,
+                "EBAY_US_MOTORS" => BusinessPolicyMarketplace.EbayUsMotors,
                 _ => throw new GraphQLResultException($"String value '{value}' can't be converted to enum BusinessPolicyMarketplace")
             };
         }
@@ -134,7 +149,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 BusinessPolicyMarketplace.EbayAt => "EBAY_AT",
                 BusinessPolicyMarketplace.EbayAu => "EBAY_AU",
                 BusinessPolicyMarketplace.EbayBe => "EBAY_BE",
+                BusinessPolicyMarketplace.EbayBefr => "EBAY_BEFR",
                 BusinessPolicyMarketplace.EbayCa => "EBAY_CA",
+                BusinessPolicyMarketplace.EbayCafr => "EBAY_CAFR",
                 BusinessPolicyMarketplace.EbayCh => "EBAY_CH",
                 BusinessPolicyMarketplace.EbayDe => "EBAY_DE",
                 BusinessPolicyMarketplace.EbayEs => "EBAY_ES",
@@ -149,6 +166,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 BusinessPolicyMarketplace.EbayPl => "EBAY_PL",
                 BusinessPolicyMarketplace.EbaySg => "EBAY_SG",
                 BusinessPolicyMarketplace.EbayUs => "EBAY_US",
+                BusinessPolicyMarketplace.EbayUsMotors => "EBAY_US_MOTORS",
                 _ => throw new global::System.ArgumentException($"Enum BusinessPolicyMarketplace value '{value}' can't be converted to string")
             };
         }

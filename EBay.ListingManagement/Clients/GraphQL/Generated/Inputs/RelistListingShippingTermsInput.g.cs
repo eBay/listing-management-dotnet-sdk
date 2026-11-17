@@ -43,8 +43,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_shippingServices;
 
         /// <summary>
-        /// This field is used to provide information about the shipping business policy to be used for the listing.
-        /// If this field is used, none of the other fields in RelistListingShippingTermsInput container should be used since all shipping settings are configured in the business policy instead. The [getFulfillmentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies) method can be used to retrieve all fulfillment business policies defined for a seller on an eBay marketplace.
+        /// This field is used to provide information about the shipping business policy to be used for the listing. If this field is used, none of the other fields in RelistListingShippingTermsInput object should be used since all shipping settings are configured in the business policy instead. The [getFulfillmentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies) method can be used to retrieve all fulfillment business policies defined for a seller on an eBay marketplace.
         /// </summary>
         public RelistShippingBusinessPolicyInput? BusinessPolicy
         {
@@ -58,6 +57,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is only applicable to motor vehicle listings and indicates if the buyer is responsible for shipping or picking up the purchased vehicle.
+        ///
         /// **Note**: This field is not applicable if business policies are being used by the seller.
         /// </summary>
         public bool? BuyerResponsibleForShipping
@@ -72,7 +72,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add or modify locations where the seller will not ship the item. The values specified in this array can be continents, geographical regions, countries, or special locations within the marketplace. The **excludedShipToLocations** and **includedShipToLocations** lists should not contradict one another. If there is a contradiction between the shipping exclusions and inclusions, the exclusion usually takes precedence. This means if a location is both included and excluded, it will be treated as excluded.
+        ///
         /// **Note**: The entire array of excluded shipping locations must be included if the list is being updated, and not just locations that are being added.
+        ///
         /// **Note**: This array is not applicable if business policies are being used by the seller.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingShippingLocationInput>? ExcludedShipToLocations
@@ -87,6 +89,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field indicates how many business days that the seller needs to ship the item after payment is made by the buyer. The handling time is required by most categories. Top-rated sellers typically set the handling time to 0 or 1 day, but longer handling times are supported.
+        ///
         /// **Note**: This field is not applicable if business policies are being used by the seller.
         /// </summary>
         public ListingTimeDuration? HandlingTimeDuration
@@ -101,7 +104,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add or modify locations where the seller will ship the item. The values specified in this array can be continents, geographical regions or countries. The **excludedShipToLocations** and **includedShipToLocations** lists should not contradict one another. If there is a contradiction between the shipping exclusions and inclusions, the exclusion usually takes precedence. This means if a location is both included and excluded, it will be treated as excluded.
+        ///
         /// **Note**: The entire array of shipping locations must be included if the list is being updated, and not just locations that are being added.
+        ///
         /// **Note**: This array is not applicable if business policies are being used by the seller.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingShippingLocationInput>? IncludedShipToLocations
@@ -115,8 +120,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to modify information on shipping local to marketplace, including the shipping cost type used (flat vs. calculated). There is also a field to add or change a shipping rate table to use against the listings and fields to add or change a shipping discount.
-        /// **Note**: This container is not applicable if business policies are being used by the seller.
+        /// This object is used to modify information on shipping options local to the country of themarketplace, including the shipping cost type used (flat vs. calculated). There is also a field to add or change a shipping rate table to use against the listings and fields to add or change a shipping discount.
+        ///
+        /// **Note**: This object is not applicable if business policies are being used by the seller.
         /// </summary>
         public RelistListingShippingOptionsInput? MarketplaceShippingOptions
         {
@@ -129,8 +135,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to modify information on shipping not local to marketplace, including the shipping cost type used (flat vs. calculated). There is also a field to specify a shipping rate table to use against the listings and fields to add or change a shipping discount.
-        /// **Note**: This container is not applicable if business policies are being used by the seller.
+        /// This object is used to modify information on shipping options not local to the country of the marketplace, including the shipping cost type used (flat vs. calculated). There is also a field to specify a shipping rate table to use against the listings and fields to add or change a shipping discount.
+        ///
+        /// **Note**: This object is not applicable if business policies are being used by the seller.
         /// </summary>
         public RelistListingShippingOptionsInput? NonMarketplaceShippingOptions
         {
@@ -143,8 +150,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to provide information of shipping services that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceCode** field.
-        /// **Maximum number of shipping services**: 10, out of which 5 apply for locations within the marketplace and other 5 apply for locations outside of marketplace
+        /// This array is used to provide information on one or more shipping services that are available to the buyer for shipment of the item, and the costs associated with using each one. Each available shipping service option is identified through the **shippingServiceCode** field.
+        ///
+        /// **Note**: Up to 10 shipping service options may be specified per listing, with up to five 'marketplace' shipping options and up to five 'non-marketplace' shipping options.
+        ///
         /// **Note**: This array is not needed if business policies are being used by the seller.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<RelistListingShippingServiceInput>? ShippingServices
@@ -159,13 +168,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_businessPolicy || _set_buyerResponsibleForShipping || _set_excludedShipToLocations || _set_handlingTimeDuration || _set_includedShipToLocations || _set_marketplaceShippingOptions || _set_nonMarketplaceShippingOptions || _set_shippingServices))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_businessPolicy)
             {

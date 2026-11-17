@@ -51,6 +51,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add or modify the list of geographical regions or individual countries that the corresponding international shipping service operates in.
+        ///
         /// **Note**: The full list of shipping locations must be included with each update operation, and not just the ones that are being added.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingShippingLocationInput>? IncludedShipToLocations
@@ -90,7 +91,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field identifies the domestic or international shipping service and is required for each specified shipping service. Use the [getShippingServices](https://developer.ebay.com/api-docs/sell/metadata/resources/shipping:marketplace/methods/getShippingServices) method to retrieve the full list of domestic and international shipping services supported on a marketplace. The enumeration values representing each shipping service option are returned in the [shippingService](https://developer.ebay.com/api-docs/sell/metadata/resources/shipping:marketplace/methods/getShippingServices#response.shippingServices.shippingService) fields of the **getShippingServices** response.
+        /// This field identifies the domestic or international shipping service and is required for each specified shipping service. Use the [getShippingServices](https://developer.ebay.com/api-docs/sell/metadata/resources/shipping:marketplace/methods/getShippingServices) method to retrieve the full list of domestic and international shipping services supported on a marketplace. The enumeration values representing each shipping service option are returned in the [shippingServices.shippingService](https://developer.ebay.com/api-docs/sell/metadata/resources/shipping:marketplace/methods/getShippingServices#response.shippingServices.shippingService) fields of the **getShippingServices** response.
         /// </summary>
         public string? ShippingServiceCode
         {
@@ -104,13 +105,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_additionalUnitShippingCost || _set_includedShipToLocations || _set_rank || _set_shippingCost || _set_shippingServiceCode))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_additionalUnitShippingCost)
             {

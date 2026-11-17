@@ -36,8 +36,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used by the seller to add or modify component information for the listing. For example, component information can provide the specific material of Hazmat concern.
+        ///
         /// **Note**: If this field is included, the text in this field will overwrite the current additional info text if it exists for the listing.
-        /// **Max length**: 120 characters.
+        ///
+        /// **Maximum length**: 120 characters
         /// </summary>
         public string? AdditionalInformation
         {
@@ -50,10 +52,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array is used to add or modify one to four pictogram codes that represent the possible hazard(s) that a product poses. The pictograms that are stated on the product's Safety Data Sheet should be used. Use the [getHazardousMaterialsLabels](https://developer.ebay.com/api-docs/sell/metadata-test/resources/marketplace/methods/getHazardousMaterialsLabels) method to retrieve the codes that can be passed into this array. The pictogram(s) that the code(s) represent will be painted on the created listing.
+        /// This array is used to add or modify one to four pictogram codes that represent the possible hazard(s) that a product poses. The pictograms that are stated on the product's Safety Data Sheet should be used. Use the [getHazardousMaterialsLabels](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getHazardousMaterialsLabels) method to retrieve the codes that can be passed into this array. The pictogram(s) that the code(s) represent will be painted on the created listing.
+        ///
         /// **Note**: All pictogram codes that the seller wishes to associate with the listing should be included in this array, and not just the new ones that are being added.
-        /// **Max number of pictogram codes allowed**: 4 pictograms.
-        /// **Max length of each pictogram code**: 15 characters.
+        ///
+        /// **Maximum number of pictogram codes allowed**: 4 pictograms
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? PictogramCodes
         {
@@ -66,8 +69,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to add or modify the hazardous material signal word for the product. Use the [getHazardousMaterialsLabels](https://developer.ebay.com/api-docs/sell/metadata-test/resources/marketplace/methods/getHazardousMaterialsLabels) method to retrieve the strings that can be passed into this array.
-        /// **Max length**: 15 characters.
+        /// This field is used to add or modify the hazardous material signal word for the product. Use the [getHazardousMaterialsLabels](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getHazardousMaterialsLabels) method to retrieve the strings that can be passed into this array.
         /// </summary>
         public string? SignalWordCode
         {
@@ -80,10 +82,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array is used to add or modify one to eight hazardous statement codes that are applicable to the product. These codes map to actual hazardous statement text. Use the [getHazardousMaterialsLabels](https://developer.ebay.com/api-docs/sell/metadata-test/resources/marketplace/methods/getHazardousMaterialsLabels) method to retrieve the statement codes that can be passed into this array. The hazardous statements that the code(s) represent will be painted on the created listing.
+        /// This array is used to add or modify one to eight hazardous statement codes that are applicable to the product. These codes map to actual hazardous statement text. Use the [getHazardousMaterialsLabels](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getHazardousMaterialsLabels) method to retrieve the statement codes that can be passed into this array. The hazardous statements that the code(s) represent will be painted on the created listing.
+        ///
         /// **Note**: All statement codes that the seller wishes to associate with the listing should be included in this array, and not just the new ones that are being added.
-        /// **Max no of statement codes allowed**: 8 statements.
-        /// **Max length of each statement code**: 15 characters.
+        ///
+        /// **Maximum number of statement codes allowed**: 8 statements
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? StatementCodes
         {
@@ -97,13 +100,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_additionalInformation || _set_pictogramCodes || _set_signalWordCode || _set_statementCodes))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_additionalInformation)
             {

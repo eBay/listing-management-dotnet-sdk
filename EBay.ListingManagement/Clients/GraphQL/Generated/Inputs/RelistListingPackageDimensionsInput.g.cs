@@ -34,6 +34,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The height (or depth) of the shipping package according to the unit of measurement applicable to the marketplace. For English measurement system, the supported unit of measurement is inches. For Metric measurement system, the supported unit of measurement is centimeters. The precision of the dimension values is up to two decimal places.
+        ///
         /// **Minimum value**: 0.1
         /// **Maximum value**: As allowed by the selected shipping service.
         /// </summary>
@@ -49,6 +50,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The length of the shipping package according to the unit of measurement applicable to the marketplace. For English measurement system, the supported unit of measurement is inches. For Metric measurement system, the supported unit of measurement is centimeters. The precision of the dimension values is up to two decimal places.
+        ///
         /// **Minimum value**: 0.1
         /// **Maximum value**: As allowed by the selected shipping service.
         /// </summary>
@@ -64,6 +66,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The width of the shipping package according to the unit of measurement applicable to the marketplace. For English measurement system, the supported unit of measurement is inches. For Metric measurement system, the supported unit of measurement is centimeters. The precision of the dimension values is up to two decimal places.
+        ///
         /// **Minimum value**: 0.1
         /// **Maximum value**: As allowed by the selected shipping service.
         /// </summary>
@@ -79,13 +82,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_height || _set_length || _set_width))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_height)
             {

@@ -31,9 +31,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_values;
 
         /// <summary>
-        ///  The name of the aspect for the external product.
+        /// The name of the aspect for the external product.
         ///
-        /// **Max length**: 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Name
         {
@@ -48,7 +48,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// An array of one or more corresponding values for the aspect.
         ///
-        /// **Max length**: 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> Values
         {
@@ -62,13 +62,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_name || _set_values))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_name)
             {

@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to define motor vehicles or assemblies that are compatible with a Parts &amp; Accessories item. This structured compatibility information helps buyers filter and find parts that are compatible with their specific vehicles.
+    /// This type is used to define motor vehicles or assemblies that are compatible with a **Parts &amp; Accessories** item. This structured compatibility information helps buyers filter and find parts that are compatible with their specific vehicles.
     /// </summary>
     public partial class CreateListingItemCompatibilityInput : global::System.IEquatable<CreateListingItemCompatibilityInput>
     {
@@ -32,9 +32,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to define a set of compatible vehicles or assemblies through a set of name-value pairs such as *Year*, *Make*, and *Model*. The required/applicable names and values are specific to the primary category for the listing, and can be found using the [getCompatibilityPropertyNames](https://developer.ebay.com/api-docs/sell/metadata/resources/compatibilities/methods/getCompatibilityPropertyNames) and [getCompatibilityPropertyValues](https://developer.ebay.com/api-docs/sell/metadata/resources/compatibilities/methods/getCompatibilityPropertyValues) methods of the **Metadata API**.
-        /// **Max number of allowed compatibilities on the listing**: 3000
-        /// **Max compatibility name length**: 65
-        /// **Max compatibility value length**: 65
+        ///
+        /// **Maximum number of allowed compatibilities on the listing**: 3000
+        ///
+        /// **Maximum compatibility name length**: 65
+        ///
+        /// **Maximum compatibility value length**: 65
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<NameValuesPairInput> Compatibilities
         {
@@ -48,7 +51,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The seller may optionally enter any notes pertaining to the parts compatibility being specified. For example, if this Compatibility information applies to a vehicle, a seller may use this field to specify the placement of the part on a vehicle or the type of vehicle a part fits.
-        /// **Max length**: 500 characters.
+        ///
+        /// **Maximum length**: 500 characters
         /// </summary>
         public string? CompatibilityNotes
         {
@@ -62,13 +66,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_compatibilities || _set_compatibilityNotes))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_compatibilities)
             {

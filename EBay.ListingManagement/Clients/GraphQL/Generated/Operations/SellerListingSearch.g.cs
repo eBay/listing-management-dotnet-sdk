@@ -26,17 +26,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListingSearchResult
     {
         /// <summary>
-        /// The sellerListingSearch query searches for a seller's listings based on the provided criteria. The user issuing the call **must** be the seller associated with the listings.
-        /// @authorize(scopes:
-        /// [
-        ///     "https://api.ebay.com/oauth/api_scope/sell.listing.read&amp;eBayUser",
-        ///     "https://api.ebay.com/oauth/scope/sell@user&amp;eBayUser"])
-        /// @sandboxSupported("false")
-        ///
-        /// PossibleErrors:
-        /// | Code                                | Message                                           |
-        /// |-------------------------------------|---------------------------------------------------|
-        /// | SELLER_LISTING_SEARCH_INVALID_INPUT | Seller listing search input validation failed.    |
+        /// This query searches for a seller's listings based on the provided criteria. The user issuing the call **must** be the seller associated with the listings.
         /// </summary>
         public ISellerListingSearch_SellerListingSearch SellerListingSearch { get; }
     }
@@ -52,17 +42,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The sellerListingSearch query searches for a seller's listings based on the provided criteria. The user issuing the call **must** be the seller associated with the listings.
-        /// @authorize(scopes:
-        /// [
-        ///     "https://api.ebay.com/oauth/api_scope/sell.listing.read&amp;eBayUser",
-        ///     "https://api.ebay.com/oauth/scope/sell@user&amp;eBayUser"])
-        /// @sandboxSupported("false")
-        ///
-        /// PossibleErrors:
-        /// | Code                                | Message                                           |
-        /// |-------------------------------------|---------------------------------------------------|
-        /// | SELLER_LISTING_SEARCH_INVALID_INPUT | Seller listing search input validation failed.    |
+        /// This query searches for a seller's listings based on the provided criteria. The user issuing the call **must** be the seller associated with the listings.
         /// </summary>
         public ISellerListingSearch_SellerListingSearch SellerListingSearch { get; }
 
@@ -121,9 +101,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This union is used to request the list of active, ended, and/or scheduled listings based on the provided search criteria. If no listings are identified that satisfy the search criteria an empty result is returned. If there is an input error, 'SellerListingSearchInvalidInput' is returned.
+    /// This union is used to request the list of active, ended, and/or scheduled listings based on the provided search criteria. If no listings are identified that satisfy the search criteria an empty result is returned. If there is an input error, `SellerListingSearchInvalidInput` is returned.
     ///
-    /// **Note:** The user issuing this call **must** be the seller associated with the listings.
+    /// **Note**: The user issuing this call **must** be the seller associated with the listings.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings
     {
@@ -131,78 +111,93 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Base interface for all seller listing search input errors. Each specific error type implements this interface.
+    /// The base interface for all seller listing search input errors. Each specific error type implements this interface.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
     }
 
     /// <summary>
-    /// This error is returned when the number of listing IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This error type is returned when the number of listing IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_ListingIdsExceedMaxError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the pagination limit (maxPageSize) provided for the `sellerListingSearch` query exceeds the maximum allowed value.
+    /// This error is returned when the minimum price provided for the **sellerListingSearch** query
+    /// is greater than the maximum price in a price range filter.
+    /// </summary>
+    public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_MinPriceExceedsMaxPriceError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
+    {
+    }
+
+    /// <summary>
+    /// This error is returned when the pagination limit (maxPageSize) provided for the **sellerListingSearch** query exceeds the maximum allowed value.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationPageSizeExceedError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the combination of pagination parameters provided for the `sellerListingSearch` query would exceed the maximum fetch limit for the search.
+    /// This error is returned when the combination of pagination parameters provided for the **sellerListingSearch** query would exceed the maximum fetch limit for the search.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationTotalFetchLimitExceedError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of primary category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryCategoryExceedMaxError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of primary store category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary store category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed count.
+    /// This error is returned when the `pagination.pageCursor` value provided for the **sellerListingSearch** query cannot be interpreted as a valid pagination cursor.
+    /// </summary>
+    public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SellerListingSearchInvalidPageCursorError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
+    {
+    }
+
+    /// <summary>
+    /// This type is returned when the number of Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed count.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SkusExceedMaxCountError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when one or more Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed length.
+    /// This type is returned when one or more Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed length.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SkusExceedMaxLengthError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the start date provided for the `sellerListingSearch` query is after the end date provided for a date range filter.
+    /// This error is returned when the start date provided for the **sellerListingSearch** query is after the end date provided for a date range filter.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_StartDateAfterEndDateError : ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// Represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occurr during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
+    /// This type represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occur during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
     ///
     /// | Error Type                          | Description                                                                 |
     /// |-------------------------------------|-----------------------------------------------------------------------------|
@@ -218,54 +213,40 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_SellerListingSearchInvalidInput : ISellerListingSearch_SellerListingSearch_ActiveListings
     {
         /// <summary>
-        /// Human-readable error message in a localized format informing end users about the input validation error.
+        /// The human-readable error message in a localized format informing end users about the input validation error.
         ///
         /// **Example:** "Some of the input values provided for the seller listing search are invalid. Please correct your input and try again."
         /// </summary>
         public string DisplayableErrorMessage { get; }
         /// <summary>
-        /// Machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
+        /// The machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
-        /// Human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
+        /// The human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
         ///
         /// **Example:** "Validation failed for seller listing search input."
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// List of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
+        /// This array returns a list of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors> ValidationErrors { get; }
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_Listings
     {
         /// <summary>
-        /// ID of the listing
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_Listings_ListingReference : ISellerListingSearch_SellerListingSearch_ActiveListings_Listings
     {
@@ -302,7 +283,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container stores the list of the seller's listings and desired pagination criteria, if appropriate.
+    /// This type stores the list of the seller's listings and desired pagination criteria, if appropriate.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ActiveListings_SellerListings : ISellerListingSearch_SellerListingSearch_ActiveListings
     {
@@ -317,9 +298,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This union is used to request the list of active, ended, and/or scheduled listings based on the provided search criteria. If no listings are identified that satisfy the search criteria an empty result is returned. If there is an input error, 'SellerListingSearchInvalidInput' is returned.
+    /// This union is used to request the list of active, ended, and/or scheduled listings based on the provided search criteria. If no listings are identified that satisfy the search criteria an empty result is returned. If there is an input error, `SellerListingSearchInvalidInput` is returned.
     ///
-    /// **Note:** The user issuing this call **must** be the seller associated with the listings.
+    /// **Note**: The user issuing this call **must** be the seller associated with the listings.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings
     {
@@ -327,78 +308,93 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Base interface for all seller listing search input errors. Each specific error type implements this interface.
+    /// The base interface for all seller listing search input errors. Each specific error type implements this interface.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
     }
 
     /// <summary>
-    /// This error is returned when the number of listing IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This error type is returned when the number of listing IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_ListingIdsExceedMaxError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the pagination limit (maxPageSize) provided for the `sellerListingSearch` query exceeds the maximum allowed value.
+    /// This error is returned when the minimum price provided for the **sellerListingSearch** query
+    /// is greater than the maximum price in a price range filter.
+    /// </summary>
+    public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_MinPriceExceedsMaxPriceError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
+    {
+    }
+
+    /// <summary>
+    /// This error is returned when the pagination limit (maxPageSize) provided for the **sellerListingSearch** query exceeds the maximum allowed value.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationPageSizeExceedError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the combination of pagination parameters provided for the `sellerListingSearch` query would exceed the maximum fetch limit for the search.
+    /// This error is returned when the combination of pagination parameters provided for the **sellerListingSearch** query would exceed the maximum fetch limit for the search.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationTotalFetchLimitExceedError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of primary category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryCategoryExceedMaxError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of primary store category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary store category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed count.
+    /// This error is returned when the `pagination.pageCursor` value provided for the **sellerListingSearch** query cannot be interpreted as a valid pagination cursor.
+    /// </summary>
+    public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SellerListingSearchInvalidPageCursorError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
+    {
+    }
+
+    /// <summary>
+    /// This type is returned when the number of Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed count.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SkusExceedMaxCountError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when one or more Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed length.
+    /// This type is returned when one or more Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed length.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SkusExceedMaxLengthError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the start date provided for the `sellerListingSearch` query is after the end date provided for a date range filter.
+    /// This error is returned when the start date provided for the **sellerListingSearch** query is after the end date provided for a date range filter.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_StartDateAfterEndDateError : ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// Represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occurr during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
+    /// This type represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occur during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
     ///
     /// | Error Type                          | Description                                                                 |
     /// |-------------------------------------|-----------------------------------------------------------------------------|
@@ -414,21 +410,21 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_SellerListingSearchInvalidInput : ISellerListingSearch_SellerListingSearch_ScheduledListings
     {
         /// <summary>
-        /// Human-readable error message in a localized format informing end users about the input validation error.
+        /// The human-readable error message in a localized format informing end users about the input validation error.
         ///
         /// **Example:** "Some of the input values provided for the seller listing search are invalid. Please correct your input and try again."
         /// </summary>
         public string DisplayableErrorMessage { get; }
         /// <summary>
-        /// Machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
+        /// The machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
-        /// List of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
+        /// This array returns a list of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors> ValidationErrors { get; }
         /// <summary>
-        /// Human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
+        /// The human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
         ///
         /// **Example:** "Validation failed for seller listing search input."
         /// </summary>
@@ -436,32 +432,18 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_Listings
     {
         /// <summary>
-        /// ID of the listing
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_Listings_ListingReference : ISellerListingSearch_SellerListingSearch_ScheduledListings_Listings
     {
@@ -498,7 +480,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container stores the list of the seller's listings and desired pagination criteria, if appropriate.
+    /// This type stores the list of the seller's listings and desired pagination criteria, if appropriate.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_ScheduledListings_SellerListings : ISellerListingSearch_SellerListingSearch_ScheduledListings
     {
@@ -513,9 +495,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This union is used to request the list of active, ended, and/or scheduled listings based on the provided search criteria. If no listings are identified that satisfy the search criteria an empty result is returned. If there is an input error, 'SellerListingSearchInvalidInput' is returned.
+    /// This union is used to request the list of active, ended, and/or scheduled listings based on the provided search criteria. If no listings are identified that satisfy the search criteria an empty result is returned. If there is an input error, `SellerListingSearchInvalidInput` is returned.
     ///
-    /// **Note:** The user issuing this call **must** be the seller associated with the listings.
+    /// **Note**: The user issuing this call **must** be the seller associated with the listings.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings
     {
@@ -523,78 +505,93 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Base interface for all seller listing search input errors. Each specific error type implements this interface.
+    /// The base interface for all seller listing search input errors. Each specific error type implements this interface.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
     }
 
     /// <summary>
-    /// This error is returned when the number of listing IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This error type is returned when the number of listing IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_ListingIdsExceedMaxError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the pagination limit (maxPageSize) provided for the `sellerListingSearch` query exceeds the maximum allowed value.
+    /// This error is returned when the minimum price provided for the **sellerListingSearch** query
+    /// is greater than the maximum price in a price range filter.
+    /// </summary>
+    public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_MinPriceExceedsMaxPriceError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
+    {
+    }
+
+    /// <summary>
+    /// This error is returned when the pagination limit (maxPageSize) provided for the **sellerListingSearch** query exceeds the maximum allowed value.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationPageSizeExceedError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the combination of pagination parameters provided for the `sellerListingSearch` query would exceed the maximum fetch limit for the search.
+    /// This error is returned when the combination of pagination parameters provided for the **sellerListingSearch** query would exceed the maximum fetch limit for the search.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationTotalFetchLimitExceedError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of primary category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryCategoryExceedMaxError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of primary store category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary store category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed count.
+    /// This error is returned when the `pagination.pageCursor` value provided for the **sellerListingSearch** query cannot be interpreted as a valid pagination cursor.
+    /// </summary>
+    public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SellerListingSearchInvalidPageCursorError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
+    {
+    }
+
+    /// <summary>
+    /// This type is returned when the number of Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed count.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SkusExceedMaxCountError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when one or more Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed length.
+    /// This type is returned when one or more Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed length.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SkusExceedMaxLengthError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// This error is returned when the start date provided for the `sellerListingSearch` query is after the end date provided for a date range filter.
+    /// This error is returned when the start date provided for the **sellerListingSearch** query is after the end date provided for a date range filter.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_StartDateAfterEndDateError : ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors
     {
     }
 
     /// <summary>
-    /// Represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occurr during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
+    /// This type represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occur during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
     ///
     /// | Error Type                          | Description                                                                 |
     /// |-------------------------------------|-----------------------------------------------------------------------------|
@@ -610,54 +607,40 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_SellerListingSearchInvalidInput : ISellerListingSearch_SellerListingSearch_EndedListings
     {
         /// <summary>
-        /// Human-readable error message in a localized format informing end users about the input validation error.
+        /// The human-readable error message in a localized format informing end users about the input validation error.
         ///
         /// **Example:** "Some of the input values provided for the seller listing search are invalid. Please correct your input and try again."
         /// </summary>
         public string DisplayableErrorMessage { get; }
         /// <summary>
-        /// Machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
+        /// The machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
-        /// Human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
+        /// The human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
         ///
         /// **Example:** "Validation failed for seller listing search input."
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// List of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
+        /// This array returns a list of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors> ValidationErrors { get; }
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_Listings
     {
         /// <summary>
-        /// ID of the listing
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_Listings_ListingReference : ISellerListingSearch_SellerListingSearch_EndedListings_Listings
     {
@@ -694,7 +677,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container stores the list of the seller's listings and desired pagination criteria, if appropriate.
+    /// This type stores the list of the seller's listings and desired pagination criteria, if appropriate.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_EndedListings_SellerListings : ISellerListingSearch_SellerListingSearch_EndedListings
     {
@@ -709,43 +692,43 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container stores the active, completed, and scheduled listings for a seller.
+    /// This type stores the active, completed, and scheduled listings for a seller.
     ///
-    /// **Note:** The userId of the user issuing the call is retrieved from the context. Users may only retrieve their own listings.
+    /// **Note**: The **userId** of the user issuing the call is retrieved from the context. Users may only retrieve their own listings.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch
     {
         /// <summary>
-        /// This type contains the seller's active listings that satisfy the search criteria specified by `SellerActiveListingSearchInput`.
+        /// This object contains the seller's active listings that satisfy the search criteria specified by `SellerActiveListingSearchInput`.
         ///
-        /// **Note:** The userId of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
+        /// **Note**: The **userId** of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
         /// </summary>
         public ISellerListingSearch_SellerListingSearch_ActiveListings ActiveListings { get; }
         /// <summary>
-        /// This type contains the seller's scheduled listings that satisfy the search criteria specified by `SellerScheduledListingSearchInput`.
+        /// This object contains the seller's scheduled listings that satisfy the search criteria specified by `SellerScheduledListingSearchInput`.
         ///
-        /// **Note:** The userId of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
+        /// **Note**: The **userId** of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
         /// </summary>
         public ISellerListingSearch_SellerListingSearch_ScheduledListings ScheduledListings { get; }
         /// <summary>
-        /// This type contains the seller's ended listings that satisfy the search criteria specified by `SellerEndedListingSearchInput`.
+        /// This object contains the seller's ended listings that satisfy the search criteria specified by `SellerEndedListingSearchInput`.
         ///
-        /// **Note:** The userId of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
+        /// **Note**: The **userId** of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
         /// </summary>
         public ISellerListingSearch_SellerListingSearch_EndedListings EndedListings { get; }
     }
 
     /// <summary>
-    /// This container stores the active, completed, and scheduled listings for a seller.
+    /// This type stores the active, completed, and scheduled listings for a seller.
     ///
-    /// **Note:** The userId of the user issuing the call is retrieved from the context. Users may only retrieve their own listings.
+    /// **Note**: The **userId** of the user issuing the call is retrieved from the context. Users may only retrieve their own listings.
     /// </summary>
     public partial interface ISellerListingSearch_SellerListingSearch_SellerListingSearchOutput : ISellerListingSearch_SellerListingSearch
     {
     }
 
     /// <summary>
-    /// This error is returned when the number of listing IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This error type is returned when the number of listing IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_ListingIdsExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_ListingIdsExceedMaxError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_ListingIdsExceedMaxError
     {
@@ -756,12 +739,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -825,7 +808,88 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the pagination limit (maxPageSize) provided for the `sellerListingSearch` query exceeds the maximum allowed value.
+    /// This error is returned when the minimum price provided for the **sellerListingSearch** query
+    /// is greater than the maximum price in a price range filter.
+    /// </summary>
+    public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_MinPriceExceedsMaxPriceError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_MinPriceExceedsMaxPriceError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_MinPriceExceedsMaxPriceError
+    {
+        public SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_MinPriceExceedsMaxPriceError(string errorDescription, string remedy)
+        {
+            this.ErrorDescription = errorDescription;
+            this.Remedy = remedy;
+        }
+
+        /// <summary>
+        /// The technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorDescription { get; }
+
+        /// <summary>
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// </summary>
+        public string Remedy { get; }
+
+        public virtual bool Equals(SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_MinPriceExceedsMaxPriceError? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(ErrorDescription, other.ErrorDescription)
+                && global::System.Object.Equals(Remedy, other.Remedy);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_MinPriceExceedsMaxPriceError)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ErrorDescription is not null)
+                {
+                    hash ^= 397 * ErrorDescription.GetHashCode();
+                }
+                if (Remedy is not null)
+                {
+                    hash ^= 397 * Remedy.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This error is returned when the pagination limit (maxPageSize) provided for the **sellerListingSearch** query exceeds the maximum allowed value.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationPageSizeExceedError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationPageSizeExceedError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationPageSizeExceedError
     {
@@ -836,12 +900,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -905,7 +969,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the combination of pagination parameters provided for the `sellerListingSearch` query would exceed the maximum fetch limit for the search.
+    /// This error is returned when the combination of pagination parameters provided for the **sellerListingSearch** query would exceed the maximum fetch limit for the search.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationTotalFetchLimitExceedError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationTotalFetchLimitExceedError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationTotalFetchLimitExceedError
     {
@@ -916,12 +980,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -985,7 +1049,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of primary category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryCategoryExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryCategoryExceedMaxError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryCategoryExceedMaxError
     {
@@ -996,12 +1060,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -1065,7 +1129,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of primary store category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary store category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError
     {
@@ -1076,12 +1140,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -1145,7 +1209,87 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed count.
+    /// This error is returned when the `pagination.pageCursor` value provided for the **sellerListingSearch** query cannot be interpreted as a valid pagination cursor.
+    /// </summary>
+    public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SellerListingSearchInvalidPageCursorError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SellerListingSearchInvalidPageCursorError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SellerListingSearchInvalidPageCursorError
+    {
+        public SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SellerListingSearchInvalidPageCursorError(string errorDescription, string remedy)
+        {
+            this.ErrorDescription = errorDescription;
+            this.Remedy = remedy;
+        }
+
+        /// <summary>
+        /// The technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorDescription { get; }
+
+        /// <summary>
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// </summary>
+        public string Remedy { get; }
+
+        public virtual bool Equals(SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SellerListingSearchInvalidPageCursorError? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(ErrorDescription, other.ErrorDescription)
+                && global::System.Object.Equals(Remedy, other.Remedy);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SellerListingSearchInvalidPageCursorError)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ErrorDescription is not null)
+                {
+                    hash ^= 397 * ErrorDescription.GetHashCode();
+                }
+                if (Remedy is not null)
+                {
+                    hash ^= 397 * Remedy.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type is returned when the number of Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed count.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SkusExceedMaxCountError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SkusExceedMaxCountError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SkusExceedMaxCountError
     {
@@ -1156,12 +1300,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -1225,7 +1369,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when one or more Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed length.
+    /// This type is returned when one or more Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed length.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SkusExceedMaxLengthError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SkusExceedMaxLengthError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SkusExceedMaxLengthError
     {
@@ -1236,12 +1380,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -1305,7 +1449,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the start date provided for the `sellerListingSearch` query is after the end date provided for a date range filter.
+    /// This error is returned when the start date provided for the **sellerListingSearch** query is after the end date provided for a date range filter.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_StartDateAfterEndDateError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_StartDateAfterEndDateError>, ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_StartDateAfterEndDateError
     {
@@ -1316,12 +1460,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -1385,7 +1529,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occurr during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
+    /// This type represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occur during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
     ///
     /// | Error Type                          | Description                                                                 |
     /// |-------------------------------------|-----------------------------------------------------------------------------|
@@ -1412,26 +1556,26 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Human-readable error message in a localized format informing end users about the input validation error.
+        /// The human-readable error message in a localized format informing end users about the input validation error.
         ///
         /// **Example:** "Some of the input values provided for the seller listing search are invalid. Please correct your input and try again."
         /// </summary>
         public string DisplayableErrorMessage { get; }
 
         /// <summary>
-        /// Machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
+        /// The machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
-        /// Human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
+        /// The human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
         ///
         /// **Example:** "Validation failed for seller listing search input."
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// List of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
+        /// This array returns a list of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors> ValidationErrors { get; }
 
@@ -1507,14 +1651,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_Listings_ListingReference : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_Listings_ListingReference>, ISellerListingSearch_SellerListingSearch_ActiveListings_Listings_ListingReference
     {
@@ -1524,7 +1661,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// ID of the listing
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
 
@@ -1685,7 +1822,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container stores the list of the seller's listings and desired pagination criteria, if appropriate.
+    /// This type stores the list of the seller's listings and desired pagination criteria, if appropriate.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ActiveListings_SellerListings : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ActiveListings_SellerListings>, ISellerListingSearch_SellerListingSearch_ActiveListings_SellerListings
     {
@@ -1770,7 +1907,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of listing IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This error type is returned when the number of listing IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_ListingIdsExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_ListingIdsExceedMaxError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_ListingIdsExceedMaxError
     {
@@ -1781,12 +1918,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -1850,7 +1987,88 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the pagination limit (maxPageSize) provided for the `sellerListingSearch` query exceeds the maximum allowed value.
+    /// This error is returned when the minimum price provided for the **sellerListingSearch** query
+    /// is greater than the maximum price in a price range filter.
+    /// </summary>
+    public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_MinPriceExceedsMaxPriceError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_MinPriceExceedsMaxPriceError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_MinPriceExceedsMaxPriceError
+    {
+        public SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_MinPriceExceedsMaxPriceError(string errorDescription, string remedy)
+        {
+            this.ErrorDescription = errorDescription;
+            this.Remedy = remedy;
+        }
+
+        /// <summary>
+        /// The technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorDescription { get; }
+
+        /// <summary>
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// </summary>
+        public string Remedy { get; }
+
+        public virtual bool Equals(SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_MinPriceExceedsMaxPriceError? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(ErrorDescription, other.ErrorDescription)
+                && global::System.Object.Equals(Remedy, other.Remedy);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_MinPriceExceedsMaxPriceError)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ErrorDescription is not null)
+                {
+                    hash ^= 397 * ErrorDescription.GetHashCode();
+                }
+                if (Remedy is not null)
+                {
+                    hash ^= 397 * Remedy.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This error is returned when the pagination limit (maxPageSize) provided for the **sellerListingSearch** query exceeds the maximum allowed value.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationPageSizeExceedError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationPageSizeExceedError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationPageSizeExceedError
     {
@@ -1861,12 +2079,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -1930,7 +2148,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the combination of pagination parameters provided for the `sellerListingSearch` query would exceed the maximum fetch limit for the search.
+    /// This error is returned when the combination of pagination parameters provided for the **sellerListingSearch** query would exceed the maximum fetch limit for the search.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationTotalFetchLimitExceedError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationTotalFetchLimitExceedError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationTotalFetchLimitExceedError
     {
@@ -1941,12 +2159,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -2010,7 +2228,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of primary category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryCategoryExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryCategoryExceedMaxError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryCategoryExceedMaxError
     {
@@ -2021,12 +2239,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -2090,7 +2308,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of primary store category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary store category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError
     {
@@ -2101,12 +2319,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -2170,7 +2388,87 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed count.
+    /// This error is returned when the `pagination.pageCursor` value provided for the **sellerListingSearch** query cannot be interpreted as a valid pagination cursor.
+    /// </summary>
+    public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SellerListingSearchInvalidPageCursorError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SellerListingSearchInvalidPageCursorError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SellerListingSearchInvalidPageCursorError
+    {
+        public SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SellerListingSearchInvalidPageCursorError(string errorDescription, string remedy)
+        {
+            this.ErrorDescription = errorDescription;
+            this.Remedy = remedy;
+        }
+
+        /// <summary>
+        /// The technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorDescription { get; }
+
+        /// <summary>
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// </summary>
+        public string Remedy { get; }
+
+        public virtual bool Equals(SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SellerListingSearchInvalidPageCursorError? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(ErrorDescription, other.ErrorDescription)
+                && global::System.Object.Equals(Remedy, other.Remedy);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SellerListingSearchInvalidPageCursorError)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ErrorDescription is not null)
+                {
+                    hash ^= 397 * ErrorDescription.GetHashCode();
+                }
+                if (Remedy is not null)
+                {
+                    hash ^= 397 * Remedy.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type is returned when the number of Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed count.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SkusExceedMaxCountError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SkusExceedMaxCountError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SkusExceedMaxCountError
     {
@@ -2181,12 +2479,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -2250,7 +2548,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when one or more Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed length.
+    /// This type is returned when one or more Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed length.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SkusExceedMaxLengthError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SkusExceedMaxLengthError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SkusExceedMaxLengthError
     {
@@ -2261,12 +2559,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -2330,7 +2628,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the start date provided for the `sellerListingSearch` query is after the end date provided for a date range filter.
+    /// This error is returned when the start date provided for the **sellerListingSearch** query is after the end date provided for a date range filter.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_StartDateAfterEndDateError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_StartDateAfterEndDateError>, ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_StartDateAfterEndDateError
     {
@@ -2341,12 +2639,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -2410,7 +2708,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occurr during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
+    /// This type represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occur during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
     ///
     /// | Error Type                          | Description                                                                 |
     /// |-------------------------------------|-----------------------------------------------------------------------------|
@@ -2437,24 +2735,24 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Human-readable error message in a localized format informing end users about the input validation error.
+        /// The human-readable error message in a localized format informing end users about the input validation error.
         ///
         /// **Example:** "Some of the input values provided for the seller listing search are invalid. Please correct your input and try again."
         /// </summary>
         public string DisplayableErrorMessage { get; }
 
         /// <summary>
-        /// Machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
+        /// The machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
-        /// List of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
+        /// This array returns a list of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors> ValidationErrors { get; }
 
         /// <summary>
-        /// Human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
+        /// The human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
         ///
         /// **Example:** "Validation failed for seller listing search input."
         /// </summary>
@@ -2532,14 +2830,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_Listings_ListingReference : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_Listings_ListingReference>, ISellerListingSearch_SellerListingSearch_ScheduledListings_Listings_ListingReference
     {
@@ -2549,7 +2840,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// ID of the listing
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
 
@@ -2710,7 +3001,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container stores the list of the seller's listings and desired pagination criteria, if appropriate.
+    /// This type stores the list of the seller's listings and desired pagination criteria, if appropriate.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_ScheduledListings_SellerListings : global::System.IEquatable<SellerListingSearch_SellerListingSearch_ScheduledListings_SellerListings>, ISellerListingSearch_SellerListingSearch_ScheduledListings_SellerListings
     {
@@ -2795,7 +3086,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of listing IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This error type is returned when the number of listing IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_ListingIdsExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_ListingIdsExceedMaxError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_ListingIdsExceedMaxError
     {
@@ -2806,12 +3097,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -2875,7 +3166,88 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the pagination limit (maxPageSize) provided for the `sellerListingSearch` query exceeds the maximum allowed value.
+    /// This error is returned when the minimum price provided for the **sellerListingSearch** query
+    /// is greater than the maximum price in a price range filter.
+    /// </summary>
+    public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_MinPriceExceedsMaxPriceError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_MinPriceExceedsMaxPriceError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_MinPriceExceedsMaxPriceError
+    {
+        public SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_MinPriceExceedsMaxPriceError(string errorDescription, string remedy)
+        {
+            this.ErrorDescription = errorDescription;
+            this.Remedy = remedy;
+        }
+
+        /// <summary>
+        /// The technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorDescription { get; }
+
+        /// <summary>
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// </summary>
+        public string Remedy { get; }
+
+        public virtual bool Equals(SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_MinPriceExceedsMaxPriceError? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(ErrorDescription, other.ErrorDescription)
+                && global::System.Object.Equals(Remedy, other.Remedy);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_MinPriceExceedsMaxPriceError)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ErrorDescription is not null)
+                {
+                    hash ^= 397 * ErrorDescription.GetHashCode();
+                }
+                if (Remedy is not null)
+                {
+                    hash ^= 397 * Remedy.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This error is returned when the pagination limit (maxPageSize) provided for the **sellerListingSearch** query exceeds the maximum allowed value.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationPageSizeExceedError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationPageSizeExceedError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationPageSizeExceedError
     {
@@ -2886,12 +3258,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -2955,7 +3327,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the combination of pagination parameters provided for the `sellerListingSearch` query would exceed the maximum fetch limit for the search.
+    /// This error is returned when the combination of pagination parameters provided for the **sellerListingSearch** query would exceed the maximum fetch limit for the search.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationTotalFetchLimitExceedError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationTotalFetchLimitExceedError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationTotalFetchLimitExceedError
     {
@@ -2966,12 +3338,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -3035,7 +3407,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of primary category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryCategoryExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryCategoryExceedMaxError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryCategoryExceedMaxError
     {
@@ -3046,12 +3418,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -3115,7 +3487,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of primary store category IDs provided for the `sellerListingSearch` query exceeds the maximum allowed limit.
+    /// This type indicates that the number of primary store category IDs provided for the **sellerListingSearch** query exceeds the maximum allowed limit.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError
     {
@@ -3126,12 +3498,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -3195,7 +3567,87 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the number of Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed count.
+    /// This error is returned when the `pagination.pageCursor` value provided for the **sellerListingSearch** query cannot be interpreted as a valid pagination cursor.
+    /// </summary>
+    public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SellerListingSearchInvalidPageCursorError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SellerListingSearchInvalidPageCursorError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SellerListingSearchInvalidPageCursorError
+    {
+        public SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SellerListingSearchInvalidPageCursorError(string errorDescription, string remedy)
+        {
+            this.ErrorDescription = errorDescription;
+            this.Remedy = remedy;
+        }
+
+        /// <summary>
+        /// The technical description of the error for developers and debugging purposes.
+        /// </summary>
+        public string ErrorDescription { get; }
+
+        /// <summary>
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// </summary>
+        public string Remedy { get; }
+
+        public virtual bool Equals(SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SellerListingSearchInvalidPageCursorError? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(ErrorDescription, other.ErrorDescription)
+                && global::System.Object.Equals(Remedy, other.Remedy);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SellerListingSearchInvalidPageCursorError)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ErrorDescription is not null)
+                {
+                    hash ^= 397 * ErrorDescription.GetHashCode();
+                }
+                if (Remedy is not null)
+                {
+                    hash ^= 397 * Remedy.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This type is returned when the number of Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed count.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SkusExceedMaxCountError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SkusExceedMaxCountError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SkusExceedMaxCountError
     {
@@ -3206,12 +3658,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -3275,7 +3727,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when one or more Stock Keeping Units (SKUs) provided for the `sellerListingSearch` query exceeds the maximum allowed length.
+    /// This type is returned when one or more Stock Keeping Units (SKUs) provided for the **sellerListingSearch** query exceeds the maximum allowed length.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SkusExceedMaxLengthError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SkusExceedMaxLengthError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SkusExceedMaxLengthError
     {
@@ -3286,12 +3738,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -3355,7 +3807,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This error is returned when the start date provided for the `sellerListingSearch` query is after the end date provided for a date range filter.
+    /// This error is returned when the start date provided for the **sellerListingSearch** query is after the end date provided for a date range filter.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_StartDateAfterEndDateError : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_StartDateAfterEndDateError>, ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_StartDateAfterEndDateError
     {
@@ -3366,12 +3818,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Technical description of the error for developers and debugging purposes.
+        /// The technical description of the error for developers and debugging purposes.
         /// </summary>
         public string ErrorDescription { get; }
 
         /// <summary>
-        /// User-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
+        /// A user-friendly suggestion on how to fix the error. This can be displayed to end users to help them correct their input.
         /// </summary>
         public string Remedy { get; }
 
@@ -3435,7 +3887,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occurr during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
+    /// This type represents input validation errors that may occur for seller listing search operations. This type provides user-friendly error messaging and detailed validation error information. Each validation error will display `SELLER_LISTING_SEARCH_INVALID_INPUT` to indicate there has been an input validation failure. The specific list of input errors that may occur during the search request validation is provided in the following table. Each error provides detailed information about what went wrong and how to fix it.
     ///
     /// | Error Type                          | Description                                                                 |
     /// |-------------------------------------|-----------------------------------------------------------------------------|
@@ -3462,26 +3914,26 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Human-readable error message in a localized format informing end users about the input validation error.
+        /// The human-readable error message in a localized format informing end users about the input validation error.
         ///
         /// **Example:** "Some of the input values provided for the seller listing search are invalid. Please correct your input and try again."
         /// </summary>
         public string DisplayableErrorMessage { get; }
 
         /// <summary>
-        /// Machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
+        /// The machine-readable error code uniquely representing seller listing search failure. Always returns value `SELLER_LISTING_SEARCH_INVALID_INPUT`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
-        /// Human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
+        /// The human-readable description of the seller listing search failure for API consumer developers. Clients should typically only use this field during development and must never display contents to end users.
         ///
         /// **Example:** "Validation failed for seller listing search input."
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// List of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
+        /// This array returns a list of specific input errors that occurred during the search request validation. Each error provides detailed information about what went wrong and how to fix it.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors> ValidationErrors { get; }
 
@@ -3557,14 +4009,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_Listings_ListingReference : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_Listings_ListingReference>, ISellerListingSearch_SellerListingSearch_EndedListings_Listings_ListingReference
     {
@@ -3574,7 +4019,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// ID of the listing
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
 
@@ -3735,7 +4180,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container stores the list of the seller's listings and desired pagination criteria, if appropriate.
+    /// This type stores the list of the seller's listings and desired pagination criteria, if appropriate.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_EndedListings_SellerListings : global::System.IEquatable<SellerListingSearch_SellerListingSearch_EndedListings_SellerListings>, ISellerListingSearch_SellerListingSearch_EndedListings_SellerListings
     {
@@ -3820,9 +4265,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This container stores the active, completed, and scheduled listings for a seller.
+    /// This type stores the active, completed, and scheduled listings for a seller.
     ///
-    /// **Note:** The userId of the user issuing the call is retrieved from the context. Users may only retrieve their own listings.
+    /// **Note**: The **userId** of the user issuing the call is retrieved from the context. Users may only retrieve their own listings.
     /// </summary>
     public partial class SellerListingSearch_SellerListingSearch_SellerListingSearchOutput : global::System.IEquatable<SellerListingSearch_SellerListingSearch_SellerListingSearchOutput>, ISellerListingSearch_SellerListingSearch_SellerListingSearchOutput
     {
@@ -3834,23 +4279,23 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This type contains the seller's active listings that satisfy the search criteria specified by `SellerActiveListingSearchInput`.
+        /// This object contains the seller's active listings that satisfy the search criteria specified by `SellerActiveListingSearchInput`.
         ///
-        /// **Note:** The userId of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
+        /// **Note**: The **userId** of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
         /// </summary>
         public ISellerListingSearch_SellerListingSearch_ActiveListings ActiveListings { get; }
 
         /// <summary>
-        /// This type contains the seller's scheduled listings that satisfy the search criteria specified by `SellerScheduledListingSearchInput`.
+        /// This object contains the seller's scheduled listings that satisfy the search criteria specified by `SellerScheduledListingSearchInput`.
         ///
-        /// **Note:** The userId of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
+        /// **Note**: The **userId** of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
         /// </summary>
         public ISellerListingSearch_SellerListingSearch_ScheduledListings ScheduledListings { get; }
 
         /// <summary>
-        /// This type contains the seller's ended listings that satisfy the search criteria specified by `SellerEndedListingSearchInput`.
+        /// This object contains the seller's ended listings that satisfy the search criteria specified by `SellerEndedListingSearchInput`.
         ///
-        /// **Note:** The userId of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
+        /// **Note**: The **userId** of the user requesting listings is retrieved from the context. Users may only retrieve their own listings.
         /// </summary>
         public ISellerListingSearch_SellerListingSearch_EndedListings EndedListings { get; }
 
@@ -4065,6 +4510,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 return new SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_ListingIdsExceedMaxError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
+            case "MinPriceExceedsMaxPriceError":
+                return new SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_MinPriceExceedsMaxPriceError(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "PaginationPageSizeExceedError":
                 return new SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PaginationPageSizeExceedError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
@@ -4079,6 +4528,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "PrimaryStoreCategoryExceedMaxError":
                 return new SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
+            case "SellerListingSearchInvalidPageCursorError":
+                return new SellerListingSearch_SellerListingSearch_ActiveListings_ValidationErrors_SellerListingSearchInvalidPageCursorError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "SkusExceedMaxCountError":
@@ -4146,6 +4599,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 return new SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_ListingIdsExceedMaxError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
+            case "MinPriceExceedsMaxPriceError":
+                return new SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_MinPriceExceedsMaxPriceError(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "PaginationPageSizeExceedError":
                 return new SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PaginationPageSizeExceedError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
@@ -4160,6 +4617,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "PrimaryStoreCategoryExceedMaxError":
                 return new SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
+            case "SellerListingSearchInvalidPageCursorError":
+                return new SellerListingSearch_SellerListingSearch_ScheduledListings_ValidationErrors_SellerListingSearchInvalidPageCursorError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "SkusExceedMaxCountError":
@@ -4227,6 +4688,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
                 return new SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_ListingIdsExceedMaxError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
+            case "MinPriceExceedsMaxPriceError":
+                return new SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_MinPriceExceedsMaxPriceError(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "PaginationPageSizeExceedError":
                 return new SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PaginationPageSizeExceedError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
@@ -4241,6 +4706,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "PrimaryStoreCategoryExceedMaxError":
                 return new SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_PrimaryStoreCategoryExceedMaxError(
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
+                    GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
+            case "SellerListingSearchInvalidPageCursorError":
+                return new SellerListingSearch_SellerListingSearch_EndedListings_ValidationErrors_SellerListingSearchInvalidPageCursorError(
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "errorDescription")),
                     GraphQLJson.ReadString(GraphQLJson.Required(element, "remedy")));
             case "SkusExceedMaxCountError":

@@ -31,7 +31,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_traitValueImages;
 
         /// <summary>
-        /// The trait name by which pictures of the item variations vary. The specified trait will be used to determine which images to display when a buyer selects a variation in the View Item page. For example, if the trait is 'Color', then a corresponding product image in the **traitValueImages** array will be displayed when that color is selected in the View Item page. The trait name specified here must be one of the variation traits specified in the **variationTraits** array.
+        /// The trait name by which pictures of the item variations vary. The specified trait will be used to determine which images to display when a buyer selects a variation in the View Item page. For example, if the trait is `Color`, then a corresponding product image in the **traitValueImages** array will be displayed when that color is selected in the View Item page. The trait name specified here must be one of the variation traits specified in the **variationTraits** array.
         /// </summary>
         public string TraitName
         {
@@ -44,7 +44,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array is used to provide an array of one or more image URLs for each available value of the trait. So, if the trait is 'Color', each of the available colors would be specified through the **traitValue** field, and then each color would have at least one image URL specified through the *traitImageUrls** array.
+        /// This array is used to provide an array of one or more image URLs for each available value of the trait. So, if the trait is `Color`, each of the available colors would be specified through the **traitValue** field, and then each color would have at least one image URL specified through the *traitImageUrls** array.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CreateListingVariationTraitValueImageInput> TraitValueImages
         {
@@ -58,13 +58,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_traitName || _set_traitValueImages))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_traitName)
             {

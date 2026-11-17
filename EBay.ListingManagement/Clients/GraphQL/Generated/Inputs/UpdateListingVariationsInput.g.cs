@@ -31,7 +31,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_variationTraits;
 
         /// <summary>
-        /// This container identifies the main trait by which variations differ, and provides image URLs demonstrating the variations of this trait for each variation. For example, the varying trait may be 'Color', and image URLs would be provided showcasing the different color of each variation.
+        /// This object identifies the main trait by which variations differ, and provides image URLs demonstrating the variations of this trait for each variation. For example, the varying trait may be 'Color', and image URLs would be provided showcasing the different color of each variation.
         /// </summary>
         public UpdateListingVariationImagesVaryByTraitInput? ImagesVaryByTrait
         {
@@ -45,11 +45,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array provides the names of the varying traits and the available values for each of these traits. For example, one trait might be 'Color', and all of the available colors would be specified in the corresponding **values** array. Another trait might be 'Size', and all of the available sizes would be specified in the corresponding **values** array. If the multiple-SKU listing has two varying traits such as 'Color' and 'Size', each variation would have a different combination of each of these traits, such as a 'Large, Red' shirt.
-        /// The [getItemAspectsForCategory](https://developer.ebay.com/api-docs/commerce/taxonomy/resources/category_tree/methods/getItemAspectsForCategory) method of the **Taxonomy API** can be used to retrieve aspects that are optional, recommended or required for a specific category. The  [fetchItemAspects](https://developer.ebay.com/api-docs/commerce/taxonomy/resources/category_tree/methods/fetchItemAspects) method in the **Taxonomy API** works similarly but is processed asynchronously and provides optional, recommended or required aspects every leaf category on an eBay marketplace. The [fetchItemAspects](https://developer.ebay.com/api-docs/commerce/taxonomy/resources/category_tree/methods/fetchItemAspects) method can be paired up with the **Taxonomy SDK** to help maintain an up-to-date list of aspects for each leaf category.
+        /// The [getItemAspectsForCategory](https://developer.ebay.com/api-docs/commerce/taxonomy/resources/category_tree/methods/getItemAspectsForCategory) method of the **Taxonomy API** can be used to retrieve aspects that are optional, recommended or required for a specific category. The [fetchItemAspects](https://developer.ebay.com/api-docs/commerce/taxonomy/resources/category_tree/methods/fetchItemAspects) method in the **Taxonomy API** works similarly but is processed asynchronously and provides optional, recommended or required aspects every leaf category on an eBay marketplace. The [fetchItemAspects](https://developer.ebay.com/api-docs/commerce/taxonomy/resources/category_tree/methods/fetchItemAspects) method can be paired up with the **Taxonomy SDK** to help maintain an up-to-date list of aspects for each leaf category.
+        ///
         /// **Note**: The full list of all variation traits and values must be included in this array, and not just the ones that are being added.
-        /// **Max number of traits**: 5.
-        /// **max values per trait**: 50.
-        /// **Max length of each trait name and value**: 65 characters.
+        ///
+        /// **Maximum number of traits**: 5
+        /// **Maximum number of values per trait**: 50
+        /// **Maximum length of each trait name and value**: 65 characters
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<NameValuesPairInput>? VariationTraits
         {
@@ -63,13 +65,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_imagesVaryByTrait || _set_variationTraits))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_imagesVaryByTrait)
             {

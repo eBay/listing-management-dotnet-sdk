@@ -21,16 +21,16 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This enumerated type indicates the video's status. Typically a video will progress through the following states: 'PENDING_UPLOAD' -&gt; 'PROCESSING' -&gt; 'LIVE'. A video may also enter terminal states such as 'PROCESSING_FAILED' or 'BLOCKED' depending on various conditions, instead of reaching 'LIVE'. New Video status may be added in the future; clients should handle unknown values gracefully.
+    /// This enumerated type indicates the video's status. Typically a video will progress through the following states: `PENDING_UPLOAD` -&gt; `PROCESSING` -&gt; `LIVE`. A video may also enter terminal states such as `PROCESSING_FAILED` or `BLOCKED` depending on various conditions, instead of reaching `LIVE`. New status values may be added in the future; clients should handle unknown values gracefully.
     /// </summary>
     public enum VideoStatusEnum
     {
         /// <summary>
-        /// This enum value indicates that the video is blocked. A video might be 'BLOCKED' if it contains malware, or if it is blocked by the video moderation feature.
+        /// This enum value indicates that the video is blocked. A video might be `BLOCKED` if it contains malware, or if it is blocked by the video moderation feature.
         /// </summary>
         Blocked,
         /// <summary>
-        /// This enum value indicates that the video is live. When the status of the video is 'LIVE', this indicates the file has been processed and uploaded successfully. The playlist providing URLs for the video streaming protocols is generated when processing completes successfully.
+        /// This enum value indicates that the video is live. When the status of the video is `LIVE`, this indicates the file has been processed and uploaded successfully. The playlist providing URLs for the video streaming protocols is generated when processing completes successfully.
         /// </summary>
         Live,
         /// <summary>
@@ -38,7 +38,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         PendingUpload,
         /// <summary>
-        /// This enum value indicates that the video upload is processing. After a video upload is successfully completed, the status will show as 'PROCESSING' until the video reaches one of the terminal states of 'LIVE', 'BLOCKED', or 'PROCESSING_FAILED'.
+        /// This enum value indicates that the video upload is processing. After a video upload is successfully completed, the status will show as `PROCESSING` until the video reaches one of the terminal states of `LIVE`, `BLOCKED`, or `PROCESSING_FAILED`.
         /// </summary>
         Processing,
         /// <summary>

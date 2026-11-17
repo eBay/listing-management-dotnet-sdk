@@ -27,32 +27,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
     {
         /// <summary>
         /// The **startListingPreviewsCreation** mutation initiates a process that leverages a seller’s provided external product data (maximum 10 products) and uses this data to create an eBay listing preview for each provided product. This asynchronous process can take some time to complete, which is partially dependent on the number of external products being processed. The **startListingPreviewsCreation** mutation includes details of the external products. The output of the mutation will include the status and ID of the task, and may include errors if there are any issues. Once the listing previews task is complete, the mutation response will also include the results of the listing preview.
-        ///
-        /// The startListingPreviewsCreation mutation initiates a process that creates eBay Listing Previews from a seller's external products. This process is asynchronous and can take some time to complete. The mutation takes an input that includes details of the external products. The output of the mutation includes the details of the listing previews creation task and any errors that occurred during the process. This mutation is useful for sellers who want to convert their external products into eBay Listing Previews. The field will only be null when there is a server error prior to starting the preview creation process.
-        ///
-        /// Possible Errors:
-        /// | Code   | Domain                | Category    | Parameters             | Message                                                                                                   |
-        /// |--------|-----------------------|-------------|------------------------|-----------------------------------------------------------------------------------------------------------|
-        /// | 500000 | API_INVENTORY_MAPPING | REQUEST     |                        | Marketplace not supported. See documentation for supported marketplaces.                                  |
-        /// | 500001 | API_INVENTORY_MAPPING | REQUEST     |                        | Request cannot be empty. Please provide valid input.                                                      |
-        /// | 500002 | API_INVENTORY_MAPPING | APPLICATION |                        | Internal system error. Please try again later.                                                            |
-        /// | 500004 | API_INVENTORY_MAPPING | REQUEST     | images                 | Invalid image URL. The URL must start with "https".                                                       |
-        /// | 500006 | API_INVENTORY_MAPPING | REQUEST     | images                 | The provided URL is invalid or could not be resolved. Please check and provide a valid URL.               |
-        /// | 500007 | API_INVENTORY_MAPPING | REQUEST     | title                  | Title exceeds maximum allowed length: 250.                                                                |
-        /// | 500008 | API_INVENTORY_MAPPING | REQUEST     | productId              | Product ID is missing or has an invalid value. Check value and see documentation as necessary.            |
-        /// | 500009 | API_INVENTORY_MAPPING | REQUEST     | productType            | Product type is missing or has an invalid value. See documentation for the supported GTIN types.          |
-        /// | 500010 | API_INVENTORY_MAPPING | REQUEST     | images                 | Duplicate image URLs were found under the images array. Please remove duplicates.                         |
-        /// | 500011 | API_INVENTORY_MAPPING | REQUEST     |                        | You must provide a title or at least one image URL under the images array.                               |
-        /// | 500014 | API_INVENTORY_MAPPING | REQUEST     |                        | You have exceeded the maximum number of products allowed: 10.                                            |
-        /// | 500015 | API_INVENTORY_MAPPING | REQUEST     |                        | All aspects.name fields must have corresponding values.                                                   |
-        /// | 500016 | API_INVENTORY_MAPPING | REQUEST     |                        | All aspectValues arrays must have one or more corresponding values.                                       |
-        /// | 500017 | API_INVENTORY_MAPPING | REQUEST     | aspects.name           | One or more duplicate aspect names were provided for the product. Please remove duplicates.               |
-        /// | 500018 | API_INVENTORY_MAPPING | REQUEST     | images                 | One or more image URLs exceed the maximum length allowed: 250.                                            |
-        /// | 500019 | API_INVENTORY_MAPPING | REQUEST     | aspects                | You have exceeded the maximum number of aspects allowed: 50.                                              |
-        /// | 500020 | API_INVENTORY_MAPPING | REQUEST     | aspects.name           | One or more image aspect names exceed the maximum length allowed: 100.                                    |
-        /// | 500021 | API_INVENTORY_MAPPING | REQUEST     | aspects.value          | One or more image aspect values exceed the maximum length allowed: 100.                                   |
-        /// | 500022 | API_INVENTORY_MAPPING | REQUEST     | images                 | You have exceeded the maximum number of images allowed: 24.                                               |
-        /// | 500023 | API_INVENTORY_MAPPING | REQUEST     | externalProductDetails | One or more identical products found. Please check and revise or remove duplicates and try again.         |
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation? StartListingPreviewsCreation { get; }
     }
@@ -69,32 +43,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The **startListingPreviewsCreation** mutation initiates a process that leverages a seller’s provided external product data (maximum 10 products) and uses this data to create an eBay listing preview for each provided product. This asynchronous process can take some time to complete, which is partially dependent on the number of external products being processed. The **startListingPreviewsCreation** mutation includes details of the external products. The output of the mutation will include the status and ID of the task, and may include errors if there are any issues. Once the listing previews task is complete, the mutation response will also include the results of the listing preview.
-        ///
-        /// The startListingPreviewsCreation mutation initiates a process that creates eBay Listing Previews from a seller's external products. This process is asynchronous and can take some time to complete. The mutation takes an input that includes details of the external products. The output of the mutation includes the details of the listing previews creation task and any errors that occurred during the process. This mutation is useful for sellers who want to convert their external products into eBay Listing Previews. The field will only be null when there is a server error prior to starting the preview creation process.
-        ///
-        /// Possible Errors:
-        /// | Code   | Domain                | Category    | Parameters             | Message                                                                                                   |
-        /// |--------|-----------------------|-------------|------------------------|-----------------------------------------------------------------------------------------------------------|
-        /// | 500000 | API_INVENTORY_MAPPING | REQUEST     |                        | Marketplace not supported. See documentation for supported marketplaces.                                  |
-        /// | 500001 | API_INVENTORY_MAPPING | REQUEST     |                        | Request cannot be empty. Please provide valid input.                                                      |
-        /// | 500002 | API_INVENTORY_MAPPING | APPLICATION |                        | Internal system error. Please try again later.                                                            |
-        /// | 500004 | API_INVENTORY_MAPPING | REQUEST     | images                 | Invalid image URL. The URL must start with "https".                                                       |
-        /// | 500006 | API_INVENTORY_MAPPING | REQUEST     | images                 | The provided URL is invalid or could not be resolved. Please check and provide a valid URL.               |
-        /// | 500007 | API_INVENTORY_MAPPING | REQUEST     | title                  | Title exceeds maximum allowed length: 250.                                                                |
-        /// | 500008 | API_INVENTORY_MAPPING | REQUEST     | productId              | Product ID is missing or has an invalid value. Check value and see documentation as necessary.            |
-        /// | 500009 | API_INVENTORY_MAPPING | REQUEST     | productType            | Product type is missing or has an invalid value. See documentation for the supported GTIN types.          |
-        /// | 500010 | API_INVENTORY_MAPPING | REQUEST     | images                 | Duplicate image URLs were found under the images array. Please remove duplicates.                         |
-        /// | 500011 | API_INVENTORY_MAPPING | REQUEST     |                        | You must provide a title or at least one image URL under the images array.                               |
-        /// | 500014 | API_INVENTORY_MAPPING | REQUEST     |                        | You have exceeded the maximum number of products allowed: 10.                                            |
-        /// | 500015 | API_INVENTORY_MAPPING | REQUEST     |                        | All aspects.name fields must have corresponding values.                                                   |
-        /// | 500016 | API_INVENTORY_MAPPING | REQUEST     |                        | All aspectValues arrays must have one or more corresponding values.                                       |
-        /// | 500017 | API_INVENTORY_MAPPING | REQUEST     | aspects.name           | One or more duplicate aspect names were provided for the product. Please remove duplicates.               |
-        /// | 500018 | API_INVENTORY_MAPPING | REQUEST     | images                 | One or more image URLs exceed the maximum length allowed: 250.                                            |
-        /// | 500019 | API_INVENTORY_MAPPING | REQUEST     | aspects                | You have exceeded the maximum number of aspects allowed: 50.                                              |
-        /// | 500020 | API_INVENTORY_MAPPING | REQUEST     | aspects.name           | One or more image aspect names exceed the maximum length allowed: 100.                                    |
-        /// | 500021 | API_INVENTORY_MAPPING | REQUEST     | aspects.value          | One or more image aspect values exceed the maximum length allowed: 100.                                   |
-        /// | 500022 | API_INVENTORY_MAPPING | REQUEST     | images                 | You have exceeded the maximum number of images allowed: 24.                                               |
-        /// | 500023 | API_INVENTORY_MAPPING | REQUEST     | externalProductDetails | One or more identical products found. Please check and revise or remove duplicates and try again.         |
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation? StartListingPreviewsCreation { get; }
 
@@ -198,7 +146,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_InvalidProducts_ClientProvidedProductDetails_ExternalProductIdentifier
     {
         /// <summary>
-        ///  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+        /// The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
         /// </summary>
         public ExternalProductIdentifierEnum ProductType { get; }
         /// <summary>
@@ -228,7 +176,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_InvalidProducts_ClientProvidedProductDetails_Aspects>? Aspects { get; }
         /// <summary>
-        /// This container shows the Global Trade Identifier Number (GTIN) for an external product. This container will be returned as null if not provided for an external product.
+        /// This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_InvalidProducts_ClientProvidedProductDetails_ExternalProductIdentifier? ExternalProductIdentifier { get; }
         /// <summary>
@@ -298,16 +246,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type shows eBay's recommended product aspect name-value pairs for the product. Each aspect is defined by a name and a list of one or more values. The value in the **values.confidence** field will indicate how confident eBay is about that value being the right value for that corresponding aspect.
-    /// **Edge cases to consider**
-    /// While most aspects are expected to have a single value associated with it, some aspects may accept multiple values.
-    /// Please cross-reference aspect properties for any given category through the **Taxonomy APIs**.
-    /// For such aspects, multiple `PREFILL` values may be returned when available.
-    /// For example, an aspect could be `Color` with values like `Red`, `Blue`, and `Green` and confidence levels `PREFILL` or `HINT`.
+    ///
+    /// While most aspects are expected to have a single value associated with it, some aspects may accept multiple values. Please cross-reference aspect properties for any given category through the **getItemAspectsForCategory** or **fetchItemAspects** methods of the **Taxonomy API**. For such aspects, multiple `PREFILL` values may be returned when available. For example, an aspect could be `Color` with values like `Red`, `Blue`, and `Green` and confidence levels `PREFILL` or `HINT`.
     /// </summary>
     public partial interface IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Aspects
     {
         /// <summary>
-        /// An array of one or more values for the aspect.
+        /// An array of one or more values for the aspect. Deprecated field. Do not use.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> AspectValues { get; }
         /// <summary>
@@ -322,11 +267,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type shows eBay's recommended product aspect name-value pairs for the product. Each aspect is defined by a name and a list of one or more values. The value in the **values.confidence** field will indicate how confident eBay is about that value being the right value for that corresponding aspect.
-    /// **Edge cases to consider**
-    /// While most aspects are expected to have a single value associated with it, some aspects may accept multiple values.
-    /// Please cross-reference aspect properties for any given category through the **Taxonomy APIs**.
-    /// For such aspects, multiple `PREFILL` values may be returned when available.
-    /// For example, an aspect could be `Color` with values like `Red`, `Blue`, and `Green` and confidence levels `PREFILL` or `HINT`.
+    ///
+    /// While most aspects are expected to have a single value associated with it, some aspects may accept multiple values. Please cross-reference aspect properties for any given category through the **getItemAspectsForCategory** or **fetchItemAspects** methods of the **Taxonomy API**. For such aspects, multiple `PREFILL` values may be returned when available. For example, an aspect could be `Color` with values like `Red`, `Blue`, and `Green` and confidence levels `PREFILL` or `HINT`.
     /// </summary>
     public partial interface IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Aspects_ListingPreviewProductAspect : IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Aspects
     {
@@ -382,7 +324,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string ProductId { get; }
         /// <summary>
-        ///  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+        /// The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
         /// </summary>
         public ExternalProductIdentifierEnum ProductType { get; }
     }
@@ -408,7 +350,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? Category { get; }
         /// <summary>
-        /// This container shows the Global Trade Identifier Number (GTIN) for an external product. This container will be returned as null if not provided for an external product.
+        /// This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_ClientProvidedProductDetails_ExternalProductIdentifier? ExternalProductIdentifier { get; }
         /// <summary>
@@ -433,22 +375,22 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the the product aspect name/value pair(s) associated with a product.
+    /// This type defines the product aspect name/value pair(s) associated with a product.
     /// </summary>
     public partial interface IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Aspects
     {
         /// <summary>
-        /// A list of valid values associated with the product aspect (for example: 'Red', 'Green', and 'Blue').
+        /// A list of valid values associated with the product aspect (for example: `Red`, `Green`, and `Blue`).
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> AspectValues { get; }
         /// <summary>
-        /// The name of the product aspect, localized for the specified marketplace (for example: 'Color").
+        /// The name of the product aspect, localized for the specified marketplace (for example: `Color`).
         /// </summary>
         public string DisplayName { get; }
     }
 
     /// <summary>
-    /// This type defines the the product aspect name/value pair(s) associated with a product.
+    /// This type defines the product aspect name/value pair(s) associated with a product.
     /// </summary>
     public partial interface IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Aspects_ProductAspect : IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Aspects
     {
@@ -490,7 +432,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Aspects> Aspects { get; }
         /// <summary>
-        /// This container returns information about the leaf category for which eBay recommends to list this product, based on previous listings of similar products.
+        /// This object returns information about the leaf category for which eBay recommends to list this product, based on previous listings of similar products.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Category Category { get; }
         /// <summary>
@@ -530,7 +472,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Category? Category { get; }
         /// <summary>
-        /// This container shows the provided details of the external product that was mapped to an eBay listing preview.
+        /// This object shows the provided details of the external product that was mapped to an eBay listing preview.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_ClientProvidedProductDetails ClientProvidedProductDetails { get; }
         /// <summary>
@@ -544,11 +486,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// The unique identifier of this listing preview. Use this 25-character ID when creating or revising a listing based on the listing preview via related APIs.
         ///
-        /// **Maximum length:** 25 characters
+        /// **Maximum length**: 25 characters
         /// </summary>
         public string MappingReferenceId { get; }
         /// <summary>
-        /// The eBay product ID (ePID) field under this container shows the eBay catalog product that the external product was matched to. An ePID value can be used in eBay listing APIs to prefill a listing with product title, product description, product aspects, stock photo(s), and eBay category. If the external product could not be mapped to an ePID, this field will be null.
+        /// The eBay product ID (ePID) field under this object shows the eBay catalog product that the external product was matched to. An ePID value can be used in eBay listing APIs to prefill a listing with product title, product description, product aspects, stock photo(s), and eBay category. If the external product could not be mapped to an ePID, this field will be null.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product? Product { get; }
         /// <summary>
@@ -602,7 +544,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string ProductId { get; }
         /// <summary>
-        ///  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+        /// The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
         /// </summary>
         public ExternalProductIdentifierEnum ProductType { get; }
     }
@@ -628,7 +570,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? Category { get; }
         /// <summary>
-        /// This container shows the Global Trade Identifier Number (GTIN) for an external product. This container will be returned as null if not provided for an external product.
+        /// This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_UnmappedProducts_ExternalProductIdentifier? ExternalProductIdentifier { get; }
         /// <summary>
@@ -684,7 +626,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string ProductId { get; }
         /// <summary>
-        ///  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+        /// The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
         /// </summary>
         public ExternalProductIdentifierEnum ProductType { get; }
     }
@@ -710,7 +652,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public string? Category { get; }
         /// <summary>
-        /// This container shows the Global Trade Identifier Number (GTIN) for an external product. This container will be returned as null if not provided for an external product.
+        /// This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_UnprocessedProducts_ExternalProductIdentifier? ExternalProductIdentifier { get; }
         /// <summary>
@@ -740,23 +682,23 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result
     {
         /// <summary>
-        ///  This enumeration value indicates the success or failure of the **StartListingPreviewsCreation** mutation. Applicable values are `COMPLETED`, `COMPLETED_WITH_ERROR`, or `FAILED`
+        /// This enumeration value indicates the success or failure of the **StartListingPreviewsCreation** mutation. Applicable values are `COMPLETED`, `COMPLETED_WITH_ERROR`, or `FAILED`
         /// </summary>
         public ListingPreviewsCreationTaskCompletionStatus CompletionStatus { get; }
         /// <summary>
-        ///  An array of invalid external products that could not be processed. Each invalid product will include a **description** field that indicates why the external product details could not be used to create a listing preview. This field is intended to be a debugging aid for humans. The description is not localized and is subject to change. Do not use this description field for client-side handling logic. This array will be empty if there are no invalid products.
+        /// An array of invalid external products that could not be processed. Each invalid product will include a **description** field that indicates why the external product details could not be used to create a listing preview. This field is intended to be a debugging aid for humans. The description is not localized and is subject to change. Do not use this description field for client-side handling logic. This array will be empty if there are no invalid products.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_InvalidProducts> InvalidProducts { get; }
         /// <summary>
-        ///  This array will show the eBay listing previews that were successfully created based on the seller's provided external products. Each listing preview will contain the eBay product ID (if found), the title, the product description, the eBay category ID, one or more eBay Picture Service (ePS) image URLs, product aspect name-value pairs, and SKU (if provided). Additionally, this container will also have the **clientProvidedProductDetails** container that shows the client-provided details for the external products.
+        /// This array will show the eBay listing previews that were successfully created based on the seller's provided external products. Each listing preview will contain the eBay product ID (if found), the title, the product description, the eBay category ID, one or more eBay Picture Service (ePS) image URLs, product aspect name-value pairs, and SKU (if provided). Additionally, this object will also have the **clientProvidedProductDetails** object that shows the client-provided details for the external products.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews> ListingPreviews { get; }
         /// <summary>
-        ///  An array of valid external products that were not successfully mapped by eBay into listing previews. These products should not be retried by the client. This array will be empty if there are no unmapped products.
+        /// An array of valid external products that were not successfully mapped by eBay into listing previews. These products should not be retried by the client. This array will be empty if there are no unmapped products.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_UnmappedProducts> UnmappedProducts { get; }
         /// <summary>
-        ///  An array of external products that were not processed due to unforeseen circumstances. All of the details provided for each external product in the mutation request are returned under this array. Unprocessed external products can be included in a subsequent mutation request. This array will not be returned or will be null if there are no unprocessed products.
+        /// An array of external products that were not processed due to unforeseen circumstances. All of the details provided for each external product in the mutation request are returned under this array. Unprocessed external products can be included in a subsequent mutation request. This array will not be returned or will be null if there are no unprocessed products.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_UnprocessedProducts> UnprocessedProducts { get; }
     }
@@ -774,13 +716,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public partial interface IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask
     {
         /// <summary>
-        ///    The unique identifier of the task. It is returned after a successful **StartListingPreviewsCreation** mutation.
+        /// The unique identifier of the task. It is returned after a successful **StartListingPreviewsCreation** mutation.
         ///
-        /// **Max length**: 25
+        /// **Maximum length**: 25
         /// </summary>
         public string Id { get; }
         /// <summary>
-        /// This container provides the status and results of the listing previews creation Task. It remains null until the task has completed execution.
+        /// This object provides the status and results of the listing previews creation Task. It remains null until the task has completed execution.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result? Result { get; }
     }
@@ -802,7 +744,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_Errors>? Errors { get; }
         /// <summary>
-        /// This base response container should be returned with a successful mutation, but the listing preview results cannot be returned until the task is complete.
+        /// This base response object should be returned with a successful mutation, but the listing preview results cannot be returned until the task is complete.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask? ListingPreviewsCreationTask { get; }
     }
@@ -972,7 +914,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+        /// The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
         /// </summary>
         public ExternalProductIdentifierEnum ProductType { get; }
 
@@ -1063,7 +1005,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_InvalidProducts_ClientProvidedProductDetails_Aspects>? Aspects { get; }
 
         /// <summary>
-        /// This container shows the Global Trade Identifier Number (GTIN) for an external product. This container will be returned as null if not provided for an external product.
+        /// This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_InvalidProducts_ClientProvidedProductDetails_ExternalProductIdentifier? ExternalProductIdentifier { get; }
 
@@ -1317,11 +1259,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
     /// <summary>
     /// This type shows eBay's recommended product aspect name-value pairs for the product. Each aspect is defined by a name and a list of one or more values. The value in the **values.confidence** field will indicate how confident eBay is about that value being the right value for that corresponding aspect.
-    /// **Edge cases to consider**
-    /// While most aspects are expected to have a single value associated with it, some aspects may accept multiple values.
-    /// Please cross-reference aspect properties for any given category through the **Taxonomy APIs**.
-    /// For such aspects, multiple `PREFILL` values may be returned when available.
-    /// For example, an aspect could be `Color` with values like `Red`, `Blue`, and `Green` and confidence levels `PREFILL` or `HINT`.
+    ///
+    /// While most aspects are expected to have a single value associated with it, some aspects may accept multiple values. Please cross-reference aspect properties for any given category through the **getItemAspectsForCategory** or **fetchItemAspects** methods of the **Taxonomy API**. For such aspects, multiple `PREFILL` values may be returned when available. For example, an aspect could be `Color` with values like `Red`, `Blue`, and `Green` and confidence levels `PREFILL` or `HINT`.
     /// </summary>
     public partial class StartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Aspects_ListingPreviewProductAspect : global::System.IEquatable<StartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Aspects_ListingPreviewProductAspect>, IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Aspects_ListingPreviewProductAspect
     {
@@ -1333,7 +1272,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// An array of one or more values for the aspect.
+        /// An array of one or more values for the aspect. Deprecated field. Do not use.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> AspectValues { get; }
 
@@ -1568,7 +1507,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string ProductId { get; }
 
         /// <summary>
-        ///  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+        /// The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
         /// </summary>
         public ExternalProductIdentifierEnum ProductType { get; }
 
@@ -1654,7 +1593,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? Category { get; }
 
         /// <summary>
-        /// This container shows the Global Trade Identifier Number (GTIN) for an external product. This container will be returned as null if not provided for an external product.
+        /// This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_ClientProvidedProductDetails_ExternalProductIdentifier? ExternalProductIdentifier { get; }
 
@@ -1747,7 +1686,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the the product aspect name/value pair(s) associated with a product.
+    /// This type defines the product aspect name/value pair(s) associated with a product.
     /// </summary>
     public partial class StartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Aspects_ProductAspect : global::System.IEquatable<StartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Aspects_ProductAspect>, IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Aspects_ProductAspect
     {
@@ -1758,12 +1697,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A list of valid values associated with the product aspect (for example: 'Red', 'Green', and 'Blue').
+        /// A list of valid values associated with the product aspect (for example: `Red`, `Green`, and `Blue`).
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> AspectValues { get; }
 
         /// <summary>
-        /// The name of the product aspect, localized for the specified marketplace (for example: 'Color").
+        /// The name of the product aspect, localized for the specified marketplace (for example: `Color`).
         /// </summary>
         public string DisplayName { get; }
 
@@ -1924,7 +1863,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Aspects> Aspects { get; }
 
         /// <summary>
-        /// This container returns information about the leaf category for which eBay recommends to list this product, based on previous listings of similar products.
+        /// This object returns information about the leaf category for which eBay recommends to list this product, based on previous listings of similar products.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product_Category Category { get; }
 
@@ -2052,7 +1991,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Category? Category { get; }
 
         /// <summary>
-        /// This container shows the provided details of the external product that was mapped to an eBay listing preview.
+        /// This object shows the provided details of the external product that was mapped to an eBay listing preview.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_ClientProvidedProductDetails ClientProvidedProductDetails { get; }
 
@@ -2069,12 +2008,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// The unique identifier of this listing preview. Use this 25-character ID when creating or revising a listing based on the listing preview via related APIs.
         ///
-        /// **Maximum length:** 25 characters
+        /// **Maximum length**: 25 characters
         /// </summary>
         public string MappingReferenceId { get; }
 
         /// <summary>
-        /// The eBay product ID (ePID) field under this container shows the eBay catalog product that the external product was matched to. An ePID value can be used in eBay listing APIs to prefill a listing with product title, product description, product aspects, stock photo(s), and eBay category. If the external product could not be mapped to an ePID, this field will be null.
+        /// The eBay product ID (ePID) field under this object shows the eBay catalog product that the external product was matched to. An ePID value can be used in eBay listing APIs to prefill a listing with product title, product description, product aspects, stock photo(s), and eBay category. If the external product could not be mapped to an ePID, this field will be null.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews_Product? Product { get; }
 
@@ -2270,7 +2209,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string ProductId { get; }
 
         /// <summary>
-        ///  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+        /// The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
         /// </summary>
         public ExternalProductIdentifierEnum ProductType { get; }
 
@@ -2356,7 +2295,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? Category { get; }
 
         /// <summary>
-        /// This container shows the Global Trade Identifier Number (GTIN) for an external product. This container will be returned as null if not provided for an external product.
+        /// This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_UnmappedProducts_ExternalProductIdentifier? ExternalProductIdentifier { get; }
 
@@ -2542,7 +2481,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string ProductId { get; }
 
         /// <summary>
-        ///  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+        /// The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
         /// </summary>
         public ExternalProductIdentifierEnum ProductType { get; }
 
@@ -2628,7 +2567,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public string? Category { get; }
 
         /// <summary>
-        /// This container shows the Global Trade Identifier Number (GTIN) for an external product. This container will be returned as null if not provided for an external product.
+        /// This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_UnprocessedProducts_ExternalProductIdentifier? ExternalProductIdentifier { get; }
 
@@ -2735,27 +2674,27 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  This enumeration value indicates the success or failure of the **StartListingPreviewsCreation** mutation. Applicable values are `COMPLETED`, `COMPLETED_WITH_ERROR`, or `FAILED`
+        /// This enumeration value indicates the success or failure of the **StartListingPreviewsCreation** mutation. Applicable values are `COMPLETED`, `COMPLETED_WITH_ERROR`, or `FAILED`
         /// </summary>
         public ListingPreviewsCreationTaskCompletionStatus CompletionStatus { get; }
 
         /// <summary>
-        ///  An array of invalid external products that could not be processed. Each invalid product will include a **description** field that indicates why the external product details could not be used to create a listing preview. This field is intended to be a debugging aid for humans. The description is not localized and is subject to change. Do not use this description field for client-side handling logic. This array will be empty if there are no invalid products.
+        /// An array of invalid external products that could not be processed. Each invalid product will include a **description** field that indicates why the external product details could not be used to create a listing preview. This field is intended to be a debugging aid for humans. The description is not localized and is subject to change. Do not use this description field for client-side handling logic. This array will be empty if there are no invalid products.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_InvalidProducts> InvalidProducts { get; }
 
         /// <summary>
-        ///  This array will show the eBay listing previews that were successfully created based on the seller's provided external products. Each listing preview will contain the eBay product ID (if found), the title, the product description, the eBay category ID, one or more eBay Picture Service (ePS) image URLs, product aspect name-value pairs, and SKU (if provided). Additionally, this container will also have the **clientProvidedProductDetails** container that shows the client-provided details for the external products.
+        /// This array will show the eBay listing previews that were successfully created based on the seller's provided external products. Each listing preview will contain the eBay product ID (if found), the title, the product description, the eBay category ID, one or more eBay Picture Service (ePS) image URLs, product aspect name-value pairs, and SKU (if provided). Additionally, this object will also have the **clientProvidedProductDetails** object that shows the client-provided details for the external products.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_ListingPreviews> ListingPreviews { get; }
 
         /// <summary>
-        ///  An array of valid external products that were not successfully mapped by eBay into listing previews. These products should not be retried by the client. This array will be empty if there are no unmapped products.
+        /// An array of valid external products that were not successfully mapped by eBay into listing previews. These products should not be retried by the client. This array will be empty if there are no unmapped products.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_UnmappedProducts> UnmappedProducts { get; }
 
         /// <summary>
-        ///  An array of external products that were not processed due to unforeseen circumstances. All of the details provided for each external product in the mutation request are returned under this array. Unprocessed external products can be included in a subsequent mutation request. This array will not be returned or will be null if there are no unprocessed products.
+        /// An array of external products that were not processed due to unforeseen circumstances. All of the details provided for each external product in the mutation request are returned under this array. Unprocessed external products can be included in a subsequent mutation request. This array will not be returned or will be null if there are no unprocessed products.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result_UnprocessedProducts> UnprocessedProducts { get; }
 
@@ -2830,14 +2769,14 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    The unique identifier of the task. It is returned after a successful **StartListingPreviewsCreation** mutation.
+        /// The unique identifier of the task. It is returned after a successful **StartListingPreviewsCreation** mutation.
         ///
-        /// **Max length**: 25
+        /// **Maximum length**: 25
         /// </summary>
         public string Id { get; }
 
         /// <summary>
-        /// This container provides the status and results of the listing previews creation Task. It remains null until the task has completed execution.
+        /// This object provides the status and results of the listing previews creation Task. It remains null until the task has completed execution.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask_Result? Result { get; }
 
@@ -2917,7 +2856,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IStartListingPreviewsCreation_StartListingPreviewsCreation_Errors>? Errors { get; }
 
         /// <summary>
-        /// This base response container should be returned with a successful mutation, but the listing preview results cannot be returned until the task is complete.
+        /// This base response object should be returned with a successful mutation, but the listing preview results cannot be returned until the task is complete.
         /// </summary>
         public IStartListingPreviewsCreation_StartListingPreviewsCreation_ListingPreviewsCreationTask? ListingPreviewsCreationTask { get; }
 

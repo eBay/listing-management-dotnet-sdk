@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_marketingPrice;
 
         /// <summary>
-        /// This container is used to add or modify the starting bid price and/or reserve price for an auction listing.
+        /// This object is used to add or modify the starting bid price and/or reserve price for an auction listing.
         /// </summary>
         public UpdateListingAuctionPriceInput? AuctionPrice
         {
@@ -47,7 +47,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field updates the price of a fixed price item or the 'Buy it Now' price for an auction listing. The 'Buy it Now' option is disabled for an auction listing as soon as that listing has a qualifying bid. The price will be in the default currency for the marketplace for this listing. See the [Get Currencies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCurrencies) call for more information on the currency format.
-        /// **Note**: For update operations, the mapping behavior depends on the presence of auction price container. If only `fixedPrice` is provided (no `auctionPrice` container), it will be treated as a fixed price listing. If `fixedPrice` is provided along with `auctionPrice` container, it will be treated as an auction listing.
+        ///
+        /// **Note**: For update operations, the mapping behavior depends on the presence of auction price object. If only `fixedPrice` is provided (no `auctionPrice` object), it will be treated as a fixed price listing. If `fixedPrice` is provided along with `auctionPrice` object, it will be treated as an auction listing.
         /// </summary>
         public decimal? FixedPrice
         {
@@ -60,7 +61,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify pricing and other settings related to the Minimum Advertised Price, Strikethrough Pricing, or eBay Outlet features. All three of these features are restricted and sellers must qualify to use them.
+        /// This object is used to add or modify pricing and other settings related to the Minimum Advertised Price, Strikethrough Pricing, or eBay Outlet features. All three of these features are restricted and sellers must qualify to use them.
         /// </summary>
         public UpdateListingMarketingPriceInput? MarketingPrice
         {
@@ -74,13 +75,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_auctionPrice || _set_fixedPrice || _set_marketingPrice))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_auctionPrice)
             {

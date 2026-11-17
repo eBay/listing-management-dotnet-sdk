@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_pricingTerms;
 
         /// <summary>
-        /// This container is used to update the available quantity for a purchasable item. Quantity is required for all purchasable items.
+        /// This object is used to update the available quantity for a purchasable item. Quantity is required for all purchasable items.
         /// </summary>
         public UpdateListingItemAvailabilityInput? Availability
         {
@@ -46,7 +46,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify an eco-participation fee for an item. An eco-participation fee is a mandatory charge designed to fund the recycling and proper disposal of certain products at the end of their lifecycle. Eco-participation fees are one part of the Extended Producer Responsibility regulation enforced in EU countries.
+        /// This object is used to add or modify an eco-participation fee for an item. An eco-participation fee is a mandatory charge designed to fund the recycling and proper disposal of certain products at the end of their lifecycle. Eco-participation fees are one part of the Extended Producer Responsibility regulation enforced in EU countries.
         /// </summary>
         public UpdateListingExtendedProducerResponsibilityInput? ExtendedProducerResponsibility
         {
@@ -59,7 +59,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to update price data for a purchasable item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction reserve price, and other settings related to discount pricing features.
+        /// This object is used to update price data for a purchasable item, including the price for a fixed price item or the *Buy it Now* price for an auction item. Other price fields include auction reserve price, and other settings related to discount pricing features.
         /// </summary>
         public UpdateListingItemPricingTermsInput? PricingTerms
         {
@@ -73,13 +73,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_availability || _set_extendedProducerResponsibility || _set_pricingTerms))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_availability)
             {

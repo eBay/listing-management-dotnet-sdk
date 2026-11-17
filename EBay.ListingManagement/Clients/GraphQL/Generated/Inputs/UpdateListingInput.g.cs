@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// The base request type for the **updateListing** mutation. This type is used to add or modify listing details for an active or scheduled eBay listing. The details that can be modified include listing terms and price and quantity information for each item available for sale in the listing. For multiple-SKU listings, the **listingVariations** container will be used to add or modify variation information for a multiple-SKU listing.
+    /// The base request type for the **updateListing** mutation. This type is used to add or modify listing details for an active or scheduled eBay listing. The details that can be modified include listing terms and price and quantity information for each item available for sale in the listing. For multiple-SKU listings, the **listingVariations** object will be used to add or modify variation information for a multiple-SKU listing.
     /// </summary>
     public partial class UpdateListingInput : global::System.IEquatable<UpdateListingInput>
     {
@@ -41,7 +41,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_product;
 
         /// <summary>
-        /// This container is used to identify the listing to be updated. The listing can either be identified with the **listingId** or the SKU value if defined in the listing.
+        /// This object is used to identify the listing to be updated. The listing can either be identified with the **listingId** or the SKU value if defined in the listing.
         /// </summary>
         public ListingIdentifierInput ListingIdentifier
         {
@@ -67,7 +67,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify any listing terms details for the active or scheduled listing, including payment terms, return policy, fulfillment terms, and more.
+        /// This object is used to add or modify any listing terms details for the active or scheduled listing, including payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public UpdateListingTermsInput? ListingTerms
         {
@@ -80,7 +80,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify variation details for an active or scheduled multiple-SKU listing. This container includes details on the available product variations within the listing, and which traits are different for each of these variations. Products in a multiple-SKU listing tend to vary by one or more traits such as color and size, and interested buyers need to select which variation they want to purchase. For example, the 'Blue, Large' t-shirt.
+        /// This object is used to add or modify variation details for an active or scheduled multiple-SKU listing. This object includes details on the available product variations within the listing, and which traits are different for each of these variations. Products in a multiple-SKU listing tend to vary by one or more traits such as color and size, and interested buyers need to select which variation they want to purchase. For example, the `Blue, Large` t-shirt.
         /// </summary>
         public UpdateListingVariationsInput? ListingVariations
         {
@@ -106,7 +106,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container allows a user to run a **updateListing** mutation in validation mode, which means that the listing object will be validated, but a successful mutation will not update a listing.
+        /// This object allows a user to run a **updateListing** mutation in validation mode, which means that the listing object will be validated, but a successful mutation will not update a listing.
         /// </summary>
         public ListingOptionsInput? Options
         {
@@ -119,7 +119,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify product data for an active or scheduled listing. Product data under this container includes title, description, product aspects, item condition, images, and more.
+        /// This object is used to add or modify product data for an active or scheduled listing. Product data under this object includes title, description, product aspects, item condition, images, and more.
         /// </summary>
         public UpdateListingProductInput? Product
         {
@@ -133,13 +133,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_listingIdentifier || _set_listingItems || _set_listingTerms || _set_listingVariations || _set_marketplace || _set_options || _set_product))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_listingIdentifier)
             {

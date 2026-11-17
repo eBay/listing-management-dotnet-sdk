@@ -67,7 +67,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide a Global Trade Identifier Number (GTIN) for an external product. If a GTIN value is provided for an external product, no other data under **externalProductDetails** shall be provided.
+        /// This object is used to provide a Global Trade Identifier Number (GTIN) for an external product. If a GTIN value is provided for an external product, no other data under **externalProductDetails** shall be provided.
         /// </summary>
         public ExternalProductIdentifierInput? ExternalProductIdentifierInput
         {
@@ -81,7 +81,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// An array of image URLs provided for the external product. Each provided image must be a valid URL that uses 'https'.  If the array is included, it is required that it contain no null entries.
-        /// **Max images**: 24
+        ///
+        /// **Maximum images**: 24
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Images
         {
@@ -108,7 +109,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The title of the external product. The title field should not contain HTML or JavaScript code. Any HTML characters will be treated as plain text. The title should be a string of characters, with support for all characters in the Unicode character set. An example of a title is **`Apple iPhone 11 Pro Max`**.
-        /// **Max length:** 250 characters
+        ///
+        /// **Maximum length**: 250 characters
         /// </summary>
         public string? Title
         {
@@ -122,13 +124,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_aspects || _set_categoryName || _set_externalProductIdentifierInput || _set_images || _set_sku || _set_title))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_aspects)
             {

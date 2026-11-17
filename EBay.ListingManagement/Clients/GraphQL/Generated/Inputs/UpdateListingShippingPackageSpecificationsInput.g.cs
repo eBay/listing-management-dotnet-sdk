@@ -63,7 +63,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify the dimensions of the shipping package.
+        /// This object is used to add or modify the dimensions of the shipping package.
         /// </summary>
         public UpdateListingPackageDimensionsInput? PackageDimensions
         {
@@ -89,7 +89,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify the weight of the shipping package. The weight of the shipping package is required when the listing is using the calculated shipping cost type.
+        /// This object is used to add or modify the weight of the shipping package. The weight of the shipping package is required when the listing is using the calculated shipping cost type.
         /// </summary>
         public UpdateListingPackageWeightInput? PackageWeight
         {
@@ -103,13 +103,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_irregularPackage || _set_measurementSystem || _set_packageDimensions || _set_packageType || _set_packageWeight))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_irregularPackage)
             {

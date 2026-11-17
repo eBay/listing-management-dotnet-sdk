@@ -30,6 +30,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to manage the list of items or variations in the listing, allowing you to create, update, or remove them. For a single-SKU listing, this array must contain exactly one item. For a multiple-SKU listing, it must contain one item for each product variation (e.g. one for "Red / Large", one for "Blue / Small").
+        ///
         /// **Maximum number of items for a multiple-SKU listing**: 250.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdateListingItemInput> Items
@@ -44,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_items))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_items)
             {

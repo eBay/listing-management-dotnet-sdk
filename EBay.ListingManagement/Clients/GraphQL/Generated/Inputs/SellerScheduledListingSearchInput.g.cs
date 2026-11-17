@@ -52,11 +52,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         ///
         /// To retrieve more than 50,000 records, apply additional filters to narrow the search or use date range filters to segment the queries.
         ///
-        /// **Default Values:**
+        /// **Default Values**:
         /// - maxPageSize: 5
         /// - pageIndex: 0 (zero-indexed)
         ///
-        /// **Constraints:**
+        /// **Constraints**:
         /// - maxPageSize &lt;= 200
         /// - (maxPageSize * (pageIndex + 1)) &lt;= 50,000
         ///
@@ -87,13 +87,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_filters || _set_pagination || _set_sort))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_filters)
             {

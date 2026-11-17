@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// The base request type for the **createListing** mutation. This container is used to provide product details, eBay marketplace, listing terms, and price and quantity information for each item available for sale in the listing. For multiple-SKU listings, the **listingVariations** container must also be included to define the common aspects of the multiple-SKU listing and unique variations that are available through that multiple-variation listing.
+    /// The base request type for the **createListing** mutation. This type is used to provide product details, eBay marketplace, listing terms, and price and quantity information for each item available for sale in the listing. For multiple-SKU listings, the **listingVariations** type must also be included to define the common aspects of the multiple-SKU listing and unique variations that are available through that multiple-variation listing.
     /// </summary>
     public partial class CreateListingInput : global::System.IEquatable<CreateListingInput>
     {
@@ -43,8 +43,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_sku;
 
         /// <summary>
-        /// This field allows the user to set up a client-side idempotency key, and having this key defined will help in avoiding duplicate listings due to a retry if a mutation fails due to a system problem.
-        /// **Max length**: 32 characters.
+        /// This field allows the user to provide a client-side idempotency key to help avoid duplicate listings when a **createListing** mutation is retried after a system failure. It must be 32 characters long, contain only hexadecimal characters (0–9 and A–F), and be unique for the seller across all eBay marketplaces.
         /// </summary>
         public string IdempotencyKey
         {
@@ -58,8 +57,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// An array of one or more purchasable items. A single-SKU listing will only have one item object, while a multiple-SKU listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-SKU listings will show unique traits that differentiate them from the rest of the variations within the listing.
+        ///
         /// **Note**: A SKU value is optional for a single-variation listing, but mandatory for a multiple-SKU listing.
-        /// **Max number of items for a multi-SKU listing**: 250.
+        ///
+        /// **Maximum number of items for a multi-SKU listing**: 250
         /// </summary>
         public CreateListingItemsInput ListingItems
         {
@@ -72,7 +73,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object is used to provide listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
         /// </summary>
         public CreateListingTermsInput ListingTerms
         {
@@ -85,8 +86,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is required for multiple-SKU listings and not applicable to single-SKU listings. This container provides details on the available product variations within the listing, and which traits are different for each of these variations. Products in a multiple-variation listing tend to vary by one or more traits such as color and size, and interested buyers need to select which variation they want to purchase. For example, the 'Blue, Large' t-shirt.
-        /// **Max number of variations per multiple-SKU listing**: 250.
+        /// This object is required for multiple-SKU listings and not applicable to single-SKU listings. This object provides details on the available product variations within the listing, and which traits are different for each of these variations. Products in a multiple-variation listing tend to vary by one or more traits such as color and size, and interested buyers need to select which variation they want to purchase. For example, the `Blue, Large` t-shirt.
+        ///
+        /// **Maximum number of variations per multiple-SKU listing**: 250
         /// </summary>
         public CreateListingVariationsInput? ListingVariations
         {
@@ -112,7 +114,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container allows a user to run a **createListing** mutation in validation mode, which means that the listing object will be validated, but a successful mutation will not create a listing.
+        /// This object allows a user to run a **createListing** mutation in validation mode, which means that the listing object will be validated, but a successful mutation will not create a listing.
         /// </summary>
         public ListingOptionsInput? Options
         {
@@ -125,7 +127,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide product data for the listing. Product data under this container includes title, description, product aspects, item condition, images, and more.
+        /// This object is used to provide product data for the listing. Product data under this object includes title, description, product aspects, item condition, images, and more.
         /// </summary>
         public CreateListingProductInput Product
         {
@@ -138,12 +140,13 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    This field is for the seller-defined Stock Keeping Unit (SKU) that identifies the entire listing. Providing a SKU at any level (listing or item) enables the listing to be tracked and managed by SKU.
+        /// This field is for the seller-defined Stock Keeping Unit (SKU) that identifies the entire listing. Providing a SKU at any level (listing or item) enables the listing to be tracked and managed by SKU.
         ///
         /// For **single-SKU listings**, this field provides the definitive SKU for the listing. If this field is omitted, the SKU provided on the single item within the `items` list can be used instead to identify the listing.
         ///
         /// For **multiple-SKU listings**, this field acts as an optional, overall identifier for the group of variations. Each individual variation must still have its own unique SKU.
-        ///    **Max length**: 50 characters.
+        ///
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string? Sku
         {
@@ -157,13 +160,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_idempotencyKey || _set_listingItems || _set_listingTerms || _set_listingVariations || _set_marketplace || _set_options || _set_product || _set_sku))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_idempotencyKey)
             {

@@ -26,7 +26,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
     public enum ListingDaysCode
     {
         /// <summary>
-        /// This enumeration value indicates that the corresponding support hours are effective each day of the week. If the **anyTime** boolean field is 'true', that would indicate that the seller may be contacted 24 x 7.
+        /// This enumeration value indicates that the corresponding support hours are effective each day of the week. If the **anyTime** boolean field is `true`, that would indicate that the seller may be contacted 24 x 7.
         /// </summary>
         Everyday,
         /// <summary>

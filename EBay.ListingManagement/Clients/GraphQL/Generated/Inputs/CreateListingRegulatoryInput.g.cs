@@ -42,7 +42,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to attach one or more documents to the listing using their unique identifiers. The **Media API** is used to upload documents to a seller's account. See the [DocumentTypeEnum](https://developer.ebay.com/api-docs/commerce/media/types/api:DocumentTypeEnum) type of the **Media API** for the full list of supported document types.
-        /// **Max number of document IDs allowed**: 10.
+        ///
+        /// **Maximum number of document IDs allowed**: 10
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? DocumentIds
         {
@@ -55,7 +56,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide Energy Efficiency Label related information for such category types as appliances, smart phones, and tablets. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend Energy Efficiency Label information.
+        /// This object is used to provide Energy Efficiency Label related information for such category types as appliances, smart phones, and tablets. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend Energy Efficiency Label information.
         /// </summary>
         public CreateListingEnergyEfficiencyLabelInput? EnergyEfficiencyLabel
         {
@@ -68,7 +69,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide hazardous material related information about a product, including pictograms and statements. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend hazardous material information.
+        /// This object is used to provide hazardous material related information about a product, including pictograms and statements. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend hazardous material information.
         /// </summary>
         public CreateListingHazardousMaterialInput? HazardousMaterial
         {
@@ -81,7 +82,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide the name and contact information for the manufacturer of the item. As a part of General Product Safety Regulation (GPSR) requirements, sellers operating in, or shipping to EU-based countries or Northern Ireland are conditionally required to provide product manufacturer information in their eBay listings.
+        /// This object is used to provide the name and contact information for the manufacturer of the item. As a part of General Product Safety Regulation (GPSR) requirements, sellers operating in, or shipping to EU-based countries or Northern Ireland are conditionally required to provide product manufacturer information in their eBay listings.
         /// </summary>
         public CreateListingManufacturerInput? Manufacturer
         {
@@ -94,7 +95,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide product safety related information about a product, including pictograms and statements. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend product safety information.
+        /// This object is used to provide product safety related information about a product, including pictograms and statements. Use the [getRegulatoryPolicies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getRegulatoryPolicies) method to see which leaf categories require or recommend product safety information.
         /// </summary>
         public CreateListingProductSafetyInput? ProductSafety
         {
@@ -108,8 +109,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to provide the manufacturer's repair index score for a product. This value should be between 0.1 (extremely difficult to fix) to 10 (extremely easy to fix). A maximum of one digit to the right of the decimal point may be used. 0 or 0.0 should never be used as values as this would indicate that the product is not repairable.
-        /// **Min value**: 0.1
-        /// **Max value**: 10.0
+        ///
+        /// **Minimum value**: 0.1
+        /// **Maximum value**: 10.0
         /// </summary>
         public double? RepairIndexScore
         {
@@ -123,7 +125,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to provide the name and contact information for one or more responsible persons based in the EU. As a part of General Product Safety Regulation (GPSR) requirements, sellers operating in, or shipping to EU-based countries or Northern Ireland are conditionally required to provide either the product manufacturer or responsible person(s) contact information in their eBay listings. This array is only necessary if the product manufacturer contact is not based in an EU country.
-        /// **Max number of EU responsible persons allowed**: 5.
+        ///
+        /// **Maximum number of EU responsible persons allowed**: 5
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CreateListingResponsiblePersonInput>? ResponsiblePersons
         {
@@ -137,13 +140,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_documentIds || _set_energyEfficiencyLabel || _set_hazardousMaterial || _set_manufacturer || _set_productSafety || _set_repairIndexScore || _set_responsiblePersons))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_documentIds)
             {

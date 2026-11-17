@@ -46,7 +46,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         InappropriateDepiction,
         /// <summary>
-        /// This enum value indicates that the video is blocked because the max length has been exceeded.
+        /// This enum value indicates that the video is blocked because the Maximum length has been exceeded.
         /// </summary>
         MaxLengthExceeded,
         /// <summary>

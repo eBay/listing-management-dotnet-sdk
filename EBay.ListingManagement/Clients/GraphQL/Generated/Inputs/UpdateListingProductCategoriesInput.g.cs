@@ -36,6 +36,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used if the seller wishes to change the eBay primary category of the listing. The [getCategoryTree](https://developer.ebay.com/api-docs/sell/taxonomy/resources/category_tree/methods/getCategoryTree) or [getCategorySubtree](https://developer.ebay.com/api-docs/sell/taxonomy/resources/category_tree/methods/getCategorySubtree) methods of the [Taxonomy API](https://developer.ebay.com/api-docs/sell/taxonomy/resources/methods) can be used to retrieve leaf category IDs. The **leafCategoryTreeNode** boolean field indicates which categories are leaf categories.
+        ///
         /// **Note**: If the eBay primary category is being changed, it is recommended that the user check to see if the optional, recommended, and required aspects are different for that new category and to make adjustments as needed.
         /// </summary>
         public string? PrimaryCategoryId
@@ -63,6 +64,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used if the seller wishes to change the eBay store primary category of the listing. If this field was not specified during the original creation of the listing, the listing is placed in the default *Other* category of the seller's eBay store. The [getStoreCategories](https://developer.ebay.com/api-docs/sell/stores/resources/store/methods/getStoreCategories) method of the [Stores API Overview](https://developer.ebay.com/api-docs/sell/stores/overview.html) can be used to retrieve the unique store category IDs for the seller.
+        ///
         /// **Note**: eBay Stores can have up to three levels of store categories. Listings must only be placed in a store's terminal categories.
         /// </summary>
         public string? StorePrimaryCategoryId
@@ -77,6 +79,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used if the seller wishes to add or change the eBay store secondary of the listing. This field is optional, but if specified, it must be a valid eBay store category ID. The [getStoreCategories](https://developer.ebay.com/api-docs/sell/stores/resources/store/methods/getStoreCategories) method of the [Stores API Overview](https://developer.ebay.com/api-docs/sell/stores/overview.html) can be used to retrieve the unique store category IDs for the seller.
+        ///
         /// **Note**: eBay Stores can have up to three levels of store categories. Listings must only be placed in a store's terminal categories.
         /// </summary>
         public string? StoreSecondaryCategoryId
@@ -91,13 +94,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_primaryCategoryId || _set_secondaryCategoryId || _set_storePrimaryCategoryId || _set_storeSecondaryCategoryId))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_primaryCategoryId)
             {

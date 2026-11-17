@@ -21,8 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This container is used to provide information of shipping business policy to be used for the listing.
-    /// If this field is used, none of the other fields in CreateListingShippingTermsInput container should be used since all shipping settings are configured in the business policy instead. The [getFulfillmentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies) method can be used to retrieve all fulfillment business policies defined for a seller on an eBay marketplace.
+    /// This input type is used to provide information of shipping business policy to be used for the listing. If this field is used, none of the other fields in **CreateListingShippingTermsInput** object should be used since all shipping settings are configured in the business policy instead. The [getFulfillmentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies) method can be used to retrieve all fulfillment business policies defined for a seller on an eBay marketplace.
     /// </summary>
     public partial class CreateShippingBusinessPolicyInput : global::System.IEquatable<CreateShippingBusinessPolicyInput>
     {
@@ -32,7 +31,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_overrideShippingOptions;
 
         /// <summary>
-        /// This field is used to specify a fulfillment business policy to use for the listing. If this field is used, none of the other fields in this container should be used since all shipping settings are configured in the business policy instead. The [getFulfillmentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies) method can be used to retrieve all fulfillment business policies defined for a seller on an eBay marketplace.
+        /// This field is used to specify a fulfillment business policy to use for the listing. If this field is used, none of the other fields in this object should be used since all shipping settings are configured in the business policy instead. The [getFulfillmentPolicies](https://developer.ebay.com/api-docs/sell/account/resources/fulfillment_policy/methods/getFulfillmentPolicies) method can be used to retrieve all fulfillment business policies defined for a seller on an eBay marketplace.
         /// </summary>
         public string BusinessPolicyId
         {
@@ -59,13 +58,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_businessPolicyId || _set_overrideShippingOptions))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_businessPolicyId)
             {

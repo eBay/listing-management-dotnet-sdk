@@ -21,8 +21,9 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// The base request type for the **userSavedSearches** query. This container is used to specify pagination parameters for retrieving a user's saved searches.
-    /// **Note:** All parameters are optional. If not provided, defaults will be used.
+    /// This base request type for the **userSavedSearches** query is used to specify pagination parameters for retrieving a user's saved searches.
+    ///
+    /// **Note**: All parameters are optional. If not provided, defaults will be used.
     /// </summary>
     public partial class UserSavedSearchesInput : global::System.IEquatable<UserSavedSearchesInput>
     {
@@ -30,7 +31,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_pagination;
 
         /// <summary>
-        /// This container can be used to specify optional pagination settings that can be used to control page size and navigate through multiple pages of results. If pagination settings are not provided through this container, default pagination parameters will be applied.
+        /// This object can be used to specify optional pagination settings that can be used to control page size and navigate through multiple pages of results. If pagination settings are not provided through this object, default pagination parameters will be applied.
         /// </summary>
         public PageInfoInput? Pagination
         {
@@ -44,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_pagination))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_pagination)
             {

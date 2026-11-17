@@ -21,7 +21,9 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This enumeration type list the three-letter codes that represent currency types used in countries and territories of the world.
+    /// This enumerated type provides ISO 4217 three-letter currency codes. Each code represents an officially recognized national or supranational currency.
+    ///
+    /// **Note**: A supranational currency is a monetary unit issued or managed by a multi-country union or a central authority, rather than by a single country (for example, the euro).
     /// </summary>
     public enum CurrencyAlpha3Code
     {
@@ -30,603 +32,603 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         Aed,
         /// <summary>
-        /// 	United Arab Emirates dirham
+        /// This three-letter code indicates the currency is the Afghan Afghani.
         /// </summary>
         Afn,
         /// <summary>
-        /// 	Afghan afghani
+        /// This three-letter code indicates the currency is the Albanian Lek. This value replaced ALK code.
         /// </summary>
         All,
         /// <summary>
-        /// 	Albanian lek
+        /// This three-letter code indicates the currency is the Armenian Dram.
         /// </summary>
         Amd,
         /// <summary>
-        /// 	Armenian dram
+        /// This three-letter code indicates the currency is the Angolan Kwanza.
         /// </summary>
         Aoa,
         /// <summary>
-        /// 	Angolan kwanza
+        /// This three-letter code indicates the currency is the Argentine peso.
         /// </summary>
         Ars,
         /// <summary>
-        /// 	Argentine peso
+        /// This three-letter code indicates the currency is the Australian dollar.
         /// </summary>
         Aud,
         /// <summary>
-        /// 	Australian dollar
+        /// This three-letter code indicates the currency is the Aruban florin.
         /// </summary>
         Awg,
         /// <summary>
-        /// 	Aruban florin
+        /// This three-letter code indicates the currency is the Azerbaijani manat.
         /// </summary>
         Azn,
         /// <summary>
-        /// 	Azerbaijani manat
+        /// This three-letter code indicates the currency is the Bosnia and Herzegovina Convertible Mark.
         /// </summary>
         Bam,
         /// <summary>
-        /// 	Bosnia and Herzegovina convertible mark
+        /// This three-letter code indicates the currency is the Barbadian dollar.
         /// </summary>
         Bbd,
         /// <summary>
-        /// 	Barbados dollar
+        /// This three-letter code indicates the currency is the Bangladesh taka.
         /// </summary>
         Bdt,
         /// <summary>
-        /// 	Bangladeshi taka
+        /// This three-letter code indicates the currency is the Bulgarian lev.
         /// </summary>
         Bgn,
         /// <summary>
-        /// 	Bulgarian lev
+        /// This three-letter code indicates the currency is the Bahraini dinar.
         /// </summary>
         Bhd,
         /// <summary>
-        /// 	Bahraini dinar
+        /// This three-letter code indicates the currency is the Burundian franc.
         /// </summary>
         Bif,
         /// <summary>
-        /// 	Burundian franc
+        /// This three-letter code indicates the currency is the Bermudian dollar.
         /// </summary>
         Bmd,
         /// <summary>
-        /// 	Bermudian dollar
+        /// This three-letter code indicates the currency is the Brunei Dollar.
         /// </summary>
         Bnd,
         /// <summary>
-        /// 	Brunei dollar
+        /// This three-letter code indicates the currency is the Boliviano (the currency of Bolivia).
         /// </summary>
         Bob,
         /// <summary>
-        /// 	Bolivian Mvdol (funds code)
+        /// This three-letter code indicates the currency is the Brazilian real.
         /// </summary>
         Brl,
         /// <summary>
-        /// 	Brazilian real
+        /// This three-letter code indicates the currency is the Bahamian dollar.
         /// </summary>
         Bsd,
         /// <summary>
-        /// 	Bahamian dollar
+        /// This three-letter code indicates the currency is the Bhutanese ngultrum.
         /// </summary>
         Btn,
         /// <summary>
-        /// 	Bhutanese ngultrum
+        /// This three-letter code indicates the currency is the Botswana Pula.
         /// </summary>
         Bwp,
         /// <summary>
-        /// 	Botswana pula
+        /// This three-letter code indicates the currency is the Belarusian Ruble.
         /// </summary>
         Byn,
         /// <summary>
-        /// 	Belarusian ruble
+        /// This three-letter code indicates the currency is the Belize Dollar.
         /// </summary>
         Bzd,
         /// <summary>
-        /// 	Belize dollar
+        /// This three-letter code indicates the currency is the Canadian Dollar.
         /// </summary>
         Cad,
         /// <summary>
-        /// 	Canadian dollar
+        /// This three-letter code indicates the currency is the Congolese Franc (official currency of the Democratic Republic of the Congo) .
         /// </summary>
         Cdf,
         /// <summary>
-        /// 	WIR euro (complementary currency)
+        /// This three-letter code indicates the currency is the Swiss Franc.
         /// </summary>
         Chf,
         /// <summary>
-        /// 	Unidad de Fomento (funds code)
+        /// This three-letter code indicates the currency is the Chilean peso.
         /// </summary>
         Clp,
         /// <summary>
-        /// 	Chilean peso
+        /// This three-letter code indicates the currency is the Chinese yuan (also known as renminbi).
         /// </summary>
         Cny,
         /// <summary>
-        /// 	Renminbi[6]
+        /// This three-letter code indicates the currency is the Colombian Peso.
         /// </summary>
         Cop,
         /// <summary>
-        /// 	Unidad de Valor Real (UVR) (funds code)[7]
+        /// This three-letter code indicates the currency is the Costa Rican colon.
         /// </summary>
         Crc,
         /// <summary>
-        /// 	Costa Rican colon
+        /// This three-letter code indicates the currency is the Cuban Peso.
         /// </summary>
         Cup,
         /// <summary>
-        /// 	Cuban peso
+        /// This three-letter code indicates the currency is the Cape Verdean escudo (official currency of Cabo Verde island).
         /// </summary>
         Cve,
         /// <summary>
-        /// 	Cape Verdean escudo
+        /// This three-letter code indicates the currency is the Czech Koruna.
         /// </summary>
         Czk,
         /// <summary>
-        /// 	Czech koruna
+        /// This three-letter code indicates the currency is the Djiboutian franc.
         /// </summary>
         Djf,
         /// <summary>
-        /// 	Djiboutian franc
+        /// This three-letter code indicates the currency is the Danish krone (official currency of Denmark, Greenland, and the Faroe Islands).
         /// </summary>
         Dkk,
         /// <summary>
-        /// 	Danish krone
+        /// This three-letter code indicates the currency is the Dominican Peso (official currency of the Dominican Republic).
         /// </summary>
         Dop,
         /// <summary>
-        /// 	Dominican peso
+        /// This three-letter code indicates the currency is the Algerian Dinar.
         /// </summary>
         Dzd,
         /// <summary>
-        /// 	Algerian dinar
+        /// This three-letter code indicates the currency is the Egyptian Pound.
         /// </summary>
         Egp,
         /// <summary>
-        /// 	Egyptian pound
+        /// This three-letter code indicates the currency is the Eritrean nakfa.
         /// </summary>
         Ern,
         /// <summary>
-        /// 	Eritrean nakfa
+        /// This three-letter code indicates the currency is the Ethiopian Birr.
         /// </summary>
         Etb,
         /// <summary>
-        /// 	Ethiopian birr
+        /// This three-letter code indicates the currency is the Euro, the currency used by countries in the European Union.
         /// </summary>
         Eur,
         /// <summary>
-        /// 	Euro
+        /// This three-letter code indicates the currency is the Fijian dollar.
         /// </summary>
         Fjd,
         /// <summary>
-        /// 	Fiji dollar
+        /// This three-letter code indicates the currency is the Falkland Islands Pound, which is pegged to the British Pound Sterling (GBP).
         /// </summary>
         Fkp,
         /// <summary>
-        /// 	Faroese Króna
+        /// This three-letter code indicates the currency is the British Pound Sterling (also known as Great British Pound).
         /// </summary>
         Gbp,
         /// <summary>
-        /// 	Pound sterling
+        /// This three-letter code indicates the currency is the Georgian lari.
         /// </summary>
         Gel,
         /// <summary>
-        /// 	Georgian lari
+        /// This three-letter code indicates the currency is the Ghana Cedi.
         /// </summary>
         Ghs,
         /// <summary>
-        /// 	Guernsey Pound
+        /// This three-letter code indicates the currency is the Gibraltar Pound, which is pegged to the British Pound Sterling (GBP).
         /// </summary>
         Gip,
         /// <summary>
-        /// 	Gibraltar pound
+        /// This three-letter code indicates the currency is the Gambian dalasi (official currency of The Gambia).
         /// </summary>
         Gmd,
         /// <summary>
-        /// 	Gambian dalasi
+        /// This three-letter code indicates the currency is the Guinean Franc (official currency of Guinea).
         /// </summary>
         Gnf,
         /// <summary>
-        /// 	Guinean franc
+        /// This three-letter code indicates the currency is the Guatemalan Quetzal.
         /// </summary>
         Gtq,
         /// <summary>
-        /// 	Guatemalan quetzal
+        /// This three-letter code indicates the currency is the Guyanese Dollar.
         /// </summary>
         Gyd,
         /// <summary>
-        /// 	Guyanese dollar
+        /// This three-letter code indicates the currency is the Hong Kong dollar.
         /// </summary>
         Hkd,
         /// <summary>
-        /// 	Hong Kong dollar
+        /// This three-letter code indicates the currency is the Honduran lempira.
         /// </summary>
         Hnl,
         /// <summary>
-        /// 	Honduran lempira
+        /// This three-letter code indicates the currency is the Haitian gourde.
         /// </summary>
         Htg,
         /// <summary>
-        /// 	Haitian gourde
+        /// This three-letter code indicates the currency is the Hungarian forint. Hungary is a EU country, but is not using the Euro.
         /// </summary>
         Huf,
         /// <summary>
-        /// 	Hungarian forint
+        /// This three-letter code indicates the currency is the Indonesian Rupiah.
         /// </summary>
         Idr,
         /// <summary>
-        /// 	Indonesian rupiah
+        /// This three-letter code indicates the currency is the Israeli Shekel.
         /// </summary>
         Ils,
         /// <summary>
-        /// 	Israeli new shekel
+        /// This three-letter code indicates the currency is the Indian Rupee.
         /// </summary>
         Inr,
         /// <summary>
-        /// 	Isle of Man Pound
+        /// This three-letter code indicates the currency is the Iraqi dinar.
         /// </summary>
         Iqd,
         /// <summary>
-        /// 	Iraqi dinar
+        /// This three-letter code indicates the currency is the Iranian Rial.
         /// </summary>
         Irr,
         /// <summary>
-        /// 	Iranian rial
+        /// This three-letter code indicates the currency is the Icelandic Króna.
         /// </summary>
         Isk,
         /// <summary>
-        /// 	Icelandic króna
+        /// This three-letter code indicates the currency is the Jamaican dollar.
         /// </summary>
         Jmd,
         /// <summary>
-        /// 	Jamaican dollar
+        /// This three-letter code indicates the currency is the Jordanian dinar.
         /// </summary>
         Jod,
         /// <summary>
-        /// 	Jordanian dinar
+        /// This three-letter code indicates the currency is the Japanese Yen.
         /// </summary>
         Jpy,
         /// <summary>
-        /// 	Japanese yen
+        /// This three-letter code indicates the currency is the Kenyan Shilling.
         /// </summary>
         Kes,
         /// <summary>
-        /// 	Kenyan shilling
+        /// This three-letter code indicates the currency is the Kyrgyzstani som.
         /// </summary>
         Kgs,
         /// <summary>
-        /// 	Kyrgyzstani som
+        /// This three-letter code indicates the currency is the Cambodian riel.
         /// </summary>
         Khr,
         /// <summary>
-        /// 	Kiribati Dollar
+        /// This three-letter code indicates the currency is the Comoro Franc (the official currency of the Comoros islands in East Africa).
         /// </summary>
         Kmf,
         /// <summary>
-        /// 	North Korean won
+        /// This three-letter code indicates the currency is the South Korean won.
         /// </summary>
         Krw,
         /// <summary>
-        /// 	South Korean won
+        /// This three-letter code indicates the currency is the Kuwaiti dinar.
         /// </summary>
         Kwd,
         /// <summary>
-        /// 	Kuwaiti dinar
+        /// This three-letter code indicates the currency is the Cayman Islands Dollar.
         /// </summary>
         Kyd,
         /// <summary>
-        /// 	Cayman Islands dollar
+        /// This three-letter code indicates the currency is the Kazakhstani tenge.
         /// </summary>
         Kzt,
         /// <summary>
-        /// 	Kazakhstani tenge
+        /// This three-letter code indicates the currency is the Laotian kip.
         /// </summary>
         Lak,
         /// <summary>
-        /// 	Lao kip
+        /// This three-letter code indicates the currency is the Lebanese Pound.
         /// </summary>
         Lbp,
         /// <summary>
-        /// 	Lebanese pound
+        /// This three-letter code indicates the currency is the Sri Lankan Rupee.
         /// </summary>
         Lkr,
         /// <summary>
-        /// 	Sri Lankan rupee
+        /// This three-letter code indicates the currency is the Liberian Dollar.
         /// </summary>
         Lrd,
         /// <summary>
-        /// 	Liberian dollar
+        /// This three-letter code indicates the currency is the Lesotho loti (the official currency of the Kingdom of Lesotho).
         /// </summary>
         Lsl,
         /// <summary>
-        /// 	Lesotho loti
+        /// This three-letter code indicates the currency is the Libyan Dinar.
         /// </summary>
         Lyd,
         /// <summary>
-        /// 	Libyan dinar
+        /// This three-letter code indicates the currency is the Moroccan Dirham.
         /// </summary>
         Mad,
         /// <summary>
-        /// 	Moroccan dirham
+        /// This three-letter code indicates the currency is the Moldovan Leu.
         /// </summary>
         Mdl,
         /// <summary>
-        /// 	Moldovan leu
+        /// This three-letter code indicates the currency is the Malagasy Ariary (the official currency of Madagascar).
         /// </summary>
         Mga,
         /// <summary>
-        /// 	Malagasy ariary
+        /// This three-letter code indicates the currency is the Macedonian Denar (the official currency of North Macedonia).
         /// </summary>
         Mkd,
         /// <summary>
-        /// 	Macedonian denar
+        /// This three-letter code indicates the currency is the Myanmar Kyat.
         /// </summary>
         Mmk,
         /// <summary>
-        /// 	Myanmar kyat
+        /// This three-letter code indicates the currency is the Mongolian Tögrög.
         /// </summary>
         Mnt,
         /// <summary>
-        /// 	Mongolian tögrög
+        /// This three-letter code indicates the currency is the Macanese Pataca (the official currency of Macau).
         /// </summary>
         Mop,
         /// <summary>
-        /// 	Macanese pataca
+        /// This three-letter code indicates the currency is the Mauritanian ouguiya.
         /// </summary>
         Mru,
         /// <summary>
-        /// 	Mauritanian ouguiya
+        /// This three-letter code indicates the currency is the Mauritian rupee (the official currency of Mauritius).
         /// </summary>
         Mur,
         /// <summary>
-        /// 	Mauritian rupee
+        /// This three-letter code indicates the currency is the Maldivian rufiyaa (the official currency of the Maldives).
         /// </summary>
         Mvr,
         /// <summary>
-        /// 	Maldivian rufiyaa
+        /// This three-letter code indicates the currency is the Malawian Kwacha.
         /// </summary>
         Mwk,
         /// <summary>
-        /// 	Malawian kwacha
+        /// This three-letter code indicates the currency is the Mexican peso.
         /// </summary>
         Mxn,
         /// <summary>
-        /// 	Mexican Unidad de Inversion (UDI) (funds code)
+        /// This three-letter code indicates the currency is the Malaysian Ringgit.
         /// </summary>
         Myr,
         /// <summary>
-        /// 	Malaysian ringgit
+        /// This three-letter code indicates the currency is the Mozambican metical.
         /// </summary>
         Mzn,
         /// <summary>
-        /// 	Mozambican metical
+        /// This three-letter code indicates the currency is the Namibian Dollar.
         /// </summary>
         Nad,
         /// <summary>
-        /// 	Namibian dollar
+        /// This three-letter code indicates the currency is the Nigerian naira.
         /// </summary>
         Ngn,
         /// <summary>
-        /// 	Nigerian naira
+        /// This three-letter code indicates the currency is the Nicaraguan Córdoba Oro.
         /// </summary>
         Nio,
         /// <summary>
-        /// 	Nicaraguan córdoba
+        /// This three-letter code indicates the currency is the Norwegian krone.
         /// </summary>
         Nok,
         /// <summary>
-        /// 	Norwegian krone
+        /// This three-letter code indicates the currency is the Nepalese Rupee.
         /// </summary>
         Npr,
         /// <summary>
-        /// 	Nepalese rupee
+        /// This three-letter code indicates the currency is the New Zealand dollar.
         /// </summary>
         Nzd,
         /// <summary>
-        /// 	New Zealand dollar
+        /// This three-letter code indicates the currency is the Omani rial.
         /// </summary>
         Omr,
         /// <summary>
-        /// 	Omani rial
+        /// This three-letter code indicates the currency is the Panamanian Balboa.
         /// </summary>
         Pab,
         /// <summary>
-        /// 	Panamanian balboa
+        /// This three-letter code indicates the currency is the Peruvian Sol.
         /// </summary>
         Pen,
         /// <summary>
-        /// 	Peruvian sol
+        /// This three-letter code indicates the currency is the Papua New Guinean kina.
         /// </summary>
         Pgk,
         /// <summary>
-        /// 	Papua New Guinean kina
+        /// This three-letter code indicates the currency is the Philippine Peso.
         /// </summary>
         Php,
         /// <summary>
-        /// 	Philippine peso[11]
+        /// This three-letter code indicates the currency is the Pakistani Rupee.
         /// </summary>
         Pkr,
         /// <summary>
-        /// 	Pakistani rupee
+        /// This three-letter code indicates the currency is the Polish zloty.
         /// </summary>
         Pln,
         /// <summary>
-        /// 	Polish złoty
+        /// This three-letter code indicates the currency is the Paraguayan guaraní.
         /// </summary>
         Pyg,
         /// <summary>
-        /// 	Paraguayan guaraní
+        /// This three-letter code indicates the currency is the Qatari riyal.
         /// </summary>
         Qar,
         /// <summary>
-        /// 	Qatari riyal
+        /// This three-letter code indicates the currency is the Romanian New Leu.
         /// </summary>
         Ron,
         /// <summary>
-        /// 	Romanian leu
+        /// This three-letter code indicates the currency is the Serbian dinar.
         /// </summary>
         Rsd,
         /// <summary>
-        /// 	Serbian dinar
+        /// This three-letter code indicates the currency is the Russian Ruble.
         /// </summary>
         Rub,
         /// <summary>
-        /// 	Russian ruble
+        /// This three-letter code indicates the currency is the Rwandan franc.
         /// </summary>
         Rwf,
         /// <summary>
-        /// 	Rwandan franc
+        /// This three-letter code indicates the currency is the Saudi riyal.
         /// </summary>
         Sar,
         /// <summary>
-        /// 	Saudi riyal
+        /// This three-letter code indicates the currency is the Solomon Islands dollar.
         /// </summary>
         Sbd,
         /// <summary>
-        /// 	Solomon Islands dollar
+        /// This three-letter code indicates the currency is the Seychellois Rupee, the official currency of the Seychelles.
         /// </summary>
         Scr,
         /// <summary>
-        /// 	Seychelles rupee
+        /// This three-letter code indicates the currency is the Sudanese Pound.
         /// </summary>
         Sdg,
         /// <summary>
-        /// 	Sudanese pound
+        /// This three-letter code indicates the currency is the Swedish Krona.
         /// </summary>
         Sek,
         /// <summary>
-        /// 	Swedish krona
+        /// This three-letter code indicates the currency is the Singapore Dollar.
         /// </summary>
         Sgd,
         /// <summary>
-        /// 	Singapore dollar
+        /// This three-letter code indicates the currency is the Saint Helena Pound, the official currency in Saint Helena and Ascension Island .
         /// </summary>
         Shp,
         /// <summary>
-        /// 	Saint Helena pound
+        /// This three-letter code indicates the currency is the Sierra Leonean Leone.
         /// </summary>
         Sle,
         /// <summary>
-        /// 	Sierra Leonean leone (new leone)[12][13][14]
+        /// This three-letter code indicates the currency is the Somalian Shilling.
         /// </summary>
         Sos,
         /// <summary>
-        /// 	Somalian shilling
+        /// This three-letter code indicates the currency is the Surinamese Dollar.
         /// </summary>
         Srd,
         /// <summary>
-        /// 	Surinamese dollar
+        /// This three-letter code indicates the currency is the South Sudanese Pound.
         /// </summary>
         Ssp,
         /// <summary>
-        /// 	South Sudanese pound
+        /// This three-letter code indicates the currency is the São Tomé and Príncipe dobra.
         /// </summary>
         Stn,
         /// <summary>
-        /// 	Salvadoran colón
+        /// This three-letter code indicates the currency is the Syrian Pound.
         /// </summary>
         Syp,
         /// <summary>
-        /// 	Syrian pound
+        /// This three-letter code indicates the currency is the  Eswatini Lilangeni, the official currency of Eswatini (formerly Swaziland).
         /// </summary>
         Szl,
         /// <summary>
-        /// 	Swazi lilangeni
+        /// This three-letter code indicates the currency is the Thai Baht.
         /// </summary>
         Thb,
         /// <summary>
-        /// 	Thai baht
+        /// This three-letter code indicates the currency is the Tajikistani somoni.
         /// </summary>
         Tjs,
         /// <summary>
-        /// 	Tajikistani somoni
+        /// This three-letter code indicates the currency is the Turkmenistan manat.
         /// </summary>
         Tmt,
         /// <summary>
-        /// 	Turkmenistan manat
+        /// This three-letter code indicates the currency is the Tunisian Dinar.
         /// </summary>
         Tnd,
         /// <summary>
-        /// 	Tunisian dinar
+        /// This three-letter code indicates the currency is the Tongan paʻanga.
         /// </summary>
         Top,
         /// <summary>
-        /// 	Tongan paʻanga
+        /// This three-letter code indicates the currency is the Turkish lira.
         /// </summary>
         Try,
         /// <summary>
-        /// 	Turkish lira
+        /// This three-letter code indicates the currency is the Trinidad and Tobago Dollar.
         /// </summary>
         Ttd,
         /// <summary>
-        /// 	Tuvaluan Dollar
+        /// This three-letter code indicates the currency is the New Taiwan dollar.
         /// </summary>
         Twd,
         /// <summary>
-        /// 	New Taiwan dollar
+        /// This three-letter code indicates the currency is the Tanzanian Shilling.
         /// </summary>
         Tzs,
         /// <summary>
-        /// 	Tanzanian shilling
+        /// This three-letter code indicates the currency is the Ukrainian hryvnia.
         /// </summary>
         Uah,
         /// <summary>
-        /// 	Ukrainian hryvnia
+        /// This three-letter code indicates the currency is the Ugandan shilling.
         /// </summary>
         Ugx,
         /// <summary>
-        /// 	Ugandan shilling
+        /// This three-letter code indicates the currency is the United States dollar.
         /// </summary>
         Usd,
         /// <summary>
-        /// 	Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code)
+        /// This three-letter code indicates the currency is the Uruguayan peso.
         /// </summary>
         Uyu,
         /// <summary>
-        /// 	Unidad previsional[16]
+        /// This three-letter code indicates the currency is the Uzbekistani som.
         /// </summary>
         Uzs,
         /// <summary>
-        /// 	Venezuelan digital bolívar[17]
+        /// This three-letter code is no longer valid, and was replaced by VED to represent the Bolívar Digital, the official currency of Venezuela.
         /// </summary>
         Ves,
         /// <summary>
-        /// 	Venezuelan sovereign bolívar[11]
+        /// This three-letter code indicates the currency is the Vietnamese đồng.
         /// </summary>
         Vnd,
         /// <summary>
-        /// 	Vietnamese đồng
+        /// This three-letter code indicates the currency is the Vanuatu vatu.
         /// </summary>
         Vuv,
         /// <summary>
-        /// 	Vanuatu vatu
+        /// This three-letter code indicates the currency is the Samoan tala.
         /// </summary>
         Wst,
         /// <summary>
-        /// 	Arab Accounting Dinar[18]
+        /// This three-letter code indicates the currency is the Central African CFA franc, which is the official currency for six Central African countries that form the Economic and Monetary Community of Central Africa (CEMAC).
         /// </summary>
         Xaf,
         /// <summary>
-        /// 	European Unit of Account 17 (E.U.A.-17) (bond market unit)
+        /// This three-letter code indicates the currency is the Eastern Caribbean dollar, the official currency shared by eight island countries and territories in the Eastern Caribbean.
         /// </summary>
         Xcd,
         /// <summary>
-        /// 	Special drawing rights
+        /// This three-letter code refers to the West African CFA franc, which is the official currency for eight West African countries that form the West African Economic and Monetary Union (UEMOA).
         /// </summary>
         Xof,
         /// <summary>
-        /// 	Palladium (one troy ounce)
+        /// This three-letter code refers to the CFP franc (franc Pacifique or Pacific franc), the official currency used in three French overseas collectivities in the Pacific Ocean.
         /// </summary>
         Xpf,
         /// <summary>
-        /// 	No currency
+        /// This three-letter code indicates the currency is the Yemeni rial.
         /// </summary>
         Yer,
         /// <summary>
-        /// 	Yemeni rial
+        /// This three-letter code indicates the currency is the South African rand.
         /// </summary>
         Zar,
         /// <summary>
-        /// 	South African rand
+        /// This three-letter code indicates the currency is the Zambian kwacha.
         /// </summary>
         Zmw
     }

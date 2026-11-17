@@ -33,7 +33,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_contact;
 
         /// <summary>
-        /// This container adds or modifies the street address for the product manufacturer.
+        /// This object adds or modifies the street address for the product manufacturer.
         /// </summary>
         public UpdateListingBusinessEntityAddressInput? Address
         {
@@ -47,7 +47,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field adds or modifies the name of the company that manufactured the product. This field is required if manufacturer information is supplied.
-        /// **Max length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string? CompanyName
         {
@@ -60,7 +61,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify the phone number, email address, and/or the Contact/Support page URL for the product manufacturer. At least one of the three is required if manufacturer information is supplied.
+        /// This object is used to add or modify the phone number, email address, and/or the Contact/Support page URL for the product manufacturer. At least one of the three is required if manufacturer information is supplied.
         /// </summary>
         public UpdateListingBusinessEntityContactInput? Contact
         {
@@ -74,13 +75,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_address || _set_companyName || _set_contact))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_address)
             {

@@ -36,6 +36,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field specifies the refund method that will be used if the buyer returns the item. This field must be included if the seller accepts returns for the item. Currently, the only supported value for this field is `MONEY_BACK`.
+        ///
         /// **Note**: Although `MONEY_BACK_OR_REPLACEMENT` is defined in the schema, replacement items are not currently supported in Returns flow, so `MONEY_BACK` is the only option.
         /// </summary>
         public ListingRefundMethod? RefundMethod
@@ -49,8 +50,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field must be included and set to 'true' if the seller accepts returns for the item or 'false' if the seller does not accept returns for the item.
-        /// **Default value**: false
+        /// This field must be included and set to `true` if the seller accepts returns for the item or `false` if the seller does not accept returns for the item.
+        ///
+        /// **Default**: false
         /// </summary>
         public bool? ReturnAccepted
         {
@@ -90,13 +92,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_refundMethod || _set_returnAccepted || _set_returnDuration || _set_returnShipmentInvoicee))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_refundMethod)
             {

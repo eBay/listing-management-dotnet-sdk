@@ -45,6 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to set or modify one or more country-specific product compliance policy ID values or one takeback policy ID value that will apply to the corresponding country. The [getCustomPolicies](https://developer.ebay.com/api-docs/sell/account/resources/custom_policy/methods/getCustomPolicies) method can be used to retrieve all policies defined for a seller's account.
+        ///
         /// **Note**: All country-specific product policies that the seller would like to apply to the corresponding country in the listing must be included in this array, and not just the new policies being added. There can only be one takeback policy per country, so there will only be just one takeback policy ID in this array.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> PolicyIds
@@ -59,13 +60,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_country || _set_policyIds))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_country)
             {

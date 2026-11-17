@@ -34,7 +34,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// </summary>
         ClassifiedAd,
         /// <summary>
-        /// This enumeration value indicates that the listing is a fixed price listing. In a fixed price listing, the 'Buy it Now' price is set, although it is still possible for the seller to enable the Best Offer feature and accept/decline Best Offers from prospective buyers. The different versions of fixed-price listings include a single item with a quantity of '1', multiple quantity of an identical item, or a multiple-variation listing where slightly different variations of the same item are made available for sale.
+        /// This enumeration value indicates that the listing is a fixed price listing. In a fixed price listing, the 'Buy it Now' price is set, although it is still possible for the seller to enable the Best Offer feature and accept/decline Best Offers from prospective buyers. The different versions of fixed-price listings include a single item with a quantity of `1`, multiple quantity of an identical item, or a multiple-variation listing where slightly different variations of the same item are made available for sale.
         /// </summary>
         FixedPrice
     }

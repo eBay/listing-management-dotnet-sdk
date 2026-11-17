@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// The enumeration values in this type control how/when the Minimum Advertised Price is exposed to the buyer.
+    /// This enumerated type controls how/when the Minimum Advertised Price is exposed to the buyer.
     /// </summary>
     public enum ListingMinimumAdvertisedPriceExposure
     {

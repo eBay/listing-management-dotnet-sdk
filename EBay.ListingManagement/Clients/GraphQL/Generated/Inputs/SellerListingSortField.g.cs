@@ -46,7 +46,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         /// <summary>
         /// This enumeration value specifies if listings will be returned in ascending or descending order based on the specified `field` criteria.
         ///
-        /// **Default Value:** ASC
+        /// **Default Value**: ASC
         /// </summary>
         public SortOrder? SortOrder
         {
@@ -60,13 +60,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_field || _set_sortOrder))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_field)
             {

@@ -30,8 +30,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to specify a country-specific takeback policy. Each country may only have one country-specific takeback policy.
+        ///
         /// **Note**: All country-specific takeback policies that the seller would like to apply to the listing must be included in this array, and not just the new policies being added.
-        /// **Max number of takeback policies allowed per marketplace**: 1.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdateListingCountryPolicyInput> CountryPolicies
         {
@@ -45,13 +45,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_countryPolicies))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_countryPolicies)
             {

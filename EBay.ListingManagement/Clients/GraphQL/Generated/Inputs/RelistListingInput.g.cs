@@ -21,7 +21,7 @@ using EBay.ListingManagement.Clients.GraphQL;
 namespace EBay.ListingManagement.Generated.GraphQL
 {
     /// <summary>
-    /// The base request type for the **relistListing** mutation. This container is used to provide product details, eBay listing terms, and price and quantity information for each item that will be available for sale in the new listing. This **relistListing** mutation is used to relist a recently ended listing, and the seller has the option to relist with all of the same data and settings, or the seller can also choose to make updates. For multiple-SKU listings, the **listingVariations** container will be used to add or modify variation information for a multiple-SKU listing.
+    /// The base request type for the **relistListing** mutation. This type is used to provide product details, eBay listing terms, and price and quantity information for each item that will be available for sale in the new listing. This **relistListing** mutation is used to relist a recently ended listing, and the seller has the option to relist with all of the same data and settings, or the seller can also choose to make updates. For multiple-SKU listings, the **listingVariations** object will be used to add or modify variation information for a multiple-SKU listing.
     /// </summary>
     public partial class RelistListingInput : global::System.IEquatable<RelistListingInput>
     {
@@ -43,9 +43,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_product;
 
         /// <summary>
-        /// This field allows the user to set up a client-side idempotency key, and having this key defined will help in avoiding duplicate listings due to a retry if a mutation fails due to a system problem.
-        /// **Note**: The **idempotencyKey** value, if set for the ended listing, will not carry over to the relisted listing, so this field must be included with a new value if the user wishes to make use of it.
-        /// **Max length**: 32 characters.
+        /// This field allows the user to provide a client-side idempotency key to help avoid duplicate listings when a **relistListing** mutation is retried after a system failure. It must be 32 characters long, contain only hexadecimal characters (0–9 and A–F), and be unique for the seller across all eBay marketplaces.
+        ///
+        /// **Note**: The **idempotencyKey** value, if set for the ended listing, does not carry over to the relisted listing. To use this field for the relist request, provide a new value.
         /// </summary>
         public string? IdempotencyKey
         {
@@ -58,7 +58,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to identify the listing to be relisted. The listing can either be identified with the **listingId** or the SKU value if defined in the ended listing.
+        /// This object is used to identify the listing to be relisted. The listing can either be identified with the **listingId** or the SKU value if defined in the ended listing.
         /// </summary>
         public ListingIdentifierInput ListingIdentifier
         {
@@ -72,9 +72,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// An array of one or more purchasable items. A single-SKU listing will only have one item object, while a multiple-SKU listing will have numerous item objects. Each item object will have price, quantity, and global product identifiers if applicable. Item objects within multiple-SKU listings will show unique traits that differentiate them from the rest of the variations within the listing.
+        ///
         /// **Note**: A SKU value is optional for a single-SKU listing, but mandatory for a multiple-SKU listing.
+        ///
         /// **Note**: Price(s), Global Trade Item Numbers (GTINs), and the eBay Product ID (ePID) defined in the ended listing will be carried over in the relisted listing unless the seller desires to make updates. The quantity should be checked and updated as needed though.
-        /// **Max number of items for a multiple-SKU listing**: 250.
+        ///
+        /// **Maximum number of items for a multiple-SKU listing**: 250.
         /// </summary>
         public RelistListingItemsInput? ListingItems
         {
@@ -87,7 +90,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        /// This object is used to provide listing terms details for the listing, including listing format, listing duration, payment terms, return policy, fulfillment terms, and more.
+        ///
         /// **Note**: A majority of the listing terms defined in the ended listing will be carried over in the relisted listing unless the seller desires to make updates.
         /// </summary>
         public RelistListingTermsInput? ListingTerms
@@ -101,7 +105,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container provides details on the available product variations within a multiple-SKU listing, and which traits are different for each of these variations. Products in a multiple-SKU listing tend to vary by one or more traits such as color and size, and interested buyers need to select which variation they want to purchase. For example, the 'Blue, Large' t-shirt.
+        /// This object provides details on the available product variations within a multiple-SKU listing, and which traits are different for each of these variations. Products in a multiple-SKU listing tend to vary by one or more traits such as color and size, and interested buyers need to select which variation they want to purchase. For example, the `Blue, Large` t-shirt.
+        ///
         /// **Note**: A majority of the variation information defined in the ended listing will be carried over in the relisted multiple-SKU listing unless the seller desires to make updates.
         /// </summary>
         public RelistListingVariationsInput? ListingVariations
@@ -115,7 +120,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field is used to identify the eBay marketplace where the listing will be created. Generally, an ended listing will be relisted on the same eBay marketplace. See [`ListingMarketplace`] for list of supported enumeration values. It determines the regional settings, currency, and other marketplace-specific configurations.
+        /// This field is used to identify the eBay marketplace where the listing will be created. Generally, an ended listing will be relisted on the same eBay marketplace. See **ListingMarketplace** for list of supported enumeration values. It determines the regional settings, currency, and other marketplace-specific configurations.
         /// </summary>
         public ListingMarketplace Marketplace
         {
@@ -128,7 +133,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container allows a user to run a **relistListing** mutation in validation mode, which means that the listing object will be validated, but a successful mutation will not relist a listing.
+        /// This object allows a user to run a **relistListing** mutation in validation mode, which means that the listing object will be validated, but a successful mutation will not relist a listing.
         /// </summary>
         public ListingOptionsInput? Options
         {
@@ -141,7 +146,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify product data for the listing. Product data under this container includes title, description, product aspects, item condition, images, and more.
+        /// This object is used to add or modify product data for the listing. Product data under this object includes title, description, product aspects, item condition, images, and more.
+        ///
         /// **Note**: A majority of the product data defined in the ended listing will be carried over in the relisted listing unless the seller desires to make updates.
         /// </summary>
         public RelistListingProductInput? Product
@@ -156,13 +162,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_idempotencyKey || _set_listingIdentifier || _set_listingItems || _set_listingTerms || _set_listingVariations || _set_marketplace || _set_options || _set_product))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_idempotencyKey)
             {

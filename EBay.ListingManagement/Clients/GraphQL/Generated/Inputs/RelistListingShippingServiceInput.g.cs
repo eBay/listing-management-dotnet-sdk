@@ -51,6 +51,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to add or modify the list of geographical regions or individual countries that the corresponding international shipping service operates in.
+        ///
         /// **Note**: The full list of shipping locations must be included if any changes are being made, and not just the ones that are being added.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ListingShippingLocationInput>? IncludedShipToLocations
@@ -64,7 +65,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The integer value specified here controls the order in which the corresponding shipping service will be displayed in the View Item page. This should be a positive integer from 1 to 4 for a shipping service that ships within the marketplace or from 5 to 9 for a shipping service that ships outside of the marketplace. A rank value of '1' means it is the first shipping option displayed in the View Item page. If this field is not used, the rank and hence order of the shipping services will depend on the order they are specified under the **shippingServices** array.
+        /// The integer value specified here controls the order in which the corresponding shipping service will be displayed in the View Item page. This should be a positive integer from 1 to 4 for a shipping service that ships within the marketplace or from 5 to 9 for a shipping service that ships outside of the marketplace. A rank value of `1` means it is the first shipping option displayed in the View Item page. If this field is not used, the rank and hence order of the shipping services will depend on the order they are specified under the **shippingServices** array.
         /// </summary>
         public int? Rank
         {
@@ -77,7 +78,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field adds or modifies the flat-rate shipping cost to ship one unit of the item using the corresponding shipping service. This field is required for each shipping service if flat-rate shipping is being used. This field must still be included and set to '0.0' if the corresponding shipping service is offered free of charge to the buyer.
+        /// This field adds or modifies the flat-rate shipping cost to ship one unit of the item using the corresponding shipping service. This field is required for each shipping service if flat-rate shipping is being used. This field must still be included and set to `0.0` if the corresponding shipping service is offered free of charge to the buyer.
         /// </summary>
         public decimal? ShippingCost
         {
@@ -104,13 +105,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_additionalUnitShippingCost || _set_includedShipToLocations || _set_rank || _set_shippingCost || _set_shippingServiceCode))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_additionalUnitShippingCost)
             {

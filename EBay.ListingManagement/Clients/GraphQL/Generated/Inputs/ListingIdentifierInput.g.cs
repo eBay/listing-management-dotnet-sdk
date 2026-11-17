@@ -31,7 +31,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_sku;
 
         /// <summary>
-        ///    The unique identifier of an eBay listing that is generated as soon as a listing is successfully created. This ID is permanent throughout the life of a listing and can be used for all subsequent operations on the listing.
+        /// The unique identifier of an eBay listing that is generated as soon as a listing is successfully created. This ID is permanent throughout the life of a listing and can be used for all subsequent operations on the listing.
+        ///
         /// **Note**: Either a **listingId** or a **sku** value must be used.
         /// </summary>
         public string? ListingId
@@ -45,9 +46,11 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///    The seller-defined Stock Keeping Unit (SKU) for the product. SKU values are optional for single-variation listings but required for multiple-variation listings. The **sku** value can be used as an alternative to the **listingId** to identify the listing in **Listing API** mutations and queries.
-        ///    **Max length**: 50 characters.
+        /// The seller-defined Stock Keeping Unit (SKU) for the product. SKU values are optional for single-variation listings but required for multiple-variation listings. The **sku** value can be used as an alternative to the **listingId** to identify the listing in **Listing API** mutations and queries.
+        ///
         /// **Note**: Either a **listingId** or a **sku** value must be used.
+        ///
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string? Sku
         {
@@ -61,13 +64,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_listingId || _set_sku))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_listingId)
             {

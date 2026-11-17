@@ -47,8 +47,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The field indicates the geographic location (city and state/province) where the listing is physically located. If you do not provide a value in this field, you must provide a value in the **postalCode** field and the field value will be derived from the postal code.
-        /// For the CLASSIFIED_AD format for Motor vehicles, the value provided in the field is used as item location only if the **addressLine1** and **addressLine2** fields of the **UpdateListingSellerContactInput** are not provided. If the **addressLine1** and **addressLine2** fields of the **UpdateListingSellerContactInput** are provided, the item location field value is ignored.
-        /// **Max length**: 200 characters.
+        ///
+        /// For the `CLASSIFIED_AD` format for Motor vehicles, the value provided in the field is used as item location only if the **addressLine1** and **addressLine2** fields of the **UpdateListingSellerContactInput** are not provided. If the **addressLine1** and **addressLine2** fields of the **UpdateListingSellerContactInput** are provided, the item location field value is ignored.
+        ///
+        /// **Maximum length**: 200 characters
         /// </summary>
         public string? Location
         {
@@ -62,7 +64,6 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The postal code (zip code) where the listing is physically located. Either the **location** field or the **postalCode** field must be specified or an error will occur. Postal/zip code format varies by region. e.g. US: 5-digit numeric codes (e.g., 12345), Australia: 4-digit numeric codes (e.g., 2000), GB: Variable-length alphanumeric codes with letters and numbers (e.g., SW1A 1AA). Other regions follow local postal service standards.
-        /// **Max length**: 32 characters.
         /// </summary>
         public string? PostalCode
         {
@@ -76,13 +77,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_country || _set_location || _set_postalCode))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_country)
             {

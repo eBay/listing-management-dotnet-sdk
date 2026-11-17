@@ -34,7 +34,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to specify the entity's URL for their online Contact Us/Support page.
-        /// **Max length**: 250 characters.
+        ///
+        /// **Maximum length**: 250 characters
         /// </summary>
         public string? ContactUrl
         {
@@ -48,7 +49,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to add or modify the entity's email address.
-        /// **Max length**: 180 characters.
+        ///
+        /// **Maximum length**: 180 characters
         /// </summary>
         public string? Email
         {
@@ -62,7 +64,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to add or modify the entity's phone number.
-        /// **Max length**: 64 characters.
+        ///
+        /// **Maximum length**: 64 characters
         /// </summary>
         public string? Phone
         {
@@ -76,13 +79,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_contactUrl || _set_email || _set_phone))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_contactUrl)
             {

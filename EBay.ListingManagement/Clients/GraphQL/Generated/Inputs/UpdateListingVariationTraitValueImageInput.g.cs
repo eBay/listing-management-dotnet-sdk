@@ -32,9 +32,12 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// An array of one or more images that demonstrate the corresponding **traitValue**. For example, if the **traitName** is 'Color' and the **traitValue** is 'Red', the image(s) would show a red variation of the product. Depending on the product, one image per variation may be enough, but multiple images may be specified for each **traitValue**. For example, it is possible that a seller would want to show the front and back of each shirt in each color.
-        /// **Note**: The full list of image URLs must be included in this array, and not just the ones that are being added.
-        /// **Note** All images, whether they are hosted by eBay Picture Server (EPS) or self-hosted, must comply with eBay picture requirements. eBay Picture Server (EPS) and self-hosted picture URLs should not be mixed, and all URLs must use 'https' and not 'http'.
-        /// **Max number of images per trait value**: 12.
+        ///
+        /// **Notes**:
+        /// = The full list of image URLs must be included in this array, and not just the ones that are being added.
+        /// - All images, whether they are hosted by eBay Picture Server (EPS) or self-hosted, must comply with eBay picture requirements. eBay Picture Server (EPS) and self-hosted picture URLs should not be mixed, and all URLs must use 'https' and not 'http'.
+        ///
+        /// **Maximum number of images per trait value**: 12.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> TraitImageUrls
         {
@@ -47,8 +50,9 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The trait value of the corresponding image(s) in the **traitImageUrls** array. If the **traitName** is 'Color', values in this field may include *Red*, *Blue*, *Green*, etc. At least one of the variations within the multiple-SKU listing must have this value.
-        /// **Max length**: 65 characters.
+        /// The trait value of the corresponding image(s) in the **traitImageUrls** array. If the **traitName** is `Color`, values in this field may include *Red*, *Blue*, *Green*, etc. At least one of the variations within the multiple-SKU listing must have this value.
+        ///
+        /// **Maximum length**: 65 characters
         /// </summary>
         public string TraitValue
         {
@@ -62,13 +66,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_traitImageUrls || _set_traitValue))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_traitImageUrls)
             {

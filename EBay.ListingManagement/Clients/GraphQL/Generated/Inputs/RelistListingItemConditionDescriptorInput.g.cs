@@ -34,8 +34,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field can be used to add or modify additional information about a condition descriptor. One example is using this field to specify the **Certification Number** for a graded card.
+        ///
         /// **Note**: If this field is used, the text provided in the field will completely overwrite the current additional information text if it exists for the listing.
-        /// **Max length**: 30 characters.
+        ///
+        /// **Maximum length**: 30 characters
         /// </summary>
         public string? AdditionalInformation
         {
@@ -75,13 +77,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_additionalInformation || _set_name || _set_values))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_additionalInformation)
             {

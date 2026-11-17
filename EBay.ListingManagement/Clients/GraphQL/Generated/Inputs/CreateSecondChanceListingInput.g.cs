@@ -39,7 +39,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_sellerMessage;
 
         /// <summary>
-        /// This container is used to identify a recently ended listing from which a Second Chance listing will be derived from. The user can either identify the ended listing using its **listingId** value or the item's **sku** value (if defined).
+        /// This object is used to identify a recently ended listing from which a Second Chance listing will be derived from. The user can either identify the ended listing using its **listingId** value or the item's **sku** value (if defined).
         /// </summary>
         public ListingIdentifierInput ListingIdentifier
         {
@@ -52,7 +52,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to set the duration of the Second Chance listing. For auctions involving motor vehicles or other high-priced items where the Reserve Price was never met and there was no winning bidder, the **fixedPrice** should be included. Otherwise, the Second Chance listing price automatically defaults to the recipient user's highest bid during the ending auction and the **fixedPrice** should not be included.
+        /// This object is used to set the duration of the Second Chance listing. For auctions involving motor vehicles or other high-priced items where the Reserve Price was never met and there was no winning bidder, the **fixedPrice** should be included. Otherwise, the Second Chance listing price automatically defaults to the recipient user's highest bid during the ending auction and the **fixedPrice** should not be included.
         /// </summary>
         public SecondChanceListingTermsInput ListingTerms
         {
@@ -78,7 +78,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container allows a user to run a **createSecondChanceListing** mutation in validation mode, which means that the listing object will be validated, but a successful mutation will not create the Second Chance Offer.
+        /// This object allows a user to run a **createSecondChanceListing** mutation in validation mode, which means that the listing object will be validated, but a successful mutation will not create the Second Chance Offer.
         /// </summary>
         public ListingOptionsInput? Options
         {
@@ -105,8 +105,10 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field can be used if the seller wishes to share a message with the buyer about why the offer is being made and perhaps highlighting the conditions of the offer. The recipient will get this offer in eBay Inbox, and the text provided here will be included in that email.
+        ///
         /// **Note**: The provided message can not contain HTML markup, asterisks, or quotes.
-        /// **Max length**: 1000 characters.
+        ///
+        /// **Maximum length**: 1000 characters
         /// </summary>
         public string? SellerMessage
         {
@@ -120,13 +122,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_listingIdentifier || _set_listingTerms || _set_marketplace || _set_options || _set_recipientUserId || _set_sellerMessage))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_listingIdentifier)
             {

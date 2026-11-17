@@ -31,7 +31,8 @@ namespace EBay.ListingManagement.Generated.GraphQL
         private bool _set_sku;
 
         /// <summary>
-        ///    The unique identifier for the single-SKU fixed price listing to update.
+        /// The unique identifier for the single-SKU fixed price listing to update.
+        ///
         /// **Note**: This field cannot be used to identify an item within a multiple-SKU listing, and the **sku** field must be used instead.
         /// </summary>
         public string? ListingId
@@ -46,6 +47,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// The seller-defined Stock Keeping Unit (SKU) for the item to update. This field is required to identify a specific item within a multiple-SKU listing. For a single-SKU listing, either this field (if a SKU is defined in the listing) or the **listingId** can be used to identify the item.
+        ///
         /// **Format**: Alphanumeric string.
         /// </summary>
         public string? Sku
@@ -60,13 +62,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_listingId || _set_sku))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_listingId)
             {

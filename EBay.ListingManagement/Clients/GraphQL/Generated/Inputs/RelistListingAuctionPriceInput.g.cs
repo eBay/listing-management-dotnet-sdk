@@ -32,6 +32,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to set the lowest price at which the seller is willing to sell an auction listing. A small fee is charged to use this feature. If the **reservePrice** field value is not met or surpassed during bidding, the auction will end without a winning bidder. This price must be higher than the **startingBidPrice**. The price will be in the default currency for the marketplace for this listing. See the [Get Currencies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCurrencies) call for more information on the currency format.
+        ///
         /// **Note**: The **reservePrice** value for an ended auction listing may retain that value. Regardless if the **reservePrice** value is retained or not, it is a good idea for the seller to evaluate the price and make an update if desired.
         /// </summary>
         public decimal? ReservePrice
@@ -46,6 +47,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is mandatory for auction listings and sets the starting bid amount. The first bid must meet or exceed this value or it will be rejected. The price will be in the default currency for the marketplace for this listing. See the [Get Currencies](https://developer.ebay.com/api-docs/sell/metadata/resources/marketplace/methods/getCurrencies) call for more information on the currency format.
+        ///
         /// **Note**: The **startingBidPrice** value for an ended auction listing should retain that value. Regardless if the **startingBidPrice** value is retained or not, it is a good idea for the seller to evaluate the price and make an update if desired.
         /// </summary>
         public decimal? StartingBidPrice
@@ -60,13 +62,7 @@ namespace EBay.ListingManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_reservePrice || _set_startingBidPrice))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_reservePrice)
             {
