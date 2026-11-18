@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.FulfillmentCenterSpecifications FulfillmentCenterSpecifications { get; set; }
 #endif
-        /// <summary>This container provides location details of an inventory location. The &lt;strong&gt;address&lt;/strong&gt; container will always be returned, but it will not always have a complete street address. Except in the case of a store or fulfillment center location, a full address is not a requirement when setting up an inventory location. The &lt;strong&gt;geoCoordinates&lt;/strong&gt; container will only be returned if the merchant provided geographical coordinates. The &lt;strong&gt;locationId&lt;/strong&gt; field is always returned, but this value is only used internally by eBay.</summary>
+        /// <summary>This container provides details of an inventory location. The &lt;strong&gt;address&lt;/strong&gt; container will always be returned, but it will not always have a complete street address, as a WAREHOUSE location does not require a full street address. The &lt;strong&gt;geoCoordinates&lt;/strong&gt; container will only be returned if the seller provided geographical coordinates. The &lt;strong&gt;locationId&lt;/strong&gt; field is always returned, but this value is only used internally by eBay.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Location? Location { get; set; }
@@ -53,7 +53,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string LocationAdditionalInformation { get; set; }
 #endif
-        /// <summary>This text field is used by the merchant to provide special pickup instructions for the store location. This field can help create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders. If this field was not set up through a &lt;strong&gt;createInventoryLocation&lt;/strong&gt; or a &lt;strong&gt;updateInventoryLocation&lt;/strong&gt; call, eBay will use the default pickup instructions contained in the merchant&apos;s profile.</summary>
+        /// <summary>&lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.</summary>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LocationInstructions { get; set; }
@@ -61,7 +62,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string LocationInstructions { get; set; }
 #endif
-        /// <summary>This container defines the function of the inventory location. Typically, a location will serve as a store, warehouse, or fulfillment center, but in some cases, an inventory location may be more than one type.</summary>
+        /// <summary>This array indicates if the inventory location is a warehouse or a fulfillment center.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.StoreTypeEnum?>? LocationTypes { get; set; }
@@ -87,7 +88,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #endif
         /// <summary>This field indicates whether the inventory location is enabled (inventory can be loaded to location) or disabled (inventory cannot be loaded to location). The merchant can use the &lt;strong&gt;enableInventoryLocation&lt;/strong&gt; call to enable a location in disabled status, or the &lt;strong&gt;disableInventoryLocation&lt;/strong&gt; call to disable a location in enabled status.</summary>
         public global::EBay.ListingManagement.Generated.Inventory.Models.StatusEnum? MerchantLocationStatus { get; set; }
-        /// <summary>The name of the inventory location. This name should be a human-friendly name as it will be displayed in In-Store Pickup and Click and Collect listings. For store inventory locations, this field is not required for the &lt;strong&gt;createInventoryLocation&lt;/strong&gt; call, but a store inventory location must have a defined &lt;strong&gt;name&lt;/strong&gt; value before an In-Store Pickup and Click and Collect enabled offer is published. So, if the seller omits this field in the &lt;strong&gt;createInventoryLocation&lt;/strong&gt; call, it will have to be added later through a &lt;strong&gt;updateInventoryLocation&lt;/strong&gt; call.</summary>
+        /// <summary>The name of the inventory location. This name should be a human-friendly name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -95,7 +96,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>This container shows the regular operating hours for a store location during the days of the week. A &lt;strong&gt;dayOfWeekEnum&lt;/strong&gt; field and an &lt;strong&gt;intervals&lt;/strong&gt; container is shown for each day of the week that the location is open.</summary>
+        /// <summary>&lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.</summary>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours>? OperatingHours { get; set; }
@@ -103,7 +105,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours> OperatingHours { get; set; }
 #endif
-        /// <summary>The phone number for an inventory location. This field will typically only be returned for store locations.</summary>
+        /// <summary>&lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.</summary>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Phone { get; set; }
@@ -111,7 +114,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string Phone { get; set; }
 #endif
-        /// <summary>This container shows the special operating hours for a store or fulfillment center location on a specific date or dates.</summary>
+        /// <summary>&lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.</summary>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.SpecialHours>? SpecialHours { get; set; }

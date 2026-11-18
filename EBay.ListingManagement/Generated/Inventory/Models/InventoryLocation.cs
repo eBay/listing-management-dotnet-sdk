@@ -37,7 +37,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.FulfillmentCenterSpecifications FulfillmentCenterSpecifications { get; set; }
 #endif
-        /// <summary>This container is used to add any addition physical address and geographical coordinate information for a warehouse, store, or fulfillment center inventory location.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; For warehouse and store inventory locations, address fields can be updated any number of times. For fulfilment center locations, address fields cannot be updated. However, if any address fields were omitted during the &lt;b&gt;createInventoryLocation&lt;/b&gt; call, they can be added through this method.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; When updating a warehouse location to a fulfillment center, sellers can update any of the address fields a single time during the same call used to make this update. After this, they can no longer be updated.&lt;/span&gt; </summary>
+        /// <summary>This container is used to add any additional physical address and geographical coordinate information for a warehouse or fulfillment center inventory location.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; For warehouse inventory locations, address fields can be updated any number of times. For fulfillment center locations, address fields cannot be updated. However, if any address fields were omitted during the &lt;b&gt;createInventoryLocation&lt;/b&gt; call, they can be added through this method.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; When updating a warehouse location to a fulfillment center, sellers can update any of the address fields a single time during the same call used to make this update. After this, they can no longer be updated.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.LocationDetails? Location { get; set; }
@@ -53,7 +53,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string LocationAdditionalInformation { get; set; }
 #endif
-        /// <summary>This text field is generally used by the merchant to provide/update special pickup instructions for a store inventory location. Although this field is optional, it is recommended that merchants provide this field to create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders. If this field is not included in the call request payload, eBay will use the default pickup instructions contained in the merchant&apos;s profile (if available). Whatever text is passed in this field will replace the current text string defined for this field. If the text will not change, the same text should be passed in once again. &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum length&lt;/b&gt;: 1000</summary>
+        /// <summary>&lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.</summary>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LocationInstructions { get; set; }
@@ -77,7 +78,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string LocationWebUrl { get; set; }
 #endif
-        /// <summary>This text field is used by the merchant to update the name of the inventory location. This name should be a human-friendly name as it will be in In-Store Pickup and Click and Collect listings. A name is not required for warehouse locations. For store locations, this field is not immediately required, but will be required before an offer enabled with the In-Store Pickup or Click and Collect capability can be published. So, if the seller omitted this field in the &lt;strong&gt;createInventoryLocation&lt;/strong&gt; call, it is required for an &lt;strong&gt;updateInventoryLocation&lt;/strong&gt; call. The name that is passed in this field will replace any other name that may be defined for this field.</summary>
+        /// <summary>This text field is used by the merchant to update the name of the inventory location. This name should be a human-friendly name. A name is not required for warehouse locations. The name that is passed in this field will replace any other name that may be defined for this field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -85,7 +86,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>This container is used to provide/update the regular operating hours for a store location during the days of the week. A &lt;strong&gt;dayOfWeekEnum&lt;/strong&gt; field and an &lt;strong&gt;intervals&lt;/strong&gt; container will be needed for each day of the week that the location is open. Note that if operating hours are already set for a location for a specific day of the week, whatever is set through an &lt;strong&gt;updateInventoryLocation&lt;/strong&gt; call will override those existing hours.</summary>
+        /// <summary>&lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.</summary>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.OperatingHours>? OperatingHours { get; set; }
@@ -101,7 +103,8 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public string Phone { get; set; }
 #endif
-        /// <summary>This container is used to provide/update the special operating hours for a store location on a specific date, such as a holiday. The special hours specified for the specific date will override the normal operating hours for that particular day of the week. If special hours have already been set up for an inventory location, specifying special hours through an &lt;strong&gt;updateInventoryLocation&lt;/strong&gt; call will only add to the list, unless the date(s) used are the same special date(s) already set up, in which case, the special hours set up through the &lt;strong&gt;updateInventoryLocation&lt;/strong&gt; call will override the existing special hours.</summary>
+        /// <summary>&lt;b&gt;Deprecated.&lt;/b&gt; Do not use as STORE location types are no longer supported.</summary>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::EBay.ListingManagement.Generated.Inventory.Models.SpecialHours>? SpecialHours { get; set; }

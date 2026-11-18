@@ -29,7 +29,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The &lt;strong&gt;address&lt;/strong&gt; container is always returned in &lt;strong&gt;getInventoryLocation&lt;/strong&gt;/&lt;strong&gt;getInventoryLocations&lt;/strong&gt; calls. Except in the case of a store or fulfillment center location, a full address is not a requirement when setting up an inventory location.</summary>
+        /// <summary>The &lt;strong&gt;address&lt;/strong&gt; container is always returned in &lt;strong&gt;getInventoryLocation&lt;/strong&gt;/&lt;strong&gt;getInventoryLocations&lt;/strong&gt; calls. Except in the case of a fulfillment center location, a full address is not a requirement when setting up an inventory location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.Address? Address { get; set; }

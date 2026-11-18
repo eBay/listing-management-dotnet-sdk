@@ -47,7 +47,7 @@ namespace EBay.ListingManagement.Generated.Inventory.Models
 #else
         public global::EBay.ListingManagement.Generated.Inventory.Models.Charity Charity { get; set; }
 #endif
-        /// <summary>This container is used to provide the eco-participation fee for a product. Use the &lt;a href=&quot;/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getextendedproducerresponsibilitypolicies&quot; target=&quot;_blank&quot;&gt;getExtendedProducerResponsibilityPolicies&lt;/a&gt;Â method of theÂ &lt;strong&gt;Sell Metadata API&lt;/strong&gt; to retrieve categories that support eco-participation fee for a specified marketplace.</summary>
+        /// <summary>This container is used to provide the eco-participation fee for a product. Use the &lt;a href=&quot;/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getextendedproducerresponsibilitypolicies&quot; target=&quot;_blank&quot;&gt;getExtendedProducerResponsibilityPolicies&lt;/a&gt; method of the &lt;strong&gt;Sell Metadata API&lt;/strong&gt; to retrieve categories that support eco-participation fee for a specified marketplace.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::EBay.ListingManagement.Generated.Inventory.Models.ExtendedProducerResponsibility? ExtendedProducerResponsibility { get; set; }

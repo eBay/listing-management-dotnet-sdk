@@ -22,7 +22,7 @@ using System;
 namespace EBay.ListingManagement.Generated.Inventory.Models
 {
     /// <summary>
-    /// This type is used to indicate the fulfillment time for an In-Store Pickup order, or for an order than will be shipped to the buyer.
+    /// This type is used to indicate the fulfillment time for an order that will be shipped to the buyer.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TimeDuration : IAdditionalDataHolder, IParsable
