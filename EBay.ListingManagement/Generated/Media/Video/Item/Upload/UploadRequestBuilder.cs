@@ -50,7 +50,8 @@ namespace EBay.ListingManagement.Generated.Media.Video.Item.Upload
         /// <summary>
         /// This method associates the specified file with the specified &lt;b&gt;video ID&lt;/b&gt; and uploads the input file. After the file has been uploaded the processing of the file begins.&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/span&gt; The size of the video to be uploaded must exactly match the size of the video&apos;s input stream that was set in the &lt;a href=&quot;/develop/api/sell/media_api#method-video-createVideo&quot;&gt;createVideo&lt;/a&gt; method. If the sizes do not match, the video will not upload successfully.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;When a video is successfully uploaded, it returns the HTTP Status Code &lt;code&gt;200 OK&lt;/code&gt;.&lt;br /&gt;&lt;br /&gt;The status flow is &lt;code&gt;PENDING_UPLOAD&lt;/code&gt; &gt; &lt;code&gt;PROCESSING&lt;/code&gt; &gt; &lt;code&gt;LIVE&lt;/code&gt;,  &lt;code&gt;PROCESSING_FAILED&lt;/code&gt;, or &lt;code&gt;BLOCKED&lt;/code&gt;. After a video upload is successfully completed, the status will show as &lt;code&gt;PROCESSING&lt;/code&gt; until the video reaches one of the terminal states of &lt;code&gt;LIVE&lt;/code&gt;, &lt;code&gt;BLOCKED&lt;/code&gt;, or &lt;code&gt;PROCESSING_FAILED&lt;/code&gt;. If the size information (in bytes) provided is incorrect, the API will throw an error.&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#478415&quot;&gt;&lt;strong&gt;Tip:&lt;/strong&gt;&lt;/span&gt; See &lt;a href=&quot;https://www.ebay.com/help/selling/listings/creating-managing-listings/add-video-to-listing?id=5272#section3&quot; target=&quot;_blank&quot;&gt;Adding a video to your listing&lt;/a&gt; in the eBay Seller Center for details about video formatting requirements and restrictions, or visit the relevant eBay site help pages for the region in which the listings will be posted.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;To retrieve an uploaded video, use the &lt;a href=&quot;/api-docs/commerce/media/resources/video/methods/getVideo&quot; target=&quot;_blank&quot;&gt;getVideo&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::EBay.ListingManagement.Generated.Media.Video.Item.Upload.UploadPostResponse"/></returns>
+        /// <param name="body">Binary request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::EBay.ListingManagement.Generated.Media.Models.Error">When receiving a 400 status code</exception>
@@ -62,14 +63,15 @@ namespace EBay.ListingManagement.Generated.Media.Video.Item.Upload
         /// <exception cref="global::EBay.ListingManagement.Generated.Media.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::EBay.ListingManagement.Generated.Media.Video.Item.Upload.UploadPostResponse?> PostAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::EBay.ListingManagement.Generated.Media.Video.Item.Upload.UploadPostResponse> PostAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            var requestInfo = ToPostRequestInformation(requestConfiguration);
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::EBay.ListingManagement.Generated.Media.Models.Error.CreateFromDiscriminatorValue },
@@ -80,25 +82,28 @@ namespace EBay.ListingManagement.Generated.Media.Video.Item.Upload
                 { "416", global::EBay.ListingManagement.Generated.Media.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::EBay.ListingManagement.Generated.Media.Models.Error.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::EBay.ListingManagement.Generated.Media.Video.Item.Upload.UploadPostResponse>(requestInfo, global::EBay.ListingManagement.Generated.Media.Video.Item.Upload.UploadPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This method associates the specified file with the specified &lt;b&gt;video ID&lt;/b&gt; and uploads the input file. After the file has been uploaded the processing of the file begins.&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#004680&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/span&gt; The size of the video to be uploaded must exactly match the size of the video&apos;s input stream that was set in the &lt;a href=&quot;/develop/api/sell/media_api#method-video-createVideo&quot;&gt;createVideo&lt;/a&gt; method. If the sizes do not match, the video will not upload successfully.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;When a video is successfully uploaded, it returns the HTTP Status Code &lt;code&gt;200 OK&lt;/code&gt;.&lt;br /&gt;&lt;br /&gt;The status flow is &lt;code&gt;PENDING_UPLOAD&lt;/code&gt; &gt; &lt;code&gt;PROCESSING&lt;/code&gt; &gt; &lt;code&gt;LIVE&lt;/code&gt;,  &lt;code&gt;PROCESSING_FAILED&lt;/code&gt;, or &lt;code&gt;BLOCKED&lt;/code&gt;. After a video upload is successfully completed, the status will show as &lt;code&gt;PROCESSING&lt;/code&gt; until the video reaches one of the terminal states of &lt;code&gt;LIVE&lt;/code&gt;, &lt;code&gt;BLOCKED&lt;/code&gt;, or &lt;code&gt;PROCESSING_FAILED&lt;/code&gt;. If the size information (in bytes) provided is incorrect, the API will throw an error.&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;span style=&quot;color:#478415&quot;&gt;&lt;strong&gt;Tip:&lt;/strong&gt;&lt;/span&gt; See &lt;a href=&quot;https://www.ebay.com/help/selling/listings/creating-managing-listings/add-video-to-listing?id=5272#section3&quot; target=&quot;_blank&quot;&gt;Adding a video to your listing&lt;/a&gt; in the eBay Seller Center for details about video formatting requirements and restrictions, or visit the relevant eBay site help pages for the region in which the listings will be posted.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;To retrieve an uploaded video, use the &lt;a href=&quot;/api-docs/commerce/media/resources/video/methods/getVideo&quot; target=&quot;_blank&quot;&gt;getVideo&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
         }
         /// <summary>

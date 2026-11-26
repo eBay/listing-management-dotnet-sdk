@@ -76,6 +76,15 @@ internal static class RestInvocation
         }
     }
 
+    internal static MultipartBody CreateMultipartPlaceholder()
+    {
+        // Kiota serializes this argument while building the request and requires a part.
+        // AttachMultipartFileAsync replaces the serialized content with the caller's file.
+        var body = new MultipartBody();
+        body.AddOrReplacePart("file", "text/plain", string.Empty);
+        return body;
+    }
+
     internal static async Task<T?> SendMultipartFileAsync<T>(
         IRequestAdapter adapter,
         RequestInformation requestInfo,
@@ -120,6 +129,8 @@ internal static class RestInvocation
         await multipart.CopyToAsync(memStream, ct).ConfigureAwait(false);
 #endif
         memStream.Position = 0;
+        requestInfo.Content?.Dispose();
+        requestInfo.Headers.Remove("Content-Type");
         requestInfo.SetStreamContent(memStream, multipart.Headers.ContentType!.ToString());
     }
 }
