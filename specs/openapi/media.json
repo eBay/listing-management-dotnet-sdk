@@ -53,7 +53,9 @@
                 "schema": {
                   "type": "string",
                   "description": "The location response header contains the URI of the newly created image ID in the format:<br> <code>https://apim.ebay.com/commerce/media/v1_beta/image/<em>{image_id}</em></code> <br><br>Capture this URI to use with the <a href=\"/develop/api/sell/media_api#sell-media_api-image-getimage\" >getImage</a> method. See <a href=\"/api-docs/sell/static/inventory/managing-image-media.html\"  target=\"_blank\">Managing images</a> for more information."
-                }
+                },
+                "style": "simple",
+                "explode": false
               }
             },
             "content": {
@@ -143,7 +145,18 @@
               "https://api.ebay.com/oauth/api_scope/sell.inventory"
             ]
           }
-        ]
+        ],
+        "requestBody": {
+          "description": "The form data content disposition of the image file",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FormDataContentDisposition"
+              }
+            }
+          },
+          "required": true
+        }
       }
     },
     "/image/create_image_from_url": {
@@ -182,7 +195,9 @@
                 "schema": {
                   "type": "string",
                   "description": "The location response header contains the URI of the newly created image ID in the format:<br> <code>https://apim.ebay.com/commerce/media/v1_beta/image/<em>{image_id}</em></code> <br><br>Capture this URI to use with the <a href=\"/develop/api/sell/media_api#sell-media_api-image-getimage\" >getImage</a> method. See <a href=\"/api-docs/sell/static/inventory/managing-image-media.html\"  target=\"_blank\">Managing images</a> for more information."
-                }
+                },
+                "style": "simple",
+                "explode": false
               }
             },
             "content": {
@@ -290,7 +305,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
           }
         ],
         "responses": {
@@ -417,6 +434,15 @@
                 "schema": {
                   "type": "string",
                   "description": "The created video resource location and the unique <strong>video ID</strong>."
+                },
+                "style": "simple",
+                "explode": false
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
                 }
               }
             }
@@ -538,7 +564,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
           }
         ],
         "responses": {
@@ -638,13 +666,26 @@
         "operationId": "uploadVideo",
         "parameters": [
           {
+            "name": "video_id",
+            "in": "path",
+            "description": "The unique identifier of the video to be uploaded.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false
+          },
+          {
             "name": "Content-Length",
             "in": "header",
             "description": "Use this header to specify the content length for the upload. Use Content-Range: bytes {1}-{2}/{3} and Content-Length:{4} headers.<br /><br /><span class=\"tablenote\"><span style=\"color:#004680\"><strong>Note:</strong></span> This header is optional and is only required for <i>resumable</i> uploads (when an upload is interrupted and must be resumed from a certain point).</span>",
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
           },
           {
             "name": "Content-Range",
@@ -653,7 +694,9 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
           },
           {
             "name": "Content-Type",
@@ -663,20 +706,18 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "video_id",
-            "in": "path",
-            "description": "The unique identifier of the video to be uploaded.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -833,7 +874,17 @@
               "https://api.ebay.com/oauth/api_scope/sell.inventory"
             ]
           }
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "$ref": "#/components/schemas/InputStream"
+              }
+            }
+          },
+          "required": false
+        }
       }
     },
     "/document": {
@@ -2199,6 +2250,9 @@
           "BLOCKED",
           "LIVE"
         ]
+      },
+      "InputStream": {
+        "type": "object"
       }
     },
     "securitySchemes": {

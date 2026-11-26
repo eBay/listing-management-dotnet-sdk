@@ -60,7 +60,7 @@ public sealed class MediaClient
             accessToken,
             () =>
             {
-                var requestInfo = _kiota.Image.Create_image_from_file.ToPostRequestInformation();
+                var requestInfo = _kiota.Image.Create_image_from_file.ToPostRequestInformation(RestInvocation.CreateMultipartPlaceholder());
                 RestInvocation.ApplyHeaders(requestInfo.Headers, _config, requestOptions);
                 return RestInvocation.SendMultipartFileAsync(
                     _adapter,
@@ -165,6 +165,7 @@ public sealed class MediaClient
     /// </summary>
     public Task UploadVideoAsync(
         string videoId,
+        Stream body,
         string? contentLength = null,
         string? contentRange = null,
         string? accessToken = null,
@@ -173,7 +174,7 @@ public sealed class MediaClient
         => RestInvocation.CallAsync(
             _tokenContext,
             accessToken,
-            () => _kiota.Video[videoId].Upload.PostAsync(cfg =>
+            () => _kiota.Video[videoId].Upload.PostAsync(body, cfg =>
         {
             if (contentLength is not null)
             {

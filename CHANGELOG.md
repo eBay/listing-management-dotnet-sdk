@@ -1,5 +1,24 @@
 # ChangeLog
 
+## 0.7.0 (11/26/2026)
+
+### Breaking changes
+
+- The following operations changed signature on `MediaClient`:
+| Operation | Previous signature | New signature |
+| --- | --- | --- |
+| `UploadVideoAsync` | `UploadVideoAsync(string videoId, string? contentLength, string? contentRange, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` | `UploadVideoAsync(string videoId, Stream body, string? contentLength, string? contentRange, string? accessToken, RequestOptions? requestOptions, CancellationToken ct)` |
+
+### Added
+
+- Local mock servers: base URL properties accept plain `http` when the host is a loopback host (`127.0.0.1`, `::1` or `localhost`) that you also add to `ListingManagementConfiguration.AllowedHosts`. Before, every base URL had to use HTTPS. Every other host still requires HTTPS. `ListingManagementConfiguration.LoopbackHosts` lists the loopback hosts.
+
+### Changed
+
+- Fixed declared multipart uploads so `CreateImageFromFileAsync` and `UploadFileAsync` send the caller’s file with a matching multipart boundary and leave the stream open.
+- Updated the `media` OpenAPI document to the latest definitions.
+- Hosts are compared case-insensitively and without IPv6 brackets, so `[::1]` and `::1` match.
+
 ## 0.6.0 (11/17/2026)
 
 Updates the GraphQL client to eBay's current GraphQL schema. The REST APIs are unchanged.

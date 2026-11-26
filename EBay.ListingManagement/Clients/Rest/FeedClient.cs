@@ -512,7 +512,7 @@ public sealed class FeedClient
             accessToken,
             () =>
             {
-                var requestInfo = _kiota.Task[taskId].Upload_file.ToPostRequestInformation(new MultipartBody());
+                var requestInfo = _kiota.Task[taskId].Upload_file.ToPostRequestInformation(RestInvocation.CreateMultipartPlaceholder());
                 RestInvocation.ApplyHeaders(requestInfo.Headers, _config, requestOptions);
                 return RestInvocation.SendMultipartFileAsync(
                     _adapter,
